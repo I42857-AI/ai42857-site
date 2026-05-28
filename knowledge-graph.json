@@ -1,4 +1,112 @@
 {
+  "version": "1.0.0",
+  "project": {
+    "name": "CaiPin-FenJing",
+    "languages": [
+      "javascript",
+      "html",
+      "css"
+    ],
+    "frameworks": [
+      "mimo-v2.5-pro",
+      "runninghub",
+      "seedance-2.0"
+    ],
+    "description": "菜品AI视频推广分镜系统，基于 MrBeast 分镜方法论演化，专为粤菜 30 秒 AI 视频生成设计，纯视觉叙事，无字幕，强调食欲刺激曲线",
+    "analyzedAt": "2026-05-24T22:45:00.000Z",
+    "gitCommitHash": ""
+  },
+  "tour": [
+    {
+      "order": 1,
+      "title": "分镜系统 — 两种模式",
+      "description": "6镜30秒模式面向 Seedance 2.0，12镜30秒模式面向 RunningHub，核心区别在于字段数量和叙事颗粒度",
+      "nodeIds": [
+        "module:system",
+        "module:6shot",
+        "module:12shot"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "菜品与品牌",
+      "description": "每道菜对应一个完整的分镜方案，归属于品牌（粤海壹号），菜品之间可共享技法和场景",
+      "nodeIds": [
+        "dish:cuipi-ruge",
+        "dish:qieji",
+        "brand:yuehaiyihao"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "食材与调料",
+      "description": "食材是菜品的物质基础，脆皮水是脆皮乳鸽的灵魂工艺，姜蓉是白切鸡的灵魂蘸料",
+      "nodeIds": [
+        "ingredient:ruge",
+        "ingredient:cuipishui",
+        "ingredient:zouji",
+        "ingredient:jiangrong"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "7大核心技法",
+      "description": "每个镜头必须使用2-3个技法，微距特写和声画同步是必选项，慢动作诗意化是高潮镜头的核心",
+      "nodeIds": [
+        "technique:weijutexie",
+        "technique:mandongzuoshiyihua",
+        "technique:shenghuatongbu",
+        "technique:tiaoqieshengluo",
+        "technique:zhengqifenwei"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "6镜叙事弧线",
+      "description": "快快慢→快慢慢的呼吸节奏：镜1-2快切建立节奏，镜3慢切诗意化，镜4快切力度，镜5-6慢切高潮收尾",
+      "nodeIds": [
+        "shot:ruge-1",
+        "shot:ruge-2",
+        "shot:ruge-3",
+        "shot:ruge-4",
+        "shot:ruge-5",
+        "shot:ruge-6"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "食欲刺激曲线",
+      "description": "30秒内的4个情绪节点：期待感（0-2s）→酥脆感（2-4s）→汁水四溢（5-10s高潮）→温暖归属（11-15s收尾）",
+      "nodeIds": [
+        "emotion:qidaigan",
+        "emotion:sucuigan",
+        "emotion:zhishisiyi",
+        "emotion:wennuan"
+      ]
+    },
+    {
+      "order": 7,
+      "title": "提示词 — 一键复制",
+      "description": "每组3镜的完整提示词，包含15个字段，可直接复制到 Seedance 2.0 或 RunningHub 使用",
+      "nodeIds": [
+        "prompt:ruge-group1",
+        "prompt:ruge-group2"
+      ]
+    },
+    {
+      "order": 8,
+      "title": "风格档案 — 导演配方",
+      "description": "6个风格配方对应6种视听语言体系，每个配方是技法的权重组合，生成分镜时选择风格即可获得差异化呈现",
+      "nodeIds": [
+        "style:shejian-yinshi-nanv",
+        "style:pingguo-fabuhui",
+        "style:wangjiawei",
+        "style:riben-wajiki",
+        "style:saibopengke",
+        "style:kitano-kikujirou"
+      ]
+    }
+  ],
   "nodes": [
     {
       "id": "module:system",
