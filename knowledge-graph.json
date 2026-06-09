@@ -12,7 +12,7 @@
       "runninghub",
       "seedance-2.0"
     ],
-    "description": "菜品AI视频推广分镜系统，基于 MrBeast 分镜方法论演化，专为粤菜 30 秒 AI 视频生成设计，纯视觉叙事，无字幕，强调食欲刺激曲线",
+    "description": "菜品AI视频推广分镜系统，基于 MrBeast 分镜方法论演化，专为粤菜 30 秒 AI 视频生成设计，纯视觉叙事，无字幕，强调食欲刺激曲线。14字段菜品档案+12字段分镜表格，9镜分形模式（Clip A诱惑篇+Clip B呈现篇）",
     "analyzedAt": "2026-05-24T22:45:00.000Z",
     "gitCommitHash": ""
   },
@@ -112,7 +112,7 @@
       "id": "module:system",
       "type": "module",
       "name": "分镜系统",
-      "summary": "菜品分镜AI生成器，输入菜品信息后自动生成专业导演级分镜方案与提示词，支持 6 镜 30 秒和 12 镜 30 秒两种模式",
+      "summary": "菜品分镜AI生成器，输入菜品信息后自动生成专业导演级分镜方案与提示词，支持 9 镜分形模式（12字段）和 12 镜标准模式（12字段）",
       "tags": [
         "system",
         "generator",
@@ -123,12 +123,13 @@
     {
       "id": "module:6shot",
       "type": "module",
-      "name": "6镜30秒模式",
-      "summary": "面向 Seedance 2.0 的 6 镜分镜模式，分两组各 3 镜 15 秒，15 个字段，叙事弧线：食材挑选→处理→烹饪→成品",
+      "name": "9镜分形模式",
+      "summary": "面向 Seedance 2.0 的 9 镜分形模式，Clip A(诱惑篇 A1-A4)+Clip B(呈现篇 B1-B5)，12字段，叙事弧线：食材挑选→处理→烹饪→成品",
       "tags": [
-        "6shot",
+        "9shot",
         "seedance",
-        "30s"
+        "30s",
+        "fractal"
       ],
       "complexity": "moderate"
     },
@@ -136,7 +137,7 @@
       "id": "module:12shot",
       "type": "module",
       "name": "12镜30秒模式",
-      "summary": "面向 RunningHub 的 12 镜分镜模式，分四组各 3 镜，9 个字段，更细腻的叙事节奏",
+      "summary": "面向 RunningHub 的 12 镜标准模式，12字段，更细腻的叙事节奏",
       "tags": [
         "12shot",
         "runninghub",
@@ -214,7 +215,8 @@
             "景深极浅"
           ],
           "applicableShots": "食材特写→处理细节→成品展示",
-          "originStyle": "通用基础技法"
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "惊叹→沉浸→敬畏"
         }
       }
     },
@@ -240,7 +242,8 @@
             "关键动作节点"
           ],
           "applicableShots": "烹饪诗意化→成品高潮",
-          "originStyle": "通用基础技法"
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "宁静→专注→感动"
         }
       }
     },
@@ -266,7 +269,8 @@
             "声画精确对位"
           ],
           "applicableShots": "通用",
-          "originStyle": "通用基础技法"
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "期待→紧张→满足"
         }
       }
     },
@@ -292,7 +296,8 @@
             "动作连贯性"
           ],
           "applicableShots": "快切开场→力度展示",
-          "originStyle": "通用基础技法"
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "好奇→惊讶→领悟"
         }
       }
     },
@@ -318,7 +323,8 @@
             "烟雾浓度与节奏"
           ],
           "applicableShots": "烹饪蒸汽→成品热气→收尾氛围",
-          "originStyle": "通用基础技法"
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "温暖→安心→归属"
         }
       }
     },
@@ -344,7 +350,8 @@
             "冲击感构图"
           ],
           "applicableShots": "烹饪力度",
-          "originStyle": "通用基础技法"
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "震撼→敬畏→信服"
         }
       }
     },
@@ -370,7 +377,8 @@
             "色温 自然光5500K"
           ],
           "applicableShots": "通用",
-          "originStyle": "通用基础技法"
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "平静→欣赏→信赖"
         }
       }
     },
@@ -396,7 +404,8 @@
             "转场时长 0.3-0.8s"
           ],
           "applicableShots": "衔接",
-          "originStyle": "通用基础技法"
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "连贯→流畅→沉浸"
         }
       }
     },
@@ -548,7 +557,7 @@
       "id": "prompt:ruge-group1",
       "type": "document",
       "name": "提示词01·镜1-3",
-      "summary": "第1组提示词（开场·0-5s·快切跳切建立节奏），包含镜1食材挑选、镜2处理、镜3烹饪的完整15字段",
+      "summary": "第1组提示词（开场·0-5s·快切跳切建立节奏），包含镜1食材挑选、镜2处理、镜3烹饪的完整12字段",
       "tags": [
         "提示词",
         "组1",
@@ -557,7 +566,7 @@
       "complexity": "moderate",
       "metadata": {
         "promptGroup": {
-          "groupName": "第1组·开场",
+          "groupName": "Clip A·诱惑篇",
           "timeRange": "0-5s",
           "style": "快切跳切建立节奏",
           "shots": [
@@ -572,7 +581,7 @@
       "id": "prompt:ruge-group2",
       "type": "document",
       "name": "提示词02·镜4-6",
-      "summary": "第2组提示词（高潮+收尾·5-15s·慢动作高潮+品牌定格），包含镜4烹饪细节、镜5成品展示、镜6成品收尾的完整15字段",
+      "summary": "第2组提示词（高潮+收尾·5-15s·慢动作高潮+品牌定格），包含镜4烹饪细节、镜5成品展示、镜6成品收尾的完整12字段",
       "tags": [
         "提示词",
         "组2",
@@ -581,7 +590,7 @@
       "complexity": "moderate",
       "metadata": {
         "promptGroup": {
-          "groupName": "第2组·高潮+收尾",
+          "groupName": "Clip B·呈现篇",
           "timeRange": "5-15s",
           "style": "慢动作高潮+品牌定格",
           "shots": [
@@ -6169,230 +6178,6 @@
     {
       "source": "style:shejian-yinshi-nanv",
       "target": "technique:weijutexie",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.95
-    },
-    {
-      "source": "style:shejian-yinshi-nanv",
-      "target": "technique:shenghuatongbu",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.9
-    },
-    {
-      "source": "style:shejian-yinshi-nanv",
-      "target": "technique:mandongzuoshiyihua",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.85
-    },
-    {
-      "source": "style:shejian-yinshi-nanv",
-      "target": "technique:zhengqifenwei",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.85
-    },
-    {
-      "source": "style:shejian-yinshi-nanv",
-      "target": "technique:tiaoqieshengluo",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "style:shejian-yinshi-nanv",
-      "target": "technique:ziranguangzhigan",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "style:shejian-yinshi-nanv",
-      "target": "technique:henjintexie",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "style:shejian-yinshi-nanv",
-      "target": "technique:zhuanchangmengtaiqi",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.6
-    },
-    {
-      "source": "style:pingguo-fabuhui",
-      "target": "technique:baisirouguangxiang",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.95
-    },
-    {
-      "source": "style:pingguo-fabuhui",
-      "target": "technique:jijian-goutu-liubai",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.9
-    },
-    {
-      "source": "style:pingguo-fabuhui",
-      "target": "technique:huagui-yunsu-hengyi",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.85
-    },
-    {
-      "source": "style:pingguo-fabuhui",
-      "target": "technique:weijutexie",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "style:pingguo-fabuhui",
-      "target": "technique:heichang-xuanzhuan-dengchang",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.75
-    },
-    {
-      "source": "style:pingguo-fabuhui",
-      "target": "technique:shenghuatongbu",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "style:wangjiawei",
-      "target": "technique:nihong-shuangsewen",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.95
-    },
-    {
-      "source": "style:wangjiawei",
-      "target": "technique:shouchi-huxigan",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.85
-    },
-    {
-      "source": "style:wangjiawei",
-      "target": "technique:buguize-pianxin-goutu",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "style:wangjiawei",
-      "target": "technique:chouzhen-duanxu",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.75
-    },
-    {
-      "source": "style:wangjiawei",
-      "target": "technique:mandongzuoshiyihua",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "style:riben-wajiki",
-      "target": "technique:dandian-guangyuan",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.95
-    },
-    {
-      "source": "style:riben-wajiki",
-      "target": "technique:guding-ningshi",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.9
-    },
-    {
-      "source": "style:riben-wajiki",
-      "target": "technique:jijian-goutu-liubai",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.85
-    },
-    {
-      "source": "style:riben-wajiki",
-      "target": "technique:mandongzuoshiyihua",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "style:saibopengke",
-      "target": "technique:nihong-shuangsewen",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.95
-    },
-    {
-      "source": "style:saibopengke",
-      "target": "technique:guzhang-zhuanchang",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.85
-    },
-    {
-      "source": "style:saibopengke",
-      "target": "technique:zhengqifenwei",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "style:saibopengke",
-      "target": "technique:chouzhen-duanxu",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.75
-    },
-    {
-      "source": "style:saibopengke",
-      "target": "technique:weijutexie",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "style:kitano-kikujirou",
-      "target": "technique:ziranguangzhigan",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.85
-    },
-    {
-      "source": "style:kitano-kikujirou",
-      "target": "technique:guding-ningshi",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "style:kitano-kikujirou",
-      "target": "technique:tiaoqieshengluo",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.75
-    },
-    {
-      "source": "style:kitano-kikujirou",
-      "target": "technique:shouchi-huxigan",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "style:shejian-yinshi-nanv",
-      "target": "technique:weijutexie",
       "type": "uses",
       "direction": "forward",
       "weight": 0.95,
@@ -6503,20 +6288,76 @@
       "description": "苹果发布会风格 使用 technique:shenghuatongbu，权重 70%"
     },
     {
-      "source": "style:pingguo-fabuhui",
-      "target": "technique:shuju-biaozhu-donghua",
+      "source": "style:wangjiawei",
+      "target": "technique:nihong-shuangsewen",
       "type": "uses",
       "direction": "forward",
-      "weight": 0.65,
-      "description": "苹果发布会风格 使用 technique:shuju-biaozhu-donghua，权重 65%"
+      "weight": 0.95,
+      "description": "王家卫风格 使用 technique:nihong-shuangsewen，权重 95%"
     },
     {
-      "source": "style:pingguo-fabuhui",
+      "source": "style:wangjiawei",
+      "target": "technique:shouchi-huxigan",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.85,
+      "description": "王家卫风格 使用 technique:shouchi-huxigan，权重 85%"
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:buguize-pianxin-goutu",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "王家卫风格 使用 technique:buguize-pianxin-goutu，权重 80%"
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:chouzhen-duanxu",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.75,
+      "description": "王家卫风格 使用 technique:chouzhen-duanxu，权重 75%"
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.7,
+      "description": "王家卫风格 使用 technique:mandongzuoshiyihua，权重 70%"
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:dandian-guangyuan",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.95,
+      "description": "日式侘寂风格 使用 technique:dandian-guangyuan，权重 95%"
+    },
+    {
+      "source": "style:riben-wajiki",
       "target": "technique:guding-ningshi",
       "type": "uses",
       "direction": "forward",
-      "weight": 0.5,
-      "description": "苹果发布会风格 使用 technique:guding-ningshi，权重 50%"
+      "weight": 0.9,
+      "description": "日式侘寂风格 使用 technique:guding-ningshi，权重 90%"
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:jijian-goutu-liubai",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.85,
+      "description": "日式侘寂风格 使用 technique:jijian-goutu-liubai，权重 85%"
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.7,
+      "description": "日式侘寂风格 使用 technique:mandongzuoshiyihua，权重 70%"
     },
     {
       "source": "style:saibopengke",
@@ -6559,22 +6400,6 @@
       "description": "赛博朋克风格 使用 technique:weijutexie，权重 70%"
     },
     {
-      "source": "style:saibopengke",
-      "target": "technique:shuju-biaozhu-donghua",
-      "type": "uses",
-      "direction": "forward",
-      "weight": 0.65,
-      "description": "赛博朋克风格 使用 technique:shuju-biaozhu-donghua，权重 65%"
-    },
-    {
-      "source": "style:saibopengke",
-      "target": "technique:buguize-pianxin-goutu",
-      "type": "uses",
-      "direction": "forward",
-      "weight": 0.55,
-      "description": "赛博朋克风格 使用 technique:buguize-pianxin-goutu，权重 55%"
-    },
-    {
       "source": "style:kitano-kikujirou",
       "target": "technique:ziranguangzhigan",
       "type": "uses",
@@ -6605,6 +6430,38 @@
       "direction": "forward",
       "weight": 0.7,
       "description": "北野武《菊次郎的夏天》风格 使用 technique:shouchi-huxigan，权重 70%"
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:shuju-biaozhu-donghua",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.65,
+      "description": "苹果发布会风格 使用 technique:shuju-biaozhu-donghua，权重 65%"
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:guding-ningshi",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.5,
+      "description": "苹果发布会风格 使用 technique:guding-ningshi，权重 50%"
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:shuju-biaozhu-donghua",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.65,
+      "description": "赛博朋克风格 使用 technique:shuju-biaozhu-donghua，权重 65%"
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:buguize-pianxin-goutu",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.55,
+      "description": "赛博朋克风格 使用 technique:buguize-pianxin-goutu，权重 55%"
     },
     {
       "source": "style:kitano-kikujirou",
@@ -6704,38 +6561,6 @@
     },
     {
       "source": "style:riben-wajiki",
-      "target": "technique:dandian-guangyuan",
-      "type": "uses",
-      "direction": "forward",
-      "weight": 0.95,
-      "description": "日式侘寂风格 使用 technique:dandian-guangyuan，权重 95%"
-    },
-    {
-      "source": "style:riben-wajiki",
-      "target": "technique:guding-ningshi",
-      "type": "uses",
-      "direction": "forward",
-      "weight": 0.9,
-      "description": "日式侘寂风格 使用 technique:guding-ningshi，权重 90%"
-    },
-    {
-      "source": "style:riben-wajiki",
-      "target": "technique:jijian-goutu-liubai",
-      "type": "uses",
-      "direction": "forward",
-      "weight": 0.85,
-      "description": "日式侘寂风格 使用 technique:jijian-goutu-liubai，权重 85%"
-    },
-    {
-      "source": "style:riben-wajiki",
-      "target": "technique:mandongzuoshiyihua",
-      "type": "uses",
-      "direction": "forward",
-      "weight": 0.7,
-      "description": "日式侘寂风格 使用 technique:mandongzuoshiyihua，权重 70%"
-    },
-    {
-      "source": "style:riben-wajiki",
       "target": "technique:shenghuatongbu",
       "type": "uses",
       "direction": "forward",
@@ -6757,46 +6582,6 @@
       "direction": "forward",
       "weight": 0.55,
       "description": "日式侘寂风格 使用 technique:zhengqifenwei，权重 55%"
-    },
-    {
-      "source": "style:wangjiawei",
-      "target": "technique:nihong-shuangsewen",
-      "type": "uses",
-      "direction": "forward",
-      "weight": 0.95,
-      "description": "王家卫风格 使用 technique:nihong-shuangsewen，权重 95%"
-    },
-    {
-      "source": "style:wangjiawei",
-      "target": "technique:shouchi-huxigan",
-      "type": "uses",
-      "direction": "forward",
-      "weight": 0.85,
-      "description": "王家卫风格 使用 technique:shouchi-huxigan，权重 85%"
-    },
-    {
-      "source": "style:wangjiawei",
-      "target": "technique:buguize-pianxin-goutu",
-      "type": "uses",
-      "direction": "forward",
-      "weight": 0.8,
-      "description": "王家卫风格 使用 technique:buguize-pianxin-goutu，权重 80%"
-    },
-    {
-      "source": "style:wangjiawei",
-      "target": "technique:chouzhen-duanxu",
-      "type": "uses",
-      "direction": "forward",
-      "weight": 0.75,
-      "description": "王家卫风格 使用 technique:chouzhen-duanxu，权重 75%"
-    },
-    {
-      "source": "style:wangjiawei",
-      "target": "technique:mandongzuoshiyihua",
-      "type": "uses",
-      "direction": "forward",
-      "weight": 0.7,
-      "description": "王家卫风格 使用 technique:mandongzuoshiyihua，权重 70%"
     },
     {
       "source": "style:wangjiawei",
@@ -8565,69 +8350,6 @@
       "type": "uses_technique",
       "direction": "forward",
       "weight": 0.7
-    },
-    {
-      "source": "style:mrbeast-daoyan",
-      "target": "technique:fengmianzhen-jichengpin",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1.0
-    },
-    {
-      "source": "style:mrbeast-daoyan",
-      "target": "technique:tiaoqie-shenglue",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.9
-    },
-    {
-      "source": "style:mrbeast-daoyan",
-      "target": "technique:sanduan-dijin",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1.0
-    },
-    {
-      "source": "style:mrbeast-daoyan",
-      "target": "technique:manjing-lizi-qiguan",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "style:mrbeast-daoyan",
-      "target": "technique:poihuai-xing-jieshi",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.9
-    },
-    {
-      "source": "style:mrbeast-daoyan",
-      "target": "technique:shenghua-hubu-xushi",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "style:mrbeast-daoyan",
-      "target": "technique:jingmo-xuli-baofa",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "style:mrbeast-daoyan",
-      "target": "technique:henjintexie",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "style:mrbeast-daoyan",
-      "target": "technique:shenghuatongbu",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 0.6
     }
   ],
   "layers": [
