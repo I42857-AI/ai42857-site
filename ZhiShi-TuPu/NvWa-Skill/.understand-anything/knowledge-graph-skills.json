@@ -1,0 +1,60 @@
+{
+  "nodes": [
+    {
+      "id": "skill:nvwa-creation",
+      "type": "concept",
+      "name": "女娲造人术",
+      "summary": "AI知识图谱构建方法论：从代码库到交互式可视化，三重验证法（代码验证+逻辑验证+视觉验证），6 Agent并行采集",
+      "tags": [
+        "ai",
+        "knowledge-graph",
+        "unique"
+      ],
+      "complexity": "complex",
+      "metadata": {
+        "agents": 6,
+        "validationLayers": 3
+      }
+    },
+    {
+      "id": "skill:karpathy-models",
+      "type": "concept",
+      "name": "Karpathy心智模型集",
+      "summary": "10个Karpathy思维模型：Software X.0/构建即理解/LLM=幽灵/March of Nines/锯齿状智能/Iron Man套装等",
+      "tags": [
+        "ai",
+        "mental-model",
+        "karpathy",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "modelCount": 10
+      }
+    },
+    {
+      "id": "skill:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "跨Agent统一表达风格：诚实边界+心智模型+Skill模板，确保不同Agent输出风格一致",
+      "tags": [
+        "ai",
+        "expression",
+        "unique"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "skill:nvwa-creation",
+      "target": "skill:expression-dna",
+      "type": "depends_on"
+    },
+    {
+      "source": "skill:karpathy-models",
+      "target": "skill:nvwa-creation",
+      "type": "inspires"
+    }
+  ]
+}
