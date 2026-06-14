@@ -1,0 +1,347 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "PromptXtar",
+    "languages": [
+      "javascript",
+      "python",
+      "html",
+      "css",
+      "json"
+    ],
+    "frameworks": [
+      "chrome-extension-manifest-v3"
+    ],
+    "description": "AI 提示词管理器浏览器扩展，支持 // 快捷键一键填充、小念 AI 对话助手、QuickMD 文档编辑、参考图片管理、Native 文件系统访问",
+    "analyzedAt": "2026-05-26",
+    "gitCommitHash": "manual"
+  },
+  "nodes": [
+    {
+      "id": "concept:promptxtar",
+      "type": "concept",
+      "name": "PromptXtar",
+      "summary": "AI 提示词管理器浏览器扩展，支持 // 快捷键一键填充、小念 AI 对话助手、QuickMD 文档编辑、参考图片管理、Native 文件系统访问 **PromptXtar 独有**",
+      "tags": [
+        "unique"
+      ]
+    },
+    {
+      "id": "domain:side-panel",
+      "type": "domain",
+      "name": "侧边栏板块",
+      "summary": "浏览器侧边栏界面，包含首页仪表盘、图片管理、对话历史和 QuickMD 文档编辑四个子板块"
+    },
+    {
+      "id": "domain:floating-chat",
+      "type": "domain",
+      "name": "浮层对话板块",
+      "summary": "小念浮窗 UI、流式对话（SSE）、// 快捷键唤醒、拖拽填充（含 ElementInspector + URLEnlarger）"
+    },
+    {
+      "id": "domain:mini-inject",
+      "type": "domain",
+      "name": "小注入板块",
+      "summary": "豆包注入、QuickMD 选择器注入、多引擎搜索栏"
+    },
+    {
+      "id": "domain:ai-engine",
+      "type": "domain",
+      "name": "AI 引擎板块",
+      "summary": "MiMo API 直连（流式/非流式）、OpenClaw Gateway 通信层、最简 system prompt"
+    },
+    {
+      "id": "domain:core-infra",
+      "type": "domain",
+      "name": "核心基础设施",
+      "summary": "存储层（IndexedDB + chrome.storage）、消息中转（Port 通信）、工具函数库"
+    },
+    {
+      "id": "domain:native-bridge",
+      "type": "domain",
+      "name": "本地桥接板块",
+      "summary": "Native Messaging Host、Python 文件系统脚本"
+    },
+    {
+      "id": "domain:panel-arch",
+      "type": "domain",
+      "name": "面板架构",
+      "summary": "PanelBase 基类、PanelShell 管理器、第三方渲染库"
+    },
+    {
+      "id": "domain:pending",
+      "type": "domain",
+      "name": "待处理区",
+      "summary": "Reader 模块（已被 QuickMD 替代，暂不活跃）"
+    },
+    {
+      "id": "file:manifest.json",
+      "type": "config",
+      "name": "manifest.json",
+      "filePath": "manifest.json",
+      "summary": "Chrome Extension Manifest V3 配置，声明权限、content scripts、side panel、web accessible resources 和 service worker 入口"
+    },
+    {
+      "id": "file:utils.js",
+      "type": "file",
+      "name": "utils.js",
+      "filePath": "utils.js",
+      "summary": "共享工具函数库 PT_UTILS，提供 HTML 转义、存储封装、Context 有效性检查、消息发送、Toast 通知、带撤回删除、防抖、UUID 生成、dataURL 转 Blob 等基础能力"
+    }
+  ],
+  "edges": [
+    {
+      "source": "concept:promptxtar",
+      "target": "domain:side-panel",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "concept:promptxtar",
+      "target": "domain:floating-chat",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "concept:promptxtar",
+      "target": "domain:mini-inject",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "concept:promptxtar",
+      "target": "domain:ai-engine",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "concept:promptxtar",
+      "target": "domain:core-infra",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "concept:promptxtar",
+      "target": "domain:native-bridge",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "concept:promptxtar",
+      "target": "domain:panel-arch",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "concept:promptxtar",
+      "target": "domain:pending",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:side-panel",
+      "name": "侧边栏板块",
+      "description": "浏览器侧边栏界面，包含 QuickMD 文档编辑（默认首页）、首页仪表盘、图片管理、对话历史四个子板块",
+      "nodeIds": [
+        "domain:side-panel",
+        "domain:sp-quickmd",
+        "domain:sp-home",
+        "domain:sp-pics",
+        "domain:sp-chat",
+        "file:side-panel/side-panel.js",
+        "file:side-panel/side-panel.html",
+        "file:side-panel/side-panel.css",
+        "file:modules/quickmd.js",
+        "file:modules/home.js",
+        "file:modules/home.css",
+        "class:modules/quickmd.js:QuickMDPanel",
+        "function:side-panel/side-panel.js:initGlobalShortcuts"
+      ]
+    },
+    {
+      "id": "layer:floating-chat",
+      "name": "浮层对话板块",
+      "description": "小念浮窗 UI、流式对话（SSE）、// 快捷键唤醒、拖拽填充（含 ElementInspector + URLEnlarger）",
+      "nodeIds": [
+        "domain:floating-chat",
+        "function:content.js:openXiaoxingWindow",
+        "function:content.js:callXiaoxingStreamAPI",
+        "file:libs/element-inspector.js",
+        "file:libs/url-enlarger.js",
+        "function:libs/element-inspector.js:getImageFromDragEvent",
+        "function:libs/url-enlarger.js:enlarge"
+      ]
+    },
+    {
+      "id": "layer:mini-inject",
+      "name": "小注入板块",
+      "description": "豆包注入、QuickMD 选择器注入、多引擎搜索栏",
+      "nodeIds": [
+        "domain:mini-inject",
+        "function:content.js:injectTextToDoubao",
+        "function:content.js:showQmdSelector"
+      ]
+    },
+    {
+      "id": "layer:ai-engine",
+      "name": "AI 引擎板块",
+      "description": "MiMo API 直连（流式/非流式）、OpenClaw Gateway 通信层、最简 system prompt",
+      "nodeIds": [
+        "domain:ai-engine",
+        "function:background.js:callXiaoxing",
+        "function:background.js:callXiaoxingStream",
+        "function:background.js:buildSystemPrompt",
+        "function:background.js:callOpenClaw"
+      ]
+    },
+    {
+      "id": "layer:core-infra",
+      "name": "核心基础设施",
+      "description": "存储层（IndexedDB + chrome.storage）、消息中转（Port 通信）、工具函数库",
+      "nodeIds": [
+        "domain:core-infra",
+        "file:utils.js",
+        "function:background.js:initDB",
+        "function:background.js:chromeStorageOp",
+        "function:background.js:portMessageHandler"
+      ]
+    },
+    {
+      "id": "layer:native-bridge",
+      "name": "本地桥接板块",
+      "description": "Native Messaging Host、Python 文件系统脚本",
+      "nodeIds": [
+        "domain:native-bridge",
+        "file:native-host/native-fs-host.py",
+        "file:native-host/com.promptxtar.filesystem.json",
+        "function:background.js:nativeFsCall"
+      ]
+    },
+    {
+      "id": "layer:panel-arch",
+      "name": "面板架构",
+      "description": "PanelBase 基类、PanelShell 管理器、第三方渲染库（marked/highlight/katex/mermaid）",
+      "nodeIds": [
+        "domain:panel-arch",
+        "file:libs/panel-interface.js",
+        "file:libs/panel-shell.js",
+        "class:libs/panel-interface.js:PanelBase",
+        "class:libs/panel-shell.js:PanelShell",
+        "module:libs/marked.min.js",
+        "module:libs/highlight.min.js",
+        "module:libs/katex.min.js",
+        "module:libs/mermaid.min.js"
+      ]
+    },
+    {
+      "id": "layer:pending",
+      "name": "待处理区",
+      "description": "Reader 模块（已被 QuickMD 替代，暂不活跃）",
+      "nodeIds": [
+        "domain:pending",
+        "file:modules/reader.js",
+        "class:modules/reader.js:ReaderPanel"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "产品全景",
+      "description": "PromptXtar 是一款 AI 提示词管理器浏览器扩展，围绕 7 大业务板块构建：侧边栏、浮层对话、智能注入、AI 引擎、核心基础设施、本地桥接、面板架构",
+      "nodeIds": [
+        "concept:promptxtar",
+        "domain:side-panel",
+        "domain:floating-chat",
+        "domain:mini-inject",
+        "domain:ai-engine",
+        "domain:core-infra",
+        "domain:native-bridge",
+        "domain:panel-arch"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "侧边栏：QuickMD 核心文档存储",
+      "description": "侧边栏是用户的主工作区，QuickMD 作为默认首页承担核心文档存储职责，另有首页仪表盘、图片管理、对话历史三个子板块",
+      "nodeIds": [
+        "domain:side-panel",
+        "domain:sp-quickmd",
+        "domain:sp-home",
+        "domain:sp-pics",
+        "domain:sp-chat",
+        "file:side-panel/side-panel.js",
+        "file:modules/quickmd.js"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "浮层对话：小念 AI 助手",
+      "description": "在任何网页上通过 // 快捷键唤醒小念浮窗，支持流式对话、拖拽图片填充，ElementInspector 和 URLEnlarger 提供智能图片提取与放大",
+      "nodeIds": [
+        "domain:floating-chat",
+        "function:content.js:openXiaoxingWindow",
+        "function:content.js:callXiaoxingStreamAPI",
+        "file:libs/element-inspector.js",
+        "file:libs/url-enlarger.js"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "智能注入：一键填充",
+      "description": "豆包注入将文本自动填入 AI 网站输入框，QuickMD 选择器在任意页面快速选择并注入文档内容，多引擎搜索栏提供便捷搜索",
+      "nodeIds": [
+        "domain:mini-inject",
+        "function:content.js:injectTextToDoubao",
+        "function:content.js:showQmdSelector"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "AI 引擎：MiMo 直连",
+      "description": "小念直连 MiMo API，支持流式/非流式对话，最简 system prompt 提供纯聊天体验。callOpenClaw 保留 Gateway 通信层供外部调用",
+      "nodeIds": [
+        "domain:ai-engine",
+        "function:background.js:callXiaoxing",
+        "function:background.js:callXiaoxingStream",
+        "function:background.js:buildSystemPrompt",
+        "function:background.js:callOpenClaw"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "基础设施：存储与通信",
+      "description": "IndexedDB + chrome.storage 构成持久化存储层，Port 通信实现 content script 与 service worker 间的实时消息中转，utils.js 提供共享工具函数",
+      "nodeIds": [
+        "domain:core-infra",
+        "domain:native-bridge",
+        "file:utils.js",
+        "function:background.js:nativeFsCall",
+        "file:native-host/native-fs-host.py"
+      ]
+    },
+    {
+      "order": 7,
+      "title": "面板架构与扩展性",
+      "description": "PanelBase 基类定义面板生命周期接口，PanelShell 管理器负责注册/切换/销毁，marked/highlight/katex/mermaid 提供渲染能力，构成可扩展的面板系统",
+      "nodeIds": [
+        "domain:panel-arch",
+        "file:libs/panel-interface.js",
+        "file:libs/panel-shell.js",
+        "class:libs/panel-interface.js:PanelBase",
+        "class:libs/panel-shell.js:PanelShell",
+        "module:libs/marked.min.js"
+      ]
+    }
+  ]
+}
