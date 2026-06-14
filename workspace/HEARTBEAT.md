@@ -9,6 +9,7 @@
 5. 更新身份文件？→ 检查是否已更新，已更新静默跳过，未更新执行修改
 6. Symlink 健康检查？→ 检查 ~/.agents/ 下所有 Symlink 目标是否存在
 7. 虫洞检查？→ 确认沙箱 skills/ 与 output/ Symlink 指向母本有效
+8. 双 Marvis 通讯？→ 读取 COMMUNICATION.md 检查是否有新消息
 
 **如无需处理，回复 `HEARTBEAT_OK`**
 
