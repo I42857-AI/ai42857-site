@@ -1,0 +1,105 @@
+{
+  "nodes": [
+    {
+      "id": "style:mrbeast-daoyan",
+      "type": "concept",
+      "filePath": "fengge/mrbeast-daoyan",
+      "name": "MrBeast导演风格",
+      "summary": "将MrBeast视为导演，其内容创造方法论是一套完整的导演操作系统。核心哲学：注意力是唯一货币，每一帧都在和整个互联网竞争。7个叙事技法的高权重组合",
+      "tags": ["风格档案", "导演", "MrBeast", "叙事驱动"],
+      "complexity": "complex",
+      "metadata": {
+        "styleProfile": {
+          "director": "MrBeast（Jimmy Donaldson）",
+          "representativeWorks": ["YouTube 4亿订阅频道", "单视频$400万预算", "Beast Games"],
+          "corePhilosophy": "注意力是唯一货币，每一帧都在和整个互联网竞争。CTR×AVD是公理，零无聊是底线，阶梯递进是引擎",
+          "lightingStyle": "高对比度硬光，强调质感和粒子效果",
+          "colorPalette": "高饱和度暖色调，食欲色彩最大化",
+          "soundDesign": "不使用背景音乐，ASMR级收音+蓄力点1-1.5秒完全静默",
+          "emotionCurve": "三段递进：期待(0-10s)→冲击(10-20s)→爆发(20-30s)，不允许平台期",
+          "techniqueWeights": [
+            {"techniqueId": "technique:fengmianzhen-jichengpin", "weight": 1.0, "params": {"时长": "0-2秒", "景别": "极近特写"}},
+            {"techniqueId": "technique:sanduan-dijin", "weight": 1.0, "params": {"阶段": "期待→冲击→爆发"}},
+            {"techniqueId": "technique:tiaoqie-shenglue", "weight": 0.9, "params": {"原则": "起点即终点"}},
+            {"techniqueId": "technique:poihuai-xing-jieshi", "weight": 0.9, "params": {"时机": "25-30秒"}},
+            {"techniqueId": "technique:shenghua-hubu-xushi", "weight": 0.8, "params": {"模式": "画面质感+声音温度"}},
+            {"techniqueId": "technique:jingmo-xuli-baofa", "weight": 0.8, "params": {"静默时长": "1-1.5秒"}},
+            {"techniqueId": "technique:manjing-lizi-qiguan", "weight": 0.7, "params": {"帧率": "120-240fps", "限制": "每30秒最多2处"}},
+            {"techniqueId": "technique:henjintexie", "weight": 0.7, "params": {}},
+            {"techniqueId": "technique:shenghuatongbu", "weight": 0.6, "params": {}}
+          ],
+          "notRecommended": [],
+          "suitableDishes": ["脆皮乳鸽", "叉烧", "煲仔饭", "爆炒类"],
+          "unsuitableDishes": ["清蒸鱼", "白灼虾", "老火汤"],
+          "signatureMove": "封面帧即成品+三段递进曲线+破坏性揭示，三技法组合构成MrBeast味觉钩子",
+          "exampleScene": "第1帧脆皮乳鸽极美特写，跳切至慢镜油花爆裂，静默1秒后筷子夹起脆皮揭示汁水"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:fengmianzhen-jichengpin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:tiaoqie-shenglue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:sanduan-dijin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:manjing-lizi-qiguan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:poihuai-xing-jieshi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:shenghua-hubu-xushi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:jingmo-xuli-baofa",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:henjintexie",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:shenghuatongbu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}
