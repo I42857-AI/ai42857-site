@@ -1,0 +1,134 @@
+{
+  "version": "1.0.0",
+  "name": "MrBeast导演风格·粤菜30秒分镜提示词模板",
+  "description": "基于MrBeast内容创造方法论蒸馏的7个核心技法，为Seedance2.0设计的30秒粤菜美食推广短视频提示词模板。30秒=6个5秒片段，遵循三段递进曲线：期待(0-10s)→冲击(10-20s)→爆发(20-30s)",
+  "styleArchive": "style:mrbeast-director",
+  "techniques": [
+    "concept:technique-cover-frame",
+    "concept:technique-jump-cut-v2",
+    "concept:technique-three-stage-escalation",
+    "concept:technique-slowmo-spectacle",
+    "concept:technique-destructive-reveal-v2",
+    "concept:technique-audio-visual-complement",
+    "concept:technique-silence-burst"
+  ],
+  "structure": {
+    "totalDuration": "30s",
+    "segmentCount": 6,
+    "segmentDuration": "5s",
+    "stages": [
+      {
+        "name": "期待",
+        "timeRange": "0-10s",
+        "segments": [1, 2],
+        "goal": "让观众停下来并产生期待",
+        "retentionTarget": ">95%"
+      },
+      {
+        "name": "冲击",
+        "timeRange": "10-20s",
+        "segments": [3, 4],
+        "goal": "用视觉奇观冲击观众感官",
+        "retentionTarget": ">85%"
+      },
+      {
+        "name": "爆发",
+        "timeRange": "20-30s",
+        "segments": [5, 6],
+        "goal": "破坏性揭示+静默蓄力+最终爆发",
+        "retentionTarget": ">80%"
+      }
+    ]
+  },
+  "templates": {
+    "segment1": {
+      "name": "封面帧·成品极美特写",
+      "timeRange": "0-5s",
+      "stage": "期待",
+      "technique": "concept:technique-cover-frame",
+      "promptTemplate": "Ultra close-up of [DISH_NAME], [TEXTURE_DESCRIPTION], glistening [SAUCE/GLAZE], steam rising gently, [ANGLE] angle, warm golden lighting, shallow depth of field, food photography, cinematic, 4K",
+      "promptTemplateCN": "[菜品名]极近特写，[质感描述]，[酱汁/光泽]闪烁，轻柔蒸汽上升，[角度]角度，暖金色光线，浅景深，美食摄影，电影感，4K",
+      "audioDesign": "环境音：轻微蒸汽声+酱汁滴落声",
+      "notes": "第1帧=缩略图，0.5秒决策窗口。成品必须是最诱人状态，不做任何铺垫"
+    },
+    "segment2": {
+      "name": "食材·质感展示",
+      "timeRange": "5-10s",
+      "stage": "期待",
+      "technique": "concept:technique-jump-cut-v2",
+      "promptTemplate": "Macro shot of raw [KEY_INGREDIENT], [TEXTURE_DETAIL], being [PREP_ACTION] by hands, jump cut to [PREP_RESULT], dramatic side lighting, shallow DOF, cinematic, 4K",
+      "promptTemplateCN": "[关键食材]微距镜头，[质感细节]，双手[处理动作]，跳切至[处理结果]，戏剧性侧光，浅景深，电影感，4K",
+      "audioDesign": "环境音：刀落砧板声+食材断裂声（ASMR级收音）",
+      "notes": "跳切省略法：只保留动作起点和终点，删除一切中间过程。切菜只留刀落和切好"
+    },
+    "segment3": {
+      "name": "烹饪·慢镜粒子奇观",
+      "timeRange": "10-15s",
+      "stage": "冲击",
+      "technique": "concept:technique-slowmo-spectacle",
+      "promptTemplate": "Slow motion [COOKING_ACTION], [PARTICLE_EFFECT], 240fps, dramatic fire/oil/steam particles, [DISH_NAME] in [COOKWARE], intense orange glow, cinematic, 4K",
+      "promptTemplateCN": "[烹饪动作]慢镜头，[粒子效果]，240fps，戏剧性火焰/油花/蒸汽粒子，[菜品名]在[厨具]中，强烈橙色光芒，电影感，4K",
+      "audioDesign": "声画互补：滋滋声配慢镜油花（互补），不配火焰画面（重复）",
+      "notes": "慢镜粒子奇观：只在视觉爆发点使用120-240fps，每30秒最多2处慢镜。概念简单（慢镜）×执行极端（240fps）"
+    },
+    "segment4": {
+      "name": "烹饪·跳切加速",
+      "timeRange": "15-20s",
+      "stage": "冲击",
+      "technique": "concept:technique-jump-cut-v2",
+      "promptTemplate": "Rapid sequence: [ACTION_START] jump cut to [ACTION_END], [ACTION_START2] jump cut to [ACTION_END2], dynamic camera movement, warm kitchen lighting, cinematic, 4K",
+      "promptTemplateCN": "快速序列：[动作起点]跳切至[动作终点]，[动作起点2]跳切至[动作终点2]，动态运镜，温暖厨房光线，电影感，4K",
+      "audioDesign": "环境音：连续烹饪声（翻炒+锅气声+调味声）",
+      "notes": "跳切省略法：连续跳切加速节奏，省略=加速=零无聊。每镜不超过1秒"
+    },
+    "segment5": {
+      "name": "静默蓄力",
+      "timeRange": "20-25s",
+      "stage": "爆发",
+      "technique": "concept:technique-silence-burst",
+      "promptTemplate": "Complete silence. Slow elegant plating of [DISH_NAME], [PLATING_ACTION], sauce drizzling in real-time, minimal movement, anticipation building, warm backlight, cinematic, 4K",
+      "promptTemplateCN": "完全静默。[菜品名]缓慢优雅装盘，[装盘动作]，酱汁实时淋落，极简动作，蓄力感，暖色逆光，电影感，4K",
+      "audioDesign": "完全静默1-1.5秒（无音乐无环境音），然后极轻的酱汁淋落声渐入",
+      "notes": "静默蓄力爆发：落版前1-1.5秒完全静默，蓄力越深释放越强。对比产生最大张力"
+    },
+    "segment6": {
+      "name": "破坏性揭示·最终爆发",
+      "timeRange": "25-30s",
+      "stage": "爆发",
+      "technique": "concept:technique-destructive-reveal-v2",
+      "promptTemplate": "[DESTRUCTIVE_ACTION] revealing [INNER_TEXTURE], [JUICE_FLOW], extreme close-up, burst of sound and visual energy, final hero shot of [DISH_NAME], warm dramatic lighting, cinematic, 4K",
+      "promptTemplateCN": "[破坏性动作]揭示[内在质感]，[汁水流出]，极近特写，声音和视觉能量爆发，[菜品名]最终英雄镜头，暖色戏剧光线，电影感，4K",
+      "audioDesign": "声音爆发：破坏动作声（咔嚓/撕裂/汁水声）+环境音全开",
+      "notes": "破坏性揭示：筷子夹起/刀切/戳破展示内在质感。完整食物是封闭的，破坏动作打开它。这是最强的传达——90分传达让60分内容看起来像90分"
+    }
+  },
+  "exampleDishes": {
+    "crispyPigeon": {
+      "name": "脆皮乳鸽",
+      "segment1": "Ultra close-up of crispy roasted pigeon, golden crackling skin glistening with oil, steam rising, 45° overhead angle, warm golden lighting, shallow DOF, food photography, cinematic, 4K",
+      "segment2": "Macro shot of raw pigeon, smooth skin texture, being seasoned by hands, jump cut to marinated pigeon, dramatic side lighting, shallow DOF, cinematic, 4K",
+      "segment3": "Slow motion deep frying, oil droplets exploding in 240fps, dramatic fire particles, pigeon in wok, intense orange glow, cinematic, 4K",
+      "segment4": "Rapid sequence: pigeon entering oil jump cut to golden skin forming, basting jump cut to skin blistering, dynamic camera, warm kitchen lighting, cinematic, 4K",
+      "segment5": "Complete silence. Slow elegant plating of crispy pigeon, placing on white plate, sauce drizzling in real-time, minimal movement, warm backlight, cinematic, 4K",
+      "segment6": "Chopsticks tearing crispy skin revealing juicy pink meat, juices flowing, extreme close-up, burst of sound, final hero shot, warm dramatic lighting, cinematic, 4K"
+    },
+    "charSiu": {
+      "name": "蜜汁叉烧",
+      "segment1": "Ultra close-up of char siu, caramelized edges glistening with honey glaze, charred spots, steam rising, eye-level angle, warm amber lighting, shallow DOF, food photography, cinematic, 4K",
+      "segment2": "Macro shot of pork belly, marbling pattern, being coated in marinade, jump cut to marinated strips, dramatic side lighting, shallow DOF, cinematic, 4K",
+      "segment3": "Slow motion honey glaze application, glaze dripping and caramelizing in 240fps, dramatic flame particles from torch, intense orange glow, cinematic, 4K",
+      "segment4": "Rapid sequence: pork entering oven jump cut to edges charring, glazing jump cut to caramelization, dynamic camera, warm oven lighting, cinematic, 4K",
+      "segment5": "Complete silence. Slow slicing of char siu, cross-section revealing layers, sauce pooling on board, minimal movement, warm backlight, cinematic, 4K",
+      "segment6": "Knife cutting through char siu revealing pink center, juices and glaze flowing, extreme close-up, burst of sound, final hero shot, warm dramatic lighting, cinematic, 4K"
+    }
+  },
+  "rules": {
+    "coverFrame": "第1帧=缩略图，0.5秒决策窗口，成品必须是最诱人状态",
+    "jumpCut": "只保留动作起点和终点，任何超过1秒的静态等待画面必须删除",
+    "escalation": "每一镜的刺激度必须高于前一镜，不允许平台期",
+    "slowMotion": "每30秒视频最多2处慢镜，只在视觉爆发点使用",
+    "destructiveReveal": "落版前必须有破坏性动作展示内在质感",
+    "audioVisualComplement": "画面展示质感（视觉），声音补充温度/氛围（听觉），互补而非重复",
+    "silenceBurst": "落版前1-1.5秒完全静默，然后一击引爆"
+  }
+}
