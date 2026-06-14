@@ -1,0 +1,153 @@
+{
+  "nodes": [
+    {
+      "id": "function:content.js:openXiaoxingWindow",
+      "type": "function",
+      "name": "openXiaoxingWindow",
+      "filePath": "content.js",
+      "summary": "打开小念对话浮窗，创建 DOM、绑定事件、恢复历史记录，是浮层对话的核心入口"
+    },
+    {
+      "id": "function:content.js:callXiaoxingStreamAPI",
+      "type": "function",
+      "name": "callXiaoxingStreamAPI",
+      "filePath": "content.js",
+      "summary": "通过 Port 连接 background.js 的流式 API，处理思考内容（<think/>标签）和打字机效果，实现 SSE 流式对话"
+    },
+    {
+      "id": "function:content.js:handleSlashSlash",
+      "type": "function",
+      "name": "handleSlashSlash",
+      "filePath": "content.js",
+      "summary": "// 快捷键唤醒处理，检测用户在页面输入框中输入 // 后触发小念浮窗"
+    },
+    {
+      "id": "function:content.js:handleDragFill",
+      "type": "function",
+      "name": "handleDragFill",
+      "filePath": "content.js",
+      "summary": "拖拽填充处理，将拖拽的图片/文本内容填充到小念对话输入框"
+    },
+    {
+      "id": "file:libs/element-inspector.js",
+      "type": "file",
+      "name": "element-inspector.js",
+      "filePath": "libs/element-inspector.js",
+      "summary": "DOM 元素检查器，提供从拖拽事件中提取图片信息的能力（getImageFromDragEvent）"
+    },
+    {
+      "id": "file:libs/url-enlarger.js",
+      "type": "file",
+      "name": "url-enlarger.js",
+      "filePath": "libs/url-enlarger.js",
+      "summary": "URL 图片放大器，将缩略图 URL 转换为高清大图 URL（支持 50+ 站点规则匹配）"
+    },
+    {
+      "id": "function:libs/element-inspector.js:getImageFromDragEvent",
+      "type": "function",
+      "name": "ElementInspector.getImageFromDragEvent",
+      "filePath": "libs/element-inspector.js",
+      "summary": "从拖拽事件中提取图片信息（src、title、link），是拖拽填充的图片提取核心"
+    },
+    {
+      "id": "function:libs/url-enlarger.js:enlarge",
+      "type": "function",
+      "name": "URLEnlarger.enlarge",
+      "filePath": "libs/url-enlarger.js",
+      "summary": "将缩略图 URL 转换为高清大图 URL，支持 50+ 图床规则匹配"
+    }
+  ],
+  "edges": [
+    {
+      "source": "domain:floating-chat",
+      "target": "function:content.js:openXiaoxingWindow",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:floating-chat",
+      "target": "function:content.js:callXiaoxingStreamAPI",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:floating-chat",
+      "target": "function:content.js:handleSlashSlash",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:floating-chat",
+      "target": "function:content.js:handleDragFill",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:floating-chat",
+      "target": "file:libs/element-inspector.js",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:floating-chat",
+      "target": "file:libs/url-enlarger.js",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "function:content.js:openXiaoxingWindow",
+      "target": "function:content.js:callXiaoxingStreamAPI",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:content.js:callXiaoxingStreamAPI",
+      "target": "function:background.js:callXiaoxingStream",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:content.js:handleDragFill",
+      "target": "function:libs/element-inspector.js:getImageFromDragEvent",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:content.js:handleDragFill",
+      "target": "function:libs/url-enlarger.js:enlarge",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:content.js:handleSlashSlash",
+      "target": "function:content.js:openXiaoxingWindow",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:libs/element-inspector.js",
+      "target": "function:libs/element-inspector.js:getImageFromDragEvent",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:libs/url-enlarger.js",
+      "target": "function:libs/url-enlarger.js:enlarge",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    }
+  ]
+}
