@@ -1,0 +1,76 @@
+{
+  "nodes": [
+    {
+      "id": "function:background.js:callXiaoxing",
+      "type": "function",
+      "name": "callXiaoxing",
+      "filePath": "background.js",
+      "summary": "调用 MiMo API 进行非流式对话，支持多模态（图片切换模型），注入最简 system prompt"
+    },
+    {
+      "id": "function:background.js:callXiaoxingStream",
+      "type": "function",
+      "name": "callXiaoxingStream",
+      "filePath": "background.js",
+      "summary": "调用 MiMo API 进行流式对话（SSE），通过 Port 实时推送 chunk 到 content.js，实现打字机效果"
+    },
+    {
+      "id": "function:background.js:buildSystemPrompt",
+      "type": "function",
+      "name": "buildSystemPrompt",
+      "filePath": "background.js",
+      "summary": "返回最简 system prompt（纯聊天，无性格/技能/记忆注入），小念直连 MiMo 的提示词"
+    },
+    {
+      "id": "function:background.js:callOpenClaw",
+      "type": "function",
+      "name": "callOpenClaw",
+      "filePath": "background.js",
+      "summary": "调用 OpenClaw Gateway API，支持工具调用和自定义模型，桥接本地 OpenClaw Agent 的完整能力"
+    }
+  ],
+  "edges": [
+    {
+      "source": "domain:ai-engine",
+      "target": "function:background.js:callXiaoxing",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:ai-engine",
+      "target": "function:background.js:callXiaoxingStream",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:ai-engine",
+      "target": "function:background.js:buildSystemPrompt",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:ai-engine",
+      "target": "function:background.js:callOpenClaw",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "function:background.js:callXiaoxing",
+      "target": "function:background.js:buildSystemPrompt",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:background.js:callXiaoxingStream",
+      "target": "function:background.js:buildSystemPrompt",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    }
+  ]
+}
