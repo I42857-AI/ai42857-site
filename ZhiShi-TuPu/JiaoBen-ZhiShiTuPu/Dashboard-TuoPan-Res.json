@@ -1,0 +1,20 @@
+{
+  "menu": {
+    "launch": "🚀 启动项目",
+    "noProjects": "(未找到项目)",
+    "current": "运行中",
+    "stopAll": "🛑 停止所有",
+    "stopOne": "⏹ 停止",
+    "statusIdle": "状态: 未启动",
+    "exit": "❌ 退出"
+  },
+  "tray": {
+    "iconText": "知识图谱 Dashboard",
+    "balloonTitle": "知识图谱 Dashboard",
+    "balloonText": "Dashboard 托盘启动成功！\n右键点击图标选择项目。"
+  },
+  "dialog": {
+    "dirNotFound": "Dashboard 目录未找到：\n{0}",
+    "driveNotFound": "未在任何盘符上找到 XiangMu-KongJian！\n请插入移动盘。"
+  }
+}
