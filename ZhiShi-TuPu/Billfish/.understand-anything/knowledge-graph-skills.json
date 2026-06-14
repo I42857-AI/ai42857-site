@@ -1,0 +1,181 @@
+{
+    "nodes":  [
+                  {
+                      "id":  "plugin:billfish-architecture",
+                      "type":  "concept",
+                      "name":  "Billfish 原生插件架构 (C++ RPC)",
+                      "summary":  "Billfish 采用 C++ 原生 DLL 插件架构，与 Eagle 的 JavaScript 插件体系完全不同。核心通过 CBFPluginManager 管理本地 DLL 插件，使用 CSocketRPCServer（默认端口 5050）进行进程间 RPC 通信。引入 PluginWorker64.exe 子进程隔离机制确保插件崩溃不影响主程序。插件初始化时自动注册 hash 校验（SHA1），每个插件 DLL 以 libPlugin{Name}64.dll 命名。6 大类内部插件：Adobe/Artifex/Aspose/Compat/Magick/Media/Zip",
+                      "tags":  [
+                                   "plugin",
+                                   "c++",
+                                   "rpc",
+                                   "dll",
+                                   "native",
+                                   "process-isolation",
+                                   "unique"
+                               ],
+                      "complexity":  "complex",
+                      "metadata":  {
+                                       "pluginArchitecture":  {
+                                                                  "coreManager":  "CBFPluginManager",
+                                                                  "ipcProtocol":  "CSocketRPCServer (port 5050)",
+                                                                  "processIsolation":  "PluginWorker64.exe 子进程隔离",
+                                                                  "versionControl":  "版本号 + SHA1 hash 校验",
+                                                                  "pluginTypes":  [
+                                                                                      {
+                                                                                          "name":  "Adobe Plugin",
+                                                                                          "dll":  "libPluginAdobe64.dll",
+                                                                                          "runtime":  "adobe_runtime",
+                                                                                          "purpose":  "PSD/AI/AE 等 Adobe 格式解析"
+                                                                                      },
+                                                                                      {
+                                                                                          "name":  "Artifex Plugin",
+                                                                                          "dll":  "libPluginArtifex64.dll",
+                                                                                          "purpose":  "PDF/PS 等文档格式解析（Ghostscript: gsdll64.dll）"
+                                                                                      },
+                                                                                      {
+                                                                                          "name":  "Aspose Plugin",
+                                                                                          "dll":  "libPluginAspose64.dll",
+                                                                                          "runtime":  "aspose_runtime/Aspose.Slides.dll",
+                                                                                          "purpose":  "Office 文档格式解析"
+                                                                                      },
+                                                                                      {
+                                                                                          "name":  "Compat Plugin",
+                                                                                          "dll":  "libPluginCompat64.dll",
+                                                                                          "runtime":  "plugin_compat/BFCdr.dll+BFOffice.dll",
+                                                                                          "purpose":  "CDR/Office 兼容性扩展"
+                                                                                      },
+                                                                                      {
+                                                                                          "name":  "Magick Plugin",
+                                                                                          "dll":  "libPluginMagick64.dll",
+                                                                                          "runtime":  "magick_runtime/ICC色彩配置+sRGB",
+                                                                                          "purpose":  "图像处理和色彩管理"
+                                                                                      },
+                                                                                      {
+                                                                                          "name":  "Media Plugin",
+                                                                                          "dll":  "libPluginMedia64.dll",
+                                                                                          "runtime":  "media_runtime/ffmpeg64.exe+MediaInfo.dll",
+                                                                                          "purpose":  "音视频解码和信息分析"
+                                                                                      },
+                                                                                      {
+                                                                                          "name":  "Zip Plugin",
+                                                                                          "dll":  "libPluginZip64.dll",
+                                                                                          "runtime":  "zip_runtime/zlib.dll",
+                                                                                          "purpose":  "ZIP 压缩包处理"
+                                                                                      }
+                                                                                  ]
+                                                              }
+                                   }
+                  },
+                  {
+                      "id":  "plugin:billfish-rpc-workflow",
+                      "type":  "concept",
+                      "name":  "Billfish 插件 RPC 通信流程",
+                      "summary":  "Billfish 的插件通信采用 C++ 原生 RPC 架构，与 Eagle 的 JS API 完全不同。流程：CBFPluginManager 启动 → 创建 CSocketRPCServer 监听 5050 端口 → 为每个插件创建 PluginWorker64.exe 子进程 → 通过 socket RPC（BoostSession）建立双向通信 → 共享内存（CSharedMemory2Private）传递大数据 → 日志独立输出到 bf_plugin.log。每个 PluginWorker 内部有完整的 CBFPluginModuleManager 管理该 worker 下的多个插件模块",
+                      "tags":  [
+                                   "plugin",
+                                   "rpc",
+                                   "socket",
+                                   "shared-memory",
+                                   "worker",
+                                   "unique"
+                               ],
+                      "complexity":  "complex",
+                      "metadata":  {
+                                       "rpcWorkflow":  {
+                                                           "steps":  [
+                                                                         {
+                                                                             "step":  1,
+                                                                             "component":  "CBFPluginManager::Initialize",
+                                                                             "desc":  "扫描 plugins/ 目录，注册所有 libPlugin*64.dll"
+                                                                         },
+                                                                         {
+                                                                             "step":  2,
+                                                                             "component":  "CSocketRPCServer::Open(5050)",
+                                                                             "desc":  "开启本地 socket RPC 服务器"
+                                                                         },
+                                                                         {
+                                                                             "step":  3,
+                                                                             "component":  "InnerCreatePluginParser",
+                                                                             "desc":  "为解析类插件创建独立 PluginWorker64.exe 进程"
+                                                                         },
+                                                                         {
+                                                                             "step":  4,
+                                                                             "component":  "CBFPluginRPC::Initialize",
+                                                                             "desc":  "配置 RPC 连接（socket_port + win_shm_ipc_name）"
+                                                                         },
+                                                                         {
+                                                                             "step":  5,
+                                                                             "component":  "BoostSession on_connect",
+                                                                             "desc":  "主程序与 PluginWorker 双向 socket 连接建立"
+                                                                         },
+                                                                         {
+                                                                             "step":  6,
+                                                                             "component":  "CBFPluginModuleManager::plugin_module_load",
+                                                                             "desc":  "PluginWorker 内加载具体插件 DLL 模块"
+                                                                         }
+                                                                     ],
+                                                           "sharedMemory":  "CSharedMemory2Private 用于大文件数据传递",
+                                                           "logSystem":  "独立 bf_plugin.log / bf_plugin_media.log"
+                                                       }
+                                   }
+                  },
+                  {
+                      "id":  "plugin:billfish-lut",
+                      "type":  "concept",
+                      "name":  "LUT 色彩查找表系统 (Billfish独有)",
+                      "summary":  "Billfish 独家内置 LUT（Look-Up Table）色彩查找表系统，支持 8 大相机品牌 17+ 种 Log 到 Rec.709 色彩空间转换预设。覆盖 ARRI / DJI（Mavic3/X9/通用） / Kinefinity（4种） / Olympus（4种） / Panasonic / RED / Sony（SLog3） / Z CAM。通过 Resources/lut/ 目录下的 PNG LUT 文件和 lut_info.json 索引管理，在预览视频素材时可一键应用 LUT 查看正确色彩。这是 Billfish 面向专业影视工作流的核心竞争力",
+                      "tags":  [
+                                   "lut",
+                                   "color-grading",
+                                   "video",
+                                   "log",
+                                   "rec709",
+                                   "unique"
+                               ],
+                      "complexity":  "moderate",
+                      "metadata":  {
+                                       "lutSystem":  {
+                                                         "supportedBrands":  {
+                                                                                 "ARRI":  [
+                                                                                              "ARRI_LogC3-to-Gamma24_Rec709_D65-Classic_33"
+                                                                                          ],
+                                                                                 "DJI":  [
+                                                                                             "D-Log_to_Rec709",
+                                                                                             "DLog-M+to+Rec709",
+                                                                                             "Mavic_3_D-Log_to_Rec.709",
+                                                                                             "ZENMUSE_X9_DLog_To_Rec709"
+                                                                                         ],
+                                                                                 "Kinefinity":  [
+                                                                                                    "KC_NEUT",
+                                                                                                    "KC_NEUTM",
+                                                                                                    "KC_NEUTRAL",
+                                                                                                    "kinecolor2_v09_neutral"
+                                                                                                ],
+                                                                                 "Olympus":  [
+                                                                                                 "Flat_to_BT.709_v1.1",
+                                                                                                 "em5m2_Flat_to_BT.709",
+                                                                                                 "OM-Log400_to_BT.709",
+                                                                                                 "OMSYSTEM_Flat_BT.709"
+                                                                                             ],
+                                                                                 "Panasonic":  [
+                                                                                                   "Nicest_709_33_E-E"
+                                                                                               ],
+                                                                                 "RED":  [
+                                                                                             "RED_AWASH_to_Rec709_BT1886"
+                                                                                         ],
+                                                                                 "Sony":  [
+                                                                                              "SLog3SGamut3.CineToCine+709"
+                                                                                          ],
+                                                                                 "Z_CAM":  [
+                                                                                               "vlog_Rec709_64_neutral_cool"
+                                                                                           ]
+                                                                             },
+                                                         "format":  "PNG 三通道 LUT 文件",
+                                                         "indexFile":  "Resources/lut/lut_info.json",
+                                                         "uiComponent":  "icon_lut SVG + NaviBar LUT 切换"
+                                                     }
+                                   }
+                  }
+              ]
+}
