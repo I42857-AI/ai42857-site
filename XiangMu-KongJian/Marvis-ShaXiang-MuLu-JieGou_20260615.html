@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marvis 沙箱目录结构</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f8fa;
+  --bg-warm: #eef1f5;
+  --bg-card: #fefffe;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --accent: #3b82f6;
+  --accent-light: #93bbfd;
+  --accent-bg: #eff6ff;
+  --green: #16a34a;
+  --green-bg: #f0fdf4;
+  --blue: #2563eb;
+  --blue-bg: #eff6ff;
+  --gold: #ca8a04;
+  --gold-bg: #fefce8;
+  --border: #e2e8f0;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-lg: 0 4px 20px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.04);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font-serif: 'Noto Serif SC', Georgia, serif;
+  --font-sans: 'Noto Sans SC', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  --nav-height: 56px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-height) + 20px); }
+body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
+  background: rgba(247,248,250,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border); z-index: 1000;
+  display: flex; align-items: center; padding: 0 24px; gap: 8px;
+}
+.nav-brand { font-family: var(--font-serif); font-weight: 700; font-size: 16px; color: var(--accent); margin-right: 24px; white-space: nowrap; }
+.nav-links { display: flex; gap: 4px; overflow-x: auto; }
+.nav-links a { font-size: 13px; font-weight: 500; color: var(--text-muted); text-decoration: none; padding: 6px 14px; border-radius: 20px; white-space: nowrap; transition: all 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--accent); background: var(--accent-bg); }
+
+.hero {
+  margin-top: var(--nav-height); padding: 64px 24px 48px; text-align: center;
+  background: linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%);
+}
+.hero h1 { font-family: var(--font-serif); font-size: clamp(28px, 5vw, 42px); font-weight: 700; margin-bottom: 16px; }
+.hero .subtitle { font-size: 15px; color: var(--text-muted); max-width: 720px; margin: 0 auto 28px; }
+.stats-grid { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 24px; min-width: 120px; box-shadow: var(--shadow); }
+.stat-card .stat-value { font-family: var(--font-mono); font-size: 28px; font-weight: 500; color: var(--accent); }
+.stat-card .stat-value.green { color: var(--green); }
+.stat-card .stat-value.blue { color: var(--blue); }
+.stat-card .stat-value.gold { color: var(--gold); }
+.stat-card .stat-label { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+
+.section { max-width: 960px; margin: 0 auto; padding: 48px 24px; }
+.section-title { font-family: var(--font-serif); font-size: 24px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+.section-desc { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+
+/* Architecture */
+.arch-diagram { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); margin-bottom: 24px; }
+.arch-diagram h3 { font-size: 16px; margin-bottom: 20px; color: var(--text); }
+.arch-layers { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.arch-layer { width: 100%; max-width: 560px; border-radius: var(--radius-sm); padding: 20px 24px; }
+.arch-layer.source { background: var(--green-bg); border: 1px solid #bbf7d0; }
+.arch-layer.entity { background: var(--accent-bg); border: 1px solid var(--accent-light); }
+.arch-layer.wormhole { background: var(--gold-bg); border: 1px solid #fde68a; }
+.layer-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.layer-path { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+.layer-desc { font-size: 13px; color: var(--text-muted); }
+.arch-arrow { font-size: 20px; color: var(--text-light); display: flex; align-items: center; gap: 8px; }
+.arrow-label { font-size: 12px; font-family: var(--font-mono); color: var(--text-light); }
+
+/* Compare Table */
+.compare-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--border); }
+.compare-table th { background: var(--bg-warm); text-align: left; padding: 12px 16px; font-weight: 600; font-size: 13px; color: var(--text-muted); }
+.compare-table td { padding: 12px 16px; font-size: 14px; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 12px; }
+
+/* Directory Tree */
+.tree-container { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; }
+.tree { font-family: var(--font-mono); font-size: 13px; line-height: 1.8; overflow-x: auto; white-space: pre; color: var(--text); }
+.tree .dir { color: var(--blue); font-weight: 500; }
+.tree .link { color: var(--gold); }
+.tree .note { color: var(--text-light); }
+
+/* Agent dirs */
+.agent-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.agent-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; box-shadow: var(--shadow); }
+.agent-card .agent-name { font-family: var(--font-mono); font-size: 16px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+.agent-card .agent-dir { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); background: var(--bg-warm); padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+.agent-card .agent-desc { font-size: 13px; color: var(--text-muted); }
+
+/* Legend */
+.legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+.legend-icon { font-size: 16px; }
+.legend-value { font-family: var(--font-mono); font-size: 12px; padding: 2px 8px; border-radius: 4px; }
+.legend-value.synced { background: var(--green-bg); color: var(--green); }
+.legend-value.default { background: var(--gold-bg); color: var(--gold); }
+
+/* Skills list */
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-tag { font-family: var(--font-mono); font-size: 12px; padding: 4px 12px; border-radius: 6px; font-weight: 500; }
+.skill-tag.source { background: var(--green-bg); color: var(--green); }
+.skill-tag.entity { background: var(--accent-bg); color: var(--accent); }
+.skill-tag.synced { background: var(--blue-bg); color: var(--blue); }
+
+footer { text-align: center; padding: 32px 24px; color: var(--text-light); font-size: 13px; border-top: 1px solid var(--border); margin-top: 48px; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">Marvis 沙箱</div>
+  <div class="nav-links">
+    <a href="#architecture">架构</a>
+    <a href="#tree">目录树</a>
+    <a href="#agents">多 Agent</a>
+    <a href="#skills">技能</a>
+    <a href="#compare">对比 WB</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Marvis 沙箱目录结构</h1>
+  <p class="subtitle">领头羊 Agent 的云端沙箱环境 — 二层架构：hb 仓库（数据源+实体层合一）→ 虫洞层（Symlink 注入）</p>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-value">~20</div><div class="stat-label">技能目录</div></div>
+    <div class="stat-card"><div class="stat-value green">60</div><div class="stat-label">虫洞链接</div></div>
+    <div class="stat-card"><div class="stat-value blue">2</div><div class="stat-label">Agent 应用目录</div></div>
+    <div class="stat-card"><div class="stat-value gold">12 GB</div><div class="stat-label">可用磁盘</div></div>
+  </div>
+</section>
+
+<section class="section" id="architecture">
+  <h2 class="section-title"><span>&#127959;</span> 二层架构（与 WB 的差异）</h2>
+  <p class="section-desc">Marvis 沙箱将数据源和实体层合一（均由 ~/.agents/ hb 仓库承担），虫洞层做最终注入。相比 WorkBuddy 的三层架构（/workspace → /root → 虫洞），少了一层物理分发但有虫洞层作为最终出口。</p>
+
+  <div class="arch-diagram">
+    <h3>Marvis 技能同步架构</h3>
+    <div class="arch-layers">
+      <div class="arch-layer source">
+        <div class="layer-title">hb 仓库（数据源 + 实体层合一）</div>
+        <div class="layer-path">~/.agents/skills/</div>
+        <div class="layer-desc">GitHub 远程仓库 → 本地克隆，20 个技能目录，同时作为数据源和实体层</div>
+      </div>
+      <div class="arch-arrow">
+        &uarr; <span class="arrow-label">ln -s (symlink) — 虫洞注入</span> &uarr;
+      </div>
+      <div class="arch-layer wormhole">
+        <div class="layer-title">虫洞层 (Wormhole)</div>
+        <div class="layer-path">~/.trae-cn/skills/</div>
+        <div class="layer-desc">60 个符号链接 — 系统按规范自动注入上下文，无需维护</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arch-diagram" style="margin-top:16px;">
+    <h3>多 Agent 应用目录（记忆文件母本）</h3>
+    <div class="arch-layers">
+      <div class="arch-layer entity">
+        <div class="layer-title">hb 仓库根目录下的 .应用名 目录</div>
+        <div class="layer-path">~/.agents/.qclaw/  &nbsp;|&nbsp;  ~/.agents/.marvis/</div>
+        <div class="layer-desc">每个 Agent 独立记忆文件母本，上传 hb 时优先推送，虫洞化注入真实读取目录</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tree">
+  <h2 class="section-title"><span>&#128193;</span> 完整目录树</h2>
+  <p class="section-desc">Marvis 沙箱 ~/.agents/ 为核心，虫洞层 ~/.trae-cn/skills/ 为系统注入出口</p>
+
+  <div class="tree-container">
+    <div class="tree">
+<span class="dir">~/.agents/</span>                          <span class="note">← hb 仓库克隆（数据源+实体层合一，约 30MB）</span>
+├── <span class="dir">.git/</span>                       <span class="note">Git 版本控制</span>
+├── <span class="dir">skills/</span>                      <span class="note">20 个技能目录（见下方列表）</span>
+│   ├── DouBao-ShengTu/
+│   ├── FanYi-JiNeng/
+│   ├── JiaoBen-GuiFan/
+│   ├── QClaw-Account/
+│   ├── QianYi-WanWu/
+│   ├── RiZhi-GuiFan/
+│   ├── RunningHUB-AI/
+│   ├── TRAE-Rule/
+│   ├── WenShengTu.bak_20260614/    <span class="note">备份</span>
+│   ├── ZhongJiangMingDan/
+│   ├── chart-visualization/
+│   ├── consulting-analysis/
+│   ├── data-analysis/
+│   ├── html-report-design-system/
+│   ├── lark-skills/
+│   ├── market/
+│   ├── nuwa-skill-main/
+│   ├── role-diversion/
+│   ├── theme-factory/
+│   └── understand-anything/
+├── <span class="dir">.qclaw/</span>                      <span class="note">QClaw Agent 记忆文件母本</span>
+│   ├── shengCheng-tuPian/
+│   └── test-push.md
+├── <span class="dir">.marvis/</span>                     <span class="note">Marvis Agent 记忆文件母本（已创建）</span>
+├── <span class="dir">.rizhi/</span>                      <span class="note">日志</span>
+│   ├── RiZhi_2026-06-14.md
+│   └── ShaXiang-QingLi_20260613.md
+├── <span class="dir">ZhiShi-TuPu/</span>                <span class="note">知识图谱（14 子目录）</span>
+├── <span class="dir">workspace/</span>                   <span class="note">工作空间（4 子目录）</span>
+├── <span class="dir">XiangMu-KongJian/</span>           <span class="note">项目空间（html 交付物）</span>
+├── <span class="dir">yuzhuang-gongju-ku/</span>         <span class="note">预装工具库</span>
+├── .skill-lock.json                 <span class="note">技能注册表 + sandbox 配置 + marvis_rules</span>
+├── project_rules.md                 <span class="note">历史遗留规则（Marvis 不读取）</span>
+├── Skills-TongBu.sh                 <span class="note">技能同步脚本</span>
+├── Skills-TongBu-sandbox.sh
+├── ShaXiang-HuiFu.sh                <span class="note">沙箱恢复脚本</span>
+├── HB-Sync.sh
+└── JiaoBen-RiZhi.md
+
+<span class="dir">~/.trae-cn/</span>                         <span class="note">虫洞层（系统注入出口）</span>
+└── <span class="dir">skills/ → ~/.agents/skills/</span>   <span class="note">60 个 Symlink 虫洞</span>
+
+<span class="dir">~/.trae/</span>
+└── <span class="dir">rules/</span>
+    └── project_rules.md              <span class="note">规则虫洞</span>
+
+<span class="link">~/.local/git/</span>                     <span class="note">静态 git 2.54.0（断点续传安装）</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="agents">
+  <h2 class="section-title"><span>&#129302;</span> 多 Agent 应用目录</h2>
+  <p class="section-desc">每个 Agent 的"记忆文件母本"独立存放在 hb 仓库根目录的 .应用名 目录下，虫洞化注入各自的真实读取目录。上传 hb 时，优先推送 .应用名 文件夹。</p>
+
+  <div class="agent-grid">
+    <div class="agent-card">
+      <div class="agent-name">Marvis</div>
+      <div class="agent-dir">~/.agents/.marvis/</div>
+      <div class="agent-desc">领头羊 Agent。云端 Linux 环境，负责协调子 Agent（search-agent / browser），管理沙箱配置。本目录为记忆文件母本。</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-name">QClaw</div>
+      <div class="agent-dir">~/.agents/.qclaw/</div>
+      <div class="agent-desc">子 Agent。已推送 test-push.md 确认链路畅通。<br>GitHub API 推送约 2 秒/文件。</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-name">WorkBuddy</div>
+      <div class="agent-dir">.workbuddy/（规划中）</div>
+      <div class="agent-desc">飞书环境 Agent。参考其沙箱结构设计了三层架构模型（项目空间中的 HTML 文件）。</div>
+    </div>
+  </div>
+
+  <div class="tree-container" style="margin-top:16px;">
+    <h4 style="font-size:14px;margin-bottom:12px;color:var(--text-muted);">虫洞注入机制</h4>
+    <div class="tree">
+应用目录母本                      虫洞注入目标（Agent 真实读取路径）
+<span class="link">~/.agents/.marvis/</span>  ──ln -s──&gt;  ~/Marvis/.../workspace/conv_xxx/
+<span class="link">~/.agents/.qclaw/</span>   ──ln -s──&gt;  (QClaw 沙箱对应路径)
+<span class="note">虫洞已稳定，任意修改都会同步，无需后续手动维护</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <h2 class="section-title"><span>&#127919;</span> 技能分布</h2>
+  <p class="section-desc">Marvis 沙箱技能全部在 ~/.agents/skills/ 下（数据源+实体层合一），通过虫洞层 ~/.trae-cn/skills/ 注入</p>
+
+  <div class="tree-container">
+    <h4 style="font-size:14px;margin-bottom:12px;">本地技能（20 个）</h4>
+    <div class="skill-tags">
+      <span class="skill-tag source">DouBao-ShengTu</span>
+      <span class="skill-tag source">FanYi-JiNeng</span>
+      <span class="skill-tag source">JiaoBen-GuiFan</span>
+      <span class="skill-tag source">QClaw-Account</span>
+      <span class="skill-tag source">QianYi-WanWu</span>
+      <span class="skill-tag source">RiZhi-GuiFan</span>
+      <span class="skill-tag source">RunningHUB-AI</span>
+      <span class="skill-tag source">TRAE-Rule</span>
+      <span class="skill-tag source">ZhongJiangMingDan</span>
+      <span class="skill-tag source">chart-visualization</span>
+      <span class="skill-tag source">consulting-analysis</span>
+      <span class="skill-tag source">data-analysis</span>
+      <span class="skill-tag source">html-report-design-system</span>
+      <span class="skill-tag source">market</span>
+      <span class="skill-tag source">nuwa-skill-main</span>
+      <span class="skill-tag source">role-diversion</span>
+      <span class="skill-tag source">theme-factory</span>
+      <span class="skill-tag source">understand-anything</span>
+    </div>
+  </div>
+
+  <div class="tree-container" style="margin-top:16px;">
+    <h4 style="font-size:14px;margin-bottom:12px;">虫洞层额外同步技能（WB 有 / Marvis 有）</h4>
+    <div class="skill-tags">
+      <span class="skill-tag synced">SouSuo-SuCha</span>
+      <span class="skill-tag synced">baoyu-comic</span>
+      <span class="skill-tag synced">baoyu-compress-image</span>
+      <span class="skill-tag synced">baoyu-image-gen</span>
+      <span class="skill-tag synced">deploy-to-vercel</span>
+      <span class="skill-tag synced">find-skills</span>
+      <span class="skill-tag synced">frontend-design</span>
+      <span class="skill-tag synced">grill-me</span>
+      <span class="skill-tag synced">humanizer</span>
+      <span class="skill-tag synced">local-asr</span>
+      <span class="skill-tag synced">local-computer-use</span>
+      <span class="skill-tag synced">local-tts</span>
+      <span class="skill-tag synced">local-txt2img</span>
+      <span class="skill-tag synced">mrbeast-perspective</span>
+      <span class="skill-tag synced">remotion-best-practices</span>
+      <span class="skill-tag synced">skill-creator</span>
+      <span class="skill-tag synced">soultrace</span>
+      <span class="skill-tag synced">summarize</span>
+      <span class="skill-tag synced">supabase-postgres-best-practices</span>
+      <span class="skill-tag synced">tencent-esign-contract</span>
+      <span class="skill-tag synced">unilink</span>
+      <span class="skill-tag synced">vercel-react-best-practices</span>
+      <span class="skill-tag synced">web-design-guidelines</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="compare">
+  <h2 class="section-title"><span>&#128200;</span> Marvis vs WorkBuddy 对比</h2>
+  <p class="section-desc">两个沙箱环境的关键差异</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr><th>维度</th><th>WorkBuddy</th><th>Marvis</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>架构层数</td><td>三层：数据源 → 实体层 → 虫洞层</td><td>二层：hb仓库(源+实体合一) → 虫洞层</td></tr>
+      <tr><td>数据源</td><td>/workspace/.agents/skills/ (20)</td><td>~/.agents/skills/ (20)</td></tr>
+      <tr><td>实体层</td><td>/root/.agents/skills/ (41)</td><td>与数据源合一，无独立实体层</td></tr>
+      <tr><td>虫洞层</td><td>/root/.trae-cn/skills/ (67: 41+26)</td><td>~/.trae-cn/skills/ (60)</td></tr>
+      <tr><td>飞书默认技能</td><td>26 个 lark-* 技能</td><td>无飞书环境，无 lark 默认技能</td></tr>
+      <tr><td>操作系统</td><td>飞书沙箱 (Linux)</td><td>TencentOS Server 4.6</td></tr>
+      <tr><td>磁盘</td><td>—</td><td>30GB (12GB 可用)</td></tr>
+      <tr><td>内存</td><td>—</td><td>3.5GB (2.4GB 可用)</td></tr>
+      <tr><td>Python</td><td>飞书内置</td><td>自建 Python 3.11</td></tr>
+      <tr><td>Node</td><td>飞书内置</td><td>nvm + Node v24.16.0</td></tr>
+      <tr><td>Git</td><td>—</td><td>静态 git 2.54.0 (~/local/git)</td></tr>
+      <tr><td>多 Agent 目录</td><td>无</td><td>.qclaw/ + .marvis/ (已创建)</td></tr>
+      <tr><td>知识图谱</td><td>无</td><td>ZhiShi-TuPu/ (14 子目录)</td></tr>
+      <tr><td>路径映射</td><td>Windows Z:\ 路径映射到沙箱</td><td>纯 Linux，无 Windows 路径映射</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tree-container" style="margin-top:24px;">
+    <h4 style="font-size:14px;margin-bottom:12px;">关键设计思路：为什么 Marvis 用二层架构</h4>
+    <div style="font-size:13px;color:var(--text-muted);line-height:1.8;">
+      WorkBuddy 的三层架构（/workspace → /root → /trae-cn）是因为飞书沙箱有独立的实体层空间分配需要。<br>
+      Marvis 的 hb 仓库本身就是 Git 远程仓库的本地克隆，天然承担了"数据源"和"实体层"双重角色。<br>
+      虫洞层 ~/.trae-cn/skills/ 通过 Symlink 指向 ~/.agents/skills/，系统按规范自动注入上下文。<br>
+      多 Agent 应用目录（.qclaw / .marvis）在 hb 仓库根目录下，上传时优先推送，虫洞化注入真实读取目录。
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Marvis 沙箱环境目录结构报告 · 生成于 2026-06-15 (北京时间)</p>
+  <p style="margin-top:4px;">路径: ~/.agents/XiangMu-KongJian/Marvis-ShaXiang-MuLu-JieGou_20260615.html</p>
+  <p style="margin-top:4px;color:var(--text-light);">领头羊 Agent · 多 Agent 协作体系主节点</p>
+</footer>
+
+</body>
+</html>
