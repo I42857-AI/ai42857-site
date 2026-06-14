@@ -1,0 +1,90 @@
+{
+  "nodes": [
+    {
+      "id": "function:background.js:initDB",
+      "type": "function",
+      "name": "initDB",
+      "filePath": "background.js",
+      "summary": "IndexedDB 数据库初始化，创建 refImages 等对象存储，建立索引"
+    },
+    {
+      "id": "function:background.js:chromeStorageOp",
+      "type": "function",
+      "name": "chromeStorageOp",
+      "filePath": "background.js",
+      "summary": "chrome.storage 读写操作封装，管理扩展配置、提示词数据（pc_prompts_v3）、面板状态等持久化存储"
+    },
+    {
+      "id": "function:background.js:portMessageHandler",
+      "type": "function",
+      "name": "portMessageHandler",
+      "filePath": "background.js",
+      "summary": "Port 消息中转处理，实现 content script 与 service worker 之间的实时双向通信，路由各类消息到对应处理函数"
+    }
+  ],
+  "edges": [
+    {
+      "source": "domain:core-infra",
+      "target": "function:background.js:initDB",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:core-infra",
+      "target": "function:background.js:chromeStorageOp",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:core-infra",
+      "target": "function:background.js:portMessageHandler",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "function:background.js:chromeStorageOp",
+      "target": "file:utils.js",
+      "type": "depends_on",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "function:background.js:portMessageHandler",
+      "target": "file:utils.js",
+      "type": "depends_on",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "function:background.js:portMessageHandler",
+      "target": "function:background.js:callXiaoxing",
+      "type": "routes",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:background.js:portMessageHandler",
+      "target": "function:background.js:callXiaoxingStream",
+      "type": "routes",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:background.js:portMessageHandler",
+      "target": "function:background.js:nativeFsCall",
+      "type": "routes",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:manifest.json",
+      "target": "function:background.js:portMessageHandler",
+      "type": "configures",
+      "weight": 0.5,
+      "direction": "forward"
+    }
+  ]
+}
