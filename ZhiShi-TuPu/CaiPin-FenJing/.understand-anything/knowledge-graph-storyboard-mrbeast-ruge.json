@@ -1,0 +1,116 @@
+{
+  "nodes": [
+    {
+      "id": "storyboard:cuipi-ruge-t5-platform",
+      "type": "flow",
+      "name": "脆皮乳鸽·感官沉浸",
+      "summary": "平台型。侘寂风格。L1 90%+L2 10%。声音钩子：ASMR先行，视觉跟随。3镜28秒。情绪：静→沉浸→高潮→静。零人物。冥想节奏",
+      "tags": [
+        "感官沉浸",
+        "平台型",
+        "侘寂",
+        "ASMR",
+        "28秒"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "storyboard": {
+          "dishId": "dish:cuipi-ruge",
+          "storyboardType": "sensory-immersion",
+          "storyboardTypeName": "T5 感官沉浸",
+          "roleCategory": "platform",
+          "totalDuration": "28s",
+          "shotCount": 3,
+          "styleId": "style:riben-wajiki",
+          "styleName": "侘寂",
+          "emotionCurve": "静→沉浸→高潮→静",
+          "hookType": "声音钩子",
+          "characterDensity": "5%",
+          "characterNote": "无需人物。声音是主角。若AI视频制作需要手部参考，通过女娲技能生成最小化手部模型",
+          "shots": [
+            {
+              "shotNumber": 1,
+              "duration": "10s",
+              "description": "声音建立世界：炭火余烬微弱噼啪声，远处厨房环境音，然后静默。视觉：极近特写乳鸽脆皮在暖色暗光中，几乎不动，蒸汽以极慢螺旋上升。声音先行，画面跟随。10秒通过耳朵进入食物的世界",
+              "referenceShot": "极近特写静止",
+              "emotion": "静：进入食物世界",
+              "sceneTag": "暗色厨房",
+              "lighting": "单一暖色暗光源，侘寂阴影，留白占据画面主体，乳鸽脆皮微弱发光",
+              "soundEffect": "炭火余烬微弱噼啪声（5秒）→静默（2秒）→极轻蒸汽嘶声（3秒）。ASMR级收音，无音乐",
+              "storyboardPrompt": "声音先行沉浸法+侘寂留白，声音在视觉被感知之前进入，10秒纯氛围入口。静默是ASMR的一部分，留白是侘寂的DNA",
+              "videoMotionPrompt": "极近特写乳鸽脆皮，暖色暗单一光源，蒸汽极慢螺旋上升，画面大部分留白阴影，几乎静止，10秒，无音乐仅ASMR",
+              "character": "无",
+              "thumbnailDescription": "静态定格：暗色暖光中乳鸽脆皮微弱发光，蒸汽极慢螺旋凝滞"
+            },
+            {
+              "shotNumber": 2,
+              "duration": "10s",
+              "description": "ASMR烹饪声放大：毛刷刷脆皮水涂在皮面上（刷毛与皮面质感声），跳切至皮面风干紧绷鼓面声（手指弹皮），跳切至炭火第一声滋滋。视觉：微距质感三联画——湿润光泽→哑光紧绷→火吻琥珀。每个声音触发它的画面，而非相反",
+              "referenceShot": "微距质感系列",
+              "emotion": "沉浸：声音成为质感",
+              "sceneTag": "厨房质感",
+              "lighting": "自然漫射光，每种质感有专属光线：湿润=侧光高光，哑光=柔顶光，琥珀=逆光暖辉",
+              "soundEffect": "毛刷刷皮面声（3秒）→弹皮面鼓声（3秒）→炭火滋滋声（4秒）。ASMR近场收音，无音乐无环境音",
+              "storyboardPrompt": "声音触发视觉法+质感三联画，每个声音先到，视觉跟随。刷声先于刷画面，弹声先于弹画面，滋滋声先于火画面。声音是导演，画面是演员",
+              "videoMotionPrompt": "微距质感三联画：毛刷刷湿润皮面侧光高光→弹紧绷哑光皮面柔顶光→炭火初响琥珀逆光暖辉，每段3-4秒，ASMR声音先行，10秒",
+              "character": "仅手部短暂，手部短暂出现用于刷和弹动作",
+              "thumbnailDescription": "静态定格：乳鸽脆皮琥珀逆光暖辉，皮面油光凝滞"
+            },
+            {
+              "shotNumber": 3,
+              "duration": "8s",
+              "description": "声音高潮+视觉高潮：脆皮撕裂的咔嚓声，放大5倍，汁水爆发声，然后逐渐消退至静默。视觉：慢动作撕开，汁水如琥珀蜂蜜般流淌，蒸汽升腾，然后缓慢淡出至暗色静物——乳鸽立于深色砧板，两碟小碟，蒸汽消散，光线渐暗。终结于静默",
+              "referenceShot": "微距撕开→静物",
+              "emotion": "高潮→静：满足与静默",
+              "sceneTag": "静物收尾",
+              "lighting": "起始戏剧性逆光撕开，逐渐消退至单一暗暖光静物，阴影加深",
+              "soundEffect": "咔嚓声放大5倍（1秒）→汁水爆发声（2秒）→蒸汽嘶声（2秒）→逐渐静默（3秒）。全程无音乐",
+              "storyboardPrompt": "声音高潮+视觉消退至静默，咔嚓声是28秒中唯一的响亮时刻，对比使其爆发。终结于静默是侘寂的方式——美在不完美中，满足在放下中",
+              "videoMotionPrompt": "慢动作撕开脆皮咔嚓声，汁水如琥珀蜂蜜流淌，蒸汽升腾，然后缓慢淡出至暗色静物乳鸽立于深色砧板两碟小碟，蒸汽消散，光线渐暗，终结于静默，8秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：深色砧板上乳鸽静物，两碟小碟蒸汽消散"
+            }
+          ],
+          "fractalType": "standard"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "storyboard:cuipi-ruge-t5-platform",
+      "target": "style:riben-wajiki",
+      "type": "styled_by",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:cuipi-ruge-t5-platform",
+      "target": "technique:shenghuatongbu",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:cuipi-ruge-t5-platform",
+      "target": "technique:weijutexie",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "storyboard:cuipi-ruge-t5-platform",
+      "target": "technique:ziranguangzhigan",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "storyboard:cuipi-ruge-t5-platform",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}
