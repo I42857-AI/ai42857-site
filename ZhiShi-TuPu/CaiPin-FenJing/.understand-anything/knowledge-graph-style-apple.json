@@ -1,0 +1,106 @@
+{
+  "nodes": [
+    {
+      "id": "style:pingguo-fabuhui",
+      "type": "concept",
+      "name": "苹果发布会风格",
+      "summary": "少即是多，让食物自己说话。纯黑背景上的白色柔光，每一个画面都是产品宣言",
+      "tags": ["风格档案", "光影", "极简", "科技感"],
+      "complexity": "complex",
+      "metadata": {
+        "styleProfile": {
+          "director": "苹果设计团队 / Jony Ive 美学",
+          "representativeWorks": ["Apple Keynote", "Apple Product Videos", "AirPods Pro 广告"],
+          "corePhilosophy": "少即是多，让产品自己说话，每一帧都是对完美的精确表达",
+          "lightingStyle": "白色柔光箱无影棚拍，消除一切阴影和杂讯，食物悬浮于纯黑虚空",
+          "colorPalette": "纯黑背景+白色高光+食物本色，三色体系，拒绝多余色彩",
+          "soundDesign": "ASMR级静音，只保留食材原声，刀切声/油煎声/脆裂声放大到极致，音乐极简钢琴点缀",
+          "emotionCurve": "好奇→惊叹→渴望，从黑场中食物旋转登场引发好奇，微距细节引发惊叹，最终成品引发渴望",
+          "techniqueWeights": [
+            {
+              "techniqueId": "technique:baisirouguangxiang",
+              "weight": 0.95,
+              "params": {
+                "光源配置": "双柔光箱45°对打",
+                "光比": "1:1.2",
+                "背景": "纯黑吸光布"
+              }
+            },
+            {
+              "techniqueId": "technique:jijian-goutu-liubai",
+              "weight": 0.9,
+              "params": {
+                "留白比例": "70%+",
+                "食物位置": "画面正中",
+                "背景": "纯黑虚化"
+              }
+            },
+            {
+              "techniqueId": "technique:huagui-yunsu-hengyi",
+              "weight": 0.85,
+              "params": {
+                "移动速度": "匀速0.3m/s",
+                "轨道长度": "1.5m",
+                "移动方向": "水平左至右"
+              }
+            },
+            {
+              "techniqueId": "technique:weijutexie",
+              "weight": 0.8,
+              "params": {
+                "光圈": "f/2.0",
+                "对焦距离": "5cm",
+                "景深": "极浅仅纹理清晰"
+              }
+            },
+            {
+              "techniqueId": "technique:heichang-xuanzhuan-dengchang",
+              "weight": 0.75,
+              "params": {
+                "旋转角度": "360°",
+                "登场速度": "1.2s",
+                "背景": "纯黑"
+              }
+            },
+            {
+              "techniqueId": "technique:shenghuatongbu",
+              "weight": 0.7,
+              "params": {
+                "声音风格": "ASMR级静音",
+                "保留声音": "仅食材原声",
+                "音乐": "极简钢琴单音"
+              }
+            },
+            {
+              "techniqueId": "technique:shuju-biaozhu-donghua",
+              "weight": 0.65,
+              "params": {
+                "标注类型": "温度/产地/熟成天数",
+                "动画风格": "极简白色线条",
+                "字体": "San Francisco Light"
+              }
+            },
+            {
+              "techniqueId": "technique:guding-ningshi",
+              "weight": 0.5,
+              "params": {
+                "持续时长": "3秒",
+                "画面内动态": "仅食物微动"
+              }
+            }
+          ],
+          "notRecommended": [
+            "technique:shouchi-huxigan",
+            "technique:nihong-shuangsewen",
+            "technique:henjintexie",
+            "technique:guzhang-zhuanchang"
+          ],
+          "suitableDishes": ["高端食材", "新派粤菜", "创新菜", "刺身", "分子料理"],
+          "unsuitableDishes": ["街头小吃", "大排档菜品", "重油重辣菜品"],
+          "signatureMove": "黑场旋转登场+白色柔光箱+滑轨匀速横移，食物从黑暗中如产品般精确亮相",
+          "exampleScene": "纯黑背景中，一块和牛从画面右侧匀速滑入，白色柔光消除一切阴影，肉质纹理在微距下如大理石纹路般清晰，温度数据'−2°C'以极简白色线条浮现，和牛表面微微结霜，ASMR级的刀切声响起，画面定格——完美"
+        }
+      }
+    }
+  ]
+}
