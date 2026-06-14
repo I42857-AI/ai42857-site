@@ -1,0 +1,98 @@
+{
+  "nodes": [
+    {
+      "id": "style:kitano-kikujirou",
+      "type": "concept",
+      "name": "北野武《菊次郎的夏天》风格",
+      "summary": "冷面幽默+童真反差+暴力与温柔并存，食物是旅途中的温暖驿站，沉默中爆发的情感最动人",
+      "tags": ["风格档案", "光影", "童真", "反差"],
+      "complexity": "complex",
+      "metadata": {
+        "styleProfile": {
+          "director": "北野武",
+          "representativeWorks": ["菊次郎的夏天", "花火", "座头市", "坏孩子的天空"],
+          "corePhilosophy": "冷面幽默+童真反差+暴力与温柔并存，食物是旅途中的温暖驿站，最硬的壳包裹最软的心",
+          "lightingStyle": "夏日强光+树荫斑驳，明暗锐利切换，阳光直射的刺眼与树荫的清凉交替",
+          "colorPalette": "高饱和夏日色，天蓝+草绿+明黄+白色，色彩明亮到近乎过度，如孩童的蜡笔画",
+          "soundDesign": "久石让式钢琴旋律+环境自然声+突然的静默，蝉鸣/风铃/自行车铃声，静默比音乐更有力",
+          "emotionCurve": "茫然→意外→温暖→不舍，从旅途的茫然开始，在意外的食物中找到温暖，最终不舍地离开",
+          "techniqueWeights": [
+            {
+              "techniqueId": "technique:ziranguangzhigan",
+              "weight": 0.85,
+              "params": {
+                "光源角度": "顶光直射夏日强光",
+                "光质": "硬光+树荫斑驳",
+                "色温": "5800K日光"
+              }
+            },
+            {
+              "techniqueId": "technique:guding-ningshi",
+              "weight": 0.8,
+              "params": {
+                "持续时长": "4-6秒",
+                "画面内动态": "食物微动+光影变化",
+                "机位": "正面平视如对坐"
+              }
+            },
+            {
+              "techniqueId": "technique:tiaoqieshengluo",
+              "weight": 0.75,
+              "params": {
+                "切点风格": "突然硬切无过渡",
+                "省略比例": "70%",
+                "节奏": "出其不意的跳切"
+              }
+            },
+            {
+              "techniqueId": "technique:shouchi-huxigan",
+              "weight": 0.7,
+              "params": {
+                "晃动幅度": "±2°轻微",
+                "晃动频率": "0.3Hz步行节奏",
+                "稳定性": "75%稳+25%晃"
+              }
+            },
+            {
+              "techniqueId": "technique:mandongzuoshiyihua",
+              "weight": 0.65,
+              "params": {
+                "帧率": "120fps",
+                "回放速度": "0.35x",
+                "应用场景": "温柔时刻/食物入口"
+              }
+            },
+            {
+              "techniqueId": "technique:henjintexie",
+              "weight": 0.6,
+              "params": {
+                "动作力度": "突然爆发式",
+                "应用场景": "暴力瞬间后接温柔",
+                "反差": "力度→温柔的急转"
+              }
+            },
+            {
+              "techniqueId": "technique:zhengqifenwei",
+              "weight": 0.55,
+              "params": {
+                "烟雾类型": "热蒸汽",
+                "浓度": "中等",
+                "情绪": "温暖驿站感"
+              }
+            }
+          ],
+          "notRecommended": [
+            "technique:baisirouguangxiang",
+            "technique:guzhang-zhuanchang",
+            "technique:shuju-biaozhu-donghua",
+            "technique:nihong-shuangsewen"
+          ],
+          "suitableDishes": ["夏日菜品", "凉拌", "冰品", "旅途中的家常菜", "关东煮", "饭团"],
+          "unsuitableDishes": ["高端宴席", "分子料理", "精致法餐"],
+          "signatureMove": "固定凝视+突然跳切+力度→温柔反差，食物在夏日强光下如旅途中的温暖驿站般出现",
+          "exampleScene": "夏日午后，固定机位4秒凝视一碗凉面——阳光直射下面条泛着明黄光泽，树荫斑驳在碗边移动如时间流逝，突然硬切到筷子猛地挑起面条（狠劲特写0.5秒），然后立刻切到慢动作——面条在空中舒展如丝带0.35x，久石让式钢琴旋律响起，手持镜头微微晃动如旅途中的脚步，一个孩子端起碗大口吃面，蒸汽在夏日阳光中升腾，蝉鸣声突然消失——3秒静默——只剩筷子碰碗的清脆一声，温暖到不舍"
+        }
+      }
+    }
+  ]
+}
