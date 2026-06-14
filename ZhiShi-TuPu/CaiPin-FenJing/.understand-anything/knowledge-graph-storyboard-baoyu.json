@@ -1,0 +1,343 @@
+{
+  "nodes": [
+    {
+      "id": "storyboard:wugu-baoyu-t6-hero",
+      "type": "flow",
+      "name": "五谷杂粮煮鲍鱼·反差爆破",
+      "summary": "英雄型。赛博朋克风格。L1 60%+L3 20%+L4 20%。反差钩子：粗粮质朴vs鲍鱼奢华。4镜20秒。情绪：平淡→震惊→验证→满足",
+      "tags": [
+        "反差爆破",
+        "英雄型",
+        "赛博朋克",
+        "反差",
+        "20秒"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "storyboard": {
+          "dishId": "dish:wugu-zaliang-zhu-baoyu",
+          "storyboardType": "contrast-explosion",
+          "storyboardTypeName": "T6 反差爆破",
+          "roleCategory": "hero",
+          "totalDuration": "20s",
+          "shotCount": 4,
+          "styleId": "style:saibopengke",
+          "styleName": "赛博朋克",
+          "emotionCurve": "平淡→震惊→验证→满足",
+          "hookType": "反差钩子",
+          "characterDensity": "20%",
+          "characterNote": "人物由剧本推导：50岁养生大厨，温和内敛，双手粗糙但动作温柔。若AI视频制作需要人物档案，通过女娲技能生成，性格因子：年龄=50、性别=男、职业=养生厨师、性格=温和内敛、视觉=粗糙双手白色厨师服温柔眼神",
+          "shots": [
+            {
+              "shotNumber": 1,
+              "duration": "5s",
+              "description": "预期建立：看似普通的五谷杂粮粥——糙米红豆薏米小米在砂锅中咕嘟冒泡，色彩暗淡质朴，蒸汽普通。观众以为这只是一碗杂粮粥",
+              "referenceShot": "中景",
+              "emotion": "平淡：看似普通杂粮粥",
+              "sceneTag": "厨房灶台",
+              "lighting": "冷色调顶光，杂粮色彩暗淡，蒸汽普通无奇",
+              "soundEffect": "砂锅咕嘟冒泡声，普通烹饪环境音",
+              "storyboardPrompt": "反差铺垫法，降低观众期待，看似普通杂粮粥，为反转蓄力",
+              "videoMotionPrompt": "中景砂锅中杂粮咕嘟冒泡，糙米红豆薏米小米色彩暗淡质朴，蒸汽普通，冷色调顶光，5秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：砂锅中杂粮咕嘟冒泡，糙米红豆薏米色彩暗淡质朴"
+            },
+            {
+              "shotNumber": 2,
+              "duration": "3s",
+              "description": "反转瞬间：镜头猛推至极近特写——一枚大连鲍鱼从浓汤中浮现，花刀纹路张开如花朵绽放，边缘微卷泛着诱人光泽，嫩白肉面与金黄浓汤形成极致反差",
+              "referenceShot": "极近特写猛推",
+              "emotion": "震惊：鲍鱼浮现",
+              "sceneTag": "砂锅中",
+              "lighting": "瞬间暖光爆发，鲍鱼肉面高光闪烁，与暗淡杂粮形成极致明暗对比",
+              "soundEffect": "咕嘟声中突然一声清脆水花声（反转音效）",
+              "storyboardPrompt": "反转揭示法，镜头猛推+光线突变+声音转折三重反转，鲍鱼浮现是认知冲击点",
+              "videoMotionPrompt": "镜头猛推极近特写，鲍鱼从浓汤中浮现，花刀纹路张开如花朵绽放，边缘微卷泛光，嫩白肉面与金黄浓汤极致反差，瞬间暖光爆发，3秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：鲍鱼从浓汤中浮现，花刀纹路张开如花朵绽放"
+            },
+            {
+              "shotNumber": 3,
+              "duration": "7s",
+              "description": "真相展示：微距展示鲍鱼与杂粮的极致反差——鲍鱼花刀纹路清晰弹嫩，浓汤金黄包裹每粒杂粮，糙米裂开露出白芯，红豆饱满深红，薏米乳白。粗壮手指用汤勺轻轻翻动鲍鱼，展现弹润质感",
+              "referenceShot": "微距特写",
+              "emotion": "验证：奢华与质朴共存",
+              "sceneTag": "砂锅中",
+              "lighting": "暖光为主，鲍鱼肉面高光，杂粮各有专属色彩光线",
+              "soundEffect": "汤勺轻触鲍鱼弹润声+浓汤翻动声",
+              "storyboardPrompt": "反差验证法+微距质感对比，鲍鱼的奢华与杂粮的质朴在同一画面中极致共存",
+              "videoMotionPrompt": "微距特写鲍鱼花刀纹路弹嫩与杂粮糙米红豆薏米共存，浓汤金黄包裹每粒杂粮，粗糙双手汤勺轻轻翻动鲍鱼展现弹润，暖光，7秒",
+              "character": "匠人双手，粗糙双手但动作温柔",
+              "thumbnailDescription": "静态定格：鲍鱼花刀纹路弹嫩，浓汤金黄包裹杂粮"
+            },
+            {
+              "shotNumber": 4,
+              "duration": "5s",
+              "description": "对比强化+收束：画面一分为二——左半：干硬杂粮原料灰暗朴素；右半：成品砂锅中杂粮绵软金黄鲍鱼弹嫩。然后合并为成品全景：砂锅端上竹垫，色彩斑斓杂粮与金黄鲍鱼交映，暖光映照",
+              "referenceShot": "分屏→全景",
+              "emotion": "满足：质朴与奢华的和解",
+              "sceneTag": "餐桌",
+              "lighting": "左半冷光灰暗，右半暖光金黄，合并后统一暖光",
+              "soundEffect": "分屏时双声道对比音效，合并后温暖收束音",
+              "storyboardPrompt": "分屏对比法+合并收束，原料vs成品的极致反差是反差爆破的灵魂，合并代表质朴与奢华的和解",
+              "videoMotionPrompt": "分屏对比——左半干硬杂粮灰暗冷光，右半成品砂锅金黄暖光，然后合并为成品全景砂锅竹垫色彩斑斓杂粮鲍鱼交映暖光映照，5秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：砂锅竹垫上色彩斑斓杂粮与金黄鲍鱼交映"
+            }
+          ],
+          "fractalType": "standard"
+        }
+      }
+    },
+    {
+      "id": "storyboard:wugu-baoyu-t5-contrast",
+      "type": "flow",
+      "name": "五谷杂粮煮鲍鱼·感官沉浸",
+      "summary": "反差型。侘寂风格。L1 90%+L2 10%。声音钩子：杂粮煮开声+蒸汽声。3镜28秒。情绪：静→沉浸→高潮→静。零人物",
+      "tags": [
+        "感官沉浸",
+        "反差型",
+        "侘寂",
+        "ASMR",
+        "28秒"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "storyboard": {
+          "dishId": "dish:wugu-zaliang-zhu-baoyu",
+          "storyboardType": "sensory-immersion",
+          "storyboardTypeName": "T5 感官沉浸",
+          "roleCategory": "contrast",
+          "totalDuration": "28s",
+          "shotCount": 3,
+          "styleId": "style:riben-wajiki",
+          "styleName": "侘寂",
+          "emotionCurve": "静→沉浸→高潮→静",
+          "hookType": "声音钩子",
+          "characterDensity": "5%",
+          "characterNote": "无需人物。声音是主角。若AI视频制作需要手部参考，通过女娲技能生成最小化手部模型",
+          "shots": [
+            {
+              "shotNumber": 1,
+              "duration": "10s",
+              "description": "声音建立世界：砂锅微弱咕嘟声，远处灶火低沉嗡鸣，然后静默。视觉：极近特写杂粮在浓汤中微微颤动，糙米红豆薏米在金黄汤中若隐若现，蒸汽极慢螺旋上升。10秒通过耳朵进入五谷的世界",
+              "referenceShot": "极近特写静止",
+              "emotion": "静：进入五谷世界",
+              "sceneTag": "暗色灶台",
+              "lighting": "单一暖色暗光源，侘寂阴影，留白占据画面主体，杂粮微弱发光",
+              "soundEffect": "砂锅微弱咕嘟声（5秒）→静默（2秒）→极轻蒸汽嘶声（3秒）。ASMR级收音，无音乐",
+              "storyboardPrompt": "声音先行沉浸法+侘寂留白，咕嘟声是五谷杂粮最本真的声音，10秒纯氛围入口",
+              "videoMotionPrompt": "极近特写杂粮在浓汤中微微颤动，糙米红豆薏米若隐若现，蒸汽极慢螺旋上升，暖色暗光侘寂留白，10秒，无音乐仅ASMR",
+              "character": "无",
+              "thumbnailDescription": "静态定格：杂粮在浓汤中微微颤动，糙米红豆薏米若隐若现"
+            },
+            {
+              "shotNumber": 2,
+              "duration": "10s",
+              "description": "ASMR煮制声三联画：杂粮煮开爆裂声（糙米裂开声）→红豆软糯声（红豆由硬变软的闷响）→鲍鱼入水声（鲍鱼接触滚汤的嗞声）。视觉：微距质感三联画——糙米裂开露出白芯→红豆由硬实变软糯→鲍鱼入汤花刀纹路缓缓张开",
+              "referenceShot": "微距质感系列",
+              "emotion": "沉浸：声音成为质感",
+              "sceneTag": "砂锅中",
+              "lighting": "自然漫射光，每种食材有专属光线：糙米=侧光，红豆=柔光，鲍鱼=逆光暖辉",
+              "soundEffect": "糙米裂开爆裂声（3秒）→红豆软糯闷响（3秒）→鲍鱼入汤嗞声（4秒）。ASMR近场收音，无音乐",
+              "storyboardPrompt": "声音触发视觉法+质感三联画，杂粮裂开声和鲍鱼入汤声是养生菜最治愈的ASMR",
+              "videoMotionPrompt": "微距质感三联画：糙米裂开露出白芯侧光→红豆由硬实变软糯柔光→鲍鱼入汤花刀纹路缓缓张开逆光暖辉，每段3-4秒，ASMR声音先行，10秒",
+              "character": "仅手部短暂，手部短暂放入鲍鱼",
+              "thumbnailDescription": "静态定格：糙米裂开露出白芯，鲍鱼花刀纹路缓缓张开"
+            },
+            {
+              "shotNumber": 3,
+              "duration": "8s",
+              "description": "声音高潮+视觉高潮：鲍鱼花刀完全张开的微弱绽放声，浓汤包裹杂粮的黏稠声，然后逐渐消退至静默。视觉：慢动作鲍鱼花刀完全张开如花朵绽放，浓汤金黄包裹杂粮，然后缓慢淡出至暗色静物——砂锅竹垫，色彩斑斓杂粮与鲍鱼，蒸汽消散，光线渐暗。终结于静默",
+              "referenceShot": "微距绽放→静物",
+              "emotion": "高潮→静：满足与静默",
+              "sceneTag": "静物收尾",
+              "lighting": "起始戏剧性逆光绽放，逐渐消退至单一暗暖光静物",
+              "soundEffect": "花刀绽放微弱声（1秒）→浓汤黏稠声（2秒）→蒸汽嘶声（2秒）→逐渐静默（3秒）。全程无音乐",
+              "storyboardPrompt": "声音高潮+视觉消退至静默，花刀绽放是28秒中最治愈的时刻，终结于静默是侘寂的方式",
+              "videoMotionPrompt": "慢动作鲍鱼花刀完全张开如花朵绽放，浓汤金黄包裹杂粮，蒸汽升腾，然后缓慢淡出至暗色静物砂锅竹垫杂粮鲍鱼，蒸汽消散光线渐暗，终结于静默，8秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：砂锅竹垫上杂粮鲍鱼静物，蒸汽消散光线渐暗"
+            }
+          ],
+          "fractalType": "standard"
+        }
+      }
+    },
+    {
+      "id": "storyboard:wugu-baoyu-t3-platform",
+      "type": "flow",
+      "name": "五谷杂粮煮鲍鱼·情感共鸣",
+      "summary": "平台型。北野武风格。L1 10%+L2 10%+L4 50%+L5 30%。故事钩子：为家人煲汤。4镜28秒。情绪：触动→珍视→专注→归属。人物密度50%",
+      "tags": [
+        "情感共鸣",
+        "平台型",
+        "北野武",
+        "人物叙事",
+        "28秒"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "storyboard": {
+          "dishId": "dish:wugu-zaliang-zhu-baoyu",
+          "storyboardType": "emotion-resonance",
+          "storyboardTypeName": "T3 情感共鸣",
+          "roleCategory": "platform",
+          "totalDuration": "28s",
+          "shotCount": 4,
+          "styleId": "style:kitano-kikujirou",
+          "styleName": "北野武·菊次郎",
+          "emotionCurve": "触动→珍视→专注→归属",
+          "hookType": "故事钩子",
+          "characterDensity": "50%",
+          "characterNote": "人物由剧本推导：45岁妈妈，温柔但疲惫，为备考的女儿煲汤。若AI视频制作需要人物档案，通过女娲技能生成，性格因子：年龄=45、性别=女、职业=家庭主妇、性格=温柔坚韧、视觉=围裙花白鬓角温柔眼神粗糙双手",
+          "shots": [
+            {
+              "shotNumber": 1,
+              "duration": "7s",
+              "description": "情感触发：深夜厨房，妈妈站在灶台前，花白鬓角在暖光下若隐若现。手机屏幕亮起——女儿消息\"妈我今晚又加班\"。她叹了口气，转身打开冰箱，取出鲍鱼和五谷杂粮。没有犹豫，开始浸泡杂粮",
+              "referenceShot": "中景→面部特写",
+              "emotion": "触动：深夜为女儿",
+              "sceneTag": "深夜厨房",
+              "lighting": "暖色弱光，手机屏幕冷光映在脸上，冰箱光短暂照亮",
+              "soundEffect": "手机消息提示音+叹气声+冰箱开门声+杂粮倒入碗声",
+              "storyboardPrompt": "故事钩子法+情感触发，一条加班消息触发妈妈的行动，不需要台词，眼神就够了",
+              "videoMotionPrompt": "深夜厨房妈妈站灶台前花白鬓角暖光，手机亮起女儿加班消息，叹气转身开冰箱取鲍鱼杂粮，暖色弱光手机冷光映面，7秒",
+              "character": "妈妈面部，45岁妈妈",
+              "thumbnailDescription": "静态定格：深夜厨房暖光下妈妈花白鬓角，手机冷光映面"
+            },
+            {
+              "shotNumber": 2,
+              "duration": "7s",
+              "description": "为女儿煲汤：妈妈双手浸泡杂粮，粗糙手指轻柔拨动红豆薏米。特写：双手将鲍鱼去壳改花刀，动作温柔如抚摸。面部：低头专注，嘴角微微上扬——她在想女儿小时候最爱喝这个汤",
+              "referenceShot": "特写双手→面部",
+              "emotion": "珍视：每个动作都有温度",
+              "sceneTag": "备料台",
+              "lighting": "暖黄柔光，手部特写侧光，面部柔顶光",
+              "soundEffect": "杂粮拨动声+鲍鱼去壳声+花刀切割声+微弱哼歌声",
+              "storyboardPrompt": "匠心动作法+情感注入，处理鲍鱼的温柔动作传达母爱，不需要台词",
+              "videoMotionPrompt": "特写双手浸泡杂粮粗糙手指轻柔拨动，双手鲍鱼去壳改花刀动作温柔如抚摸，面部低头专注嘴角微扬，暖黄柔光，7秒",
+              "character": "妈妈双手+面部，粗糙双手但动作温柔",
+              "thumbnailDescription": "静态定格：粗糙双手温柔处理鲍鱼，花刀纹路清晰"
+            },
+            {
+              "shotNumber": 3,
+              "duration": "7s",
+              "description": "烹饪中的情感注入：砂锅中杂粮煮至开花，妈妈用木勺缓缓搅动，浓汤从清转金黄。鲍鱼入锅，花刀纹路在滚汤中缓缓张开。面部：看着砂锅，眼神温柔如看着孩子",
+              "referenceShot": "中景→面部特写",
+              "emotion": "专注：每个动作都有温度",
+              "sceneTag": "灶台",
+              "lighting": "灶火暖光映面，砂锅蒸汽柔化轮廓",
+              "soundEffect": "木勺搅动浓汤声+咕嘟声+鲍鱼入汤嗞声+微弱哼歌",
+              "storyboardPrompt": "情感注入法+蒸汽柔化，搅动砂锅的节奏是妈妈的心跳，蒸汽柔化面部轮廓增加温暖感",
+              "videoMotionPrompt": "中景砂锅杂粮煮开花妈妈木勺缓缓搅动浓汤金黄，鲍鱼入锅花刀缓缓张开，面部特写眼神温柔如看孩子，灶火暖光蒸汽柔化轮廓，7秒",
+              "character": "妈妈面部+双手，双手缓缓搅动",
+              "thumbnailDescription": "静态定格：砂锅中浓汤金黄，鲍鱼花刀缓缓张开"
+            },
+            {
+              "shotNumber": 4,
+              "duration": "7s",
+              "description": "分享归属：砂锅端上餐桌，妈妈坐在桌旁等女儿。门锁响动，女儿进门看到砂锅，眼眶微红。妈妈起身盛汤递过去，两人对视无言。全景：母女对坐餐桌，砂锅热气升腾，暖光笼罩",
+              "referenceShot": "全景",
+              "emotion": "归属：无言的温暖",
+              "sceneTag": "餐桌",
+              "lighting": "暖光笼罩全桌，砂锅热气在光中如金色光尘",
+              "soundEffect": "门锁响动+椅子声+碗碟声+安静中只有咕嘟声",
+              "storyboardPrompt": "归属收束法+无言对视，不需要台词，一碗汤就是全部的爱，暖光笼罩是家的温度",
+              "videoMotionPrompt": "全景砂锅端上餐桌妈妈坐等，门锁响动女儿进门眼眶微红，妈妈起身盛汤递碗两人对视，母女对坐餐桌砂锅热气升腾暖光笼罩，7秒",
+              "character": "妈妈+女儿，妈妈起身盛汤温柔坚定",
+              "thumbnailDescription": "静态定格：母女对坐餐桌，砂锅热气升腾暖光笼罩"
+            }
+          ],
+          "fractalType": "standard"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "storyboard:wugu-baoyu-t6-hero",
+      "target": "style:saibopengke",
+      "type": "styled_by",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:wugu-baoyu-t6-hero",
+      "target": "technique:tiaoqieshengluo",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "storyboard:wugu-baoyu-t6-hero",
+      "target": "technique:weijutexie",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "storyboard:wugu-baoyu-t6-hero",
+      "target": "technique:shenghuatongbu",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "storyboard:wugu-baoyu-t5-contrast",
+      "target": "style:riben-wajiki",
+      "type": "styled_by",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:wugu-baoyu-t5-contrast",
+      "target": "technique:shenghuatongbu",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:wugu-baoyu-t5-contrast",
+      "target": "technique:weijutexie",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "storyboard:wugu-baoyu-t5-contrast",
+      "target": "technique:ziranguangzhigan",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "storyboard:wugu-baoyu-t3-platform",
+      "target": "style:kitano-kikujirou",
+      "type": "styled_by",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:wugu-baoyu-t3-platform",
+      "target": "technique:ziranguangzhigan",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "storyboard:wugu-baoyu-t3-platform",
+      "target": "technique:shenghuatongbu",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "storyboard:wugu-baoyu-t3-platform",
+      "target": "technique:zhengqifenwei",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}
