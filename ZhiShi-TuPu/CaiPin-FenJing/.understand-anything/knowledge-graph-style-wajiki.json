@@ -1,0 +1,99 @@
+{
+  "nodes": [
+    {
+      "id": "style:riben-wajiki",
+      "type": "concept",
+      "name": "日式侘寂风格",
+      "summary": "留白+不完美之美+一期一会，食物是禅意的载体，沉默比声音更有力量",
+      "tags": ["风格档案", "光影", "禅意", "留白"],
+      "complexity": "complex",
+      "metadata": {
+        "styleProfile": {
+          "director": "千利休茶道美学 / 小津安二郎",
+          "representativeWorks": ["寻味顺德日式篇", "小森林", "茶道纪录片", "小津安二郎家庭剧"],
+          "corePhilosophy": "留白+不完美之美+一期一会，食物是禅意的载体，每一餐都是不可重复的相遇",
+          "lightingStyle": "单点光源，一束光只照亮食物，其余沉入黑暗，如茶室中一盏纸灯",
+          "colorPalette": "低饱和大地色系，灰白+原木+苔绿+枯茶色，拒绝一切鲜艳",
+          "soundDesign": "自然声景，风声/水声/虫鸣/柴火声，食物声音极轻，筷子触碰瓷碗的清脆一声",
+          "emotionCurve": "宁静→觉察→珍惜，从无声中开始，在细微处觉察美，最终珍惜这一期一会的相遇",
+          "techniqueWeights": [
+            {
+              "techniqueId": "technique:dandian-guangyuan",
+              "weight": 0.95,
+              "params": {
+                "光源类型": "束光筒聚光",
+                "光照范围": "仅覆盖食物+餐具",
+                "暗部细节": "保留8%"
+              }
+            },
+            {
+              "techniqueId": "technique:guding-ningshi",
+              "weight": 0.9,
+              "params": {
+                "持续时长": "5-8秒",
+                "画面内动态": "仅蒸汽微动/光影缓移",
+                "机位": "正面低角度"
+              }
+            },
+            {
+              "techniqueId": "technique:jijian-goutu-liubai",
+              "weight": 0.85,
+              "params": {
+                "留白比例": "60-75%",
+                "食物位置": "画面偏下1/3处",
+                "背景": "暗部虚化"
+              }
+            },
+            {
+              "techniqueId": "technique:mandongzuoshiyihua",
+              "weight": 0.7,
+              "params": {
+                "帧率": "120fps",
+                "回放速度": "0.4x",
+                "应用场景": "蒸汽升腾/筷子夹起"
+              }
+            },
+            {
+              "techniqueId": "technique:shenghuatongbu",
+              "weight": 0.65,
+              "params": {
+                "声音风格": "自然声景",
+                "保留声音": "风声/水声/虫鸣/筷子碰瓷",
+                "音乐": "无音乐或极简尺八"
+              }
+            },
+            {
+              "techniqueId": "technique:ziranguangzhigan",
+              "weight": 0.6,
+              "params": {
+                "光源角度": "侧光60°",
+                "光质": "柔光透过和纸",
+                "色温": "4500K暖白"
+              }
+            },
+            {
+              "techniqueId": "technique:zhengqifenwei",
+              "weight": 0.55,
+              "params": {
+                "烟雾类型": "轻柔热蒸汽",
+                "浓度": "极淡",
+                "运动": "缓慢上升如呼吸"
+              }
+            }
+          ],
+          "notRecommended": [
+            "technique:nihong-shuangsewen",
+            "technique:guzhang-zhuanchang",
+            "technique:henjintexie",
+            "technique:shouchi-huxigan",
+            "technique:chouzhen-duanxu"
+          ],
+          "suitableDishes": ["清蒸鱼", "白切鸡", "老火汤", "素菜", "豆腐", "粥品"],
+          "unsuitableDishes": ["烧腊", "重口味菜品", "川湘菜", "油炸菜品"],
+          "signatureMove": "单点光源+固定凝视+极简留白，食物在聚光灯下如茶道器物般静默呈现",
+          "exampleScene": "暗室中一束光只照亮一只白瓷碗中的清蒸鲈鱼，固定机位5秒不动，鱼身上蒸汽极淡地缓缓上升如呼吸，画面留白70%——碗在画面下方1/3处，上方是沉入黑暗的空间，远处传来一声虫鸣，筷子轻轻夹起一块鱼肉，慢动作0.4x，鱼肉在光束中微微颤动，然后放回碗中，一切归于宁静，一期一会"
+        }
+      }
+    }
+  ]
+}
