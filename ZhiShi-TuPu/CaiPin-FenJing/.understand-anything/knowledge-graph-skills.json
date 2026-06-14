@@ -1,0 +1,63 @@
+{
+  "nodes": [
+    {
+      "id": "skill:food-storyboard",
+      "type": "concept",
+      "name": "粤菜30秒分镜系统",
+      "summary": "基于MrBeast方法论的AI视频分镜，分形15s×2结构（Clip A诱惑篇+Clip B呈现篇），12字段分镜表格，6种类型（食欲炸弹/工艺解密/情感共鸣/剪辑炫技/感官沉浸/反差爆破）×7种风格=42种组合",
+      "tags": [
+        "food",
+        "storyboard",
+        "ai-video",
+        "unique"
+      ],
+      "complexity": "complex",
+      "metadata": {
+        "duration": "30s",
+        "shotCount": "9",
+        "types": 6,
+        "styles": 7
+      }
+    },
+    {
+      "id": "skill:cuisine-types",
+      "type": "concept",
+      "name": "菜品类型分类系统",
+      "summary": "烧腊/蒸品/炒类/煲仔/点心五大类，每类有专属色调、分镜要点和景别分配",
+      "tags": [
+        "food",
+        "classification",
+        "unique"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "skill:five-layer-composition",
+      "type": "concept",
+      "name": "五层景别构图",
+      "summary": "L1纯食物层/L2手部层/L3动作层/L4人物层/L5场景层，物理规律：景别越近→人物越少→食物越纯粹→食欲越强",
+      "tags": [
+        "food",
+        "composition",
+        "unique"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "skill:food-storyboard",
+      "target": "skill:cuisine-types",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "skill:food-storyboard",
+      "target": "skill:five-layer-composition",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}
