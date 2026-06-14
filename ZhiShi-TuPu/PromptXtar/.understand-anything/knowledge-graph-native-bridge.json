@@ -1,0 +1,69 @@
+{
+  "nodes": [
+    {
+      "id": "file:native-host/native-fs-host.py",
+      "type": "service",
+      "name": "native-fs-host.py",
+      "filePath": "native-host/native-fs-host.py",
+      "summary": "Native Messaging Host，Python 脚本，提供本地文件系统访问能力（读写文件、列出目录、搜索文件、检查存在性），通过 stdin/stdout JSON 协议与扩展通信"
+    },
+    {
+      "id": "file:native-host/com.promptxtar.filesystem.json",
+      "type": "config",
+      "name": "com.promptxtar.filesystem.json",
+      "filePath": "native-host/com.promptxtar.filesystem.json",
+      "summary": "Native Messaging Host 注册配置，声明 Host 名称和 Python 脚本路径，Chrome 通过此配置找到并启动 Native Host"
+    },
+    {
+      "id": "function:background.js:nativeFsCall",
+      "type": "function",
+      "name": "nativeFsCall",
+      "filePath": "background.js",
+      "summary": "通过 Native Messaging Port 调用本地文件系统操作，支持超时控制，是扩展与 Python 脚本通信的桥梁"
+    }
+  ],
+  "edges": [
+    {
+      "source": "domain:native-bridge",
+      "target": "file:native-host/native-fs-host.py",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:native-bridge",
+      "target": "file:native-host/com.promptxtar.filesystem.json",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:native-bridge",
+      "target": "function:background.js:nativeFsCall",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "function:background.js:nativeFsCall",
+      "target": "file:native-host/native-fs-host.py",
+      "type": "depends_on",
+      "weight": 0.9,
+      "direction": "forward"
+    },
+    {
+      "source": "file:native-host/com.promptxtar.filesystem.json",
+      "target": "file:native-host/native-fs-host.py",
+      "type": "configures",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:background.js:nativeFsCall",
+      "target": "file:native-host/com.promptxtar.filesystem.json",
+      "type": "depends_on",
+      "weight": 0.7,
+      "direction": "forward"
+    }
+  ]
+}
