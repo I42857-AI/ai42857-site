@@ -1,0 +1,881 @@
+{
+    "version":  "1.0.0",
+    "project":  {
+                    "name":  "Eagle",
+                    "languages":  [
+                                      "javascript",
+                                      "html",
+                                      "css",
+                                      "json"
+                                  ],
+                    "frameworks":  [
+                                       "electron",
+                                       "webpack",
+                                       "nodejs"
+                                   ],
+                    "description":  "Eagle 是一款本地素材管理应用，基于 Electron 22 + Chromium 构建，支持 90+ 文件格式的缩略图预览、分类整理和搜索。内置强大的自定义插件系统（4 种插件类型、完整 API），通过 50+ 内置 Node.js 模块支撑图像处理、中文分词、系统集成等核心能力。版本 4.0.0，build 20250408",
+                    "analyzedAt":  "2026-06-02",
+                    "gitCommitHash":  ""
+                },
+    "nodes":  [
+                  {
+                      "id":  "module:yingyong-ti",
+                      "type":  "module",
+                      "name":  "YingYong-Ti 应用主体",
+                      "summary":  "Eagle 应用程序核心目录，包含 Eagle.exe 主程序、Electron 运行时（chrome/v8）、所有 DLL 依赖、resources 资源包（app.asar）、插件模板、内置模块和国际化文件。是整个应用的执行载体",
+                      "tags":  [
+                                   "core",
+                                   "application",
+                                   "electron",
+                                   "win32"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "module:yonghu-shuju",
+                      "type":  "module",
+                      "name":  "YongHu-ShuJu 用户数据",
+                      "summary":  "用户级数据目录，包含 Chromium 的 Cache（缓存数据）和 Code Cache（JS 编译缓存）。区别：YongHu-ShuJu 存放 Chromium 运行时缓存，不包含资源库数据（资源库由用户自定义路径存储）",
+                      "tags":  [
+                                   "user",
+                                   "cache",
+                                   "chromium",
+                                   "data"
+                               ],
+                      "complexity":  "simple"
+                  },
+                  {
+                      "id":  "module:gongxiang-shuju",
+                      "type":  "module",
+                      "name":  "GongXiang-ShuJu 共享数据",
+                      "summary":  "共享数据目录，存放 jieba 中文分词的字典文件、停用词表和分词模型。这些数据被资源库的全文搜索功能使用，通过 Symlink 从 %APPDATA% 链接到移动盘",
+                      "tags":  [
+                                   "shared",
+                                   "jieba",
+                                   "dictionary",
+                                   "search"
+                               ],
+                      "complexity":  "simple"
+                  },
+                  {
+                      "id":  "module:jiaoben-eagle",
+                      "type":  "module",
+                      "name":  "JiaoBen-Eagle 脚本集",
+                      "summary":  "Eagle 虫洞化和日常启动脚本集，含 5 个文件：ChongDong.ps1（Symlink+注册表）/.bat、QiDong.ps1（防重复启动+WorkingDirectory）/.bat、-Hidden.vbs（托盘常驻隐藏启动）。遵循三位一体脚本体系",
+                      "tags":  [
+                                   "scripts",
+                                   "symlink",
+                                   "launcher",
+                                   "tray"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "file:app-asar",
+                      "type":  "file",
+                      "name":  "app.asar",
+                      "filePath":  "EAGLE/YingYong-Ti/resources/app.asar",
+                      "summary":  "Electron asar 打包的应用主逻辑。包含 main.jsc（主进程）和 run.jsc（渲染进程），编译为 V8 字节码（bytenode），无法直接阅读源码",
+                      "tags":  [
+                                   "asar",
+                                   "bytenode",
+                                   "main-process",
+                                   "renderer"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "file:package-json",
+                      "type":  "file",
+                      "name":  "package.json (resources)",
+                      "filePath":  "EAGLE/YingYong-Ti/resources/package.json",
+                      "summary":  "Eagle 应用级 package.json，版本 4.0.0 build 20250408，基于 Electron 22.3.7，声明 100+ npm 依赖（adm-zip/archiver/auto-launch/chinese_convert/electron-edge-js/nodejieba/pako 等）和 webpack 构建配置",
+                      "tags":  [
+                                   "config",
+                                   "dependencies",
+                                   "electron",
+                                   "version"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "file:dll-core",
+                      "type":  "file",
+                      "name":  "核心 DLL 集合",
+                      "filePath":  "EAGLE/YingYong-Ti/",
+                      "summary":  "Eagle.exe 同级目录的 Windows 原生 DLL 集合：Magick.dll（ImageMagick 图像处理）、NiuniuCapture.dll/exe（截图工具）、Thumbnail-Word.exe（Word 缩略图）、libExcel/libOffice/libPPT.dll（Office 文件预览）、ffmpeg.dll（音视频编解码）、WinAPI.dll（Windows API 封装）",
+                      "tags":  [
+                                   "dll",
+                                   "native",
+                                   "image-processing",
+                                   "ffmpeg",
+                                   "office"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "file:plugin-templates",
+                      "type":  "file",
+                      "name":  "plugin_templates 插件模板",
+                      "filePath":  "EAGLE/YingYong-Ti/resources/plugin_templates/",
+                      "summary":  "4 种官方插件模板：window（窗口插件，含完整生命周期示例）、service（背景服务，serviceMode:true）、inspector（检查器扩展，按格式配置面板）、preview（格式扩展，含 ICNS 缩略图+预览完整示例）。每个模板含 manifest.json + HTML + JS 的完整可运行代码",
+                      "tags":  [
+                                   "plugin",
+                                   "template",
+                                   "example",
+                                   "scaffold"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "file:my-modules",
+                      "type":  "file",
+                      "name":  "my_modules 内置模块库",
+                      "filePath":  "EAGLE/YingYong-Ti/resources/my_modules/",
+                      "summary":  "50+ 自定义 Node.js 模块，分为 6 大类：图像处理（pngjs/jpgjs/exif/quantize/image-size/utif/raw-parser/heic2canvas）、文件操作（zip-folder/file-type/junk/sanitize-filename）、字体处理（opentype）、系统集成（native-mouse/win-clipboard/applescript/set-icon）、中文处理（chinese_convert/pinyinlite/tiny-pinyin/nodejieba）、网络工具（json-rest-light/curl-request）",
+                      "tags":  [
+                                   "modules",
+                                   "internal",
+                                   "nodejs",
+                                   "image",
+                                   "font",
+                                   "system"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "file:i18n-resources",
+                      "type":  "file",
+                      "name":  "i18n 国际化资源",
+                      "filePath":  "EAGLE/YingYong-Ti/resources/i18n/",
+                      "summary":  "多语言翻译文件：de_DE/en/es_ES/ja_JP/ko_KR/ru_RU/zh_CN/zh_TW 共 9 种语言。zh_CN.js 含 1600+ 条翻译键值，覆盖菜单、对话框、筛选器、偏好设置、插件中心、快捷键等全部 UI。locales/ 目录含 52 种 Chromium 本地化 .pak 文件",
+                      "tags":  [
+                                   "i18n",
+                                   "translation",
+                                   "localization",
+                                   "multilingual"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "concept:electron-architecture",
+                      "type":  "concept",
+                      "name":  "Electron 双进程架构",
+                      "summary":  "Eagle 基于 Electron 22 的主进程+渲染进程架构。主进程（main.jsc bytenode 编译）负责文件系统操作、原生 API 调用、窗口管理；渲染进程（run.jsc）负责 UI 渲染。通过 @electron/remote 和 IPC 实现进程间通信。使用 webpack 4 打包前端资源，bytenode 保护核心逻辑",
+                      "tags":  [
+                                   "electron",
+                                   "architecture",
+                                   "main-process",
+                                   "renderer",
+                                   "ipc"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "concept:plugin-system",
+                      "type":  "concept",
+                      "name":  "自定义插件系统",
+                      "summary":  "Eagle 最强大的扩展能力——开放的插件架构。4 种插件类型：窗口插件、背景服务、检查器扩展、格式扩展。开发者通过 manifest.json 配置 + eagle.* API 开发，支持创建→调试→打包→发布全流程。**Eagle 独有**：JS 插件生态（Billfish 使用 C++ DLL 原生插件，无可视化开发工具）",
+                      "tags":  [
+                                   "plugin",
+                                   "extension",
+                                   "api",
+                                   "ecosystem",
+                                   "developer",
+                                   "unique"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "concept:library-system",
+                      "type":  "concept",
+                      "name":  "资源库管理系统",
+                      "summary":  "Eagle 核心数据管理模型。每个资源库以 .library 后缀文件夹存储，内含 metadata.json（项目元数据）、缩略图缓存、原始文件副本。支持多资源库切换、合并、密码保护。智能文件夹通过规则引擎自动归类。标签系统支持群组、常用标签、自动标签（按文件夹自动添加）。未分类/未标签视图帮助整理遗漏",
+                      "tags":  [
+                                   "library",
+                                   "metadata",
+                                   "folder",
+                                   "tag",
+                                   "organization"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "concept:thumbnail-engine",
+                      "type":  "concept",
+                      "name":  "多格式缩略图引擎",
+                      "summary":  "Eagle 支持 90+ 文件格式的缩略图生成和预览。图像类：jpg/png/gif/webp/psd/ai/svg/raw/heic/avif 等通过 Magick.dll 和自定义模块处理；视频类：mp4/mov/avi/webm 等通过 ffmpeg.dll 帧提取；Office 类：docx/xlsx/pptx 通过 libOffice.dll 渲染；字体类：ttf/otf 通过 opentype 渲染预览；3D 模型：通过 model-thumbnail 模块。不支持格式可通过插件扩展",
+                      "tags":  [
+                                   "thumbnail",
+                                   "preview",
+                                   "format",
+                                   "rendering",
+                                   "codec"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "concept:search-engine",
+                      "type":  "concept",
+                      "name":  "智能搜索引擎",
+                      "summary":  "Eagle 内置强大的搜索系统：全文搜索基于 nodejieba 中文分词 + jieba 字典；拼音搜索通过 pinyinlite 实现首字母和全拼匹配；颜色搜索可查找相似色调的图片；以图搜图通过颜色直方图相似度匹配；智能文件夹通过规则引擎（20+ 条件类型）自动筛选。支持 AND/OR 布尔逻辑和正则表达式",
+                      "tags":  [
+                                   "search",
+                                   "jieba",
+                                   "pinyin",
+                                   "color",
+                                   "similarity"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "concept:screenshot-system",
+                      "type":  "concept",
+                      "name":  "截图系统",
+                      "summary":  "Eagle 截图系统：内置 NiuniuCapture 截图工具，支持区域截图+滚动截图+延时截图，截图直接导入资源库。**Eagle 独有**（Billfish 无内置截图）",
+                      "tags":  [
+                                   "screenshot",
+                                   "capture",
+                                   "niuniu",
+                                   "annotation",
+                                   "unique"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "concept:browser-extension",
+                      "type":  "concept",
+                      "name":  "浏览器扩展生态",
+                      "summary":  "Eagle 浏览器扩展生态：Web Clipper 网页收藏、图片批量采集、右键菜单集成。通过 Chromium Extension API 与 Eagle 桌面端通信。**Eagle 独有**（Billfish 无浏览器扩展）",
+                      "tags":  [
+                                   "browser",
+                                   "extension",
+                                   "chrome",
+                                   "collection",
+                                   "unique"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "concept:duplicate-detection",
+                      "type":  "concept",
+                      "name":  "重复文件检测",
+                      "summary":  "Eagle 重复文件检测：基于文件哈希+视觉相似度的智能去重，支持批量处理。**Eagle 独有**（Billfish 无内置去重功能）",
+                      "tags":  [
+                                   "duplicate",
+                                   "hash",
+                                   "similarity",
+                                   "cleanup",
+                                   "unique"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "concept:actions-system",
+                      "type":  "concept",
+                      "name":  "动作系统 (Actions)",
+                      "summary":  "Eagle 动作系统（Actions）：自定义工作流自动化，可串联多个操作（标签→文件夹→评分→导出）。**Eagle 独有**（Billfish 无自动化工作流）",
+                      "tags":  [
+                                   "actions",
+                                   "automation",
+                                   "shortcut",
+                                   "workflow",
+                                   "unique"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "concept:themes-system",
+                      "type":  "concept",
+                      "name":  "主题系统",
+                      "summary":  "Eagle 主题系统：支持亮色/暗色/自定义主题切换，通过 CSS 变量驱动。**Eagle 独有**（Billfish 仅支持暗色主题）",
+                      "tags":  [
+                                   "theme",
+                                   "appearance",
+                                   "dark-mode",
+                                   "customization",
+                                   "unique"
+                               ],
+                      "complexity":  "simple"
+                  },
+                  {
+                      "id":  "concept:data-flow",
+                      "type":  "concept",
+                      "name":  "数据流架构 (3.0)",
+                      "summary":  "3.0 架构下 Eagle 的数据流：C 盘 YongHu-ShuJu/ 为 Chromium 缓存（虚窗口），GongXiang-ShuJu/ 为共享字典（虚窗口）；真实数据通过 SymbolicLink 指向移动盘 Z:\\XiangMu-KongJian\\EAGLE\\。资源库 .library 由用户自定义路径（也可放在移动盘）。虫洞脚本负责建立 Symlink，启动脚本负责托盘常驻",
+                      "tags":  [
+                                   "data-flow",
+                                   "symlink",
+                                   "architecture",
+                                   "3.0"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "concept:file-formats",
+                      "type":  "concept",
+                      "name":  "支持的文件格式",
+                      "summary":  "Eagle 支持 90+ 文件格式的导入、缩略图预览和管理。图像：jpg/png/gif/bmp/webp/svg/psd/ai/eps/sketch/xd/fig/cdr/raw/heic/avif 等；视频：mp4/mov/avi/webm/wmv/mkv/flv 等；音频：mp3/wav/aac/flac/ogg 等；文档：pdf/docx/xlsx/pptx/txt/md 等；字体：ttf/otf/ttc/woff 等；3D：obj/fbx/stl/glb 等。新增格式可通过格式扩展插件支持",
+                      "tags":  [
+                                   "formats",
+                                   "support",
+                                   "image",
+                                   "video",
+                                   "audio",
+                                   "document",
+                                   "font"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "file:chromium-core",
+                      "type":  "file",
+                      "name":  "Chromium 运行时文件",
+                      "filePath":  "EAGLE/YingYong-Ti/",
+                      "summary":  "Electron 22 内嵌的 Chromium 运行时文件：chrome_100_percent.pak / chrome_200_percent.pak（UI 资源）、icudtl.dat（国际化数据）、snapshot_blob.bin / v8_context_snapshot.bin（V8 快照）、libEGL.dll / libGLESv2.dll / vk_swiftshader.dll（图形渲染）、resources.pak（应用资源）",
+                      "tags":  [
+                                   "chromium",
+                                   "v8",
+                                   "snapshot",
+                                   "rendering"
+                               ],
+                      "complexity":  "simple"
+                  },
+                  {
+                      "id":  "file:web-capture",
+                      "type":  "file",
+                      "name":  "web-capture-preload.js",
+                      "filePath":  "EAGLE/YingYong-Ti/web-capture-preload.js",
+                      "summary":  "网页截图功能的预加载脚本，在 Chromium webview 中注入，用于整页截图和元素捕获",
+                      "tags":  [
+                                   "screenshot",
+                                   "webview",
+                                   "preload"
+                               ],
+                      "complexity":  "simple"
+                  }
+              ],
+    "edges":  [
+                  {
+                      "source":  "module:yingyong-ti",
+                      "target":  "file:app-asar",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.95
+                  },
+                  {
+                      "source":  "module:yingyong-ti",
+                      "target":  "file:package-json",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "module:yingyong-ti",
+                      "target":  "file:dll-core",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "module:yingyong-ti",
+                      "target":  "file:plugin-templates",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "module:yingyong-ti",
+                      "target":  "file:my-modules",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "module:yingyong-ti",
+                      "target":  "file:i18n-resources",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.7
+                  },
+                  {
+                      "source":  "module:yingyong-ti",
+                      "target":  "file:chromium-core",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.6
+                  },
+                  {
+                      "source":  "module:yingyong-ti",
+                      "target":  "file:web-capture",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.5
+                  },
+                  {
+                      "source":  "file:app-asar",
+                      "target":  "concept:electron-architecture",
+                      "type":  "exemplifies",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "file:app-asar",
+                      "target":  "file:my-modules",
+                      "type":  "imports",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "file:app-asar",
+                      "target":  "file:dll-core",
+                      "type":  "calls",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "file:app-asar",
+                      "target":  "file:i18n-resources",
+                      "type":  "imports",
+                      "direction":  "forward",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "file:package-json",
+                      "target":  "concept:electron-architecture",
+                      "type":  "configures",
+                      "direction":  "forward",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "concept:plugin-system",
+                      "target":  "file:plugin-templates",
+                      "type":  "exemplifies",
+                      "direction":  "forward",
+                      "weight":  0.95
+                  },
+                  {
+                      "source":  "concept:plugin-system",
+                      "target":  "file:my-modules",
+                      "type":  "depends_on",
+                      "direction":  "forward",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "concept:plugin-system",
+                      "target":  "plugin:window-type",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "concept:plugin-system",
+                      "target":  "plugin:service-type",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "concept:plugin-system",
+                      "target":  "plugin:inspector-type",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "concept:plugin-system",
+                      "target":  "plugin:format-type",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "concept:plugin-system",
+                      "target":  "plugin:lifecycle-api",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.85
+                  },
+                  {
+                      "source":  "concept:plugin-system",
+                      "target":  "plugin:manifest-spec",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.85
+                  },
+                  {
+                      "source":  "concept:plugin-system",
+                      "target":  "plugin:dev-workflow",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "concept:plugin-system",
+                      "target":  "plugin:internal-modules",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.7
+                  },
+                  {
+                      "source":  "plugin:lifecycle-api",
+                      "target":  "file:plugin-templates",
+                      "type":  "exemplifies",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "plugin:manifest-spec",
+                      "target":  "file:plugin-templates",
+                      "type":  "exemplifies",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "plugin:internal-modules",
+                      "target":  "file:my-modules",
+                      "type":  "exemplifies",
+                      "direction":  "forward",
+                      "weight":  0.95
+                  },
+                  {
+                      "source":  "plugin:dev-workflow",
+                      "target":  "file:plugin-templates",
+                      "type":  "references",
+                      "direction":  "forward",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "concept:library-system",
+                      "target":  "concept:search-engine",
+                      "type":  "depends_on",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "concept:library-system",
+                      "target":  "concept:duplicate-detection",
+                      "type":  "depends_on",
+                      "direction":  "forward",
+                      "weight":  0.7
+                  },
+                  {
+                      "source":  "concept:library-system",
+                      "target":  "concept:actions-system",
+                      "type":  "depends_on",
+                      "direction":  "forward",
+                      "weight":  0.6
+                  },
+                  {
+                      "source":  "concept:search-engine",
+                      "target":  "file:my-modules",
+                      "type":  "depends_on",
+                      "direction":  "forward",
+                      "weight":  0.85
+                  },
+                  {
+                      "source":  "concept:search-engine",
+                      "target":  "module:gongxiang-shuju",
+                      "type":  "reads_from",
+                      "direction":  "forward",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "concept:thumbnail-engine",
+                      "target":  "file:dll-core",
+                      "type":  "depends_on",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "concept:thumbnail-engine",
+                      "target":  "file:my-modules",
+                      "type":  "depends_on",
+                      "direction":  "forward",
+                      "weight":  0.85
+                  },
+                  {
+                      "source":  "concept:screenshot-system",
+                      "target":  "file:dll-core",
+                      "type":  "depends_on",
+                      "direction":  "forward",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "concept:browser-extension",
+                      "target":  "file:app-asar",
+                      "type":  "depends_on",
+                      "direction":  "forward",
+                      "weight":  0.7
+                  },
+                  {
+                      "source":  "concept:themes-system",
+                      "target":  "file:i18n-resources",
+                      "type":  "depends_on",
+                      "direction":  "forward",
+                      "weight":  0.5
+                  },
+                  {
+                      "source":  "concept:data-flow",
+                      "target":  "module:jiaoben-eagle",
+                      "type":  "depends_on",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "concept:data-flow",
+                      "target":  "module:yonghu-shuju",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "concept:data-flow",
+                      "target":  "module:gongxiang-shuju",
+                      "type":  "contains",
+                      "direction":  "forward",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "concept:file-formats",
+                      "target":  "concept:thumbnail-engine",
+                      "type":  "depends_on",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "concept:file-formats",
+                      "target":  "plugin:format-type",
+                      "type":  "extends",
+                      "direction":  "forward",
+                      "weight":  0.7
+                  },
+                  {
+                      "source":  "file:dll-core",
+                      "target":  "concept:thumbnail-engine",
+                      "type":  "exemplifies",
+                      "direction":  "forward",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "module:jiaoben-eagle",
+                      "target":  "module:yingyong-ti",
+                      "type":  "configures",
+                      "direction":  "forward",
+                      "weight":  0.8
+                  },
+                  {
+                      "label":  "Eagle JS插件 vs Billfish C++ DLL插件",
+                      "target":  "plugin:billfish-architecture",
+                      "source":  "concept:plugin-system",
+                      "type":  "alternative_to"
+                  },
+                  {
+                      "label":  "两者都支持多格式缩略图",
+                      "target":  "concept:view-modes",
+                      "source":  "concept:thumbnail-engine",
+                      "type":  "shares_feature"
+                  },
+                  {
+                      "label":  "两者都有搜索/筛选功能",
+                      "target":  "concept:condition-filter",
+                      "source":  "concept:search-engine",
+                      "type":  "shares_feature"
+                  },
+                  {
+                      "label":  "Electron vs Qt5 技术路线对比",
+                      "target":  "concept:qt-architecture",
+                      "source":  "concept:electron-architecture",
+                      "type":  "alternative_to"
+                  },
+                  {
+                      "label":  "Eagle主题系统 vs Billfish LUT色彩管理",
+                      "target":  "concept:lut-color-system",
+                      "source":  "concept:themes-system",
+                      "type":  "alternative_to"
+                  },
+                  {
+                      "label":  "Eagle自动化工作流 vs Billfish批量重命名",
+                      "target":  "concept:batch-rename",
+                      "source":  "concept:actions-system",
+                      "type":  "feature_comparison"
+                  },
+                  {
+                      "label":  "Eagle截图 vs Billfish胶片条导航",
+                      "target":  "concept:film-strip",
+                      "source":  "concept:screenshot-system",
+                      "type":  "feature_comparison"
+                  },
+                  {
+                      "label":  "Eagle去重 vs Billfish云端管理",
+                      "target":  "concept:cloud-features",
+                      "source":  "concept:duplicate-detection",
+                      "type":  "feature_comparison"
+                  }
+              ],
+    "layers":  [
+                   {
+                       "id":  "layer:electron-runtime",
+                       "name":  "Electron 运行时层",
+                       "description":  "Eagle 的底层运行环境：Electron 22 + Chromium + V8 + Node.js，提供双进程架构基础和原生 API 能力",
+                       "nodeIds":  [
+                                       "concept:electron-architecture",
+                                       "file:chromium-core",
+                                       "file:package-json"
+                                   ]
+                   },
+                   {
+                       "id":  "layer:native-modules",
+                       "name":  "原生模块层",
+                       "description":  "Windows 原生 DLL 和 Node.js 原生模块：Magick.dll（图像处理）、ffmpeg.dll（音视频）、NiuniuCapture（截图）、Office 预览、native-mouse（鼠标钩子）等",
+                       "nodeIds":  [
+                                       "file:dll-core",
+                                       "file:my-modules",
+                                       "module:gongxiang-shuju"
+                                   ]
+                   },
+                   {
+                       "id":  "layer:core-application",
+                       "name":  "核心应用层",
+                       "description":  "Eagle 主程序逻辑：app.asar（bytenode 编译的主进程+渲染进程）、web-capture-preload.js（网页截图）、国际化资源",
+                       "nodeIds":  [
+                                       "file:app-asar",
+                                       "file:web-capture",
+                                       "file:i18n-resources"
+                                   ]
+                   },
+                   {
+                       "id":  "layer:feature-system",
+                       "name":  "功能系统层",
+                       "description":  "Eagle 的核心功能模块：资源库管理、智能搜索、缩略图引擎、截图工具、浏览器扩展、重复检测、动作自动化、主题系统",
+                       "nodeIds":  [
+                                       "concept:library-system",
+                                       "concept:search-engine",
+                                       "concept:thumbnail-engine",
+                                       "concept:screenshot-system",
+                                       "concept:browser-extension",
+                                       "concept:duplicate-detection",
+                                       "concept:actions-system",
+                                       "concept:themes-system",
+                                       "concept:file-formats"
+                                   ]
+                   },
+                   {
+                       "id":  "layer:plugin-ecosystem",
+                       "name":  "插件生态系统层",
+                       "description":  "Eagle 最强大和值得重点开发的扩展能力：4 种插件类型、完整生命周期 API、manifest.json 规范、50+ 内置可调用模块、开发→调试→打包→发布全流程工具链",
+                       "nodeIds":  [
+                                       "concept:plugin-system",
+                                       "plugin:window-type",
+                                       "plugin:service-type",
+                                       "plugin:inspector-type",
+                                       "plugin:format-type",
+                                       "plugin:lifecycle-api",
+                                       "plugin:manifest-spec",
+                                       "plugin:dev-workflow",
+                                       "plugin:internal-modules",
+                                       "file:plugin-templates"
+                                   ]
+                   },
+                   {
+                       "id":  "layer:infrastructure",
+                       "name":  "基础设施层",
+                       "description":  "3.0 架构下的部署层：虫洞脚本（Symlink 建立）、日常启动器（托盘常驻）、数据流管理（C盘虚窗口→移动盘真数据）",
+                       "nodeIds":  [
+                                       "concept:data-flow",
+                                       "module:jiaoben-eagle",
+                                       "module:yonghu-shuju",
+                                       "module:yingyong-ti",
+                                       "module:gongxiang-shuju"
+                                   ]
+                   }
+               ],
+    "tour":  [
+                 {
+                     "order":  1,
+                     "title":  "Electron 双进程架构 — Eagle 的运行基础",
+                     "description":  "Eagle 基于 Electron 22 + Chromium 构建，采用主进程+渲染进程的双进程架构。主进程（main.jsc）负责文件系统操作和原生 API 调用，渲染进程（run.jsc）负责 UI 渲染。核心代码通过 bytenode 编译为 V8 字节码保护。了解这一层是理解 Eagle 整体架构的前提",
+                     "nodeIds":  [
+                                     "concept:electron-architecture",
+                                     "file:app-asar",
+                                     "file:package-json",
+                                     "file:chromium-core"
+                                 ]
+                 },
+                 {
+                     "order":  2,
+                     "title":  "原生模块层 — 50+ 内置模块支撑核心能力",
+                     "description":  "Eagle 的底层能力由 50+ 自定义 Node.js 模块（my_modules）和 Windows 原生 DLL 共同提供。图像处理依赖 pngjs/jpgjs/exif/Magick.dll，音视频依赖 ffmpeg.dll，中文搜索依赖 nodejieba/pinyinlite，截图依赖 NiuniuCapture。这些模块也是插件可直接调用的能力基础",
+                     "nodeIds":  [
+                                     "file:dll-core",
+                                     "file:my-modules",
+                                     "module:gongxiang-shuju"
+                                 ]
+                 },
+                 {
+                     "order":  3,
+                     "title":  "自定义插件系统 — 最值得开发的扩展能力",
+                     "description":  "Eagle 内置的插件系统是其最强大的扩展能力。支持 4 种插件类型：窗口插件（独立 GUI）、背景服务（自动运行）、检查器扩展（右侧面板增强）、格式扩展（新文件格式支持）。开发者通过 manifest.json 配置插件元数据，使用 eagle.onPluginCreate/Run/Show/Hide/BeforeExit 生命周期钩子，可调用 50+ 内置模块。完整工具链：创建→导入本地→调试→打包(.eagleplugin)→发布到插件中心",
+                     "nodeIds":  [
+                                     "concept:plugin-system",
+                                     "plugin:window-type",
+                                     "plugin:service-type",
+                                     "plugin:inspector-type",
+                                     "plugin:format-type",
+                                     "plugin:lifecycle-api",
+                                     "plugin:manifest-spec",
+                                     "plugin:dev-workflow",
+                                     "plugin:internal-modules",
+                                     "file:plugin-templates"
+                                 ]
+                 },
+                 {
+                     "order":  4,
+                     "title":  "插件开发实操 — 从模板到发布",
+                     "description":  "Eagle 提供 4 个官方插件模板（plugin_templates/），每个都包含完整的可运行代码。以窗口插件为例：manifest.json 定义 id/version/name/main，plugin.js 使用 eagle.onPluginCreate 接收插件对象。开发流程：插件面板→开发者选项→创建插件→编辑代码→导入调试→打包发布。快捷键可绑定插件，API Token 允许外部程序通信",
+                     "nodeIds":  [
+                                     "file:plugin-templates",
+                                     "plugin:window-type",
+                                     "plugin:dev-workflow",
+                                     "plugin:lifecycle-api",
+                                     "plugin:manifest-spec"
+                                 ]
+                 },
+                 {
+                     "order":  5,
+                     "title":  "资源库管理系统 — 数据组织的核心",
+                     "description":  "Eagle 的资源库以 .library 文件夹存储，包含 metadata.json、缩略图缓存和原始文件副本。支持多资源库切换合并、密码保护、智能文件夹（规则引擎自动归类）、标签系统（群组+常用+自动标签）、未分类/未标签视图。重复文件检测支持 MD5 精确匹配和感知哈希相似匹配",
+                     "nodeIds":  [
+                                     "concept:library-system",
+                                     "concept:search-engine",
+                                     "concept:duplicate-detection",
+                                     "concept:actions-system"
+                                 ]
+                 },
+                 {
+                     "order":  6,
+                     "title":  "智能搜索与多格式缩略图 — 让素材触手可及",
+                     "description":  "Eagle 支持 90+ 文件格式的缩略图预览和全文搜索。搜索引擎基于 nodejieba 中文分词实现全文检索，通过 pinyinlite 支持拼音搜索，颜色搜索可匹配相似色调。缩略图引擎通过 Magick.dll/ffmpeg.dll/libOffice.dll 等多层渲染管线处理图像、视频、Office、字体等各类格式",
+                     "nodeIds":  [
+                                     "concept:search-engine",
+                                     "concept:thumbnail-engine",
+                                     "concept:file-formats",
+                                     "concept:screenshot-system",
+                                     "concept:browser-extension"
+                                 ]
+                 },
+                 {
+                     "order":  7,
+                     "title":  "3.0 架构部署 — 虫洞化与托盘常驻",
+                     "description":  "Eagle 在 3.0 架构下的部署方案：YongHu-ShuJu（Chromium 缓存）和 GongXiang-ShuJu（共享字典）通过 SymbolicLink 指向移动盘真实数据。JiaoBen-Eagle 包含 5 文件脚本体系：ChongDong.ps1（Symlink+注册表）、QiDong.ps1（防重复启动，托盘常驻）等。开机自启动通过 --hidden 参数实现",
+                     "nodeIds":  [
+                                     "concept:data-flow",
+                                     "module:jiaoben-eagle",
+                                     "module:yingyong-ti",
+                                     "module:yonghu-shuju",
+                                     "module:gongxiang-shuju",
+                                     "concept:themes-system"
+                                 ]
+                 }
+             ]
+}
