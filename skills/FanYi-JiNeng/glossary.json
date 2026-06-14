@@ -1,0 +1,330 @@
+{
+  "_meta": {
+    "name": "GaiNian-ZhuCeBiao (Concept Registry)",
+    "description": "全局概念注册表。所有 Agent 共享的概念定义和符号映射。翻译时确保术语一致，新 Agent 上线时读表即获知所有概念。",
+    "updated": "2026-06-06",
+    "usage": "翻译前/新会话启动时读取此文件。翻译完成后将新术语追加入此文件。概念查询时按 pinyin 或 en 字段检索。",
+    "priorityDefinition": "P0=系统级核心(所有Agent必知) P1=架构级(理解4.0必知) P2=脚本级(写脚本必知) P3=运维级(日常运维必知) P4=项目专用(特定项目才需) P5=低频参考",
+    "scopeDefinition": "general=通用词(跨项目) project=项目专用词(特定项目)"
+  },
+  "concepts": {
+    "_P0_XiTong": {
+      "_desc": "P0 系统级核心 — 所有 Agent 必知，不理解则无法工作",
+      "ChongDongHua": {
+        "zh": "虫洞化", "pinyin": "ChongDongHua", "en": "Wormhole / Symlink Mapping",
+        "definition": "通过 Symlink 将 C 盘路径映射到移动盘，使应用无感知地读写移动盘数据",
+        "priority": "P0", "scope": "general", "frequency": "high"
+      },
+      "PCYu": {
+        "zh": "PC域", "pinyin": "PCYu", "en": "PC Domain",
+        "definition": "4.0 核心架构，C:\\Users\\PC 作为独立用户域，等效于 Z 盘化",
+        "priority": "P0", "scope": "general", "frequency": "high"
+      },
+      "ZPanGuDingHua": {
+        "zh": "Z盘化", "pinyin": "ZPanGuDingHua", "en": "Z-Drive Fixation",
+        "definition": "将移动盘盘符固定为 Z:，确保所有脚本和 Symlink 路径一致",
+        "priority": "P0", "scope": "general", "frequency": "high"
+      },
+      "XiangMuKongJian": {
+        "zh": "项目空间", "pinyin": "XiangMuKongJian", "en": "Project Space",
+        "definition": "Z:\\XiangMu-KongJian\\，移动盘上的应用管理层，各应用目录的父目录",
+        "priority": "P0", "scope": "general", "frequency": "high"
+      },
+      "YiDongPan": {
+        "zh": "移动盘", "pinyin": "YiDongPan", "en": "Removable Drive",
+        "definition": "唯一真实数据源，所有关键数据存储于此，盘符固定为 Z:",
+        "priority": "P0", "scope": "general", "frequency": "high"
+      }
+    },
+    "_P1_JiaGou": {
+      "_desc": "P1 架构级 — 理解 4.0 架构必知",
+      "ChuShiJi": {
+        "zh": "初始机", "pinyin": "ChuShiJi", "en": "Primary Machine",
+        "definition": "公司设备，C:\\Users\\PC 是 Windows 注册用户（真实目录），子级 Symlink 处理重定向",
+        "priority": "P1", "scope": "general", "frequency": "high"
+      },
+      "BeiYongJi": {
+        "zh": "备用机", "pinyin": "BeiYongJi", "en": "Secondary Machine",
+        "definition": "家庭/网吧/其他设备，C:\\Users\\PC 可能是 Symlink 或真实目录",
+        "priority": "P1", "scope": "general", "frequency": "high"
+      },
+      "DaXiaoZhou": {
+        "zh": "大小周", "pinyin": "DaXiaoZhou", "en": "Alternating Work Weeks",
+        "definition": "大周双休+小周单休交替。小周周六=初始机，大周周六=备用机",
+        "priority": "P1", "scope": "general", "frequency": "medium"
+      },
+      "ShouLian": {
+        "zh": "收敛", "pinyin": "ShouLian", "en": "Convergence",
+        "definition": "声明式配置管理：定义目标状态 → 自动检测偏差 → 修复，幂等执行",
+        "priority": "P1", "scope": "general", "frequency": "medium"
+      },
+      "CangQiong": {
+        "zh": "苍穹", "pinyin": "CangQiong", "en": "CangQiong (Firmament)",
+        "definition": "系统托盘应用，统一管理所有应用脚本和 Agent，自动发现+一键启动",
+        "priority": "P1", "scope": "general", "frequency": "medium"
+      },
+      "SanCengYingShe": {
+        "zh": "三层映射", "pinyin": "SanCengYingShe", "en": "Three-Layer Mapping",
+        "definition": "4.0 架构三层：用户配置层(Z:\\PC) / 漫游数据层(credentials) / 应用管理层(XiangMu-KongJian)",
+        "priority": "P1", "scope": "general", "frequency": "medium"
+      },
+      "ZiJiSymlink": {
+        "zh": "子级Symlink", "pinyin": "ZiJiSymlink", "en": "Sub-level Symlink",
+        "definition": "C:\\Users\\PC 是真实目录时，在内部创建的 Symlink（如 .trae-cn、.qclaw），实现路径重定向",
+        "priority": "P1", "scope": "general", "frequency": "high"
+      }
+    },
+    "_P2_JiaoBen": {
+      "_desc": "P2 脚本级 — 写脚本必知",
+      "YiTi": {
+        "zh": "一体化", "pinyin": "YiTi", "en": "Integrated (YiTi)",
+        "definition": "虫洞化+启动合并为单一脚本，首次虫洞化，后续检测通过直接启动",
+        "priority": "P2", "scope": "general", "frequency": "high"
+      },
+      "ChongDongGongGong": {
+        "zh": "虫洞公共模块", "pinyin": "ChongDongGongGong", "en": "Shared Wormhole Module",
+        "definition": "ChongDong-GongGong.ps1，提供 New-SafeSymLink 和 Find-ProjectRoot 共享函数",
+        "priority": "P2", "scope": "general", "frequency": "high"
+      },
+      "TuoPanChangZhu": {
+        "zh": "托盘常驻", "pinyin": "TuoPanChangZhu", "en": "System Tray Resident",
+        "definition": "应用以托盘图标常驻运行，不占任务栏，不退出",
+        "priority": "P2", "scope": "general", "frequency": "high"
+      },
+      "JiaoBenGuiFan": {
+        "zh": "脚本规范", "pinyin": "JiaoBenGuiFan", "en": "Script Standard",
+        "definition": "JiaoBen-GuiFan 技能，脚本制作规范总纲，定义完整制作流程、命名规则、架构约束",
+        "priority": "P2", "scope": "general", "frequency": "high"
+      },
+      "QiDuanJieGou": {
+        "zh": "七段结构", "pinyin": "QiDuanJieGou", "en": "Seven-Section Structure",
+        "definition": "YiTi 脚本的 7 段结构：盘符检测→Dot-Source→环境检测→虫洞化→账号管理→启动→隐藏+托盘",
+        "priority": "P2", "scope": "general", "frequency": "medium"
+      },
+      "ZiMuHua": {
+        "zh": "字母化", "pinyin": "ZiMuHua", "en": "Pinyin Alphabeticization",
+        "definition": "中文拼音转 PascalCase + kebab，用于脚本文件名和内容，避免 cmd.exe/PowerShell 编码断裂",
+        "priority": "P2", "scope": "general", "frequency": "high"
+      },
+      "ProcessStartInfo": {
+        "zh": "进程启动信息", "pinyin": "ProcessStartInfo", "en": "ProcessStartInfo",
+        "definition": ".NET API，用于注入环境变量给子进程。$env: 不传递给子进程，必须用此方法",
+        "priority": "P2", "scope": "general", "frequency": "high"
+      }
+    },
+    "_P3_YunWei": {
+      "_desc": "P3 运维级 — 日常运维必知",
+      "BAKJiZhi": {
+        "zh": "BAK机制", "pinyin": "BAKJiZhi", "en": "BAK Mechanism",
+        "definition": "废弃文件 .bak_{YYYYMMDD} 归档保留，不删除，可回退。收纳到 .bak/ 目录",
+        "priority": "P3", "scope": "general", "frequency": "medium"
+      },
+      "RoamingZhuCeBiao": {
+        "zh": "Roaming注册表", "pinyin": "RoamingZhuCeBiao", "en": "Roaming Registry",
+        "definition": "Roaming-ZhuCeBiao.json，AppData\\Roaming 下各应用目录的虫洞化注册对照表",
+        "priority": "P3", "scope": "general", "frequency": "medium"
+      },
+      "JiaoBenZhuCeBiao": {
+        "zh": "脚本注册表", "pinyin": "JiaoBenZhuCeBiao", "en": "Script Registry",
+        "definition": "JiaoBen-ZhuCeBiao.json，所有用户级脚本的注册登记表",
+        "priority": "P3", "scope": "general", "frequency": "medium"
+      },
+      "JianKangJianCe": {
+        "zh": "健康检查", "pinyin": "JianKangJianCe", "en": "Health Check",
+        "definition": "Symlink 断链检测+自动修复，-Verbose/-Repair 模式",
+        "priority": "P3", "scope": "general", "frequency": "medium"
+      },
+      "RiZhiTiLian": {
+        "zh": "日志提炼", "pinyin": "RiZhiTiLian", "en": "Log Distillation",
+        "definition": "超过2天的日志提炼关键决策+未解决问题，旧日志 BAK 化",
+        "priority": "P3", "scope": "general", "frequency": "low"
+      },
+      "ShiJianChuFa": {
+        "zh": "事件触发", "pinyin": "ShiJianChuFa", "en": "Event-Triggered",
+        "definition": "USB插入/解锁屏幕等事件触发自动化，替代定时任务",
+        "priority": "P3", "scope": "general", "frequency": "medium"
+      }
+    },
+    "_P4_XiangMu": {
+      "_desc": "P4 项目专用 — 特定项目才需",
+      "QClawSymlinkPatch": {
+        "zh": "QClaw Symlink补丁", "pinyin": "QClawSymlinkPatch", "en": "QClaw Symlink Patch",
+        "definition": "11-QClaw-Symlink-Patch.js，修补 QClaw exec 安全层的 Symlink 遍历限制",
+        "priority": "P4", "scope": "project", "frequency": "low", "project": "QClaw"
+      },
+      "ZhiShiTuPu": {
+        "zh": "知识图谱", "pinyin": "ZhiShiTuPu", "en": "Knowledge Graph",
+        "definition": "Understand-Anything Dashboard，可视化项目架构和关系",
+        "priority": "P4", "scope": "project", "frequency": "medium", "project": "ZhiShi-TuPu"
+      },
+      "CaiPinFenJing": {
+        "zh": "菜品分镜", "pinyin": "CaiPinFenJing", "en": "Dish Storyboard",
+        "definition": "RunningHUB 粤菜 30 秒 AI 宣传短视频分镜系统",
+        "priority": "P4", "scope": "project", "frequency": "low", "project": "CaiPin-FenJing"
+      },
+      "FanYiJiNeng": {
+        "zh": "翻译技能", "pinyin": "FanYiJiNeng", "en": "Translation Skill",
+        "definition": "英译中翻译指导技能，解决编码乱码/长文件分段/子代理上下文注入等问题",
+        "priority": "P4", "scope": "project", "frequency": "medium", "project": "FanYi-JiNeng"
+      }
+    }
+  },
+  "glossary": {
+    "agent": { "en": "agent", "zh": "代理", "pinyin": "DaiLi", "category": "general", "frequency": "high" },
+    "sub-agent": { "en": "sub-agent", "zh": "子代理", "pinyin": "ZiDaiLi", "category": "general", "frequency": "high" },
+    "dispatch": { "en": "dispatch", "zh": "派发", "pinyin": "PaiFa", "category": "general", "frequency": "medium" },
+    "task": { "en": "task", "zh": "任务", "pinyin": "RenWu", "category": "general", "frequency": "high" },
+    "workspace": { "en": "workspace", "zh": "工作区", "pinyin": "GongZuoQu", "category": "architecture", "frequency": "high" },
+    "workspace_root": { "en": "workspace root", "zh": "工作区根目录", "pinyin": "GongZuoQuGenMuLu", "category": "architecture", "frequency": "medium" },
+    "output_directory": { "en": "output directory", "zh": "产出物目录", "pinyin": "ChanChuWuMuLu", "category": "architecture", "frequency": "medium" },
+    "temp_directory": { "en": "temp directory", "zh": "中间产物目录", "pinyin": "ZhongJianChanWuMuLu", "category": "architecture", "frequency": "medium" },
+    "wormhole": { "en": "wormhole", "zh": "虫洞", "pinyin": "ChongDong", "category": "architecture", "frequency": "high" },
+    "Symlink": { "en": "Symlink / SymbolicLink", "zh": "符号链接", "pinyin": "FuHaoLianJie", "category": "architecture", "frequency": "high" },
+    "Junction": { "en": "Junction", "zh": "接合点（已弃用）", "pinyin": "JieHeDian", "category": "architecture", "frequency": "low" },
+    "hard_link": { "en": "hard link", "zh": "硬链接", "pinyin": "YingLianJie", "category": "architecture", "frequency": "low" },
+    "dot_source": { "en": "dot-source", "zh": "点源引入", "pinyin": "DianYuanYinRu", "category": "script", "frequency": "high" },
+    "BAK": { "en": "BAK", "zh": "备份归档", "pinyin": "BeiFenGuiDang", "category": "script", "frequency": "medium" },
+    "backup": { "en": "backup", "zh": "备份", "pinyin": "BeiFen", "category": "general", "frequency": "medium" },
+    "rollback": { "en": "rollback", "zh": "回滚", "pinyin": "HuiGun", "category": "general", "frequency": "medium" },
+    "roaming": { "en": "roaming", "zh": "漫游", "pinyin": "ManYou", "category": "architecture", "frequency": "medium" },
+    "credentials": { "en": "credentials", "zh": "凭证", "pinyin": "PingZheng", "category": "architecture", "frequency": "medium" },
+    "prerequisite": { "en": "prerequisite", "zh": "前置条件", "pinyin": "QianZhiTiaoJian", "category": "general", "frequency": "medium" },
+    "idempotent": { "en": "idempotent", "zh": "幂等", "pinyin": "MiDeng", "category": "script", "frequency": "high" },
+    "fallback": { "en": "fallback", "zh": "回退", "pinyin": "HuiTui", "category": "general", "frequency": "medium" },
+    "graceful_degradation": { "en": "graceful degradation", "zh": "优雅降级", "pinyin": "YouYaJiangJi", "category": "design", "frequency": "low" },
+    "context": { "en": "context", "zh": "上下文", "pinyin": "ShangXiaWen", "category": "data", "frequency": "high" },
+    "context_window": { "en": "context window", "zh": "上下文窗口", "pinyin": "ShangXiaWenChuangKou", "category": "data", "frequency": "high" },
+    "memory": { "en": "memory", "zh": "记忆", "pinyin": "JiYi", "category": "data", "frequency": "high" },
+    "memory_ids": { "en": "memory_ids", "zh": "记忆 ID", "pinyin": "JiYiID", "category": "data", "frequency": "medium" },
+    "token": { "en": "token", "zh": "令牌", "pinyin": "LingPai", "category": "data", "frequency": "high" },
+    "encoding": { "en": "encoding", "zh": "编码", "pinyin": "BianMa", "category": "data", "frequency": "high" },
+    "UTF-8": { "en": "UTF-8", "zh": "UTF-8编码", "pinyin": "", "category": "data", "frequency": "high" },
+    "UTF-16": { "en": "UTF-16", "zh": "UTF-16编码", "pinyin": "", "category": "data", "frequency": "medium" },
+    "BOM": { "en": "BOM (Byte Order Mark)", "zh": "字节序标记", "pinyin": "ZiJieXuBiaoJi", "category": "data", "frequency": "medium" },
+    "CRLF": { "en": "CRLF", "zh": "回车换行", "pinyin": "", "category": "data", "frequency": "medium" },
+    "LF": { "en": "LF", "zh": "换行", "pinyin": "", "category": "data", "frequency": "medium" },
+    "line_ending": { "en": "line ending", "zh": "换行符", "pinyin": "HuanHangFu", "category": "data", "frequency": "medium" },
+    "mojibake": { "en": "mojibake / garbled text", "zh": "乱码", "pinyin": "LuanMa", "category": "data", "frequency": "medium" },
+    "QiDong": { "en": "startup / launch", "zh": "启动", "pinyin": "QiDong", "category": "script", "frequency": "high" },
+    "PanFu": { "en": "drive letter", "zh": "盘符", "pinyin": "PanFu", "category": "architecture", "frequency": "high" },
+    "JianCe": { "en": "detection / check", "zh": "检测", "pinyin": "JianCe", "category": "script", "frequency": "high" },
+    "TuoPan": { "en": "system tray", "zh": "托盘", "pinyin": "TuoPan", "category": "script", "frequency": "high" },
+    "GongGong": { "en": "shared / common", "zh": "公共", "pinyin": "GongGong", "category": "script", "frequency": "medium" },
+    "ZhuCe": { "en": "registration", "zh": "注册", "pinyin": "ZhuCe", "category": "data", "frequency": "medium" },
+    "Biao": { "en": "table / registry", "zh": "表", "pinyin": "Biao", "category": "data", "frequency": "medium" },
+    "hook": { "en": "hook", "zh": "钩子", "pinyin": "GouZi", "category": "design", "frequency": "medium" },
+    "retention": { "en": "retention", "zh": "留存率", "pinyin": "LiuCunLv", "category": "general", "frequency": "medium" },
+    "CTR": { "en": "CTR (Click-Through Rate)", "zh": "点击率", "pinyin": "DianJiLv", "category": "general", "frequency": "medium" },
+    "thumbnail": { "en": "thumbnail", "zh": "缩略图", "pinyin": "SuoLueTu", "category": "general", "frequency": "medium" },
+    "storyboard": { "en": "storyboard", "zh": "分镜", "pinyin": "FenJing", "category": "general", "frequency": "medium" },
+    "staging": { "en": "staging", "zh": "舞台调度", "pinyin": "WuTaiDiaoDu", "category": "general", "frequency": "low" },
+    "B-roll": { "en": "B-roll", "zh": "辅助画面", "pinyin": "FuZhuHuaMian", "category": "general", "frequency": "low" },
+    "A-roll": { "en": "A-roll", "zh": "主画面", "pinyin": "ZhuHuaMian", "category": "general", "frequency": "low" },
+    "CTA": { "en": "CTA (Call to Action)", "zh": "行动号召", "pinyin": "XingDongHaoZhao", "category": "general", "frequency": "medium" },
+    "pacing": { "en": "pacing", "zh": "节奏", "pinyin": "JieZou", "category": "general", "frequency": "low" },
+    "engagement": { "en": "engagement", "zh": "互动率", "pinyin": "HuDongLv", "category": "general", "frequency": "medium" },
+    "watch_time": { "en": "watch time", "zh": "观看时长", "pinyin": "GuanKanShiChang", "category": "general", "frequency": "medium" },
+    "impression": { "en": "impression", "zh": "曝光", "pinyin": "PuGuang", "category": "general", "frequency": "medium" },
+    "impression_CTR": { "en": "impression click-through rate", "zh": "曝光点击率", "pinyin": "PuGuangDianJiLv", "category": "general", "frequency": "low" },
+    "script": { "en": "script", "zh": "脚本", "pinyin": "JiaoBen", "category": "script", "frequency": "high" },
+    "skill": { "en": "skill", "zh": "技能", "pinyin": "JiNeng", "category": "script", "frequency": "high" },
+    "tool": { "en": "tool", "zh": "工具", "pinyin": "GongJu", "category": "script", "frequency": "high" },
+    "executor": { "en": "executor", "zh": "执行器", "pinyin": "ZhiXingQi", "category": "script", "frequency": "medium" },
+    "shell_executor": { "en": "shell_executor", "zh": "Shell 执行器", "pinyin": "", "category": "script", "frequency": "medium" },
+    "python_executor": { "en": "python_executor", "zh": "Python 执行器", "pinyin": "", "category": "script", "frequency": "medium" },
+    "rule": { "en": "rule", "zh": "规则", "pinyin": "GuiZe", "category": "script", "frequency": "medium" },
+    "constraint": { "en": "constraint", "zh": "约束", "pinyin": "YueShu", "category": "script", "frequency": "medium" },
+    "ban": { "en": "ban", "zh": "禁令", "pinyin": "JinLing", "category": "safety", "frequency": "high" },
+    "BAN-001": { "en": "BAN-001", "zh": "中文 Node.js 写入铁律", "pinyin": "", "category": "safety", "frequency": "high" },
+    "BAN-002": { "en": "BAN-002", "zh": "脚本 SearchReplace 铁律", "pinyin": "", "category": "safety", "frequency": "high" },
+    "BAN-003": { "en": "BAN-003", "zh": "$env:不传递给子进程，必须用ProcessStartInfo", "pinyin": "", "category": "safety", "frequency": "high" },
+    "BAN-004": { "en": "BAN-004", "zh": "禁止Junction，唯一类型=SymbolicLink", "pinyin": "", "category": "safety", "frequency": "high" },
+    "BAN-005": { "en": "BAN-005", "zh": "双引号变量格式铁律", "pinyin": "", "category": "safety", "frequency": "high" },
+    "P0": { "en": "P0", "zh": "系统级最高优先级", "pinyin": "", "category": "general", "frequency": "high" },
+    "P1": { "en": "P1", "zh": "项目级核心优先", "pinyin": "", "category": "general", "frequency": "high" },
+    "P2": { "en": "P2", "zh": "技能体系级", "pinyin": "", "category": "general", "frequency": "medium" },
+    "P3": { "en": "P3", "zh": "注册数据级", "pinyin": "", "category": "general", "frequency": "medium" },
+    "P4": { "en": "P4", "zh": "脚本补充级", "pinyin": "", "category": "general", "frequency": "low" },
+    "P5": { "en": "P5", "zh": "补充说明级", "pinyin": "", "category": "general", "frequency": "low" },
+    "checklist": { "en": "checklist", "zh": "检查清单", "pinyin": "JianChaQingDan", "category": "general", "frequency": "medium" },
+    "glossary_term": { "en": "glossary", "zh": "术语表", "pinyin": "ShuYuBiao", "category": "data", "frequency": "medium" },
+    "Front_Matter": { "en": "Front Matter", "zh": "前置元数据", "pinyin": "QianZhiYuanShuJu", "category": "design", "frequency": "low" },
+    "YAML": { "en": "YAML", "zh": "YAML格式", "pinyin": "", "category": "data", "frequency": "medium" },
+    "Markdown": { "en": "Markdown", "zh": "Markdown格式", "pinyin": "", "category": "data", "frequency": "high" },
+    "JSON": { "en": "JSON", "zh": "JSON格式", "pinyin": "", "category": "data", "frequency": "high" },
+    "code_block": { "en": "code block", "zh": "代码块", "pinyin": "DaiMaKuai", "category": "design", "frequency": "medium" },
+    "inline_code": { "en": "inline code", "zh": "行内代码", "pinyin": "HangNeiDaiMa", "category": "design", "frequency": "low" },
+    "fenced_code_block": { "en": "fenced code block", "zh": "围栏代码块", "pinyin": "WeiLanDaiMaKuai", "category": "design", "frequency": "low" },
+    "table": { "en": "table", "zh": "表格", "pinyin": "BiaoGe", "category": "design", "frequency": "medium" },
+    "header": { "en": "header", "zh": "表头", "pinyin": "BiaoTou", "category": "design", "frequency": "medium" },
+    "separator": { "en": "separator", "zh": "分隔行", "pinyin": "FenGeXing", "category": "design", "frequency": "low" },
+    "pagination": { "en": "pagination", "zh": "分页", "pinyin": "FenYe", "category": "data", "frequency": "medium" },
+    "offset": { "en": "offset", "zh": "偏移量", "pinyin": "PianYiLiang", "category": "data", "frequency": "medium" },
+    "limit": { "en": "limit", "zh": "限制行数", "pinyin": "XianZhiHangShu", "category": "data", "frequency": "medium" },
+    "anchor": { "en": "anchor", "zh": "锚点", "pinyin": "MaoDian", "category": "data", "frequency": "low" },
+    "chunk": { "en": "chunk", "zh": "分块", "pinyin": "FenKuai", "category": "data", "frequency": "medium" },
+    "unit": { "en": "unit", "zh": "翻译单元", "pinyin": "FanYiDanYuan", "category": "data", "frequency": "medium" },
+    "stitching": { "en": "stitching", "zh": "拼接", "pinyin": "PinJie", "category": "data", "frequency": "medium" },
+    "coalesce": { "en": "coalesce", "zh": "合并统一", "pinyin": "HeBingTongYi", "category": "data", "frequency": "low" },
+    "localization": { "en": "localization / l10n", "zh": "本地化/中文化", "pinyin": "BenDiHua", "category": "design", "frequency": "medium" },
+    "internationalization": { "en": "internationalization / i18n", "zh": "国际化", "pinyin": "GuoJiHua", "category": "design", "frequency": "medium" },
+    "locale": { "en": "locale", "zh": "语言环境", "pinyin": "YuYanHuanJing", "category": "data", "frequency": "low" },
+    "registry": { "en": "registry", "zh": "注册表", "pinyin": "ZhuCeBiao", "category": "data", "frequency": "high" },
+    "manifest": { "en": "manifest", "zh": "清单", "pinyin": "QingDan", "category": "data", "frequency": "medium" },
+    "config": { "en": "config", "zh": "配置", "pinyin": "PeiZhi", "category": "data", "frequency": "high" },
+    "profile": { "en": "profile", "zh": "配置文件", "pinyin": "PeiZhiWenJian", "category": "data", "frequency": "medium" },
+    "session": { "en": "session", "zh": "会话", "pinyin": "HuiHua", "category": "data", "frequency": "high" },
+    "persistent": { "en": "persistent", "zh": "持久化", "pinyin": "ChiJiuHua", "category": "data", "frequency": "medium" },
+    "ephemeral": { "en": "ephemeral", "zh": "临时的", "pinyin": "LinShiDe", "category": "data", "frequency": "low" },
+    "stateless": { "en": "stateless", "zh": "无状态", "pinyin": "WuZhuangTai", "category": "architecture", "frequency": "medium" },
+    "stateful": { "en": "stateful", "zh": "有状态", "pinyin": "YouZhuangTai", "category": "architecture", "frequency": "medium" },
+    "orchestration": { "en": "orchestration", "zh": "编排", "pinyin": "BianPai", "category": "architecture", "frequency": "medium" },
+    "pipeline": { "en": "pipeline", "zh": "流水线", "pinyin": "LiuShuiXian", "category": "architecture", "frequency": "medium" },
+    "workflow": { "en": "workflow", "zh": "工作流", "pinyin": "GongZuoLiu", "category": "architecture", "frequency": "medium" },
+    "lifecycle": { "en": "lifecycle", "zh": "生命周期", "pinyin": "ShengMingZhouQi", "category": "architecture", "frequency": "medium" },
+    "bootstrap": { "en": "bootstrap", "zh": "引导/启动", "pinyin": "YinDaoQiDong", "category": "architecture", "frequency": "medium" },
+    "teardown": { "en": "teardown", "zh": "清理/拆除", "pinyin": "QingLiChaiChu", "category": "architecture", "frequency": "low" },
+    "initialization": { "en": "initialization", "zh": "初始化", "pinyin": "ChuShiHua", "category": "architecture", "frequency": "medium" },
+    "assertion": { "en": "assertion", "zh": "断言", "pinyin": "DuanYan", "category": "script", "frequency": "medium" },
+    "validation": { "en": "validation", "zh": "校验", "pinyin": "JiaoYan", "category": "script", "frequency": "medium" },
+    "verification": { "en": "verification", "zh": "验证", "pinyin": "YanZheng", "category": "script", "frequency": "medium" },
+    "sanitization": { "en": "sanitization", "zh": "净化/安全检查", "pinyin": "JingHuaAnQuanJianCha", "category": "safety", "frequency": "medium" },
+    "escalation": { "en": "escalation", "zh": "升级/上报", "pinyin": "ShengJiShangBao", "category": "general", "frequency": "low" },
+    "throttle": { "en": "throttle", "zh": "节流", "pinyin": "JieLiu", "category": "script", "frequency": "low" },
+    "debounce": { "en": "debounce", "zh": "防抖", "pinyin": "FangDou", "category": "script", "frequency": "low" },
+    "race_condition": { "en": "race condition", "zh": "竞态条件", "pinyin": "JingTaiTiaoJian", "category": "safety", "frequency": "low" },
+    "deadlock": { "en": "deadlock", "zh": "死锁", "pinyin": "SiSuo", "category": "safety", "frequency": "low" },
+    "timeout": { "en": "timeout", "zh": "超时", "pinyin": "ChaoShi", "category": "script", "frequency": "medium" },
+    "retry": { "en": "retry", "zh": "重试", "pinyin": "ChongShi", "category": "script", "frequency": "medium" },
+    "circuit_breaker": { "en": "circuit breaker", "zh": "熔断", "pinyin": "RongDuan", "category": "safety", "frequency": "low" },
+    "rate_limit": { "en": "rate limit", "zh": "速率限制", "pinyin": "SuLvXianZhi", "category": "safety", "frequency": "low" },
+    "sandbox": { "en": "sandbox", "zh": "沙箱", "pinyin": "ShaXiang", "category": "safety", "frequency": "medium" },
+    "isolation": { "en": "isolation", "zh": "隔离", "pinyin": "GeLi", "category": "safety", "frequency": "medium" },
+    "containerization": { "en": "containerization", "zh": "容器化", "pinyin": "RongQiHua", "category": "architecture", "frequency": "low" },
+    "immutable": { "en": "immutable", "zh": "不可变", "pinyin": "BuKeBian", "category": "architecture", "frequency": "medium" },
+    "mutable": { "en": "mutable", "zh": "可变", "pinyin": "KeBian", "category": "architecture", "frequency": "low" },
+    "idempotent_key": { "en": "idempotent key", "zh": "幂等键", "pinyin": "MiDengJian", "category": "script", "frequency": "low" },
+    "checksum": { "en": "checksum", "zh": "校验和", "pinyin": "JiaoYanHe", "category": "data", "frequency": "medium" },
+    "hash": { "en": "hash", "zh": "哈希", "pinyin": "HaXi", "category": "data", "frequency": "medium" },
+    "signature": { "en": "signature", "zh": "签名", "pinyin": "QianMing", "category": "safety", "frequency": "medium" },
+    "tokenization": { "en": "tokenization", "zh": "分词", "pinyin": "FenCi", "category": "data", "frequency": "medium" },
+    "embedding": { "en": "embedding", "zh": "向量嵌入", "pinyin": "XiangLiangQianRu", "category": "data", "frequency": "medium" },
+    "vector": { "en": "vector", "zh": "向量", "pinyin": "XiangLiang", "category": "data", "frequency": "medium" },
+    "RAG": { "en": "RAG (Retrieval-Augmented Generation)", "zh": "检索增强生成", "pinyin": "JianSuoZengQiangShengCheng", "category": "data", "frequency": "medium" },
+    "prompt": { "en": "prompt", "zh": "提示词", "pinyin": "TiShiCi", "category": "design", "frequency": "high" },
+    "system_prompt": { "en": "system prompt", "zh": "系统提示词", "pinyin": "XiTongTiShiCi", "category": "design", "frequency": "high" },
+    "few-shot": { "en": "few-shot", "zh": "少样本示例", "pinyin": "ShaoYangBenShiLi", "category": "design", "frequency": "medium" },
+    "zero-shot": { "en": "zero-shot", "zh": "零样本", "pinyin": "LingYangBen", "category": "design", "frequency": "medium" },
+    "CoT": { "en": "CoT / chain-of-thought", "zh": "思维链", "pinyin": "SiWeiLian", "category": "design", "frequency": "medium" },
+    "hallucination": { "en": "hallucination", "zh": "幻觉", "pinyin": "HuanJue", "category": "safety", "frequency": "medium" },
+    "grounding": { "en": "grounding", "zh": "事实依据", "pinyin": "ShiShiYiJu", "category": "safety", "frequency": "medium" },
+    "alignment": { "en": "alignment", "zh": "对齐", "pinyin": "DuiQi", "category": "safety", "frequency": "medium" },
+    "guardrail": { "en": "guardrail", "zh": "护栏", "pinyin": "HuLan", "category": "safety", "frequency": "medium" },
+    "red_teaming": { "en": "red teaming", "zh": "红队测试", "pinyin": "HongDuiCeShi", "category": "safety", "frequency": "low" },
+    "jailbreak": { "en": "jailbreak", "zh": "越狱攻击", "pinyin": "YueYuGongJi", "category": "safety", "frequency": "low" },
+    "prompt_injection": { "en": "prompt injection", "zh": "提示注入", "pinyin": "TiShiZhuRu", "category": "safety", "frequency": "medium" },
+    "SOP": { "en": "SOP (Standard Operating Procedure)", "zh": "标准操作流程", "pinyin": "BiaoZhunCaoZuoLiuCheng", "category": "general", "frequency": "medium" },
+    "KPI": { "en": "KPI (Key Performance Indicator)", "zh": "关键绩效指标", "pinyin": "GuanJianJiXiaoZhiBiao", "category": "general", "frequency": "medium" },
+    "MVP": { "en": "MVP (Minimum Viable Product)", "zh": "最小可行产品", "pinyin": "ZuiXiaoKeXingChanPin", "category": "general", "frequency": "medium" }
+  }
+}
