@@ -1,0 +1,3860 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "CaiPin-FenJing",
+    "languages": [
+      "javascript",
+      "html",
+      "css"
+    ],
+    "frameworks": [
+      "mimo-v2.5-pro",
+      "runninghub",
+      "seedance-2.0"
+    ],
+    "description": "菜品AI视频推广分镜系统，基于 MrBeast 分镜方法论演化，专为粤菜 30 秒 AI 视频生成设计，纯视觉叙事，无字幕，强调食欲刺激曲线。14字段菜品档案+12字段分镜表格，9镜分形模式（Clip A诱惑篇+Clip B呈现篇）",
+    "analyzedAt": "2026-05-24T22:45:00.000Z",
+    "gitCommitHash": ""
+  },
+  "nodes": [
+    {
+      "id": "module:system",
+      "type": "module",
+      "name": "分镜系统",
+      "summary": "菜品分镜AI生成器，输入菜品信息后自动生成专业导演级分镜方案与提示词，支持 9 镜分形模式（12字段）和 12 镜标准模式（12字段）",
+      "tags": [
+        "system",
+        "generator",
+        "ai"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "module:6shot",
+      "type": "module",
+      "name": "9镜分形模式",
+      "summary": "面向 Seedance 2.0 的 9 镜分形模式，Clip A(诱惑篇 A1-A4)+Clip B(呈现篇 B1-B5)，12字段，叙事弧线：食材挑选→处理→烹饪→成品",
+      "tags": [
+        "9shot",
+        "seedance",
+        "30s",
+        "fractal"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "module:12shot",
+      "type": "module",
+      "name": "12镜30秒模式",
+      "summary": "面向 RunningHub 的 12 镜标准模式，12字段，更细腻的叙事节奏",
+      "tags": [
+        "12shot",
+        "runninghub",
+        "30s"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "ingredient:ruge",
+      "type": "resource",
+      "name": "中山石岐乳鸽",
+      "summary": "广东中山石岐特产乳鸽，肉质鲜嫩，皮薄脂少，是脆皮乳鸽的首选食材",
+      "tags": [
+        "食材",
+        "乳鸽",
+        "中山"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "ingredient:zouji",
+      "type": "resource",
+      "name": "清远走地鸡",
+      "summary": "广东清远特产走地鸡，皮黄肉白，骨软肉滑，白切鸡首选",
+      "tags": [
+        "食材",
+        "走地鸡",
+        "清远"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "ingredient:cuipishui",
+      "type": "resource",
+      "name": "玻璃脆皮水",
+      "summary": "麦芽糖+白醋+热水调制的脆皮水，涂在乳鸽表面晾干后烤制，形成玻璃般反光的脆皮",
+      "tags": [
+        "食材",
+        "脆皮水",
+        "工艺"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "ingredient:jiangrong",
+      "type": "resource",
+      "name": "姜蓉蘸料",
+      "summary": "姜蓉+葱花+盐+热油浇制，白切鸡的灵魂蘸料",
+      "tags": [
+        "食材",
+        "蘸料",
+        "姜蓉"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "technique:weijutexie",
+      "type": "concept",
+      "filePath": "jifa/texie/weijutexie",
+      "name": "微距特写法则",
+      "summary": "大光圈 f/1.4-f/2.8，食材纹理、油脂光泽放大到极致，镜1/2/5必用",
+      "tags": [
+        "技法",
+        "特写",
+        "微距"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "特写",
+          "coreLogic": "用极近距离拍摄让食材纹理成为视觉主体，观众无法移开目光",
+          "keyParams": [
+            "光圈 f/1.4-f/2.8",
+            "对焦距离 <10cm",
+            "景深极浅"
+          ],
+          "applicableShots": "食材特写→处理细节→成品展示",
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "惊叹→沉浸→敬畏"
+        }
+      }
+    },
+    {
+      "id": "technique:mandongzuoshiyihua",
+      "type": "concept",
+      "filePath": "jifa/shijian/mandongzuoshiyihua",
+      "name": "慢动作诗意化",
+      "summary": "120-240fps，让关键动作升华为仪式感，镜3/5必用",
+      "tags": [
+        "技法",
+        "慢动作",
+        "诗意"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "时间",
+          "coreLogic": "通过升格拍摄将瞬间延展为仪式，让观众在慢速中感受动作的每一帧美学",
+          "keyParams": [
+            "帧率 120-240fps",
+            "回放速度 0.25x-0.5x",
+            "关键动作节点"
+          ],
+          "applicableShots": "烹饪诗意化→成品高潮",
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "宁静→专注→感动"
+        }
+      }
+    },
+    {
+      "id": "technique:shenghuatongbu",
+      "type": "concept",
+      "filePath": "jifa/shengyin/shenghuatongbu",
+      "name": "声画同步叙事",
+      "summary": "声音先行画面跟随，每个声音对应一个特写，全部6镜必用",
+      "tags": [
+        "技法",
+        "声画",
+        "同步"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "声音",
+          "coreLogic": "声音是画面的先导，先听到再看到，用听觉预期驱动视觉注意力",
+          "keyParams": [
+            "声音提前量 0.3-0.5s",
+            "ASMR级收音",
+            "声画精确对位"
+          ],
+          "applicableShots": "通用",
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "期待→紧张→满足"
+        }
+      }
+    },
+    {
+      "id": "technique:tiaoqieshengluo",
+      "type": "concept",
+      "filePath": "jifa/zhuanchang/tiaoqieshengluo",
+      "name": "跳切省略法",
+      "summary": "只保留动作起点和终点，让观众脑补过程，镜1/4必用",
+      "tags": [
+        "技法",
+        "跳切",
+        "省略"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "转场",
+          "coreLogic": "省略过程只保留关键帧，利用观众的心理完形能力填补空白，制造节奏感",
+          "keyParams": [
+            "切点精度 帧级",
+            "省略比例 60-80%",
+            "动作连贯性"
+          ],
+          "applicableShots": "快切开场→力度展示",
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "好奇→惊讶→领悟"
+        }
+      }
+    },
+    {
+      "id": "technique:zhengqifenwei",
+      "type": "concept",
+      "filePath": "jifa/fenwei/zhengqifenwei",
+      "name": "蒸汽氛围营造",
+      "summary": "蒸汽=生命力=温度=家的味道，镜3/5/6必用",
+      "tags": [
+        "技法",
+        "蒸汽",
+        "氛围"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "氛围",
+          "coreLogic": "蒸汽是食物生命力的视觉符号，通过烟雾形态传递温度、新鲜和情感",
+          "keyParams": [
+            "烟雾类型：热蒸汽/液氮冷雾/烟雾弥漫",
+            "逆光勾勒烟雾轮廓",
+            "烟雾浓度与节奏"
+          ],
+          "applicableShots": "烹饪蒸汽→成品热气→收尾氛围",
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "温暖→安心→归属"
+        }
+      }
+    },
+    {
+      "id": "technique:henjintexie",
+      "type": "concept",
+      "filePath": "jifa/texie/henjintexie",
+      "name": "狠劲特写立性格",
+      "summary": "动作力度=性格力度，展示厨师的力量感和专业度，镜4可用",
+      "tags": [
+        "技法",
+        "力度",
+        "性格"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "特写",
+          "coreLogic": "用动作的力度感建立人物性格，力量即专业，暴力即美学",
+          "keyParams": [
+            "动作力度 极端化",
+            "手部/工具特写",
+            "冲击感构图"
+          ],
+          "applicableShots": "烹饪力度",
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "震撼→敬畏→信服"
+        }
+      }
+    },
+    {
+      "id": "technique:ziranguangzhigan",
+      "type": "concept",
+      "filePath": "jifa/guangying/ziranguangzhigan",
+      "name": "自然光质感",
+      "summary": "侧光/逆光突出质感，拒绝平光，全部6镜通用",
+      "tags": [
+        "技法",
+        "光影",
+        "质感"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "光影",
+          "coreLogic": "用侧光或逆光塑造食物的立体感和质感，平光是质感的敌人",
+          "keyParams": [
+            "光源角度 侧光45°/逆光",
+            "光质 硬光/柔光",
+            "色温 自然光5500K"
+          ],
+          "applicableShots": "通用",
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "平静→欣赏→信赖"
+        }
+      }
+    },
+    {
+      "id": "technique:zhuanchangmengtaiqi",
+      "type": "concept",
+      "filePath": "jifa/zhuanchang/zhuanchangmengtaiqi",
+      "name": "转场蒙太奇",
+      "summary": "形状/颜色/动作相似性无缝转场，镜间衔接用",
+      "tags": [
+        "技法",
+        "转场",
+        "蒙太奇"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "转场",
+          "coreLogic": "利用视觉相似性实现无缝转场，让观众在无意识中完成场景切换",
+          "keyParams": [
+            "转场类型：形状匹配/颜色匹配/动作匹配/交叉溶解",
+            "匹配点精度",
+            "转场时长 0.3-0.8s"
+          ],
+          "applicableShots": "衔接",
+          "originStyle": "通用基础技法",
+          "emotionalImpact": "连贯→流畅→沉浸"
+        }
+      }
+    },
+    {
+      "id": "emotion:qidaigan",
+      "type": "concept",
+      "name": "期待感",
+      "summary": "开场建立的好奇与期待，通过快切和声音先行的手法引发观众食欲",
+      "tags": [
+        "情绪",
+        "期待",
+        "开场"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "emotion:sucuigan",
+      "type": "concept",
+      "name": "酥脆感",
+      "summary": "脆皮断裂的视觉和听觉冲击，是脆皮乳鸽最核心的食欲刺激点",
+      "tags": [
+        "情绪",
+        "酥脆",
+        "核心"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "emotion:zhishisiyi",
+      "type": "concept",
+      "name": "汁水四溢",
+      "summary": "撕开脆皮后汁水爆开的视觉冲击，全片高潮的情绪爆发点",
+      "tags": [
+        "情绪",
+        "汁水",
+        "高潮"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "emotion:wennuan",
+      "type": "concept",
+      "name": "温暖归属",
+      "summary": "收尾镜头的餐厅氛围和品牌定格，传递家的味道和品牌温度",
+      "tags": [
+        "情绪",
+        "温暖",
+        "收尾"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "scene:mingdang",
+      "type": "domain",
+      "name": "明档厨房",
+      "summary": "开放式明档厨房场景，厨师现场操作，食客可见，烟火气十足",
+      "tags": [
+        "场景",
+        "明档",
+        "厨房"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "scene:tanhuo",
+      "type": "domain",
+      "name": "炭火烤炉",
+      "summary": "传统炭火烤炉区域，火焰橙红，乳鸽旋转烤制，蒸汽升腾",
+      "tags": [
+        "场景",
+        "炭火",
+        "烤炉"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "scene:cannting",
+      "type": "domain",
+      "name": "暖光餐厅",
+      "summary": "粤海壹号餐厅环境，暖色调灯光，食客用餐氛围",
+      "tags": [
+        "场景",
+        "餐厅",
+        "暖光"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "audio:jinshupengzhuang",
+      "type": "config",
+      "name": "金属碰撞声",
+      "summary": "鸽笼金属碰撞声→'好鸽'（粤语），声音先行建立环境感",
+      "tags": [
+        "音效",
+        "金属",
+        "环境"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "audio:cuipiduanlie",
+      "type": "config",
+      "name": "脆皮断裂声",
+      "summary": "脆皮'咔嚓'断裂声，ASMR 级别的声音质感，声音先行画面跟随",
+      "tags": [
+        "音效",
+        "脆皮",
+        "ASMR"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "audio:sisisheng",
+      "type": "config",
+      "name": "滋滋声",
+      "summary": "炭火烤制时脆皮水滴落的滋滋声，温度和烹饪感的听觉表达",
+      "tags": [
+        "音效",
+        "滋滋",
+        "温度"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "audio:sikasheng",
+      "type": "config",
+      "name": "撕裂声",
+      "summary": "撕开脆皮的'咔嚓'声，慢速拉长，声画精确对位，全片高潮音效",
+      "tags": [
+        "音效",
+        "撕裂",
+        "高潮"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "brand:yuehaiyihao",
+      "type": "service",
+      "name": "粤海壹号",
+      "summary": "粤菜高端品牌，主打正宗粤菜和明档现做，品牌定格在收尾镜头",
+      "tags": [
+        "品牌",
+        "粤海壹号",
+        "粤菜"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "prompt:ruge-group1",
+      "type": "document",
+      "name": "提示词01·镜1-3",
+      "summary": "第1组提示词（开场·0-5s·快切跳切建立节奏），包含镜1食材挑选、镜2处理、镜3烹饪的完整12字段",
+      "tags": [
+        "提示词",
+        "组1",
+        "开场"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "promptGroup": {
+          "groupName": "Clip A·诱惑篇",
+          "timeRange": "0-5s",
+          "style": "快切跳切建立节奏",
+          "shots": [
+            "shot:ruge-1",
+            "shot:ruge-2",
+            "shot:ruge-3"
+          ]
+        }
+      }
+    },
+    {
+      "id": "prompt:ruge-group2",
+      "type": "document",
+      "name": "提示词02·镜4-6",
+      "summary": "第2组提示词（高潮+收尾·5-15s·慢动作高潮+品牌定格），包含镜4烹饪细节、镜5成品展示、镜6成品收尾的完整12字段",
+      "tags": [
+        "提示词",
+        "组2",
+        "高潮"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "promptGroup": {
+          "groupName": "Clip B·呈现篇",
+          "timeRange": "5-15s",
+          "style": "慢动作高潮+品牌定格",
+          "shots": [
+            "shot:ruge-4",
+            "shot:ruge-5",
+            "shot:ruge-6"
+          ]
+        }
+      }
+    },
+    {
+      "id": "cat:xunwei-guangdong",
+      "type": "domain",
+      "name": "寻味广东 岭南美食",
+      "summary": "粤式特色菜品，湛江泥虫系列粥品与桑拿霸鲜鸡",
+      "tags": [
+        "分类",
+        "粤式特色",
+        "岭南美食"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "cat:siji-yangsheng",
+      "type": "domain",
+      "name": "四季养生 滋养身心",
+      "summary": "养生汤品系列，客家原味猪肉汤、花胶汤等滋补炖品",
+      "tags": [
+        "分类",
+        "养生",
+        "汤品"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "cat:jiangxin-xiaowei",
+      "type": "domain",
+      "name": "匠心小味",
+      "summary": "凉拌小菜系列，酱萝卜、云耳、鱼皮等开胃前菜",
+      "tags": [
+        "分类",
+        "凉拌",
+        "小菜"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "cat:zhuchu-tuijian",
+      "type": "domain",
+      "name": "主厨推荐 烟火匠心",
+      "summary": "烧腊招牌系列，乳鸽、烧鹅、叉烧、白切鸡等经典烧腊",
+      "tags": [
+        "分类",
+        "烧腊",
+        "招牌"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "cat:xinpai-yuecai",
+      "type": "domain",
+      "name": "新派粤菜 镇店之宝",
+      "summary": "创新粤菜系列，蜂窝牛肋排、花胶焖鸡等招牌创新菜品",
+      "tags": [
+        "分类",
+        "创新粤菜",
+        "镇店之宝"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "cat:xiangyu-chuanwei",
+      "type": "domain",
+      "name": "湘遇川味 川湘荟萃",
+      "summary": "川湘菜系列，小炒黄牛肉、剁椒鱼头等辣味菜品",
+      "tags": [
+        "分类",
+        "川湘菜",
+        "辣味"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "cat:zhenxuan-haiwei",
+      "type": "domain",
+      "name": "甄选海味 现捞鲜境",
+      "summary": "海鲜系列，活鲜现捞现做，清蒸香煎等多种烹饪方式",
+      "tags": [
+        "分类",
+        "海鲜",
+        "现捞"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "cat:jingdian-zhushi",
+      "type": "domain",
+      "name": "经典主食 人间烟火",
+      "summary": "主食系列，干炒牛河、炒饭等经典粤式主食",
+      "tags": [
+        "分类",
+        "主食",
+        "炒粉饭"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "cat:tianyuan-shishu",
+      "type": "domain",
+      "name": "田园时疏",
+      "summary": "时蔬系列，豆豉鲮鱼油麦菜、广东菜心等新鲜时令蔬菜",
+      "tags": [
+        "分类",
+        "时蔬",
+        "蔬菜"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "style:shejian-yinshi-nanv",
+      "type": "concept",
+      "name": "舌尖×饮食男女风格",
+      "summary": "人文关怀+匠人精神+烟火温度，当前默认风格，融合《舌尖上的中国》的食材叙事与《饮食男女》的情感温度",
+      "tags": [
+        "风格档案",
+        "默认风格",
+        "人文关怀"
+      ],
+      "complexity": "complex",
+      "metadata": {
+        "styleProfile": {
+          "director": "陈晓卿/李安",
+          "representativeWorks": [
+            "舌尖上的中国",
+            "饮食男女",
+            "寻味顺德"
+          ],
+          "corePhilosophy": "人文关怀+匠人精神+烟火温度，让人想家",
+          "lightingStyle": "自然光质感，侧光/逆光突出质感",
+          "colorPalette": "暖黄+琥珀+深褐，烟火色系",
+          "soundDesign": "声画同步叙事，声音先行画面跟随，环境音+食物原声",
+          "emotionCurve": "期待→酥脆→汁水→温暖归属",
+          "techniqueWeights": [
+            {
+              "techniqueId": "technique:weijutexie",
+              "weight": 0.95,
+              "params": {
+                "光圈": "f/1.4-f/2.8",
+                "用途": "食材纹理极致放大"
+              }
+            },
+            {
+              "techniqueId": "technique:shenghuatongbu",
+              "weight": 0.9,
+              "params": {
+                "模式": "声音先行画面跟随"
+              }
+            },
+            {
+              "techniqueId": "technique:mandongzuoshiyihua",
+              "weight": 0.85,
+              "params": {
+                "帧率": "120-240fps",
+                "用途": "仪式感升华"
+              }
+            },
+            {
+              "techniqueId": "technique:zhengqifenwei",
+              "weight": 0.85,
+              "params": {
+                "蒸汽类型": "生活蒸汽",
+                "强度": "中等",
+                "情绪": "温暖归属"
+              }
+            },
+            {
+              "techniqueId": "technique:tiaoqieshengluo",
+              "weight": 0.8,
+              "params": {
+                "用途": "只保留动作端点"
+              }
+            },
+            {
+              "techniqueId": "technique:ziranguangzhigan",
+              "weight": 0.8,
+              "params": {
+                "光线": "侧光/逆光"
+              }
+            },
+            {
+              "techniqueId": "technique:henjintexie",
+              "weight": 0.7,
+              "params": {
+                "用途": "展示匠人力量感"
+              }
+            },
+            {
+              "techniqueId": "technique:zhuanchangmengtaiqi",
+              "weight": 0.6,
+              "params": {
+                "转场类型": "形状/颜色/动作相似性"
+              }
+            }
+          ],
+          "notRecommended": [],
+          "suitableDishes": [
+            "全部粤菜",
+            "传统经典",
+            "家常菜"
+          ],
+          "unsuitableDishes": [],
+          "signatureMove": "微距特写+声画同步+蒸汽氛围，三技法组合构成舌尖味觉钩子",
+          "exampleScene": "老厨师手从笼中抓起乳鸽，跳切至砧板，微距特写脆皮断裂汁液微渗，声画同步脆皮咔嚓声先行"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "module:system",
+      "target": "module:6shot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "module:system",
+      "target": "module:12shot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "dish:cuipi-ruge",
+      "target": "ingredient:ruge",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "dish:cuipi-ruge",
+      "target": "ingredient:cuipishui",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:qieji",
+      "target": "ingredient:zouji",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "dish:qieji",
+      "target": "ingredient:jiangrong",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:cuipi-ruge",
+      "target": "cat:zhuchu-tuijian",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:qieji",
+      "target": "cat:zhuchu-tuijian",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "char:laochushi",
+      "target": "dish:cuipi-ruge",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "char:nianqingxuetu",
+      "target": "char:laochushi",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "char:shikemama",
+      "target": "dish:cuipi-ruge",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "char:shikemama",
+      "target": "dish:qieji",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "char:shaoe-shifu",
+      "target": "dish:yuehai-zhizun-shaoe-huang",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "char:shaoe-shike",
+      "target": "dish:yuehai-zhizun-shaoe-huang",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "dish:zhanjiang-nichong-zhou",
+      "target": "cat:xunwei-guangdong",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:zhanjiang-nichong-baige-zhou",
+      "target": "cat:xunwei-guangdong",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:zhanjiang-nichong-ji-zhou",
+      "target": "cat:xunwei-guangdong",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:sangna-ba-xianji",
+      "target": "cat:xunwei-guangdong",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:kejia-yuanwei-zhurou-tang",
+      "target": "cat:siji-yangsheng",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:wugu-zaliang-zhu-baoyu",
+      "target": "cat:siji-yangsheng",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:yuehai-shihu-dun-shuiya-tang",
+      "target": "cat:siji-yangsheng",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:zhizun-yangyan-huajiao-tang",
+      "target": "cat:siji-yangsheng",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:mama-wei-jiang-luobo",
+      "target": "cat:jiangxin-xiaowei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:liangban-yuner",
+      "target": "cat:jiangxin-xiaowei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:mizhi-ban-yupi",
+      "target": "cat:jiangxin-xiaowei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:daopai-qian-nanyou",
+      "target": "cat:jiangxin-xiaowei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:cuipi-ruge",
+      "target": "cat:zhuchu-tuijian",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:yuehai-zhizun-shaoe-huang",
+      "target": "cat:zhuchu-tuijian",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:yuehai-chashao-wang",
+      "target": "cat:zhuchu-tuijian",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:aomen-shao-nanrou",
+      "target": "cat:zhuchu-tuijian",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:qieji",
+      "target": "cat:zhuchu-tuijian",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:yihao-shaowei-shuangpin",
+      "target": "cat:zhuchu-tuijian",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:zhaopai-fengwo-niulei-pai",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:niuxiaopai-yikousu",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:huangjin-zhi-suo-xianggu",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:youji-heisonglu-huajiao-menji",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:baoyu-zhizun-ji",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:yajun-guatiao-bao-niuliu",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:zhaopai-zhanjiang-cuipi-tedahao",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:suxiang-rousong-bingchuan-qie",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:jinsuan-xingbaogu-niurou-li",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:xiamang-zhilian",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:xian-zhushou-yougan",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:yangsheng-hei-doufu",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:yuehai-xiaochao-huang",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:hupo-gulu-rou",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:qiedou-zhilian",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:hetang-yuese",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:gangguo-nongjia-huacai",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:nongjia-youji-nangua",
+      "target": "cat:xinpai-yuecai",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:xiangla-xiaochao-huangniurou",
+      "target": "cat:xiangyu-chuanwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:xiangla-yangpai",
+      "target": "cat:xiangyu-chuanwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:jiaxiang-xiaochao-rou",
+      "target": "cat:xiangyu-chuanwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:feiteng-huangniurou",
+      "target": "cat:xiangyu-chuanwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:huangfeihong-zhangzhongbao",
+      "target": "cat:xiangyu-chuanwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:xianla-duojiao-zheng-dayutou",
+      "target": "cat:xiangyu-chuanwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:chuanxiang-majiao-niuxiaopai",
+      "target": "cat:xiangyu-chuanwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:gangguo-feichang-wang",
+      "target": "cat:xiangyu-chuanwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:chuanxiang-huiguo-rou",
+      "target": "cat:xiangyu-chuanwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:laohu-ban",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:duobao-yu",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:jiwei-xia",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:jiujie-xia",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:luoshi-xia",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:rouxie",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:hua-luo",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:huajia",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:baoyu-haixian",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:qingzheng-zhenzhu-ban",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:xiangjian-shading-yu",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:xiangjian-huanghua-yu",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:xiangjian-majiao-yu",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:shajiang-beihai-youyu-tong",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:qingzheng-nichong",
+      "target": "cat:zhenxuan-haiwei",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:guangshi-ganchao-niuhe",
+      "target": "cat:jingdian-zhushi",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:zhanjiang-xianlao-fen",
+      "target": "cat:jingdian-zhushi",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:yajun-huangjin-fan",
+      "target": "cat:jingdian-zhushi",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:yuehai-yipin-chaofan",
+      "target": "cat:jingdian-zhushi",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:douchi-lengyu-youmaicai",
+      "target": "cat:tianyuan-shishu",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:shengchao-guangdong-caixin",
+      "target": "cat:tianyuan-shishu",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "dish:shengchao-shuidong-jiecai",
+      "target": "cat:tianyuan-shishu",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:weijutexie",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:shenghuatongbu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:zhengqifenwei",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:tiaoqieshengluo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:ziranguangzhigan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:henjintexie",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:zhuanchangmengtaiqi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:baisirouguangxiang",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:jijian-goutu-liubai",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:huagui-yunsu-hengyi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:weijutexie",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:heichang-xuanzhuan-dengchang",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.75
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:shenghuatongbu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:nihong-shuangsewen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:shouchi-huxigan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:buguize-pianxin-goutu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:chouzhen-duanxu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.75
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:dandian-guangyuan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:guding-ningshi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:jijian-goutu-liubai",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:nihong-shuangsewen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:guzhang-zhuanchang",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:zhengqifenwei",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:chouzhen-duanxu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.75
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:weijutexie",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "style:kitano-kikujirou",
+      "target": "technique:ziranguangzhigan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "style:kitano-kikujirou",
+      "target": "technique:guding-ningshi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "style:kitano-kikujirou",
+      "target": "technique:tiaoqieshengluo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.75
+    },
+    {
+      "source": "style:kitano-kikujirou",
+      "target": "technique:shouchi-huxigan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:weijutexie",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.95,
+      "description": "舌尖×饮食男女风格 使用 technique:weijutexie，权重 95%"
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:shenghuatongbu",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "舌尖×饮食男女风格 使用 technique:shenghuatongbu，权重 90%"
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.85,
+      "description": "舌尖×饮食男女风格 使用 technique:mandongzuoshiyihua，权重 85%"
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:zhengqifenwei",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.85,
+      "description": "舌尖×饮食男女风格 使用 technique:zhengqifenwei，权重 85%"
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:tiaoqieshengluo",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "舌尖×饮食男女风格 使用 technique:tiaoqieshengluo，权重 80%"
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:ziranguangzhigan",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "舌尖×饮食男女风格 使用 technique:ziranguangzhigan，权重 80%"
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:henjintexie",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.7,
+      "description": "舌尖×饮食男女风格 使用 technique:henjintexie，权重 70%"
+    },
+    {
+      "source": "style:shejian-yinshi-nanv",
+      "target": "technique:zhuanchangmengtaiqi",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "舌尖×饮食男女风格 使用 technique:zhuanchangmengtaiqi，权重 60%"
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:baisirouguangxiang",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.95,
+      "description": "苹果发布会风格 使用 technique:baisirouguangxiang，权重 95%"
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:jijian-goutu-liubai",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "苹果发布会风格 使用 technique:jijian-goutu-liubai，权重 90%"
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:huagui-yunsu-hengyi",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.85,
+      "description": "苹果发布会风格 使用 technique:huagui-yunsu-hengyi，权重 85%"
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:weijutexie",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "苹果发布会风格 使用 technique:weijutexie，权重 80%"
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:heichang-xuanzhuan-dengchang",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.75,
+      "description": "苹果发布会风格 使用 technique:heichang-xuanzhuan-dengchang，权重 75%"
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:shenghuatongbu",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.7,
+      "description": "苹果发布会风格 使用 technique:shenghuatongbu，权重 70%"
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:shuju-biaozhu-donghua",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.65,
+      "description": "苹果发布会风格 使用 technique:shuju-biaozhu-donghua，权重 65%"
+    },
+    {
+      "source": "style:pingguo-fabuhui",
+      "target": "technique:guding-ningshi",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.5,
+      "description": "苹果发布会风格 使用 technique:guding-ningshi，权重 50%"
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:nihong-shuangsewen",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.95,
+      "description": "赛博朋克风格 使用 technique:nihong-shuangsewen，权重 95%"
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:guzhang-zhuanchang",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.85,
+      "description": "赛博朋克风格 使用 technique:guzhang-zhuanchang，权重 85%"
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:zhengqifenwei",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "赛博朋克风格 使用 technique:zhengqifenwei，权重 80%"
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:chouzhen-duanxu",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.75,
+      "description": "赛博朋克风格 使用 technique:chouzhen-duanxu，权重 75%"
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:weijutexie",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.7,
+      "description": "赛博朋克风格 使用 technique:weijutexie，权重 70%"
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:shuju-biaozhu-donghua",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.65,
+      "description": "赛博朋克风格 使用 technique:shuju-biaozhu-donghua，权重 65%"
+    },
+    {
+      "source": "style:saibopengke",
+      "target": "technique:buguize-pianxin-goutu",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.55,
+      "description": "赛博朋克风格 使用 technique:buguize-pianxin-goutu，权重 55%"
+    },
+    {
+      "source": "style:kitano-kikujirou",
+      "target": "technique:ziranguangzhigan",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.85,
+      "description": "北野武《菊次郎的夏天》风格 使用 technique:ziranguangzhigan，权重 85%"
+    },
+    {
+      "source": "style:kitano-kikujirou",
+      "target": "technique:guding-ningshi",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "北野武《菊次郎的夏天》风格 使用 technique:guding-ningshi，权重 80%"
+    },
+    {
+      "source": "style:kitano-kikujirou",
+      "target": "technique:tiaoqieshengluo",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.75,
+      "description": "北野武《菊次郎的夏天》风格 使用 technique:tiaoqieshengluo，权重 75%"
+    },
+    {
+      "source": "style:kitano-kikujirou",
+      "target": "technique:shouchi-huxigan",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.7,
+      "description": "北野武《菊次郎的夏天》风格 使用 technique:shouchi-huxigan，权重 70%"
+    },
+    {
+      "source": "style:kitano-kikujirou",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.65,
+      "description": "北野武《菊次郎的夏天》风格 使用 technique:mandongzuoshiyihua，权重 65%"
+    },
+    {
+      "source": "style:kitano-kikujirou",
+      "target": "technique:henjintexie",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "北野武《菊次郎的夏天》风格 使用 technique:henjintexie，权重 60%"
+    },
+    {
+      "source": "style:kitano-kikujirou",
+      "target": "technique:zhengqifenwei",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.55,
+      "description": "北野武《菊次郎的夏天》风格 使用 technique:zhengqifenwei，权重 55%"
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:fengmianzhen-jichengpin",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 1,
+      "description": "MrBeast导演风格 使用 technique:fengmianzhen-jichengpin，权重 100%"
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:sanduan-dijin",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 1,
+      "description": "MrBeast导演风格 使用 technique:sanduan-dijin，权重 100%"
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:tiaoqie-shenglue",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "MrBeast导演风格 使用 technique:tiaoqie-shenglue，权重 90%"
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:poihuai-xing-jieshi",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "MrBeast导演风格 使用 technique:poihuai-xing-jieshi，权重 90%"
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:shenghua-hubu-xushi",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "MrBeast导演风格 使用 technique:shenghua-hubu-xushi，权重 80%"
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:jingmo-xuli-baofa",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "MrBeast导演风格 使用 technique:jingmo-xuli-baofa，权重 80%"
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:manjing-lizi-qiguan",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.7,
+      "description": "MrBeast导演风格 使用 technique:manjing-lizi-qiguan，权重 70%"
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:henjintexie",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.7,
+      "description": "MrBeast导演风格 使用 technique:henjintexie，权重 70%"
+    },
+    {
+      "source": "style:mrbeast-daoyan",
+      "target": "technique:shenghuatongbu",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "MrBeast导演风格 使用 technique:shenghuatongbu，权重 60%"
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:dandian-guangyuan",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.95,
+      "description": "日式侘寂风格 使用 technique:dandian-guangyuan，权重 95%"
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:guding-ningshi",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "日式侘寂风格 使用 technique:guding-ningshi，权重 90%"
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:jijian-goutu-liubai",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.85,
+      "description": "日式侘寂风格 使用 technique:jijian-goutu-liubai，权重 85%"
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.7,
+      "description": "日式侘寂风格 使用 technique:mandongzuoshiyihua，权重 70%"
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:shenghuatongbu",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.65,
+      "description": "日式侘寂风格 使用 technique:shenghuatongbu，权重 65%"
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:ziranguangzhigan",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "日式侘寂风格 使用 technique:ziranguangzhigan，权重 60%"
+    },
+    {
+      "source": "style:riben-wajiki",
+      "target": "technique:zhengqifenwei",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.55,
+      "description": "日式侘寂风格 使用 technique:zhengqifenwei，权重 55%"
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:nihong-shuangsewen",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.95,
+      "description": "王家卫风格 使用 technique:nihong-shuangsewen，权重 95%"
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:shouchi-huxigan",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.85,
+      "description": "王家卫风格 使用 technique:shouchi-huxigan，权重 85%"
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:buguize-pianxin-goutu",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "王家卫风格 使用 technique:buguize-pianxin-goutu，权重 80%"
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:chouzhen-duanxu",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.75,
+      "description": "王家卫风格 使用 technique:chouzhen-duanxu，权重 75%"
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.7,
+      "description": "王家卫风格 使用 technique:mandongzuoshiyihua，权重 70%"
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:zhengqifenwei",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.65,
+      "description": "王家卫风格 使用 technique:zhengqifenwei，权重 65%"
+    },
+    {
+      "source": "style:wangjiawei",
+      "target": "technique:weijutexie",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.55,
+      "description": "王家卫风格 使用 technique:weijutexie，权重 55%"
+    },
+    {
+      "source": "dish:mama-wei-jiang-luobo",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "妈妈味酱萝卜 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:mama-wei-jiang-luobo",
+      "target": "style:wangjiawei",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "妈妈味酱萝卜 最佳风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:mama-wei-jiang-luobo",
+      "target": "style:kitano-kikujirou",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "妈妈味酱萝卜 最佳风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:liangban-yuner",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "凉拌云耳 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:liangban-yuner",
+      "target": "style:wangjiawei",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "凉拌云耳 最佳风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:liangban-yuner",
+      "target": "style:kitano-kikujirou",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "凉拌云耳 最佳风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:mizhi-ban-yupi",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "秘制拌鱼皮 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:mizhi-ban-yupi",
+      "target": "style:wangjiawei",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "秘制拌鱼皮 最佳风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:mizhi-ban-yupi",
+      "target": "style:kitano-kikujirou",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "秘制拌鱼皮 最佳风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:daopai-qian-nanyou",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "刀拍前男友 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:daopai-qian-nanyou",
+      "target": "style:wangjiawei",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "刀拍前男友 最佳风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:daopai-qian-nanyou",
+      "target": "style:kitano-kikujirou",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "刀拍前男友 最佳风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:guangshi-ganchao-niuhe",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "广式干炒牛河 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:guangshi-ganchao-niuhe",
+      "target": "style:wangjiawei",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "广式干炒牛河 最佳风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:guangshi-ganchao-niuhe",
+      "target": "style:kitano-kikujirou",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "广式干炒牛河 最佳风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:zhanjiang-xianlao-fen",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "湛江鲜捞粉 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:zhanjiang-xianlao-fen",
+      "target": "style:wangjiawei",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "湛江鲜捞粉 最佳风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:zhanjiang-xianlao-fen",
+      "target": "style:kitano-kikujirou",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "湛江鲜捞粉 最佳风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:yajun-huangjin-fan",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "野菌黄金饭 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:yajun-huangjin-fan",
+      "target": "style:wangjiawei",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "野菌黄金饭 最佳风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:yajun-huangjin-fan",
+      "target": "style:kitano-kikujirou",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "野菌黄金饭 最佳风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:yuehai-yipin-chaofan",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "粤海一品炒饭 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:yuehai-yipin-chaofan",
+      "target": "style:wangjiawei",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "粤海一品炒饭 最佳风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:yuehai-yipin-chaofan",
+      "target": "style:kitano-kikujirou",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "粤海一品炒饭 最佳风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:kejia-yuanwei-zhurou-tang",
+      "target": "style:kitano-kikujirou",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "客家原味猪肉汤 适合风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:wugu-zaliang-zhu-baoyu",
+      "target": "style:kitano-kikujirou",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "五谷杂粮煮鲍鱼 适合风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:yuehai-shihu-dun-shuiya-tang",
+      "target": "style:kitano-kikujirou",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "粤海石斛炖水鸭汤 适合风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:zhizun-yangyan-huajiao-tang",
+      "target": "style:kitano-kikujirou",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "至尊养颜花胶汤 适合风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:douchi-lengyu-youmaicai",
+      "target": "style:kitano-kikujirou",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "豆豉鲮鱼油麦菜 适合风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:shengchao-guangdong-caixin",
+      "target": "style:kitano-kikujirou",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "生炒广东菜心 适合风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:shengchao-shuidong-jiecai",
+      "target": "style:kitano-kikujirou",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "生炒水东芥菜 适合风格: style:kitano-kikujirou"
+    },
+    {
+      "source": "dish:zhaopai-fengwo-niulei-pai",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "招牌蜂窝牛肋排 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:niuxiaopai-yikousu",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "牛小排一口酥 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:huangjin-zhi-suo-xianggu",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "黄金汁锁香骨 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:youji-heisonglu-huajiao-menji",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "有机黑松露花胶焖鸡 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:baoyu-zhizun-ji",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "鲍鱼至尊鸡 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:yajun-guatiao-bao-niuliu",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "野菌瓜条爆牛柳 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:zhaopai-zhanjiang-cuipi-tedahao",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "招牌湛江脆皮特大蚝 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:suxiang-rousong-bingchuan-qie",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "酥香肉松冰川茄 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:jinsuan-xingbaogu-niurou-li",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "金蒜杏鲍菇牛肉粒 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:xiamang-zhilian",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "\"虾\"芒之恋 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:xian-zhushou-yougan",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "咸猪手&诱感 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:yangsheng-hei-doufu",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "养生黑豆腐 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:yuehai-xiaochao-huang",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "粤海.小炒皇 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:hupo-gulu-rou",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "琥珀咕噜肉 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:qiedou-zhilian",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "茄豆之恋 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:hetang-yuese",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "荷塘月色 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:gangguo-nongjia-huacai",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "干锅农家花菜 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:nongjia-youji-nangua",
+      "target": "style:pingguo-fabuhui",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "农家有机南瓜 最佳风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:zhanjiang-nichong-zhou",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "湛江泥虫粥 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:zhanjiang-nichong-zhou",
+      "target": "style:wangjiawei",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "湛江泥虫粥 适合风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:zhanjiang-nichong-baige-zhou",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "湛江泥虫白鸽粥 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:zhanjiang-nichong-baige-zhou",
+      "target": "style:wangjiawei",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "湛江泥虫白鸽粥 适合风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:zhanjiang-nichong-ji-zhou",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "湛江泥虫鸡粥 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:zhanjiang-nichong-ji-zhou",
+      "target": "style:wangjiawei",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "湛江泥虫鸡粥 适合风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:sangna-ba-xianji",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "桑拿霸鲜鸡 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:sangna-ba-xianji",
+      "target": "style:wangjiawei",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "桑拿霸鲜鸡 适合风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:laohu-ban",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "老虎班 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:laohu-ban",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "老虎班 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:duobao-yu",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "多宝鱼 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:duobao-yu",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "多宝鱼 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:jiwei-xia",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "基围虾 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:jiwei-xia",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "基围虾 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:jiujie-xia",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "九节虾 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:jiujie-xia",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "九节虾 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:luoshi-xia",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "罗氏虾 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:luoshi-xia",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "罗氏虾 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:rouxie",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "肉蟹 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:rouxie",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "肉蟹 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:hua-luo",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "花螺 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:hua-luo",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "花螺 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:huajia",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "花甲 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:huajia",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "花甲 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:baoyu-haixian",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "鲍鱼 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:baoyu-haixian",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "鲍鱼 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:qingzheng-zhenzhu-ban",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "清蒸珍珠斑 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:qingzheng-zhenzhu-ban",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "清蒸珍珠斑 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:xiangjian-shading-yu",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "香煎沙丁鱼 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:xiangjian-shading-yu",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "香煎沙丁鱼 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:xiangjian-huanghua-yu",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "香煎黄花鱼 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:xiangjian-huanghua-yu",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "香煎黄花鱼 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:xiangjian-majiao-yu",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "香煎马胶鱼 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:xiangjian-majiao-yu",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "香煎马胶鱼 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:shajiang-beihai-youyu-tong",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "沙姜北海鱿鱼筒 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:shajiang-beihai-youyu-tong",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "沙姜北海鱿鱼筒 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:qingzheng-nichong",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "清蒸泥虫(脆爽) 适合风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:qingzheng-nichong",
+      "target": "style:pingguo-fabuhui",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "清蒸泥虫(脆爽) 适合风格: style:pingguo-fabuhui"
+    },
+    {
+      "source": "dish:cuipi-ruge",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "玻璃脆皮特大号乳鸽 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:cuipi-ruge",
+      "target": "style:wangjiawei",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "玻璃脆皮特大号乳鸽 适合风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:qieji",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "粤海白切鸡 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:qieji",
+      "target": "style:wangjiawei",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "粤海白切鸡 适合风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:yuehai-zhizun-shaoe-huang",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "粤海至尊烧鹅皇 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:yuehai-zhizun-shaoe-huang",
+      "target": "style:wangjiawei",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "粤海至尊烧鹅皇 适合风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:yuehai-chashao-wang",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "粤海叉烧王 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:yuehai-chashao-wang",
+      "target": "style:wangjiawei",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "粤海叉烧王 适合风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:aomen-shao-nanrou",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "澳门烧腩肉 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:aomen-shao-nanrou",
+      "target": "style:wangjiawei",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "澳门烧腩肉 适合风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:yihao-shaowei-shuangpin",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "best_style",
+      "direction": "forward",
+      "weight": 0.9,
+      "description": "壹号烧味双拼 最佳风格: style:shejian-yinshi-nanv"
+    },
+    {
+      "source": "dish:yihao-shaowei-shuangpin",
+      "target": "style:wangjiawei",
+      "type": "suitable_style",
+      "direction": "forward",
+      "weight": 0.6,
+      "description": "壹号烧味双拼 适合风格: style:wangjiawei"
+    },
+    {
+      "source": "dish:mama-wei-jiang-luobo",
+      "target": "char:shikemama",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "妈妈味酱萝卜 由 char:shikemama 烹制"
+    },
+    {
+      "source": "dish:liangban-yuner",
+      "target": "char:shikemama",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "凉拌云耳 由 char:shikemama 烹制"
+    },
+    {
+      "source": "dish:mizhi-ban-yupi",
+      "target": "char:shikemama",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "秘制拌鱼皮 由 char:shikemama 烹制"
+    },
+    {
+      "source": "dish:daopai-qian-nanyou",
+      "target": "char:shikemama",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "刀拍前男友 由 char:shikemama 烹制"
+    },
+    {
+      "source": "dish:guangshi-ganchao-niuhe",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "广式干炒牛河 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:zhanjiang-xianlao-fen",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "湛江鲜捞粉 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:yajun-huangjin-fan",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "野菌黄金饭 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:yuehai-yipin-chaofan",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "粤海一品炒饭 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:kejia-yuanwei-zhurou-tang",
+      "target": "char:shikemama",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "客家原味猪肉汤 由 char:shikemama 烹制"
+    },
+    {
+      "source": "dish:wugu-zaliang-zhu-baoyu",
+      "target": "char:shikemama",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "五谷杂粮煮鲍鱼 由 char:shikemama 烹制"
+    },
+    {
+      "source": "dish:yuehai-shihu-dun-shuiya-tang",
+      "target": "char:shikemama",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "粤海石斛炖水鸭汤 由 char:shikemama 烹制"
+    },
+    {
+      "source": "dish:zhizun-yangyan-huajiao-tang",
+      "target": "char:shikemama",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "至尊养颜花胶汤 由 char:shikemama 烹制"
+    },
+    {
+      "source": "dish:douchi-lengyu-youmaicai",
+      "target": "char:shikemama",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "豆豉鲮鱼油麦菜 由 char:shikemama 烹制"
+    },
+    {
+      "source": "dish:shengchao-guangdong-caixin",
+      "target": "char:shikemama",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "生炒广东菜心 由 char:shikemama 烹制"
+    },
+    {
+      "source": "dish:shengchao-shuidong-jiecai",
+      "target": "char:shikemama",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "生炒水东芥菜 由 char:shikemama 烹制"
+    },
+    {
+      "source": "dish:xiangla-xiaochao-huangniurou",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "香辣小炒黄牛肉 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:xiangla-yangpai",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "香辣羊排 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:jiaxiang-xiaochao-rou",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "家乡小炒肉 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:feiteng-huangniurou",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "沸腾黄牛肉 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:huangfeihong-zhangzhongbao",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "黄飞鸿掌中宝 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:xianla-duojiao-zheng-dayutou",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "鲜辣剁椒蒸大鱼头 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:chuanxiang-majiao-niuxiaopai",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "川香麻椒牛小排 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:gangguo-feichang-wang",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "干锅肥肠王 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:chuanxiang-huiguo-rou",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "川香回锅肉 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:zhaopai-fengwo-niulei-pai",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "招牌蜂窝牛肋排 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:niuxiaopai-yikousu",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "牛小排一口酥 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:huangjin-zhi-suo-xianggu",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "黄金汁锁香骨 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:youji-heisonglu-huajiao-menji",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "有机黑松露花胶焖鸡 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:baoyu-zhizun-ji",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "鲍鱼至尊鸡 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:yajun-guatiao-bao-niuliu",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "野菌瓜条爆牛柳 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:zhaopai-zhanjiang-cuipi-tedahao",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "招牌湛江脆皮特大蚝 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:suxiang-rousong-bingchuan-qie",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "酥香肉松冰川茄 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:jinsuan-xingbaogu-niurou-li",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "金蒜杏鲍菇牛肉粒 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:xiamang-zhilian",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "\"虾\"芒之恋 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:xian-zhushou-yougan",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "咸猪手&诱感 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:yangsheng-hei-doufu",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "养生黑豆腐 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:yuehai-xiaochao-huang",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "粤海.小炒皇 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:hupo-gulu-rou",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "琥珀咕噜肉 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:qiedou-zhilian",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "茄豆之恋 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:hetang-yuese",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "荷塘月色 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:gangguo-nongjia-huacai",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "干锅农家花菜 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:nongjia-youji-nangua",
+      "target": "char:nianqingxuetu",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "农家有机南瓜 由 char:nianqingxuetu 烹制"
+    },
+    {
+      "source": "dish:zhanjiang-nichong-zhou",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "湛江泥虫粥 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:zhanjiang-nichong-baige-zhou",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "湛江泥虫白鸽粥 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:zhanjiang-nichong-ji-zhou",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "湛江泥虫鸡粥 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:sangna-ba-xianji",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "桑拿霸鲜鸡 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:laohu-ban",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "老虎班 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:duobao-yu",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "多宝鱼 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:jiwei-xia",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "基围虾 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:jiujie-xia",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "九节虾 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:luoshi-xia",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "罗氏虾 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:rouxie",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "肉蟹 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:hua-luo",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "花螺 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:huajia",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "花甲 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:baoyu-haixian",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "鲍鱼 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:qingzheng-zhenzhu-ban",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "清蒸珍珠斑 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:xiangjian-shading-yu",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "香煎沙丁鱼 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:xiangjian-huanghua-yu",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "香煎黄花鱼 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:xiangjian-majiao-yu",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "香煎马胶鱼 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:shajiang-beihai-youyu-tong",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "沙姜北海鱿鱼筒 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:qingzheng-nichong",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "清蒸泥虫(脆爽) 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:cuipi-ruge",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "玻璃脆皮特大号乳鸽 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:qieji",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "粤海白切鸡 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:yuehai-zhizun-shaoe-huang",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "粤海至尊烧鹅皇 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:yuehai-chashao-wang",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "粤海叉烧王 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:aomen-shao-nanrou",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "澳门烧腩肉 由 char:laochushi 烹制"
+    },
+    {
+      "source": "dish:yihao-shaowei-shuangpin",
+      "target": "char:laochushi",
+      "type": "cooked_by",
+      "direction": "forward",
+      "weight": 0.8,
+      "description": "壹号烧味双拼 由 char:laochushi 烹制"
+    },
+    {
+      "id": "edge:cuipi-ruge-storyboard-t1-hero",
+      "source": "dish:cuipi-ruge",
+      "target": "storyboard:cuipi-ruge-t1-hero",
+      "type": "has_storyboard",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "id": "edge:cuipi-ruge-storyboard-t5-platform",
+      "source": "dish:cuipi-ruge",
+      "target": "storyboard:cuipi-ruge-t5-platform",
+      "type": "has_storyboard",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "id": "edge:shaoe-huang-storyboard-t1-hero",
+      "source": "dish:yuehai-zhizun-shaoe-huang",
+      "target": "storyboard:shaoe-huang-t1-hero",
+      "type": "has_storyboard",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "id": "edge:shaoe-huang-storyboard-t2-contrast",
+      "source": "dish:yuehai-zhizun-shaoe-huang",
+      "target": "storyboard:shaoe-huang-t2-contrast",
+      "type": "has_storyboard",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "id": "edge:shaoe-huang-storyboard-t5-platform",
+      "source": "dish:yuehai-zhizun-shaoe-huang",
+      "target": "storyboard:shaoe-huang-t5-platform",
+      "type": "has_storyboard",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "id": "edge:wugu-baoyu-storyboard-t6-hero",
+      "source": "dish:wugu-zaliang-zhu-baoyu",
+      "target": "storyboard:wugu-baoyu-t6-hero",
+      "type": "has_storyboard",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "id": "edge:wugu-baoyu-storyboard-t5-contrast",
+      "source": "dish:wugu-zaliang-zhu-baoyu",
+      "target": "storyboard:wugu-baoyu-t5-contrast",
+      "type": "has_storyboard",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "id": "edge:wugu-baoyu-storyboard-t3-platform",
+      "source": "dish:wugu-zaliang-zhu-baoyu",
+      "target": "storyboard:wugu-baoyu-t3-platform",
+      "type": "has_storyboard",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "id": "edge:laohu-ban-storyboard-t1-hero",
+      "source": "dish:laohu-ban",
+      "target": "storyboard:laohu-ban-t1-hero",
+      "type": "has_storyboard",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "id": "edge:laohu-ban-storyboard-t4-contrast",
+      "source": "dish:laohu-ban",
+      "target": "storyboard:laohu-ban-t4-contrast",
+      "type": "has_storyboard",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "id": "edge:laohu-ban-storyboard-t5-platform",
+      "source": "dish:laohu-ban",
+      "target": "storyboard:laohu-ban-t5-platform",
+      "type": "has_storyboard",
+      "direction": "forward",
+      "weight": 0.85
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:system",
+      "name": "分镜系统层",
+      "description": "分镜生成系统的两种模式：6镜Seedance模式和12镜RunningHub模式",
+      "nodeIds": [
+        "module:system",
+        "module:6shot",
+        "module:12shot"
+      ]
+    },
+    {
+      "id": "layer:dish",
+      "name": "菜品层",
+      "description": "菜品和品牌，每道菜对应一个完整的分镜方案",
+      "nodeIds": [
+        "brand:yuehaiyihao",
+        "dish:zhanjiang-nichong-zhou",
+        "dish:zhanjiang-nichong-baige-zhou",
+        "dish:zhanjiang-nichong-ji-zhou",
+        "dish:sangna-ba-xianji",
+        "dish:kejia-yuanwei-zhurou-tang",
+        "dish:wugu-zaliang-zhu-baoyu",
+        "dish:yuehai-shihu-dun-shuiya-tang",
+        "dish:zhizun-yangyan-huajiao-tang",
+        "dish:mama-wei-jiang-luobo",
+        "dish:liangban-yuner",
+        "dish:mizhi-ban-yupi",
+        "dish:daopai-qian-nanyou",
+        "dish:cuipi-ruge",
+        "dish:yuehai-zhizun-shaoe-huang",
+        "dish:yuehai-chashao-wang",
+        "dish:aomen-shao-nanrou",
+        "dish:qieji",
+        "dish:yihao-shaowei-shuangpin",
+        "dish:zhaopai-fengwo-niulei-pai",
+        "dish:niuxiaopai-yikousu",
+        "dish:huangjin-zhi-suo-xianggu",
+        "dish:youji-heisonglu-huajiao-menji",
+        "dish:baoyu-zhizun-ji",
+        "dish:yajun-guatiao-bao-niuliu",
+        "dish:zhaopai-zhanjiang-cuipi-tedahao",
+        "dish:suxiang-rousong-bingchuan-qie",
+        "dish:jinsuan-xingbaogu-niurou-li",
+        "dish:xiamang-zhilian",
+        "dish:xian-zhushou-yougan",
+        "dish:yangsheng-hei-doufu",
+        "dish:yuehai-xiaochao-huang",
+        "dish:hupo-gulu-rou",
+        "dish:qiedou-zhilian",
+        "dish:hetang-yuese",
+        "dish:gangguo-nongjia-huacai",
+        "dish:nongjia-youji-nangua",
+        "dish:xiangla-xiaochao-huangniurou",
+        "dish:xiangla-yangpai",
+        "dish:jiaxiang-xiaochao-rou",
+        "dish:feiteng-huangniurou",
+        "dish:huangfeihong-zhangzhongbao",
+        "dish:xianla-duojiao-zheng-dayutou",
+        "dish:chuanxiang-majiao-niuxiaopai",
+        "dish:gangguo-feichang-wang",
+        "dish:chuanxiang-huiguo-rou",
+        "dish:laohu-ban",
+        "dish:duobao-yu",
+        "dish:jiwei-xia",
+        "dish:jiujie-xia",
+        "dish:luoshi-xia",
+        "dish:rouxie",
+        "dish:hua-luo",
+        "dish:huajia",
+        "dish:baoyu-haixian",
+        "dish:qingzheng-zhenzhu-ban",
+        "dish:xiangjian-shading-yu",
+        "dish:xiangjian-huanghua-yu",
+        "dish:xiangjian-majiao-yu",
+        "dish:shajiang-beihai-youyu-tong",
+        "dish:qingzheng-nichong",
+        "dish:guangshi-ganchao-niuhe",
+        "dish:zhanjiang-xianlao-fen",
+        "dish:yajun-huangjin-fan",
+        "dish:yuehai-yipin-chaofan",
+        "dish:douchi-lengyu-youmaicai",
+        "dish:shengchao-guangdong-caixin",
+        "dish:shengchao-shuidong-jiecai"
+      ]
+    },
+    {
+      "id": "layer:ingredient",
+      "name": "食材层",
+      "description": "食材和调料，菜品的核心组成部分",
+      "nodeIds": [
+        "ingredient:ruge",
+        "ingredient:zouji",
+        "ingredient:cuipishui",
+        "ingredient:jiangrong"
+      ]
+    },
+    {
+      "id": "layer:technique",
+      "name": "技法层",
+      "description": "27个通用技法，涵盖光影/运动/构图/转场/信息/时间/氛围/特写/声音/叙事十大类别，每个镜头必须使用2-3个",
+      "nodeIds": [
+        "technique:weijutexie",
+        "technique:mandongzuoshiyihua",
+        "technique:shenghuatongbu",
+        "technique:tiaoqieshengluo",
+        "technique:zhengqifenwei",
+        "technique:henjintexie",
+        "technique:ziranguangzhigan",
+        "technique:zhuanchangmengtaiqi",
+        "technique:baisirouguangxiang",
+        "technique:dandian-guangyuan",
+        "technique:nihong-shuangsewen",
+        "technique:huagui-yunsu-hengyi",
+        "technique:shouchi-huxigan",
+        "technique:guding-ningshi",
+        "technique:jijian-goutu-liubai",
+        "technique:buguize-pianxin-goutu",
+        "technique:heichang-xuanzhuan-dengchang",
+        "technique:guzhang-zhuanchang",
+        "technique:shuju-biaozhu-donghua",
+        "technique:chouzhen-duanxu",
+        "technique:fengmianzhen-jichengpin",
+        "technique:tiaoqie-shenglue",
+        "technique:sanduan-dijin",
+        "technique:manjing-lizi-qiguan",
+        "technique:poihuai-xing-jieshi",
+        "technique:shenghua-hubu-xushi",
+        "technique:jingmo-xuli-baofa"
+      ]
+    },
+    {
+      "id": "layer:shot",
+      "name": "分镜层",
+      "description": "6个分镜镜头，叙事弧线：食材挑选→处理→烹饪→成品",
+      "nodeIds": [
+        "storyboard:yuehai-zhizun-shaoe-huang-30s-promo",
+        "storyboard:cuipi-ruge-t1-hero",
+        "storyboard:cuipi-ruge-t2-contrast",
+        "storyboard:cuipi-ruge-t5-platform",
+        "storyboard:shaoe-huang-t1-hero",
+        "storyboard:shaoe-huang-t2-contrast",
+        "storyboard:shaoe-huang-t5-platform",
+        "storyboard:wugu-baoyu-t6-hero",
+        "storyboard:wugu-baoyu-t5-contrast",
+        "storyboard:wugu-baoyu-t3-platform",
+        "storyboard:laohu-ban-t1-hero",
+        "storyboard:laohu-ban-t4-contrast",
+        "storyboard:laohu-ban-t5-platform"
+      ]
+    },
+    {
+      "id": "layer:emotion",
+      "name": "情绪层",
+      "description": "食欲刺激曲线的4个情绪节点：期待→酥脆→汁水→温暖",
+      "nodeIds": [
+        "emotion:qidaigan",
+        "emotion:sucuigan",
+        "emotion:zhishisiyi",
+        "emotion:wennuan"
+      ]
+    },
+    {
+      "id": "layer:scene-audio",
+      "name": "场景音效层",
+      "description": "3个场景和4个音效，构建视听沉浸感",
+      "nodeIds": [
+        "scene:mingdang",
+        "scene:tanhuo",
+        "scene:cannting",
+        "audio:jinshupengzhuang",
+        "audio:cuipiduanlie",
+        "audio:sisisheng",
+        "audio:sikasheng"
+      ]
+    },
+    {
+      "id": "layer:prompt",
+      "name": "提示词层",
+      "description": "AI生成提示词，每组3镜，可直接复制到 Seedance/RunningHub",
+      "nodeIds": [
+        "prompt:ruge-group1",
+        "prompt:ruge-group2"
+      ]
+    },
+    {
+      "id": "layer:character",
+      "name": "人物层",
+      "description": "出场角色档案，包含近景/中景/全景服装描述，支持按景别复制角色提示词",
+      "nodeIds": [
+        "char:laochushi",
+        "char:nianqingxuetu",
+        "char:shikemama",
+        "char:shaoe-shifu",
+        "char:shaoe-shike"
+      ]
+    },
+    {
+      "id": "layer:dish-profile",
+      "name": "菜品档案层",
+      "description": "菜品档案，包含近景/中景/全景视觉特征和状态变化，支持按景别复制菜品提示词",
+      "nodeIds": [
+        "dish:zhanjiang-nichong-zhou",
+        "dish:zhanjiang-nichong-baige-zhou",
+        "dish:zhanjiang-nichong-ji-zhou",
+        "dish:sangna-ba-xianji",
+        "dish:kejia-yuanwei-zhurou-tang",
+        "dish:wugu-zaliang-zhu-baoyu",
+        "dish:yuehai-shihu-dun-shuiya-tang",
+        "dish:zhizun-yangyan-huajiao-tang",
+        "dish:mama-wei-jiang-luobo",
+        "dish:liangban-yuner",
+        "dish:mizhi-ban-yupi",
+        "dish:daopai-qian-nanyou",
+        "dish:cuipi-ruge",
+        "dish:yuehai-zhizun-shaoe-huang",
+        "dish:yuehai-chashao-wang",
+        "dish:aomen-shao-nanrou",
+        "dish:qieji",
+        "dish:yihao-shaowei-shuangpin",
+        "dish:zhaopai-fengwo-niulei-pai",
+        "dish:niuxiaopai-yikousu",
+        "dish:huangjin-zhi-suo-xianggu",
+        "dish:youji-heisonglu-huajiao-menji",
+        "dish:baoyu-zhizun-ji",
+        "dish:yajun-guatiao-bao-niuliu",
+        "dish:zhaopai-zhanjiang-cuipi-tedahao",
+        "dish:suxiang-rousong-bingchuan-qie",
+        "dish:jinsuan-xingbaogu-niurou-li",
+        "dish:xiamang-zhilian",
+        "dish:xian-zhushou-yougan",
+        "dish:yangsheng-hei-doufu",
+        "dish:yuehai-xiaochao-huang",
+        "dish:hupo-gulu-rou",
+        "dish:qiedou-zhilian",
+        "dish:hetang-yuese",
+        "dish:gangguo-nongjia-huacai",
+        "dish:nongjia-youji-nangua",
+        "dish:xiangla-xiaochao-huangniurou",
+        "dish:xiangla-yangpai",
+        "dish:jiaxiang-xiaochao-rou",
+        "dish:feiteng-huangniurou",
+        "dish:huangfeihong-zhangzhongbao",
+        "dish:xianla-duojiao-zheng-dayutou",
+        "dish:chuanxiang-majiao-niuxiaopai",
+        "dish:gangguo-feichang-wang",
+        "dish:chuanxiang-huiguo-rou",
+        "dish:laohu-ban",
+        "dish:duobao-yu",
+        "dish:jiwei-xia",
+        "dish:jiujie-xia",
+        "dish:luoshi-xia",
+        "dish:rouxie",
+        "dish:hua-luo",
+        "dish:huajia",
+        "dish:baoyu-haixian",
+        "dish:qingzheng-zhenzhu-ban",
+        "dish:xiangjian-shading-yu",
+        "dish:xiangjian-huanghua-yu",
+        "dish:xiangjian-majiao-yu",
+        "dish:shajiang-beihai-youyu-tong",
+        "dish:qingzheng-nichong",
+        "dish:guangshi-ganchao-niuhe",
+        "dish:zhanjiang-xianlao-fen",
+        "dish:yajun-huangjin-fan",
+        "dish:yuehai-yipin-chaofan",
+        "dish:douchi-lengyu-youmaicai",
+        "dish:shengchao-guangdong-caixin",
+        "dish:shengchao-shuidong-jiecai"
+      ]
+    },
+    {
+      "id": "layer:cat-xunwei-guangdong",
+      "name": "寻味广东 岭南美食",
+      "description": "寻味广东 岭南美食分类菜品，共4道",
+      "nodeIds": [
+        "dish:zhanjiang-nichong-zhou",
+        "dish:zhanjiang-nichong-baige-zhou",
+        "dish:zhanjiang-nichong-ji-zhou",
+        "dish:sangna-ba-xianji"
+      ]
+    },
+    {
+      "id": "layer:cat-siji-yangsheng",
+      "name": "四季养生 滋养身心",
+      "description": "四季养生 滋养身心分类菜品，共4道",
+      "nodeIds": [
+        "dish:kejia-yuanwei-zhurou-tang",
+        "dish:wugu-zaliang-zhu-baoyu",
+        "dish:yuehai-shihu-dun-shuiya-tang",
+        "dish:zhizun-yangyan-huajiao-tang"
+      ]
+    },
+    {
+      "id": "layer:cat-jiangxin-xiaowei",
+      "name": "匠心小味",
+      "description": "匠心小味分类菜品，共4道",
+      "nodeIds": [
+        "dish:mama-wei-jiang-luobo",
+        "dish:liangban-yuner",
+        "dish:mizhi-ban-yupi",
+        "dish:daopai-qian-nanyou"
+      ]
+    },
+    {
+      "id": "layer:cat-zhuchu-tuijian",
+      "name": "主厨推荐 烟火匠心",
+      "description": "主厨推荐 烟火匠心分类菜品，共6道",
+      "nodeIds": [
+        "dish:cuipi-ruge",
+        "dish:yuehai-zhizun-shaoe-huang",
+        "dish:yuehai-chashao-wang",
+        "dish:aomen-shao-nanrou",
+        "dish:qieji",
+        "dish:yihao-shaowei-shuangpin"
+      ]
+    },
+    {
+      "id": "layer:cat-xinpai-yuecai",
+      "name": "新派粤菜 镇店之宝",
+      "description": "新派粤菜 镇店之宝分类菜品，共18道",
+      "nodeIds": [
+        "dish:zhaopai-fengwo-niulei-pai",
+        "dish:niuxiaopai-yikousu",
+        "dish:huangjin-zhi-suo-xianggu",
+        "dish:youji-heisonglu-huajiao-menji",
+        "dish:baoyu-zhizun-ji",
+        "dish:yajun-guatiao-bao-niuliu",
+        "dish:zhaopai-zhanjiang-cuipi-tedahao",
+        "dish:suxiang-rousong-bingchuan-qie",
+        "dish:jinsuan-xingbaogu-niurou-li",
+        "dish:xiamang-zhilian",
+        "dish:xian-zhushou-yougan",
+        "dish:yangsheng-hei-doufu",
+        "dish:yuehai-xiaochao-huang",
+        "dish:hupo-gulu-rou",
+        "dish:qiedou-zhilian",
+        "dish:hetang-yuese",
+        "dish:gangguo-nongjia-huacai",
+        "dish:nongjia-youji-nangua"
+      ]
+    },
+    {
+      "id": "layer:cat-xiangyu-chuanwei",
+      "name": "湘遇川味 川湘荟萃",
+      "description": "湘遇川味 川湘荟萃分类菜品，共9道",
+      "nodeIds": [
+        "dish:xiangla-xiaochao-huangniurou",
+        "dish:xiangla-yangpai",
+        "dish:jiaxiang-xiaochao-rou",
+        "dish:feiteng-huangniurou",
+        "dish:huangfeihong-zhangzhongbao",
+        "dish:xianla-duojiao-zheng-dayutou",
+        "dish:chuanxiang-majiao-niuxiaopai",
+        "dish:gangguo-feichang-wang",
+        "dish:chuanxiang-huiguo-rou"
+      ]
+    },
+    {
+      "id": "layer:cat-zhenxuan-haiwei",
+      "name": "甄选海味 现捞鲜境",
+      "description": "甄选海味 现捞鲜境分类菜品，共15道",
+      "nodeIds": [
+        "dish:laohu-ban",
+        "dish:duobao-yu",
+        "dish:jiwei-xia",
+        "dish:jiujie-xia",
+        "dish:luoshi-xia",
+        "dish:rouxie",
+        "dish:hua-luo",
+        "dish:huajia",
+        "dish:baoyu-haixian",
+        "dish:qingzheng-zhenzhu-ban",
+        "dish:xiangjian-shading-yu",
+        "dish:xiangjian-huanghua-yu",
+        "dish:xiangjian-majiao-yu",
+        "dish:shajiang-beihai-youyu-tong",
+        "dish:qingzheng-nichong"
+      ]
+    },
+    {
+      "id": "layer:cat-jingdian-zhushi",
+      "name": "经典主食 人间烟火",
+      "description": "经典主食 人间烟火分类菜品，共4道",
+      "nodeIds": [
+        "dish:guangshi-ganchao-niuhe",
+        "dish:zhanjiang-xianlao-fen",
+        "dish:yajun-huangjin-fan",
+        "dish:yuehai-yipin-chaofan"
+      ]
+    },
+    {
+      "id": "layer:cat-tianyuan-shishu",
+      "name": "田园时疏",
+      "description": "田园时疏分类菜品，共3道",
+      "nodeIds": [
+        "dish:douchi-lengyu-youmaicai",
+        "dish:shengchao-guangdong-caixin",
+        "dish:shengchao-shuidong-jiecai"
+      ]
+    },
+    {
+      "id": "layer:style",
+      "name": "风格档案层",
+      "description": "导演/代表作风格配方，每个配方是技法的权重组合，生成分镜时选择风格即可",
+      "nodeIds": [
+        "style:shejian-yinshi-nanv",
+        "style:pingguo-fabuhui",
+        "style:wangjiawei",
+        "style:riben-wajiki",
+        "style:saibopengke",
+        "style:kitano-kikujirou",
+        "style:mrbeast-daoyan"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "分镜系统 — 两种模式",
+      "description": "6镜30秒模式面向 Seedance 2.0，12镜30秒模式面向 RunningHub，核心区别在于字段数量和叙事颗粒度",
+      "nodeIds": [
+        "module:system",
+        "module:6shot",
+        "module:12shot"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "菜品与品牌",
+      "description": "每道菜对应一个完整的分镜方案，归属于品牌（粤海壹号），菜品之间可共享技法和场景",
+      "nodeIds": [
+        "dish:cuipi-ruge",
+        "dish:qieji",
+        "brand:yuehaiyihao"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "食材与调料",
+      "description": "食材是菜品的物质基础，脆皮水是脆皮乳鸽的灵魂工艺，姜蓉是白切鸡的灵魂蘸料",
+      "nodeIds": [
+        "ingredient:ruge",
+        "ingredient:cuipishui",
+        "ingredient:zouji",
+        "ingredient:jiangrong"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "7大核心技法",
+      "description": "每个镜头必须使用2-3个技法，微距特写和声画同步是必选项，慢动作诗意化是高潮镜头的核心",
+      "nodeIds": [
+        "technique:weijutexie",
+        "technique:mandongzuoshiyihua",
+        "technique:shenghuatongbu",
+        "technique:tiaoqieshengluo",
+        "technique:zhengqifenwei"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "6镜叙事弧线",
+      "description": "快快慢→快慢慢的呼吸节奏：镜1-2快切建立节奏，镜3慢切诗意化，镜4快切力度，镜5-6慢切高潮收尾",
+      "nodeIds": [
+        "shot:ruge-1",
+        "shot:ruge-2",
+        "shot:ruge-3",
+        "shot:ruge-4",
+        "shot:ruge-5",
+        "shot:ruge-6"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "食欲刺激曲线",
+      "description": "30秒内的4个情绪节点：期待感（0-2s）→酥脆感（2-4s）→汁水四溢（5-10s高潮）→温暖归属（11-15s收尾）",
+      "nodeIds": [
+        "emotion:qidaigan",
+        "emotion:sucuigan",
+        "emotion:zhishisiyi",
+        "emotion:wennuan"
+      ]
+    },
+    {
+      "order": 7,
+      "title": "提示词 — 一键复制",
+      "description": "每组3镜的完整提示词，包含15个字段，可直接复制到 Seedance 2.0 或 RunningHub 使用",
+      "nodeIds": [
+        "prompt:ruge-group1",
+        "prompt:ruge-group2"
+      ]
+    },
+    {
+      "order": 8,
+      "title": "风格档案 — 导演配方",
+      "description": "6个风格配方对应6种视听语言体系，每个配方是技法的权重组合，生成分镜时选择风格即可获得差异化呈现",
+      "nodeIds": [
+        "style:shejian-yinshi-nanv",
+        "style:pingguo-fabuhui",
+        "style:wangjiawei",
+        "style:riben-wajiki",
+        "style:saibopengke",
+        "style:kitano-kikujirou"
+      ]
+    }
+  ]
+}
