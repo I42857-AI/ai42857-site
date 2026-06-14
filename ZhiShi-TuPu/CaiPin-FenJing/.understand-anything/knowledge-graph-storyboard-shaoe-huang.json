@@ -1,0 +1,372 @@
+{
+  "nodes": [
+    {
+      "id": "storyboard:shaoe-huang-t1-hero",
+      "type": "flow",
+      "name": "烧鹅皇·食欲炸弹",
+      "summary": "英雄型。苹果发布会风格。纯食物L1 100%，零人物。视觉钩子：枣红油亮如镜的鹅皮。4镜15秒。情绪：平→升→爆→平",
+      "tags": [
+        "食欲炸弹",
+        "英雄型",
+        "苹果发布会",
+        "L1纯食物",
+        "15秒"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "storyboard": {
+          "dishId": "dish:yuehai-zhizun-shaoe-huang",
+          "storyboardType": "appetite-bomb",
+          "storyboardTypeName": "T1 食欲炸弹",
+          "roleCategory": "hero",
+          "totalDuration": "15s",
+          "shotCount": 4,
+          "styleId": "style:pingguo-fabuhui",
+          "styleName": "苹果发布会",
+          "emotionCurve": "平→升→爆→平",
+          "hookType": "视觉钩子",
+          "characterDensity": "0%",
+          "characterNote": "无需人物。纯食物视觉。若AI视频制作需要人物参考，通过女娲技能生成最小化手部模型",
+          "shots": [
+            {
+              "shotNumber": 1,
+              "duration": "4s",
+              "description": "极近特写：烧鹅皮面枣红油亮如琥珀镜面，油珠沿皮面缓缓滑落，皮肉之间薄薄鹅油晶莹，蒸汽从皮缝间轻柔升起。第1帧=成品最诱人状态",
+              "referenceShot": "极近特写",
+              "emotion": "平：瞬间停留冲动",
+              "sceneTag": "纯黑背景",
+              "lighting": "暖金色硬光，高对比度，强调枣红油亮和油珠反射",
+              "soundEffect": "极轻油珠滑落声+蒸汽微嘶声（ASMR级）",
+              "storyboardPrompt": "封面帧即成品+极近特写，第1帧=缩略图，枣红油亮如镜是烧鹅最极致的视觉符号",
+              "videoMotionPrompt": "极近特写烧鹅皮面，枣红油亮如琥珀镜面，油珠缓缓滑落，皮肉间鹅油晶莹，蒸汽轻柔升起，纯黑背景，4秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：枣红油亮如镜的鹅皮表面，细密纹理间油珠凝滞"
+            },
+            {
+              "shotNumber": 2,
+              "duration": "4s",
+              "description": "微距横移：鹅皮表面缓缓移动，皮面如玻璃镜面反射变形光源，细密纹理如龟裂大地，油光在纹理沟壑中流淌形成金色溪流",
+              "referenceShot": "微距横移",
+              "emotion": "升：质感沉浸",
+              "sceneTag": "纯黑背景",
+              "lighting": "侧逆光，皮面形成带状高光，纹理沟壑中油光折射",
+              "soundEffect": "极安静环境音+微弱油光流动声",
+              "storyboardPrompt": "微距横移法+镜面反射美学，贴面横移展现鹅皮玻璃般质感，纹理与油光是烧鹅皮的微观美学",
+              "videoMotionPrompt": "微距贴面横移鹅皮表面，玻璃镜面反射变形光源，细密纹理如龟裂大地，油光在纹理沟壑流淌金色溪流，侧逆光带状高光，4秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：鹅皮玻璃镜面般表面，纹理沟壑中金色油光凝滞"
+            },
+            {
+              "shotNumber": 3,
+              "duration": "4s",
+              "description": "破坏性揭示：斩件瞬间鹅皮咔嚓碎裂，皮肉分离鹅油渗出，肉面嫩粉多汁纹理清晰，酱色从肉层中渗出，汁水沿斩面滴落砧板",
+              "referenceShot": "微距破坏性特写",
+              "emotion": "爆：极致渴望爆发",
+              "sceneTag": "纯黑背景",
+              "lighting": "逆光，鹅皮碎片折射棱镜光，鹅油渗出形成金色光尘",
+              "soundEffect": "鹅皮咔嚓碎裂声（放大3倍）+鹅油渗出滋滋声+汁水滴落声",
+              "storyboardPrompt": "碎裂爆裂法+逆光光尘美学，斩件瞬间鹅皮碎裂是烧鹅最爆裂的视觉时刻，皮脆如玻璃的终极证明",
+              "videoMotionPrompt": "微距特写斩件瞬间鹅皮咔嚓碎裂，皮肉分离鹅油渗出，肉面嫩粉多汁酱色渗出，汁水沿斩面滴落，逆光金色光尘，0.5倍慢动作，4秒",
+              "character": "仅手部，手握菜刀斩件",
+              "thumbnailDescription": "静态定格：鹅皮碎裂横截面，皮脆肉嫩汁水凝滞"
+            },
+            {
+              "shotNumber": 4,
+              "duration": "3s",
+              "description": "全景慢推：金边白瓷盘中烧鹅件皮朝上整齐排列，枣红油亮如镜，旁置梅子酱碟与酸姜碟，蒸汽从鹅肉缝隙间轻柔升起，镜头前推后定格渐暗",
+              "referenceShot": "全景定格",
+              "emotion": "平：满足余韵",
+              "sceneTag": "深色餐台",
+              "lighting": "伦勃朗光，主光45度打在烧鹅上形成三角光斑，背景微弱暖红补光",
+              "soundEffect": "炭火余烬微弱噼啪声渐弱至静默",
+              "storyboardPrompt": "定帧留白法+慢推诗意化，从动态碎裂骤然收至静帧，以静制动，让味觉余韵延续",
+              "videoMotionPrompt": "镜头缓慢前推全景，金边白瓷盘烧鹅件皮朝上整齐排列枣红油亮如镜，梅子酱碟酸姜碟分列，蒸汽轻柔升起，伦勃朗光三角光斑，2秒前推后定格渐暗，3秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：白瓷盘中烧鹅件整齐排列，枣红油亮如镜"
+            }
+          ],
+          "clipStructure": "clip-a",
+          "fractalType": "15s-clip"
+        }
+      }
+    },
+    {
+      "id": "storyboard:shaoe-huang-t2-contrast",
+      "type": "flow",
+      "name": "烧鹅皇·工艺解密",
+      "summary": "反差型。舌尖风格。L1 30%+L2 40%+L3 20%+L4 10%。过程钩子：秘制五香酱填腔→风干8小时→明火炭烧45分钟。5镜28秒。情绪：好奇→专注→爆发→满足",
+      "tags": [
+        "工艺解密",
+        "反差型",
+        "舌尖",
+        "L2手部",
+        "28秒"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "storyboard": {
+          "dishId": "dish:yuehai-zhizun-shaoe-huang",
+          "storyboardType": "craft-reveal",
+          "storyboardTypeName": "T2 工艺解密",
+          "roleCategory": "contrast",
+          "totalDuration": "28s",
+          "shotCount": 5,
+          "styleId": "style:shejian-yinshi-nanv",
+          "styleName": "舌尖×饮食男女",
+          "emotionCurve": "好奇→专注→爆发→满足",
+          "hookType": "过程钩子",
+          "characterDensity": "25%",
+          "characterNote": "人物由剧本推导：60岁烧鹅师傅，手臂粗壮有力，眼神专注如鹰。若AI视频制作需要人物档案，通过女娲技能生成，性格因子：年龄=60、性别=男、职业=烧鹅师傅、性格=沉稳刚毅、视觉=粗壮手臂深褐围裙专注眼神炭火映面",
+          "shots": [
+            {
+              "shotNumber": 1,
+              "duration": "5s",
+              "description": "原材料揭示：清远黑棕鹅置于不锈钢台面，灰黄皮面松弛。粗壮的手指按压鹅胸感受弹性，翻开翅下检查皮色，从腔口塞入秘制五香酱，双手将酱料均匀涂抹内壁。跳切省略全部处理过程",
+              "referenceShot": "特写双手",
+              "emotion": "好奇：什么样的鹅才能成为烧鹅皇",
+              "sceneTag": "备料间",
+              "lighting": "清晨侧逆光，手与鹅体形成暖色对比",
+              "soundEffect": "按压皮面弹性声+酱料涂抹内壁黏腻声+低沉嗯声",
+              "storyboardPrompt": "跳切省略法+手部特写法则，只保留按压和填酱两个关键动作，省略全部清洗处理过程",
+              "videoMotionPrompt": "特写双手按压黑棕鹅胸脯，翻开翅下检查，从腔口塞入五香酱双手涂抹内壁，清晨侧逆光，跳切节奏，5秒",
+              "character": "匠人双手，粗壮手臂",
+              "thumbnailDescription": "静态定格：黑棕鹅置于不锈钢台面，粗壮手指按压鹅胸"
+            },
+            {
+              "shotNumber": 2,
+              "duration": "6s",
+              "description": "烫皮上色+缝合挂架：滚烫脆皮水浇淋鹅身，皮面从灰黄瞬间收紧泛亮。粗针缝合鹅腔，挂钩穿过鹅颈挂上铁架。皮面在热气中微微颤动，水珠沿皮面滑落",
+              "referenceShot": "中景→特写",
+              "emotion": "专注：关键转折",
+              "sceneTag": "烫皮台",
+              "lighting": "顶光柔亮，脆皮水在光线下呈现琥珀透明质感",
+              "soundEffect": "滚烫脆皮水浇淋滋滋声+针线穿透皮肉声+铁钩金属碰撞声",
+              "storyboardPrompt": "材质转化法+液体动态捕捉，脆皮水浇淋瞬间皮面收紧是视觉转折点，缝合动作展现匠人精准",
+              "videoMotionPrompt": "中景滚烫脆皮水浇淋鹅身皮面瞬间收紧泛亮，特写粗针缝合鹅腔，挂钩穿过鹅颈挂上铁架，皮面微微颤动水珠滑落，6秒",
+              "character": "匠人双手，同一双手",
+              "thumbnailDescription": "静态定格：脆皮水浇淋后皮面收紧泛亮，如琥珀透明"
+            },
+            {
+              "shotNumber": 3,
+              "duration": "6s",
+              "description": "时间压缩蒙太奇：鹅挂于通风间，皮面从湿润收紧逐渐变为干燥紧绷。0小时：皮面湿润水珠滴落。4小时：皮面收紧微泛哑光。8小时：皮面干燥紧绷如鼓面，指弹发出脆响。窗外光影从晨光移至暮色",
+              "referenceShot": "固定机位时间流逝",
+              "emotion": "专注：耐心等待",
+              "sceneTag": "风干间",
+              "lighting": "自然光渐变：晨光→午后侧光→暮色暖橘",
+              "soundEffect": "水珠滴落声→风声→手指弹皮面脆响+窗外鸟鸣渐弱",
+              "storyboardPrompt": "时间压缩法+固定机位延时，8小时风干是烧鹅皮脆的关键等待，光影移动暗示时间流逝",
+              "videoMotionPrompt": "固定机位时间流逝，鹅悬于通风间，皮面从湿润水珠滴落→4小时收紧哑光→8小时干燥紧绷如鼓面，窗外光影从晨光移至暮色，手指轻弹皮面脆响，6秒",
+              "character": "匠人双手，8小时时手指轻弹皮面检验风干程度",
+              "thumbnailDescription": "静态定格：风干8小时后鹅皮干燥紧绷如鼓面，暮色暖橘光"
+            },
+            {
+              "shotNumber": 4,
+              "duration": "6s",
+              "description": "明火炭烧高潮：鹅入明炉，皮面在炭火炙烤下逐渐鼓起泛油光，颜色从浅金加深至枣红油亮，油脂滴落炭火激起白烟。短暂：师傅转动鹅身，手臂在炭火映照下肌肉线条分明，眼神专注如鹰",
+              "referenceShot": "中景→面部特写",
+              "emotion": "爆发：烈火淬炼",
+              "sceneTag": "明炉区",
+              "lighting": "炭火橙红主光，炉内明暗强烈对比，油脂滴落激起白烟逆光烟柱",
+              "soundEffect": "炭火噼啪声+油脂滴落滋滋声+白烟升腾声+转动鹅身金属声",
+              "storyboardPrompt": "火光映照法+瞳孔映射，转动鹅身是45分钟肌肉记忆的外化，面部从工艺中自然浮现",
+              "videoMotionPrompt": "中景鹅入明炉皮面逐渐鼓起泛油光，浅金加深至枣红油亮，油脂滴落炭火白烟逆光烟柱，短暂面部特写眼神专注如鹰炭火映照，6秒",
+              "character": "匠人面部短暂，短暂面部揭示：炭火映照下眼神专注如鹰",
+              "thumbnailDescription": "静态定格：炭火映照下鹅皮枣红油亮，油脂滴落激起白烟逆光"
+            },
+            {
+              "shotNumber": 5,
+              "duration": "5s",
+              "description": "斩件揭示+满足收束：菜刀斩下鹅皮咔嚓碎裂，皮肉分离鹅油渗出，肉面嫩粉多汁。镜头后拉：金边白瓷盘中烧鹅件整齐排列，梅子酱碟酸姜碟分列，师傅站在案板后微微点头",
+              "referenceShot": "中景→全景后拉",
+              "emotion": "满足：工艺完成",
+              "sceneTag": "斩件砧板",
+              "lighting": "伦勃朗光，主光45度打在烧鹅和手上，背景炭火余烬暖红补光",
+              "soundEffect": "鹅皮咔嚓碎裂声+鹅油渗出声+汁水滴落声+炭火余烬微弱噼啪",
+              "storyboardPrompt": "斩件仪式法+后拉收束，斩件碎裂是全片最满足的瞬间，后拉完成人与食物的闭环叙事",
+              "videoMotionPrompt": "中景菜刀斩下鹅皮咔嚓碎裂皮肉分离鹅油渗出，镜头缓慢后拉至全景，金边白瓷盘烧鹅件整齐排列梅子酱碟酸姜碟分列，师傅微微点头，伦勃朗光，5秒",
+              "character": "匠人双手+面部，双手斩件力度精准",
+              "thumbnailDescription": "静态定格：白瓷盘中烧鹅件整齐排列，梅子酱碟酸姜碟分列"
+            }
+          ],
+          "fractalType": "standard"
+        }
+      }
+    },
+    {
+      "id": "storyboard:shaoe-huang-t5-platform",
+      "type": "flow",
+      "name": "烧鹅皇·感官沉浸",
+      "summary": "平台型。侘寂风格。L1 90%+L2 10%。声音钩子：炭火噼啪+鹅皮碎裂声。3镜28秒。情绪：静→沉浸→高潮→静。零人物。冥想节奏",
+      "tags": [
+        "感官沉浸",
+        "平台型",
+        "侘寂",
+        "ASMR",
+        "28秒"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "storyboard": {
+          "dishId": "dish:yuehai-zhizun-shaoe-huang",
+          "storyboardType": "sensory-immersion",
+          "storyboardTypeName": "T5 感官沉浸",
+          "roleCategory": "platform",
+          "totalDuration": "28s",
+          "shotCount": 3,
+          "styleId": "style:riben-wajiki",
+          "styleName": "侘寂",
+          "emotionCurve": "静→沉浸→高潮→静",
+          "hookType": "声音钩子",
+          "characterDensity": "5%",
+          "characterNote": "无需人物。声音是主角。若AI视频制作需要手部参考，通过女娲技能生成最小化手部模型",
+          "shots": [
+            {
+              "shotNumber": 1,
+              "duration": "10s",
+              "description": "声音建立世界：炭火微弱噼啪声，远处排烟扇低沉嗡鸣，然后静默。视觉：极近特写烧鹅皮面在暖色暗光中，枣红油亮如暗夜琥珀，几乎不动，蒸汽以极慢螺旋上升。10秒通过耳朵进入炭火与鹅的世界",
+              "referenceShot": "极近特写静止",
+              "emotion": "静：进入炭火世界",
+              "sceneTag": "暗色明炉区",
+              "lighting": "单一暖色暗光源，侘寂阴影，留白占据画面主体，鹅皮微弱发光如暗夜琥珀",
+              "soundEffect": "炭火微弱噼啪声（5秒）→静默（2秒）→极轻蒸汽嘶声（3秒）。ASMR级收音，无音乐",
+              "storyboardPrompt": "声音先行沉浸法+侘寂留白，声音在视觉之前进入，10秒纯氛围入口。静默是ASMR的一部分",
+              "videoMotionPrompt": "极近特写烧鹅皮面，暖色暗单一光源，枣红油亮如暗夜琥珀，蒸汽极慢螺旋上升，画面大部分留白阴影，几乎静止，10秒，无音乐仅ASMR",
+              "character": "无",
+              "thumbnailDescription": "静态定格：暗夜琥珀般鹅皮表面，蒸汽极慢螺旋凝滞"
+            },
+            {
+              "shotNumber": 2,
+              "duration": "10s",
+              "description": "ASMR烹饪声三联画：炭火第一声滋滋（油脂滴落声）→鹅身转动吱呀声（铁钩金属声）→皮面鼓起微弱噼啪声（皮面膨胀声）。视觉：微距质感三联画——油脂滴落炭火白烟→鹅身转动皮面油光流转→皮面鼓起枣红加深",
+              "referenceShot": "微距质感系列",
+              "emotion": "沉浸：声音成为质感",
+              "sceneTag": "明炉区",
+              "lighting": "炭火光为主，每段有专属光线：白烟=逆光剪影，油光=侧光高光，鼓起=暖辉",
+              "soundEffect": "油脂滴落炭火滋滋声（3秒）→铁钩转动吱呀声（3秒）→皮面鼓起微弱噼啪声（4秒）。ASMR近场收音，无音乐",
+              "storyboardPrompt": "声音触发视觉法+质感三联画，每个声音先到视觉跟随，声音是导演画面是演员",
+              "videoMotionPrompt": "微距质感三联画：油脂滴落炭火白烟逆光剪影→鹅身转动皮面油光流转侧光高光→皮面鼓起枣红加深暖辉，每段3-4秒，ASMR声音先行，10秒",
+              "character": "仅手部短暂，手部短暂转动鹅身",
+              "thumbnailDescription": "静态定格：油脂滴落炭火白烟逆光剪影，鹅皮油光流转"
+            },
+            {
+              "shotNumber": 3,
+              "duration": "8s",
+              "description": "声音高潮+视觉高潮：鹅皮碎裂的咔嚓声，放大5倍，鹅油渗出声，然后逐渐消退至静默。视觉：慢动作斩件，鹅皮碎裂鹅油渗出肉面嫩粉，然后缓慢淡出至暗色静物——烧鹅件白瓷盘中，梅子酱碟，蒸汽消散，光线渐暗。终结于静默",
+              "referenceShot": "微距斩件→静物",
+              "emotion": "高潮→静：满足与静默",
+              "sceneTag": "静物收尾",
+              "lighting": "起始戏剧性逆光斩件，逐渐消退至单一暗暖光静物，阴影加深",
+              "soundEffect": "咔嚓碎裂声放大5倍（1秒）→鹅油渗出声（2秒）→蒸汽嘶声（2秒）→逐渐静默（3秒）。全程无音乐",
+              "storyboardPrompt": "声音高潮+视觉消退至静默，咔嚓碎裂声是28秒中唯一的响亮时刻，终结于静默是侘寂的方式",
+              "videoMotionPrompt": "慢动作斩件鹅皮碎裂咔嚓声，鹅油渗出肉面嫩粉，蒸汽升腾，然后缓慢淡出至暗色静物烧鹅件白瓷盘梅子酱碟，蒸汽消散光线渐暗，终结于静默，8秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：白瓷盘中烧鹅件静物，蒸汽消散光线渐暗"
+            }
+          ],
+          "fractalType": "standard"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "storyboard:shaoe-huang-t1-hero",
+      "target": "style:pingguo-fabuhui",
+      "type": "styled_by",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:shaoe-huang-t1-hero",
+      "target": "technique:weijutexie",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:shaoe-huang-t1-hero",
+      "target": "technique:shenghuatongbu",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "storyboard:shaoe-huang-t1-hero",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "storyboard:shaoe-huang-t2-contrast",
+      "target": "style:shejian-yinshi-nanv",
+      "type": "styled_by",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:shaoe-huang-t2-contrast",
+      "target": "technique:tiaoqieshengluo",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "storyboard:shaoe-huang-t2-contrast",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "storyboard:shaoe-huang-t2-contrast",
+      "target": "technique:zhengqifenwei",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "storyboard:shaoe-huang-t2-contrast",
+      "target": "technique:weijutexie",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "storyboard:shaoe-huang-t2-contrast",
+      "target": "technique:shenghuatongbu",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "storyboard:shaoe-huang-t5-platform",
+      "target": "style:riben-wajiki",
+      "type": "styled_by",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:shaoe-huang-t5-platform",
+      "target": "technique:shenghuatongbu",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:shaoe-huang-t5-platform",
+      "target": "technique:weijutexie",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "storyboard:shaoe-huang-t5-platform",
+      "target": "technique:ziranguangzhigan",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.85
+    }
+  ]
+}
