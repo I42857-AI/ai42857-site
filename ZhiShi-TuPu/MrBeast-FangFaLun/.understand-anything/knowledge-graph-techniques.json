@@ -1,0 +1,310 @@
+{
+  "nodes": [
+    {
+      "id": "concept:technique-cover-frame",
+      "type": "concept",
+      "name": "封面帧即成品",
+      "summary": "第1帧就是成品极美特写，不做任何铺垫。MrBeast的CTR×AVD方程式+一句话测试蒸馏：缩略图只有0.5秒决策窗口，30秒视频第1帧=缩略图。0-2秒成品最诱人角度的极近特写，让观众在0.5秒内决定停留",
+      "tags": ["技法", "开头", "成品", "CTR"],
+      "complexity": "simple",
+      "filePath": "technique/",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "开头设计",
+          "coreLogic": "第1帧=缩略图，0.5秒决策窗口",
+          "sourceStyle": "concept:ctr-avd, concept:one-sentence-test",
+          "keyParams": {
+            "duration": "0-2秒",
+            "shot": "极近特写",
+            "angle": "最诱人角度（45°俯拍或平视微仰）"
+          }
+        }
+      }
+    },
+    {
+      "id": "concept:technique-jump-cut-v2",
+      "type": "concept",
+      "name": "跳切省略法",
+      "summary": "砍掉所有中间过程，只保留动作起点和终点。MrBeast零无聊时刻蒸馏：删掉所有不有趣的东西，不是加入有趣的。切菜只留刀落和切好，腌制只留入锅和出锅。省略=加速=零无聊",
+      "tags": ["技法", "剪辑", "省略", "零无聊"],
+      "complexity": "simple",
+      "filePath": "technique/",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "剪辑节奏",
+          "coreLogic": "只保留起点和终点，删除一切中间过程",
+          "sourceStyle": "concept:zero-dull",
+          "keyParams": {
+            "principle": "省略=加速=零无聊",
+            "forbidden": "任何超过1秒的静态等待画面"
+          }
+        }
+      }
+    },
+    {
+      "id": "concept:technique-three-stage-escalation",
+      "type": "concept",
+      "name": "三段递进曲线",
+      "summary": "30秒内完成3次食欲刺激升级：期待→冲击→爆发。MrBeast阶梯递进蒸馏：每一段比前一段更大更疯狂赌注更高。0-10秒食材质感（期待）→10-20秒烹饪爆发（冲击）→20-30秒成品破坏（爆发）",
+      "tags": ["技法", "递进", "曲线", "阶梯"],
+      "complexity": "moderate",
+      "filePath": "technique/",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "节奏结构",
+          "coreLogic": "30秒内3次升级：期待→冲击→爆发",
+          "sourceStyle": "concept:stair-stepping",
+          "keyParams": {
+            "stage1": "0-10秒 食材质感展示（期待）",
+            "stage2": "10-20秒 烹饪爆发瞬间（冲击）",
+            "stage3": "20-30秒 成品破坏揭示（爆发）"
+          }
+        }
+      }
+    },
+    {
+      "id": "concept:technique-slowmo-spectacle",
+      "type": "concept",
+      "name": "慢镜粒子奇观",
+      "summary": "火焰/油花/蒸汽用120-240fps慢镜强调，常态速度无法捕捉的粒子运动变成视觉奇观。MrBeast简单概念×极端执行蒸馏：概念简单（慢镜）×执行极端（120-240fps）。只在视觉爆发点使用，滥用则失效",
+      "tags": ["技法", "慢镜", "粒子", "视觉奇观"],
+      "complexity": "moderate",
+      "filePath": "technique/",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "视觉特效",
+          "coreLogic": "概念简单（慢镜）×执行极端（120-240fps）",
+          "sourceStyle": "concept:simple-extreme",
+          "keyParams": {
+            "fps": "120-240",
+            "targets": "火焰/油花/蒸汽/酱汁淋落",
+            "rule": "只在视觉爆发点使用，每30秒视频最多2处慢镜"
+          }
+        }
+      }
+    },
+    {
+      "id": "concept:technique-destructive-reveal-v2",
+      "type": "concept",
+      "name": "破坏性揭示",
+      "summary": "筷子夹起/刀切/戳破展示内在质感，完整食物是封闭的，破坏动作打开它。MrBeast传达>内容蒸馏：90分传达让60分内容看起来像90分。落版前的破坏动作是最强的传达——汁水、层次、质地",
+      "tags": ["技法", "破坏", "揭示", "质感", "传达"],
+      "complexity": "simple",
+      "filePath": "technique/",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "落版设计",
+          "coreLogic": "破坏动作=最强传达，打开封闭的食物展示内在",
+          "sourceStyle": "concept:delivery-over-content",
+          "keyParams": {
+            "actions": "筷子夹起/刀切/戳破/掰开",
+            "targets": "汁水流出/层次分离/质地暴露",
+            "timing": "25-30秒"
+          }
+        }
+      }
+    },
+    {
+      "id": "concept:technique-audio-visual-complement",
+      "type": "concept",
+      "name": "声画互补叙事",
+      "summary": "画面展示质感（视觉），声音补充温度/氛围（听觉），互补而非重复。MrBeast标题-缩略图互补蒸馏：互补而非重复，两者合起来讲比单独更大的故事。滋滋声不配火焰画面（重复），滋滋声配慢镜油花（互补）",
+      "tags": ["技法", "声音", "互补", "叙事"],
+      "complexity": "moderate",
+      "filePath": "technique/",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "声画设计",
+          "coreLogic": "画面质感+声音温度，互补而非重复",
+          "sourceStyle": "concept:title-thumb-complement",
+          "keyParams": {
+            "complement": "滋滋声配慢镜油花（好）",
+            "repeat": "滋滋声配火焰画面（差）",
+            "principle": "视觉和听觉各讲一半故事，合起来是完整故事"
+          }
+        }
+      }
+    },
+    {
+      "id": "concept:technique-silence-burst",
+      "type": "concept",
+      "name": "静默蓄力爆发",
+      "summary": "落版前1秒完全静默（无音乐无环境音），然后一击引爆。MrBeast零无聊时刻+阶梯递进蒸馏：对比产生张力，静默是爆发的反面，没有静默就没有爆发。蓄力越深，释放越强",
+      "tags": ["技法", "静默", "蓄力", "爆发"],
+      "complexity": "simple",
+      "filePath": "technique/",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "节奏设计",
+          "coreLogic": "1秒静默→1击引爆，对比产生最大张力",
+          "sourceStyle": "concept:zero-dull, concept:stair-stepping",
+          "keyParams": {
+            "silenceDuration": "1-1.5秒",
+            "burstDuration": "1-2秒",
+            "silenceContent": "无音乐无环境音，只有画面",
+            "burstContent": "破坏性动作+声音爆发"
+          }
+        }
+      }
+    },
+    {
+      "id": "style:mrbeast-director",
+      "type": "concept",
+      "name": "MrBeast 导演风格档案",
+      "summary": "将MrBeast视为导演而非YouTuber，其内容创造方法论是一套完整的导演操作系统。核心哲学：注意力是唯一货币，每一帧都在和整个互联网竞争。7个核心技法的权重组合定义了MrBeast导演风格",
+      "tags": ["风格档案", "导演", "MrBeast"],
+      "complexity": "complex",
+      "filePath": "style/",
+      "metadata": {
+        "styleProfile": {
+          "director": "MrBeast（Jimmy Donaldson）",
+          "representativeWork": "YouTube 4亿订阅频道，单视频$400万预算",
+          "corePhilosophy": "注意力是唯一货币，每一帧都在和整个互联网竞争。CTR×AVD是公理，零无聊是底线，阶梯递进是引擎",
+          "visualStyle": {
+            "lighting": "高对比度硬光，强调质感和粒子效果",
+            "color": "高饱和度暖色调，食欲色彩最大化",
+            "composition": "极近特写为主，微距+慢镜强调细节"
+          },
+          "audioStyle": {
+            "music": "不使用背景音乐，只用环境音+音效",
+            "soundDesign": "ASMR级收音，滋滋/咔嚓/咕嘟等烹饪原生声",
+            "silence": "蓄力点使用1-1.5秒完全静默"
+          },
+          "emotionCurve": "三段递进：期待(0-10s)→冲击(10-20s)→爆发(20-30s)，不允许平台期",
+          "techniqueWeights": [
+            {"technique": "concept:technique-cover-frame", "weight": 1.0, "params": {"duration": "0-2秒"}},
+            {"technique": "concept:technique-jump-cut-v2", "weight": 0.9, "params": {"maxStaticShot": "1秒"}},
+            {"technique": "concept:technique-three-stage-escalation", "weight": 1.0, "params": {"stages": 3}},
+            {"technique": "concept:technique-slowmo-spectacle", "weight": 0.7, "params": {"fps": "120-240", "maxCount": 2}},
+            {"technique": "concept:technique-destructive-reveal-v2", "weight": 0.9, "params": {"timing": "25-30秒"}},
+            {"technique": "concept:technique-audio-visual-complement", "weight": 0.8, "params": {"mode": "互补"}},
+            {"technique": "concept:technique-silence-burst", "weight": 0.8, "params": {"silenceDuration": "1-1.5秒"}}
+          ],
+          "suitableDishes": "视觉冲击力强的菜品：脆皮乳鸽、叉烧、煲仔饭、爆炒类",
+          "unsuitableDishes": "视觉平淡的菜品：清蒸鱼、白灼虾、老火汤"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "concept:technique-cover-frame",
+      "target": "concept:ctr-avd",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:technique-cover-frame",
+      "target": "concept:one-sentence-test",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:technique-jump-cut-v2",
+      "target": "concept:zero-dull",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:technique-three-stage-escalation",
+      "target": "concept:stair-stepping",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:technique-slowmo-spectacle",
+      "target": "concept:simple-extreme",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:technique-destructive-reveal-v2",
+      "target": "concept:delivery-over-content",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:technique-audio-visual-complement",
+      "target": "concept:title-thumb-complement",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:technique-silence-burst",
+      "target": "concept:zero-dull",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:technique-silence-burst",
+      "target": "concept:stair-stepping",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "style:mrbeast-director",
+      "target": "concept:technique-cover-frame",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "style:mrbeast-director",
+      "target": "concept:technique-jump-cut-v2",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "style:mrbeast-director",
+      "target": "concept:technique-three-stage-escalation",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "style:mrbeast-director",
+      "target": "concept:technique-slowmo-spectacle",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "style:mrbeast-director",
+      "target": "concept:technique-destructive-reveal-v2",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "style:mrbeast-director",
+      "target": "concept:technique-audio-visual-complement",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "style:mrbeast-director",
+      "target": "concept:technique-silence-burst",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "style:mrbeast-director",
+      "target": "entity:mrbeast",
+      "type": "references",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}
