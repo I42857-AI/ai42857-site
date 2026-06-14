@@ -1,0 +1,847 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "Billfish",
+    "languages": [
+      "c++",
+      "qml",
+      "css",
+      "json"
+    ],
+    "frameworks": [
+      "qt5",
+      "qtquick",
+      "qtwebengine"
+    ],
+    "description": "Billfish 是一款基于 Qt 5 + C++ QML 构建的本地素材管理应用，采用原生 C++ 插件架构（DLL + RPC 进程隔离）。内置 LUT 色彩查找表系统（8 大相机品牌），面向专业影视后期工作流。支持多种布局模式（瀑布流/网格/列表/自适应）、云端素材管理、条件筛选器、批量重命名。通过 PluginWorker64.exe 子进程隔离确保插件稳定性",
+    "analyzedAt": "2026-06-02",
+    "gitCommitHash": ""
+  },
+  "nodes": [
+    {
+      "id": "module:application",
+      "type": "module",
+      "name": "Application 应用主体",
+      "summary": "Billfish 核心应用目录：Billfish.exe 主程序、Qt5 全系 DLL（Core/Gui/Qml/Quick/WebEngine/Widgets/Network/Svg/SerialPort/PrintSupport 等 20+）、PluginWorker64.exe 插件隔离进程、QtWebEngineProcess.exe 内置浏览器引擎。与 Eagle 的 Electron 不同，Billfish 使用 Qt 原生 C++ 框架",
+      "tags": [
+        "core",
+        "qt5",
+        "c++",
+        "application"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "module:resources",
+      "type": "module",
+      "name": "Resources UI 资源层",
+      "summary": "Billfish 的 UI 资源系统：skin/black/ 下的 300+ SVG 图标（含 3 种状态：normal/hover/unclickable）+ 20+ CSS 样式表（NaviBar/GridView/Cloud/Login/PluginUiWidget 等）、animation/ 下的 GIF 加载动画、lut/ 下的 LUT 色彩配置文件、log4qt.conf 日志配置。UI 通过 QSS（Qt Style Sheets）驱动，与 Eagle 的 HTML/CSS 范式完全不同",
+      "tags": [
+        "ui",
+        "svg",
+        "qss",
+        "icons",
+        "theme"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "module:roaming-billfish",
+      "type": "module",
+      "name": "Roaming-Billfish 漫游配置",
+      "summary": "用户级漫游配置目录：config/user_config.ini（80+ 配置项：窗口尺寸/布局/显示开关/自动播放/硬件加速等）、config/shortcut.json（50+ 快捷键绑定）、config/color_manager.ini（色彩管理）、config/recent_lib.ini（最近资源库）、bf_plugin.log（插件运行日志，含硬件信息采集）、billfish_ui.log（UI 操作日志）",
+      "tags": [
+        "config",
+        "user",
+        "roaming",
+        "shortcut",
+        "log"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "module:local-billfish",
+      "type": "module",
+      "name": "Local-Billfish 本地缓存",
+      "summary": "本地级缓存目录：QtWebEngine/Default/ 下的 Chromium 数据（Cookies/LocalStorage/SessionStorage/GPU Cache）、cache/QtWebEngine/ 下的网页缓存和 80+ qmlcache/*.qmlc 编译后的 QML 字节码文件。与 Eagle 的 Chromium Code Cache 功能类似但结构更紧凑",
+      "tags": [
+        "cache",
+        "qtwebengine",
+        "qml",
+        "local"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "module:jiaoben-billfish",
+      "type": "module",
+      "name": "JiaoBen-Billfish 脚本集",
+      "summary": "Billfish 虫洞化和日常启动脚本集，含 5 个文件：ChongDong.ps1（Symlink Roaming+Local→移动盘+注册表修正）/.bat、QiDong.ps1（防重复启动+WorkingDirectory）/.bat、-Hidden.vbs（托盘常驻隐藏启动）。遵循三位一体脚本体系，与 Eagle 的 JiaoBen-Eagle 结构一致",
+      "tags": [
+        "scripts",
+        "symlink",
+        "launcher",
+        "tray"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:plugins-dir",
+      "type": "file",
+      "name": "plugins/ 原生插件目录",
+      "filePath": "Billfish/Application/plugins/",
+      "summary": "Billfish 的 C++ 原生插件库，7 大插件 DLL（libPluginAdobe64/libPluginArtifex64/libPluginAspose64/libPluginCompat64/libPluginMagick64/libPluginMedia64/libPluginZip64），每个 DLL 有对应的 runtime 资源目录。与 Eagle 的 JS 插件模板完全不同——Billfish 插件是编译后的本地 DLL，通过 socket RPC 通信",
+      "tags": [
+        "plugins",
+        "dll",
+        "native",
+        "rpc"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:qt-quick-ui",
+      "type": "file",
+      "name": "QtQuick QML UI 组件",
+      "filePath": "Billfish/Application/QtQuick/",
+      "summary": "Qt Quick QML 声明式 UI 组件体系，含 Controls.2/ 的 4 种视觉风格（Fusion/Imagine/Material/Universal）+ Controls/ 传统控件 + Extras/ 扩展组件（圆形仪表盘/拨号盘/扇形菜单/状态指示器）+ Layouts/ 布局引擎 + Window.2/ 窗口管理。QML 文件是 Billfish UI 的核心源码，可直接阅读和修改",
+      "tags": [
+        "qml",
+        "qtquick",
+        "ui",
+        "declarative",
+        "controls"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:qt-graphical-effects",
+      "type": "file",
+      "name": "QtGraphicalEffects 图形特效",
+      "filePath": "Billfish/Application/QtGraphicalEffects/",
+      "summary": "Qt Quick 图形特效库：高斯/递归/方向/缩放/径向模糊、投影/内阴影、发光/矩形发光、色相/饱和度/亮度对比度调整、色彩叠加/着色/去色、伽马/色阶调整、透明遮罩、置换映射等 25 种 QML 特效组件。为 Billfish 缩略图悬停效果和 UI 动画提供底层支持",
+      "tags": [
+        "qml",
+        "effects",
+        "blur",
+        "shadow",
+        "color"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:native-dll-core",
+      "type": "file",
+      "name": "核心原生 DLL",
+      "filePath": "Billfish/Application/",
+      "summary": "Billfish 核心原生 DLL 集：Greta.dll（未知功能）、MediaInfo.dll（媒体文件元数据分析）、MiniZip.dll（ZIP 压缩）、Network.dll（网络通信）、AUCMgr.dll（自动更新管理）、ISTask.dll（安装任务）、LogServer.dll（日志服务）。外加 7za.exe（7-Zip 压缩解压）和 RCleaner.exe（清理工具）",
+      "tags": [
+        "dll",
+        "native",
+        "media",
+        "network",
+        "update"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:qt-architecture",
+      "type": "concept",
+      "name": "Qt 5 原生 C++ 架构",
+      "summary": "Billfish 基于 Qt 5.15+ 原生 C++ 框架，与 Eagle 的 Electron（Chromium+Node.js）完全不同的技术路线。核心优势：原生性能（无 JS 引擎开销）、QML 声明式 UI（可读可改的界面源码）、QSS 样式表（CSS-like 但更贴近原生控件）、qtwebengine（Chromium 内嵌用于网页渲染）、QML 字节码缓存（.qmlc 加速启动）。劣势：插件生态不如 JS 丰富、跨平台体验不如 Web 一致",
+      "tags": [
+        "qt",
+        "c++",
+        "native",
+        "qml",
+        "architecture"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "concept:plugin-native-arch",
+      "type": "concept",
+      "name": "原生 DLL 插件架构 (Billfish独有)",
+      "summary": "Billfish 的插件体系基于 C++ 原生 DLL 而非 JavaScript。核心架构：CBFPluginManager 管理所有插件 → CSocketRPCServer（5050 端口）提供 socket RPC 通信 → PluginWorker64.exe 子进程隔离（插件崩溃不影响主程序）→ BoostSession 管理 socket 连接 → CSharedMemory2Private 共享内存传输大数据。每个插件 DLL 有独立的 runtime 资源子目录。与 Eagle 的 JS 插件相比：稳定性更高（进程隔离）、功能更底层（可直接调用原生库），但开发门槛高（需 C++ 编译，无可视化开发工具）",
+      "tags": [
+        "plugin",
+        "dll",
+        "rpc",
+        "c++",
+        "architecture",
+        "unique"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "concept:lut-color-system",
+      "type": "concept",
+      "name": "LUT 色彩管理系统 (Billfish独有)",
+      "summary": "Billfish 独有的 LUT 色彩查找表系统，面向影视后期从业者。支持 8 大相机品牌（ARRI/DJI/Kinefinity/Olympus/Panasonic/RED/Sony/Z CAM）17+ 种 Log 色彩空间 → Rec.709 的预设转换。通过 PNG 格式三通道 LUT 文件实现，lut_info.json 索引管理。在预览视频素材时可通过 NaviBar 一键切换 LUT 查看正确色彩。这是 Billfish vs Eagle 最核心的功能差异，体现了 Billfish 面向专业影视工作流的定位",
+      "tags": [
+        "lut",
+        "color",
+        "video",
+        "log",
+        "rec709",
+        "cinematography",
+        "unique"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:view-modes",
+      "type": "concept",
+      "name": "多变布局系统 (Billfish独有)",
+      "summary": "Billfish 提供 4 种视图布局模式，远超 Eagle 的基本网格视图：弹性布局（Alt+1，自动适应窗口宽度）、瀑布流（Alt+2，Pinterest 风格不等高卡片）、网格（Alt+3，等距网格）、列表（Alt+4，详细信息纵列）。同时支持子文件夹内容展示开关（bShowSubFolder）、图标视图双击行为可配置、间距密度可调（IconViewSpace）。适合不同素材类型的浏览习惯",
+      "tags": [
+        "layout",
+        "waterfall",
+        "grid",
+        "list",
+        "flexible",
+        "unique"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:cloud-features",
+      "type": "concept",
+      "name": "云端素材管理 (Billfish独有)",
+      "summary": "Billfish 内置云端素材管理功能（Cloud.css/cloud_* 图标系列），支持云端资源库和本地资源库两种模式。含云端操作引导页（CloudOperatorGuideWinPage）、云端文件视图、云端任务管理、云端任务完成提示。用户可通过登录状态（LoginState）和试用状态（TryoutState）管理云端服务。Eagle 无此内置云功能",
+      "tags": [
+        "cloud",
+        "remote",
+        "sync",
+        "library",
+        "unique"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:film-strip",
+      "type": "concept",
+      "name": "胶片条导航 (Billfish独有)",
+      "summary": "Billfish 独家的视频和序列帧导航功能：帧前进/后退（Ctrl+Left/Right）、设置当前帧为封面（SetCurrentFrameAsCover）、子资源展示（ShowSubResource, Ctrl+1）、帧切换 Tab。底部胶片条面板（SwitchBottom, Ctrl+8）可快速浏览视频时间轴各帧。这些功能明确面向视频剪辑和动画制作工作流，Eagle 不具备同等精细度的帧级控制",
+      "tags": [
+        "video",
+        "frame",
+        "navigation",
+        "filmstrip",
+        "timeline",
+        "unique"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:condition-filter",
+      "type": "concept",
+      "name": "条件筛选器 (Billfish独有)",
+      "summary": "Billfish 的多维度条件筛选系统：颜色筛选（CColorSelectWidget）、文件大小筛选（FileSizeWidget）、尺寸筛选（CSizeWidget）、其他条件筛选（OtherConditionWidget），以及全部清除按钮（ClearAllFilterBtn）。筛选结果通过 ConditionFilterWidget 实时展示当前生效的筛选条件。Eagle 主要通过搜索和智能文件夹实现类似功能，但缺乏这种独立的可视化条件筛选面板",
+      "tags": [
+        "filter",
+        "condition",
+        "color",
+        "size",
+        "dimension",
+        "unique"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:batch-rename",
+      "type": "concept",
+      "name": "批量重命名 (Billfish独有)",
+      "summary": "Billfish 内置批量重命名功能（BFBatchRenameWin），可对多个素材进行规则化重命名。通过 CSS 样式表驱动 UI 渲染（skin/black/ 下对应样式）。Eagle 无内置批量重命名，需通过外部工具或插件实现",
+      "tags": [
+        "rename",
+        "batch",
+        "workflow",
+        "unique"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:huaban-import",
+      "type": "concept",
+      "name": "花瓣导入 (Billfish独有)",
+      "summary": "Billfish 独家支持从花瓣网（huaban.com）导入素材，含导入规则配置对话框（huaban_import_rule_dialog.css）和专用导入界面（huaban_import.css）。这是面向国内设计用户群体的特色功能，Eagle 无此整合",
+      "tags": [
+        "import",
+        "huaban",
+        "design",
+        "china",
+        "unique"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:system-tray",
+      "type": "concept",
+      "name": "系统托盘与悬浮球",
+      "summary": "Billfish 的系统托盘功能：导入悬浮球（ImportBall=true，可拖拽文件到悬浮球导入）、Alt+Q 全局快捷键切换显示/隐藏、SystemTray.css 自定义托盘图标。关闭行为可配置（CloseType=1 最小化到托盘而非退出）。与 Eagle 的 --hidden 托盘模式类似但更灵活",
+      "tags": [
+        "tray",
+        "global-shortcut",
+        "import-ball",
+        "background"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:hardware-accel",
+      "type": "concept",
+      "name": "硬件加速与性能配置",
+      "summary": "Billfish 提供精细的硬件加速配置：EnableHardwareAccelerationV2（新版 GPU 加速）、EnableHardwareRender（硬件渲染开关）、CpuDecodeThreadCount（CPU 解码线程数，0=自动）。插件日志自动采集完整硬件信息（20 核 CPU + 4 GPU + 64GB RAM）。支持色彩管理（color_manager.ini）和 ICC 色彩配置文件（magick_runtime 下的 sRGB/JapanColor2001Coated/Display P3）",
+      "tags": [
+        "hardware",
+        "gpu",
+        "acceleration",
+        "color-management",
+        "performance"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:data-flow",
+      "type": "concept",
+      "name": "数据流架构 (3.0)",
+      "summary": "3.0 架构下 Billfish 的数据流：C 盘 Roaming-Billfish/（用户配置+日志+插件缓存）和 Local-Billfish/（QtWebEngine 缓存+QML 字节码）均为虚窗口；真实数据通过 SymbolicLink 指向移动盘 Z:\\...\\Billfish\\。Application/ 目录为应用程序本体（不可 Symlink），资源库 .bfdata 由用户自定义路径。虫洞脚本通过注册表修正路径（InstallLocation/DisplayIcon/UninstallString）",
+      "tags": [
+        "data-flow",
+        "symlink",
+        "architecture",
+        "3.0"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "plugin:billfish-architecture",
+      "type": "concept",
+      "name": "Billfish 架构模式",
+      "summary": "Billfish 使用原生插件架构（PluginWorker64.exe 隔离进程），通过 Qt RPC 与主进程通信。与 Eagle 的 Electron 扩展体系不同，Billfish 插件运行在独立进程中，避免插件崩溃影响主程序。",
+      "tags": [
+        "plugin",
+        "architecture",
+        "native",
+        "qt"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "plugin:billfish-rpc-workflow",
+      "type": "concept",
+      "name": "Billfish RPC 工作流",
+      "summary": "Billfish 插件通过 Qt 的 IPC/RPC 机制与主进程通信。PluginWorker64.exe 作为隔离进程运行插件，通过共享内存或管道传递数据，实现主程序与插件的解耦。",
+      "tags": [
+        "rpc",
+        "ipc",
+        "plugin",
+        "qt"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "plugin:billfish-lut",
+      "type": "concept",
+      "name": "Billfish LUT 色彩系统",
+      "summary": "Billfish 内置 LUT（Look-Up Table）色彩管理系统，支持自定义色彩预设。相比 Eagle 的主题系统，Billfish 更侧重于图像色彩管理而非 UI 主题定制。",
+      "tags": [
+        "lut",
+        "color",
+        "image",
+        "visual"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:plugin-system",
+      "type": "concept",
+      "name": "插件系统",
+      "summary": "素材管理工具的插件扩展能力。Eagle 通过 Chrome 扩展 + Electron 插件实现，Billfish 通过原生 Qt 插件 + 独立进程实现。",
+      "tags": [
+        "plugin",
+        "extension",
+        "ecosystem"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "concept:thumbnail-engine",
+      "type": "concept",
+      "name": "缩略图引擎",
+      "summary": "素材预览的缩略图生成与渲染引擎。Eagle 使用 Electron 内置渲染，Billfish 使用 Qt WebEngine + 原生图像处理。",
+      "tags": [
+        "thumbnail",
+        "preview",
+        "rendering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:search-engine",
+      "type": "concept",
+      "name": "搜索引擎",
+      "summary": "素材搜索与筛选能力。支持关键词、标签、颜色、尺寸、类型等多维度筛选。Billfish 的条件筛选器是其核心搜索 UI 组件。",
+      "tags": [
+        "search",
+        "filter",
+        "query"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:electron-architecture",
+      "type": "concept",
+      "name": "Electron 架构",
+      "summary": "Eagle 基于 Electron（Chromium + Node.js）构建，跨平台一致性好但内存占用较高。与 Billfish 的 Qt C++ 原生架构形成对比。",
+      "tags": [
+        "electron",
+        "chromium",
+        "cross-platform"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "concept:themes-system",
+      "type": "concept",
+      "name": "主题系统",
+      "summary": "UI 外观定制能力。Eagle 支持多种内置主题和自定义颜色方案，Billfish 通过 LUT 色彩系统提供视觉定制。",
+      "tags": [
+        "theme",
+        "ui",
+        "customization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:actions-system",
+      "type": "concept",
+      "name": "批量操作",
+      "summary": "批量文件管理操作能力。包括批量重命名、批量标签、批量移动、批量导出等。Billfish 和 Eagle 都支持但交互方式不同。",
+      "tags": [
+        "batch",
+        "actions",
+        "automation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:screenshot-system",
+      "type": "concept",
+      "name": "截图系统",
+      "summary": "网页截图与屏幕截图能力。Eagle 浏览器扩展支持整页截图，Billfish 的 Film Strip 视图提供连续帧预览。",
+      "tags": [
+        "screenshot",
+        "capture",
+        "web"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:duplicate-detection",
+      "type": "concept",
+      "name": "重复检测",
+      "summary": "识别和管理重复素材的能力。通过哈希比对、视觉相似度等技术检测重复文件，帮助用户清理冗余素材。",
+      "tags": [
+        "duplicate",
+        "dedup",
+        "cleanup"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "module:application",
+      "target": "file:plugins-dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "module:application",
+      "target": "file:qt-quick-ui",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "module:application",
+      "target": "file:qt-graphical-effects",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "module:application",
+      "target": "file:native-dll-core",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "module:application",
+      "target": "module:resources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:qt-quick-ui",
+      "target": "concept:qt-architecture",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:qt-graphical-effects",
+      "target": "concept:qt-architecture",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:qt-architecture",
+      "target": "module:local-billfish",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:plugins-dir",
+      "target": "concept:plugin-native-arch",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "concept:plugin-native-arch",
+      "target": "plugin:billfish-architecture",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:plugin-native-arch",
+      "target": "plugin:billfish-rpc-workflow",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:plugin-native-arch",
+      "target": "plugin:billfish-lut",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "module:resources",
+      "target": "concept:lut-color-system",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:lut-color-system",
+      "target": "plugin:billfish-lut",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "module:roaming-billfish",
+      "target": "concept:view-modes",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "module:roaming-billfish",
+      "target": "concept:hardware-accel",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "module:roaming-billfish",
+      "target": "concept:system-tray",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "module:resources",
+      "target": "concept:cloud-features",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "module:resources",
+      "target": "concept:film-strip",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "module:resources",
+      "target": "concept:condition-filter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "module:resources",
+      "target": "concept:batch-rename",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "module:resources",
+      "target": "concept:huaban-import",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "concept:data-flow",
+      "target": "module:jiaoben-billfish",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "concept:data-flow",
+      "target": "module:roaming-billfish",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:data-flow",
+      "target": "module:local-billfish",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:cloud-features",
+      "target": "module:roaming-billfish",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:film-strip",
+      "target": "file:plugins-dir",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "label": "Billfish C++ DLL vs Eagle JS插件",
+      "target": "concept:plugin-system",
+      "source": "plugin:billfish-architecture",
+      "type": "alternative_to",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "label": "两者都支持多格式缩略图",
+      "target": "concept:thumbnail-engine",
+      "source": "concept:view-modes",
+      "type": "shares_feature",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "label": "两者都有搜索/筛选功能",
+      "target": "concept:search-engine",
+      "source": "concept:condition-filter",
+      "type": "shares_feature",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "label": "Qt5 vs Electron 技术路线对比",
+      "target": "concept:electron-architecture",
+      "source": "concept:qt-architecture",
+      "type": "alternative_to",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "label": "Billfish LUT vs Eagle 主题系统",
+      "target": "concept:themes-system",
+      "source": "concept:lut-color-system",
+      "type": "alternative_to",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "label": "Billfish批量重命名 vs Eagle自动化工作流",
+      "target": "concept:actions-system",
+      "source": "concept:batch-rename",
+      "type": "feature_comparison",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "label": "Billfish胶片条 vs Eagle截图",
+      "target": "concept:screenshot-system",
+      "source": "concept:film-strip",
+      "type": "feature_comparison",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "label": "Billfish云端管理 vs Eagle去重",
+      "target": "concept:duplicate-detection",
+      "source": "concept:cloud-features",
+      "type": "feature_comparison",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:qt-runtime",
+      "name": "Qt 5 运行时层",
+      "description": "Billfish 的底层运行环境：Qt 5.15+ C++ 框架 + QtQuick 声明式 UI + QtWebEngine（Chromium 内嵌）+ QML 字节码编译器。与 Eagle 的 Electron 完全不同，是原生 C++ 技术栈",
+      "nodeIds": [
+        "concept:qt-architecture",
+        "file:qt-quick-ui",
+        "file:qt-graphical-effects",
+        "module:local-billfish"
+      ]
+    },
+    {
+      "id": "layer:native-dll",
+      "name": "原生 DLL 层",
+      "description": "Billfish 的原生功能 DLL 集合：MediaInfo（媒体分析）、Greta/Jnz（图像处理）、Network（网络）、AUCMgr（自动更新）、LogServer（日志）、7za（压缩）。以及 7 大插件 DLL 的 runtime 资源",
+      "nodeIds": [
+        "file:native-dll-core",
+        "file:plugins-dir"
+      ]
+    },
+    {
+      "id": "layer:plugin-architecture",
+      "name": "原生插件架构层",
+      "description": "Billfish 的 C++ 原生 DLL 插件体系：CBFPluginManager 管理 + CSocketRPCServer（5050）socket RPC + PluginWorker64 进程隔离 + BoostSession 连接 + CSharedMemory2Private 共享内存。7 大类编译插件（Adobe/Artifex/Aspose/Compat/Magick/Media/Zip）",
+      "nodeIds": [
+        "concept:plugin-native-arch",
+        "plugin:billfish-architecture",
+        "plugin:billfish-rpc-workflow"
+      ]
+    },
+    {
+      "id": "layer:unique-features",
+      "name": "独有功能层 (与 Eagle 差异)",
+      "description": "Billfish 相对 Eagle 的独有/差异功能：LUT 色彩管理（8 品牌 17+ 预设）、云端素材管理、4 种布局模式（弹性/瀑布流/网格/列表）、胶片条帧导航、条件筛选器、批量重命名、花瓣导入、硬件加速精细配置",
+      "nodeIds": [
+        "concept:lut-color-system",
+        "plugin:billfish-lut",
+        "concept:cloud-features",
+        "concept:view-modes",
+        "concept:film-strip",
+        "concept:condition-filter",
+        "concept:batch-rename",
+        "concept:huaban-import",
+        "concept:hardware-accel",
+        "concept:system-tray"
+      ]
+    },
+    {
+      "id": "layer:ui-resources",
+      "name": "UI 资源层",
+      "description": "Billfish 的 UI 系统：300+ SVG 图标（3 状态）、20+ QSS 样式表、GIF 动画、QML 控件库（4 风格×60+ 组件）、布局引擎。通过 QSS 驱动主题切换",
+      "nodeIds": [
+        "module:resources"
+      ]
+    },
+    {
+      "id": "layer:infrastructure",
+      "name": "基础设施层",
+      "description": "3.0 架构下的部署层：虫洞脚本（Roaming/Local Symlink+注册表修正）、日常启动器（托盘常驻）、配置管理（user_config.ini+shortcut.json+日志系统）",
+      "nodeIds": [
+        "concept:data-flow",
+        "module:jiaoben-billfish",
+        "module:roaming-billfish",
+        "module:application"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "Qt 5 原生架构 — 与 Eagle 的根本差异",
+      "description": "Billfish 基于 Qt 5 C++ 框架构建，使用 QML 声明式 UI + QSS 样式表 + QtWebEngine 内嵌浏览器。与 Eagle 的 Electron (Chromium+Node.js) 是两种完全不同的技术路线。Qt 的优势是原生性能和可读可改的 QML 源码，劣势是插件生态不如 JS 丰富",
+      "nodeIds": [
+        "concept:qt-architecture",
+        "file:qt-quick-ui",
+        "file:qt-graphical-effects",
+        "module:local-billfish"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "原生 DLL 插件架构 — 进程隔离的 C++ 插件体系",
+      "description": "Billfish 采用 C++ 原生 DLL 插件架构：CBFPluginManager → CSocketRPCServer(5050) → PluginWorker64.exe 子进程隔离 → BoostSession socket RPC → CSharedMemory2Private 共享内存。7 大类编译插件提供图像/视频/Adobe/Office/压缩/PDF 等格式支持。与 Eagle 的 JS 插件体系相比：稳定性更高（进程隔离），但开发门槛高（需 C++ 编译）",
+      "nodeIds": [
+        "concept:plugin-native-arch",
+        "plugin:billfish-architecture",
+        "plugin:billfish-rpc-workflow",
+        "file:plugins-dir"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "LUT 色彩管理 — 专业影视工作流的核心竞争力",
+      "description": "Billfish 独家内置 LUT 色彩查找表系统，支持 ARRI/DJI/Kinefinity/Olympus/Panasonic/RED/Sony/Z CAM 共 8 大品牌 17+ 种 Log→Rec.709 转换预设。预览视频素材时一键切换 LUT 查看正确色彩。这是 Billfish 面向影视后期从业者的核心差异化功能，Eagle 完全不具备",
+      "nodeIds": [
+        "concept:lut-color-system",
+        "plugin:billfish-lut",
+        "module:resources"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "独有功能一览 — 与 Eagle 的体验差异",
+      "description": "Billfish 的多个独有功能体现了其「专业影视+设计」定位：4 种布局模式（弹性/瀑布流/网格/列表）、云端素材管理、胶片条帧导航（Ctrl+Left/Right）、条件筛选器（颜色/大小/尺寸）、批量重命名、花瓣导入。这些功能在 Eagle 中要么没有，要么需要通过插件/外部工具实现",
+      "nodeIds": [
+        "concept:view-modes",
+        "concept:cloud-features",
+        "concept:film-strip",
+        "concept:condition-filter",
+        "concept:batch-rename",
+        "concept:huaban-import"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "UI 体系 — 300+ 图标 × 20+ 样式表 × QML 控件",
+      "description": "Billfish 的 UI 系统极其精细：300+ SVG 矢量图标（每种 3 状态：normal/hover/unclickable）、20+ QSS 样式表分别控制不同面板、4 种 QML 视觉风格（Fusion/Imagine/Material/Universal）、60+ 控件组件、QML 字节码缓存加速启动。硬件加速配置支持 GPU 渲染开关和 CPU 解码线程数调节",
+      "nodeIds": [
+        "module:resources",
+        "module:roaming-billfish",
+        "concept:hardware-accel",
+        "concept:system-tray"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "3.0 架构部署 — 虫洞化与托盘常驻",
+      "description": "Billfish 在 3.0 架构下的部署方案：Roaming-Billfish（配置+日志）和 Local-Billfish（缓存+QML 字节码）通过 SymbolicLink 指向移动盘。JiaoBen-Billfish 包含 5 文件脚本体系：ChongDong.ps1（Symlink+注册表修正）、QiDong.ps1（防重复启动，托盘常驻）等",
+      "nodeIds": [
+        "concept:data-flow",
+        "module:jiaoben-billfish",
+        "module:application",
+        "module:roaming-billfish",
+        "module:local-billfish"
+      ]
+    }
+  ]
+}
