@@ -1,0 +1,668 @@
+{
+  "version": 3,
+  "skills": {
+    "lark-approval": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-ShenPi/SKILL.md",
+      "skillFolderHash": "d9a92b750ca1698aa4fb54a396dccadb37ef71ed368fdcdc99d8a2d56cd187fe",
+      "installedAt": "2026-06-09T06:36:32.189Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-apps": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-YingYong/SKILL.md",
+      "skillFolderHash": "b59c0df8ffa9dcfafdd5581c5a835cf9496f37663bd3eaaf20ad755b0bc09d9e",
+      "installedAt": "2026-06-09T06:36:32.200Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-attendance": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-KaoQin/SKILL.md",
+      "skillFolderHash": "6a6dd673060c065bca272939ab0c3a7dcbeea6d82cc7d58520bdc7ef941d2067",
+      "installedAt": "2026-06-09T06:36:32.201Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-base": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-ShuJuKu/SKILL.md",
+      "skillFolderHash": "51a80753c3750c9b3902193cb783dfc6acdbff343fe8b2fee09b46e6bee0a0b2",
+      "installedAt": "2026-06-09T06:36:32.203Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-calendar": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-RiLi/SKILL.md",
+      "skillFolderHash": "0b427dd880967b41e52cd126f1d0e04481e54383b2cee362905b5a27cc9db65f",
+      "installedAt": "2026-06-09T06:36:32.205Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-contact": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-TongXunLu/SKILL.md",
+      "skillFolderHash": "5b1279b1876d4d08e8fc951b7a810cb94782888aff4ae0ac65b9341fcce18f7e",
+      "installedAt": "2026-06-09T06:36:32.205Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-doc": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-WenDang/SKILL.md",
+      "skillFolderHash": "94894e8e80a72ac4b64dd3017e57d81c4c7542bf3beb7b44cf894d23f69e6b78",
+      "installedAt": "2026-06-09T06:36:32.207Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-drive": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-YunPan/SKILL.md",
+      "skillFolderHash": "a57a5e753a58625f2441623cb3dfe2ceafb6e73a813302822e53cc3d854f83a9",
+      "installedAt": "2026-06-09T06:36:32.209Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-event": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-ShiJian/SKILL.md",
+      "skillFolderHash": "588b98169de7daea1633f12b4ef6124fa7a311f66a3f5b87126a50be9cb65a88",
+      "installedAt": "2026-06-09T06:36:32.210Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-im": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-XiaoXi/SKILL.md",
+      "skillFolderHash": "05cd5e3559f9b257608d58cd9fceac4a13789d038110f187a6ecac8ec93ca377",
+      "installedAt": "2026-06-09T06:36:32.217Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-mail": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-YouJian/SKILL.md",
+      "skillFolderHash": "46ce5f86d943b01b946652c585dfc9edbb0edfacd031048ac7ceef537b5ff5da",
+      "installedAt": "2026-06-09T06:36:32.219Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-markdown": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-Markdown/SKILL.md",
+      "skillFolderHash": "d10dbda13dcd974837fb235b65a41f7196ab210091f2351d0aba90a42120e07b",
+      "installedAt": "2026-06-09T06:36:32.220Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-minutes": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-HuiYiJiYao/SKILL.md",
+      "skillFolderHash": "4b7ee8aae8156626e0c1c24b6ba582791274d28ada32ba1de49ba63cde206bd2",
+      "installedAt": "2026-06-09T06:36:32.221Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-okr": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-OKR/SKILL.md",
+      "skillFolderHash": "c64472b54760f14ff107fe00758202d35877580c48cddc00453762bbcd36d6dd",
+      "installedAt": "2026-06-09T06:36:32.222Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-openapi-explorer": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-OpenAPI/SKILL.md",
+      "skillFolderHash": "360c87139c88d4735bcb20ccd5abf1675eab9242c8978e4c7d778ee6b9356761",
+      "installedAt": "2026-06-09T06:36:32.222Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-shared": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-GongXiang/SKILL.md",
+      "skillFolderHash": "9dc723cf669a215c30a793177716766103db30d1e3374bc8322565e28e0aea12",
+      "installedAt": "2026-06-09T06:36:32.223Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-sheets": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-BiaoGe/SKILL.md",
+      "skillFolderHash": "bc300566abf2929c17d94000cc070bb613d6ff1ff489f0a80f22479ca4b0f75a",
+      "installedAt": "2026-06-09T06:36:32.224Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-skill-maker": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-JiNengZhiZuo/SKILL.md",
+      "skillFolderHash": "42fde385f0cfd8c85d3826b02b1479fdcc8625084c3b1f161bb370dd1ca22b33",
+      "installedAt": "2026-06-09T06:36:32.225Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-slides": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-YanShi/SKILL.md",
+      "skillFolderHash": "10cb5320171caaa1bb3acd74536c44378d3187e2d60d3bdb2226909129b67758",
+      "installedAt": "2026-06-09T06:36:32.347Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-task": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-RenWu/SKILL.md",
+      "skillFolderHash": "b0adf8853b1b3c17423101d2f9fe15ae4e3185ffb6a25533271fa146b7403a1b",
+      "installedAt": "2026-06-09T06:36:32.349Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-vc": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-ShiPinHuiYi/SKILL.md",
+      "skillFolderHash": "e7a87f9f86380aeedfc430b4f8e9890902102df1317861221d3a6dae1c6e1141",
+      "installedAt": "2026-06-09T06:36:32.349Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-vc-agent": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-HuiYiZhuShou/SKILL.md",
+      "skillFolderHash": "6571ebeb37c97d3997e46fa3bf6adb831e04893df3b5a862993177784ebda8aa",
+      "installedAt": "2026-06-09T06:36:32.350Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-whiteboard": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-BaiBan/SKILL.md",
+      "skillFolderHash": "6a297125f347f051a2f4868e8f2c7cf8f4ad348f1c64cb303d31b6b9186f0350",
+      "installedAt": "2026-06-09T06:36:32.352Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-wiki": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-Wiki/SKILL.md",
+      "skillFolderHash": "4b281c2c7b5829850e8d8b2d7f5c08a8943eced55aa14aaa8936d325ce5ec9c2",
+      "installedAt": "2026-06-09T06:36:32.353Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-workflow-meeting-summary": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-HuiYiZongJie/SKILL.md",
+      "skillFolderHash": "0b3880e8b19941ff050186b071ffa2242d9b92898b56842b032f9eadca9a11e2",
+      "installedAt": "2026-06-09T06:36:32.354Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "lark-workflow-standup-report": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FeiShu-JiNeng/FeiShu-ZhanBao/SKILL.md",
+      "skillFolderHash": "1447cb1b2d24cc7bb6d9a76789bf37fa3eac29528a7563fe1e79ddd3c1452891",
+      "installedAt": "2026-06-09T06:36:32.354Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "DouBao-ShengTu": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/DouBao-ShengTu/SKILL.md",
+      "skillFolderHash": "d07b92a459d361d51954d328033cfd9679c588365c238ed8c04936e5687470ef",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "FanYi-JiNeng": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/FanYi-JiNeng/SKILL.md",
+      "skillFolderHash": "a84f62d907c7666d640f837d3711d6826d177d2a716ef148b0feb0b951143afd",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "JiaoBen-GuiFan": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/JiaoBen-GuiFan/SKILL.md",
+      "skillFolderHash": "60dec7382c87dc6916b52cbaaea3c6a60fad301a1f13dc96752b776cc1f699ca",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "QClaw-Account": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/QClaw-Account/SKILL.md",
+      "skillFolderHash": "ae332ac2a24e86301d7a0a1b09795dfad2b563fa09cd5fd848bc073c8e5fcddf",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "QianYi-WanWu": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/QianYi-WanWu/SKILL.md",
+      "skillFolderHash": "22cbe2be3fb93e4839b1231d767557985c2a8441b5117b19e1603e52ee318601",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "RiZhi-GuiFan": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/RiZhi-GuiFan/SKILL.md",
+      "skillFolderHash": "d016318d1717cb232d56d7ae0b30e426f16cd4781200777c2b29a55904d96a38",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "RunningHUB-AI": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/RunningHUB-AI/SKILL.md",
+      "skillFolderHash": "c869b365f4c0080bd1da1317e62ac95ec2d2d1a2bc1c643ad34b42a117b06c38",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "SouSuo-SuCha": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/SouSuo-SuCha/SKILL.md",
+      "skillFolderHash": "81ec77bad29c8a0af0a0e49dc15576c83b48e621a78d5c525e2273107ce9f83e",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "TRAE-Rule": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/TRAE-Rule/SKILL.md",
+      "skillFolderHash": "618b6f2cd66f8dc3fc3e5595642ae037bb1cb2f6dbe4ac65ec5ef41a6a3b0556",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "WenShengTu": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/WenShengTu/SKILL.md",
+      "skillFolderHash": "7dff2fd7ae3668b252702bd12713a047549726201f2adfc455cd2b996b040daa",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "ZhongJiangMingDan": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ZhongJiangMingDan/SKILL.md",
+      "skillFolderHash": "a8d2d33f92b9645d47658229380ee81221bc69c910e55fc03516118c0b71eb1c",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "baoyu-comic": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ShiChang/BaoYu-ManHua/SKILL.md",
+      "skillFolderHash": "a6d0116b35b50bea77ce67589ad3177df30725396990ccc5ecd89f08400a9f37",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "baoyu-compress-image": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ShiChang/BaoYu-YaSuo/SKILL.md",
+      "skillFolderHash": "6c5d8ee525a3c824c4bff8db37a348b475d080392edd11bc8aa71d4cc92679ed",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "baoyu-image-gen": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ShiChang/BaoYu-ShengTu/SKILL.md",
+      "skillFolderHash": "a81102babfc505120a303fd871abcfdb8f68c1a0d47eae7f0a017f294d16df2b",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "chart-visualization": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/TuBiao-KeShiHua/SKILL.md",
+      "skillFolderHash": "fa50a86edbfea182e9b3d2628c68a08fe7bc721ed07d689bdd1d7d61cf77df19",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "consulting-analysis": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ZiXun-FenXi/SKILL.md",
+      "skillFolderHash": "18f819c22bcbf4711f21bb742c37b80f9e387293771621730d0ba3b437f37c49",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "data-analysis": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ShuJu-FenXi/SKILL.md",
+      "skillFolderHash": "cdd0b7d032348fcea0078a3759d7896e98a3a83f8e31be267382e08c3f445b42",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "deploy-to-vercel": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/deploy-to-vercel/SKILL.md",
+      "skillFolderHash": "093a1ead2ae5c61de58d0471d20ea41970976ca2776e75edaff2db945690d030",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "find-skills": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "5c29205a4d48d53d133ae99e5102a774abb5f0300cf55097a2d08a78cea25bf1",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "frontend-design": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ShiChang/QianDuan-SheJi/SKILL.md",
+      "skillFolderHash": "5aaac5b724c8c10f29f00a0a0c0b6e4b76d0b6438fb273aa5a22b8eba42f92a4",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "grill-me": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/grill-me/SKILL.md",
+      "skillFolderHash": "30f3c6523585eadda4c11b545d5823b3d2eb036c1e475495cb4839c1bc6ab9b9",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "html-report-design-system": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/Html-BaoGao-SheJi/SKILL.md",
+      "skillFolderHash": "6df706c50ee8f8354f7dfc0210abdfdd45b3611012f0d2efabcbe2a455ea274d",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "humanizer": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ShiChang/RenXing-Hua/SKILL.md",
+      "skillFolderHash": "94521c49e94e4b045fc3324c9fccad083785ee7ec85dd56f4670748630b44461",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "local-asr": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/local-asr/SKILL.md",
+      "skillFolderHash": "5881949a782ab63b9f2325a8f05f1e16040d4996a8a6c903ffd5b9abe5e12fb1",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "local-computer-use": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/local-computer-use/SKILL.md",
+      "skillFolderHash": "197fe32dac98a6f82d4637efc1ea78e3ed0bbcdf7984866a8321eae22691894c",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "local-tts": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/local-tts/SKILL.md",
+      "skillFolderHash": "74381f003366017cd3a5fe65a1f6b77e37f25fe49181864a2b5345507858dd6b",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "local-txt2img": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/local-txt2img/SKILL.md",
+      "skillFolderHash": "6b414c9f52f1d3212887808081c3cbcada3214d180d87a7b223af7baf18352b9",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "mrbeast-perspective": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ShiChang/MrBeast-ShiJiao/SKILL.md",
+      "skillFolderHash": "6d24d0f0933461f9047fbbcd2879fdf9bd0466ea287dc414c17fb937e34399a6",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "nuwa-skill-main": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/NvWa-JiNeng/SKILL.md",
+      "skillFolderHash": "70af3c016e9fcc51ebd9c0ba5526282c2594265ec1b3b64ec5c3e16fc5d4e8c7",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "remotion-best-practices": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/remotion-best-practices/SKILL.md",
+      "skillFolderHash": "4de946bb2e5f77025a8a8bf681c7e44f5030d86ac25cd485343df4225fb36fe4",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "role-diversion": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/JiaoSe-FenLiu/SKILL.md",
+      "skillFolderHash": "02b144ee01ee0ca75cd3fb46a9b3db7fb32f459a1eea6a71f0dca3c1ab5bdd9e",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "skill-creator": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ShiChang/JiNeng-ChuangJian/SKILL.md",
+      "skillFolderHash": "b20d4841dc4f6f916caf506294e853f3343d89ee2051e5caa816d7c131d40b04",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "soultrace": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/soultrace/SKILL.md",
+      "skillFolderHash": "10fde04514a19c49102aaaa02fd2e56574948104cf0c6abe8e47d72313ef39d6",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "summarize": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/summarize/SKILL.md",
+      "skillFolderHash": "0f538e3b4e454fda5c457be04db9f891a4c9908fe7e70345b33a104c7ac642b2",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "supabase-postgres-best-practices": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ShiChang/Supabase-Postgres-ShiJian/SKILL.md",
+      "skillFolderHash": "699b3e809c95512371f1f2a950030ba889281ee5a0db38cdfb5254920e610c81",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "tencent-esign-contract": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ShiChang/TengXun-DianZi-HeTong/SKILL.md",
+      "skillFolderHash": "e69656b7e3cbfbc1c88fa486b8386908b6a1e353b030033370b28689e41be007",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "theme-factory": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ZhuTi-GongChang/SKILL.md",
+      "skillFolderHash": "69957189b33558dc40e4568fe8f4c3b0eace56c1d757ce641689852fb310acc4",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "understand-anything": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/WanWu-LiJie/SKILL.md",
+      "skillFolderHash": "a46d909e4a0129ff0cb381c3d1f3cc3989f40ae4ba966314c3538f8d22bd36cd",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "unilink": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/unilink/SKILL.md",
+      "skillFolderHash": "5133ed4b0918e2ac4aece4da60345fda971a9d623a80b950bd6acbc2495feb89",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "vercel-react-best-practices": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/ShiChang/Vercel-React-ShiJian/SKILL.md",
+      "skillFolderHash": "15fc974397a1904371557d83c10dfcd7baf769fc8078ca330068c5c37b0a5772",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    },
+    "web-design-guidelines": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "skillFolderHash": "6254d676bbb0538cb9a9306800731c59deb42ca5adfd7a1f0247a6429cfcef4b",
+      "installedAt": "2026-06-13T18:20:37.489Z",
+      "updatedAt": "2026-06-13T18:20:37.489Z"
+    },
+    "ZhiShi-TuPu": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "dataType": "knowledge-graphs",
+      "dataPath": "ZhiShi-TuPu/",
+      "skillFolderHash": "pending",
+      "installedAt": "2026-06-14T00:00:00.000Z",
+      "updatedAt": "2026-06-14T00:00:00.000Z"
+    },
+    "WenShengTu.bak_20260614": {
+      "source": "I42857-AI/.agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/I42857-AI/.agents.git",
+      "skillPath": "skills/WenShengTu.bak_20260614/SKILL.md",
+      "skillFolderHash": "476bad18df7724131d7dc80d460b5afd6bc677a614182632820886ee12e5401e",
+      "installedAt": "2026-06-14T13:56:08+08:00",
+      "updatedAt": "2026-06-14T13:56:08+08:00"
+    }
+  },
+  "dismissed": {},
+  "sandbox": {
+    "agent": "Marvis",
+    "os": "TencentOS Server 4.6 (kernel 6.6)",
+    "cpu": "2 cores",
+    "memory": {
+      "total": "3.5GB",
+      "available": "2.4GB"
+    },
+    "disk": {
+      "total": "30GB",
+      "available": "12GB",
+      "used_pct": "62%"
+    },
+    "tools": {
+      "git": "2.54.0 (static, ~/local/git)",
+      "node": "v24.16.0 (nvm)",
+      "npm": "11.13.0",
+      "python": "3.11"
+    },
+    "sub_agents": [
+      "search-agent",
+      "browser"
+    ],
+    "registered_at": "2026-06-15T00:30:00+08:00"
+  },
+  "marvis_rules": {
+    "echo_mechanism": "一问二选项 — 回答用户问题后，尾部延伸提供两个可选方向（A/B），引导深入讨论",
+    "skill_path": "skills/Marvis-Rule/SKILL.md",
+    "cankao_files": [
+      "CanKao/00-yiWen-erXuanXiang.md",
+      "CanKao/01-chongDong-hua.md",
+      "CanKao/02-duoAgent-xieZuo.md",
+      "CanKao/03-bianMa-anQuan-bak.md",
+      "CanKao/04-luJing-yingShe.md",
+      "CanKao/05-riZhi-guiFan.md",
+      "CanKao/06-fenXing-jiaGou.md",
+      "CanKao/07-hb-gongJu-ku.md",
+      "CanKao/08-pinYin-hua.md"
+    ]
+  }
+}
