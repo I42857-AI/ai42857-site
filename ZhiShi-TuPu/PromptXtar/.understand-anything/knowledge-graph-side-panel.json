@@ -1,0 +1,338 @@
+{
+  "nodes": [
+    {
+      "id": "domain:sp-quickmd",
+      "type": "domain",
+      "name": "QuickMD 文档编辑",
+      "summary": "侧边栏默认首页，核心文档存储部门，提供 Markdown 文档编辑/预览功能，委托 side-panel.js 的现有函数实现",
+      "metadata": {
+        "boardProfile": {
+          "priority": "default-home",
+          "role": "核心文档存储",
+          "note": "侧边栏默认首页，QuickMD是PromptXtar的核心文档存储部门"
+        }
+      }
+    },
+    {
+      "id": "domain:sp-home",
+      "type": "domain",
+      "name": "首页仪表盘",
+      "summary": "管理快捷方式卡片，支持书签导入、分类抽屉、AI 图标生成、拖拽排序，提供分类图标 SVG 生成和名称哈希颜色算法"
+    },
+    {
+      "id": "domain:sp-pics",
+      "type": "domain",
+      "name": "图片管理",
+      "summary": "参考图片管理功能，支持图片收藏、分类、拖拽导入，数据存储在 IndexedDB refImages 中"
+    },
+    {
+      "id": "domain:sp-chat",
+      "type": "domain",
+      "name": "对话历史",
+      "summary": "侧边栏内的小念对话功能，查看和管理对话历史记录"
+    },
+    {
+      "id": "file:side-panel/side-panel.js",
+      "type": "file",
+      "name": "side-panel.js",
+      "filePath": "side-panel/side-panel.js",
+      "summary": "侧边栏主脚本，管理 IndexedDB 数据库、全局状态、Tab 切换（Home/Pics/Chat/QuickMD）、参考图片管理、对话功能、QuickMD 文档编辑、设置面板等侧边栏核心逻辑"
+    },
+    {
+      "id": "file:side-panel/side-panel.html",
+      "type": "file",
+      "name": "side-panel.html",
+      "filePath": "side-panel/side-panel.html",
+      "summary": "侧边栏 HTML 入口，加载所有 JS/CSS 依赖，定义侧边栏 DOM 结构"
+    },
+    {
+      "id": "file:side-panel/side-panel.css",
+      "type": "file",
+      "name": "side-panel.css",
+      "filePath": "side-panel/side-panel.css",
+      "summary": "侧边栏样式表，定义深色/浅色主题、布局、组件样式"
+    },
+    {
+      "id": "file:modules/quickmd.js",
+      "type": "file",
+      "name": "quickmd.js",
+      "filePath": "modules/quickmd.js",
+      "summary": "QuickMD 面板模块，继承 PanelBase，提供 Markdown 文档编辑/预览功能，作为薄壳层委托给 side-panel.js 的现有函数（window.QuickMD 命名空间）"
+    },
+    {
+      "id": "file:modules/home.js",
+      "type": "file",
+      "name": "home.js",
+      "filePath": "modules/home.js",
+      "summary": "Home Dashboard 模块，管理快捷方式卡片（书签导入、分类抽屉、AI 图标生成、拖拽排序），提供分类图标 SVG 生成和名称哈希颜色算法"
+    },
+    {
+      "id": "file:modules/home.css",
+      "type": "file",
+      "name": "home.css",
+      "filePath": "modules/home.css",
+      "summary": "Home 模块专用样式"
+    },
+    {
+      "id": "class:modules/quickmd.js:QuickMDPanel",
+      "type": "class",
+      "name": "QuickMDPanel",
+      "filePath": "modules/quickmd.js",
+      "summary": "QuickMD 面板类，继承 PanelBase，提供 Markdown 文档编辑/预览的薄壳层，通过 window.QuickMD 委托给 side-panel.js"
+    },
+    {
+      "id": "file:modules/reader.js",
+      "type": "file",
+      "name": "reader.js",
+      "filePath": "modules/reader.js",
+      "summary": "Reader 阅读器模块，继承 PanelBase，提供网页阅读模式功能（已被 QuickMD 替代，暂不活跃）"
+    },
+    {
+      "id": "class:modules/reader.js:ReaderPanel",
+      "type": "class",
+      "name": "ReaderPanel",
+      "filePath": "modules/reader.js",
+      "summary": "Reader 面板类，继承 PanelBase，提供网页阅读模式功能（已被 QuickMD 替代，暂不活跃）"
+    },
+    {
+      "id": "function:side-panel/side-panel.js:initGlobalShortcuts",
+      "type": "function",
+      "name": "initGlobalShortcuts",
+      "filePath": "side-panel/side-panel.js",
+      "summary": "全局快捷键系统，支持数字键切换 Tab（1=QuickMD/2=图片/3=小念）、Q/E 分区切换、Ctrl+N 新建、Ctrl+D 管理模式、Ctrl+S 保存、? 帮助面板"
+    }
+  ],
+  "edges": [
+    {
+      "source": "domain:side-panel",
+      "target": "domain:sp-quickmd",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:side-panel",
+      "target": "domain:sp-home",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:side-panel",
+      "target": "domain:sp-pics",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:side-panel",
+      "target": "domain:sp-chat",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:sp-quickmd",
+      "target": "file:side-panel/side-panel.js",
+      "type": "depends_on",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:sp-quickmd",
+      "target": "file:modules/quickmd.js",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:sp-home",
+      "target": "file:modules/home.js",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:sp-home",
+      "target": "file:modules/home.css",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:sp-pics",
+      "target": "file:side-panel/side-panel.js",
+      "type": "depends_on",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:sp-chat",
+      "target": "file:side-panel/side-panel.js",
+      "type": "depends_on",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:modules/quickmd.js",
+      "target": "class:modules/quickmd.js:QuickMDPanel",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:modules/quickmd.js",
+      "target": "file:side-panel/side-panel.js",
+      "type": "depends_on",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:modules/home.js",
+      "target": "file:modules/home.css",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:side-panel/side-panel.html",
+      "target": "file:side-panel/side-panel.js",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:side-panel/side-panel.html",
+      "target": "file:side-panel/side-panel.css",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:side-panel/side-panel.html",
+      "target": "file:modules/home.js",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:side-panel/side-panel.html",
+      "target": "file:modules/quickmd.js",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:side-panel/side-panel.html",
+      "target": "file:modules/reader.js",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:side-panel/side-panel.js",
+      "target": "file:modules/home.js",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "class:modules/quickmd.js:QuickMDPanel",
+      "target": "class:libs/panel-interface.js:PanelBase",
+      "type": "inherits",
+      "weight": 0.9,
+      "direction": "forward"
+    },
+    {
+      "source": "class:modules/reader.js:ReaderPanel",
+      "target": "class:libs/panel-interface.js:PanelBase",
+      "type": "inherits",
+      "weight": 0.9,
+      "direction": "forward"
+    },
+    {
+      "source": "file:modules/reader.js",
+      "target": "class:modules/reader.js:ReaderPanel",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:pending",
+      "target": "file:modules/reader.js",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:sp-quickmd",
+      "target": "module:libs/marked.min.js",
+      "type": "depends_on",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:sp-quickmd",
+      "target": "module:libs/highlight.min.js",
+      "type": "depends_on",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:sp-quickmd",
+      "target": "module:libs/katex.min.js",
+      "type": "depends_on",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:sp-quickmd",
+      "target": "module:libs/mermaid.min.js",
+      "type": "depends_on",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "file:side-panel/side-panel.js",
+      "target": "file:libs/panel-shell.js",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:side-panel/side-panel.js",
+      "target": "file:libs/panel-interface.js",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:side-panel/side-panel.js",
+      "target": "function:background.js:portMessageHandler",
+      "type": "depends_on",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "file:modules/home.js",
+      "target": "file:libs/panel-shell.js",
+      "type": "depends_on",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:side-panel",
+      "target": "function:side-panel/side-panel.js:initGlobalShortcuts",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:side-panel/side-panel.js",
+      "target": "function:side-panel/side-panel.js:initGlobalShortcuts",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    }
+  ]
+}
