@@ -1,0 +1,161 @@
+@echo off
+
+for %%d in (Z Y X W V U T S R Q P O N M L K J I H G F E D) do (
+    if exist "%%d:\XiangMu-KongJian" (
+        set "PROJECT_ROOT=%%d:\XiangMu-KongJian"
+        goto :found
+    )
+)
+echo.
+echo   ERROR: Cannot find XiangMu-KongJian on any drive!
+pause >nul
+exit /b 1
+
+:found
+for /f "delims=" %%i in ('dir /b /ad "%PROJECT_ROOT%\node\node-v*" 2^>nul') do (
+    set "NODE_DIR=%PROJECT_ROOT%\node\%%i"
+    goto :nodefound
+)
+set "NODE_DIR="
+
+:nodefound
+if defined NODE_DIR (
+    set "PATH=%NODE_DIR%;%PATH%"
+) else (
+    echo   WARNING: Node.js not found in %PROJECT_ROOT%\node\
+)
+
+set "DASHBOARD_DIR=%PROJECT_ROOT%\..\PC\Understand-Anything-main\understand-anything-plugin\packages\dashboard"
+
+echo.
+echo   ============================================
+echo       ZhiShi-TuPu Dashboard Launcher
+echo   ============================================
+echo   ProjectRoot: %PROJECT_ROOT%
+echo   NodeDir: %NODE_DIR%
+echo   ============================================
+echo.
+
+:menu
+echo   [1] CaiPin-FenJing
+echo   [2] Zhaimomo-XiangQing
+echo   [3] PromptXtar
+echo   [4] Understand-Anything
+echo   [5] MrBeast-FangFaLun
+echo   [6] NvWa-Skill
+echo   [7] SETUNA2
+echo   [8] CangQiong
+echo   [0] Exit
+echo.
+
+set "choice="
+set /p "choice=Select: "
+
+if not defined choice goto menu
+if "%choice%"=="1" goto project1
+if "%choice%"=="2" goto project2
+if "%choice%"=="3" goto project3
+if "%choice%"=="4" goto project4
+if "%choice%"=="5" goto project5
+if "%choice%"=="6" goto project6
+if "%choice%"=="7" goto project7
+if "%choice%"=="8" goto project8
+if "%choice%"=="0" goto end
+
+echo.
+echo   Invalid choice
+echo.
+goto menu
+
+:project1
+echo.
+echo   Starting CaiPin-FenJing Dashboard...
+set "GRAPH_DIR=%PROJECT_ROOT%\..\PC\ZhiShi-TuPu\CaiPin-FenJing"
+goto launch
+
+:project2
+echo.
+echo   Starting Zhaimomo-XiangQing Dashboard...
+set "GRAPH_DIR=%PROJECT_ROOT%\..\PC\ZhiShi-TuPu\Zhaimomo-XiangQing"
+goto launch
+
+:project3
+echo.
+echo   Starting PromptXtar Dashboard...
+set "GRAPH_DIR=%PROJECT_ROOT%\..\PC\ZhiShi-TuPu\PromptXtar"
+goto launch
+
+:project4
+echo.
+echo   Starting Understand-Anything Dashboard...
+set "GRAPH_DIR=%PROJECT_ROOT%\..\PC\ZhiShi-TuPu\Understand-Anything"
+goto launch
+
+:project5
+echo.
+echo   Starting MrBeast-FangFaLun Dashboard...
+set "GRAPH_DIR=%PROJECT_ROOT%\..\PC\ZhiShi-TuPu\MrBeast-FangFaLun"
+goto launch
+
+:project6
+echo.
+echo   Starting NvWa-Skill Dashboard...
+set "GRAPH_DIR=%PROJECT_ROOT%\..\PC\ZhiShi-TuPu\NvWa-Skill"
+goto launch
+
+:project7
+echo.
+echo   Starting SETUNA2 Dashboard...
+set "GRAPH_DIR=%PROJECT_ROOT%\..\PC\ZhiShi-TuPu\SETUNA2"
+goto launch
+
+:project8
+echo.
+echo   Starting CangQiong Dashboard...
+set "GRAPH_DIR=%PROJECT_ROOT%\..\PC\ZhiShi-TuPu\CangQiong"
+goto launch
+
+:launch
+echo   GRAPH_DIR: %GRAPH_DIR%
+echo.
+
+cd /d "%DASHBOARD_DIR%"
+if errorlevel 1 (
+    echo.
+    echo   ERROR: Cannot find Dashboard directory!
+    echo   Expected: %DASHBOARD_DIR%
+    pause >nul
+    goto end
+)
+
+echo   Launching Dashboard (hidden window)...
+echo   Browser will open automatically.
+echo   You can safely close this launcher window.
+echo.
+
+set "VBS_FILE=%TEMP%\ua-dashboard-launch.vbs"
+echo Set objShell = CreateObject("WScript.Shell")> "%VBS_FILE%"
+echo objShell.Environment("Process").Item("GRAPH_DIR") = "%GRAPH_DIR%">> "%VBS_FILE%"
+echo objShell.Environment("Process").Item("PATH") = "%PATH%">> "%VBS_FILE%"
+echo objShell.CurrentDirectory = "%DASHBOARD_DIR%">> "%VBS_FILE%"
+echo objShell.Run "cmd /c call node_modules\.bin\vite.CMD --host 127.0.0.1", 0, False>> "%VBS_FILE%"
+
+wscript //nologo "%VBS_FILE%"
+
+timeout /t 3 /nobreak >nul
+
+echo.
+echo   Dashboard is running in background (no window).
+echo   Launch another project to preview multiple archives simultaneously.
+echo   Closing this launcher will NOT stop any Dashboard.
+echo.
+goto menu
+
+:end
+echo.
+echo   Dashboard is still running in background.
+echo   Use Task Manager to stop node.exe if needed.
+echo   Refresh your browser page anytime to reconnect.
+echo.
+echo   Bye!
+timeout /t 2 /nobreak >nul
