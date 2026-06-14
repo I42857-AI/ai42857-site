@@ -1,0 +1,372 @@
+{
+  "nodes": [
+    {
+      "id": "storyboard:laohu-ban-t1-hero",
+      "type": "flow",
+      "name": "老虎斑·食欲炸弹",
+      "summary": "英雄型。苹果发布会风格。纯食物L1 100%，零人物。视觉钩子：热油浇淋葱丝嗞嗞激香。4镜15秒。情绪：平→升→爆→平",
+      "tags": [
+        "食欲炸弹",
+        "英雄型",
+        "苹果发布会",
+        "L1纯食物",
+        "15秒"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "storyboard": {
+          "dishId": "dish:laohu-ban",
+          "storyboardType": "appetite-bomb",
+          "storyboardTypeName": "T1 食欲炸弹",
+          "roleCategory": "hero",
+          "totalDuration": "15s",
+          "shotCount": 4,
+          "styleId": "style:pingguo-fabuhui",
+          "styleName": "苹果发布会",
+          "emotionCurve": "平→升→爆→平",
+          "hookType": "视觉钩子",
+          "characterDensity": "0%",
+          "characterNote": "无需人物。纯食物视觉。若AI视频制作需要人物参考，通过女娲技能生成最小化手部模型",
+          "shots": [
+            {
+              "shotNumber": 1,
+              "duration": "4s",
+              "description": "极近特写：蒸熟的老虎斑鱼皮斑纹清晰油亮，葱丝姜丝红椒丝铺满鱼面，蒸鱼豉油沿鱼身缓缓流淌。第1帧=成品最诱人状态",
+              "referenceShot": "极近特写",
+              "emotion": "平：瞬间停留冲动",
+              "sceneTag": "纯黑背景",
+              "lighting": "暖金色硬光，高对比度，强调鱼皮斑纹油亮和葱丝翠绿",
+              "soundEffect": "极轻豉油流淌声（ASMR级）",
+              "storyboardPrompt": "封面帧即成品+极近特写，第1帧=缩略图，斑纹鱼皮油亮葱丝翠绿是清蒸鱼最极致的视觉符号",
+              "videoMotionPrompt": "极近特写老虎斑鱼皮斑纹清晰油亮，葱丝姜丝红椒丝铺满鱼面，蒸鱼豉油沿鱼身缓缓流淌，纯黑背景，4秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：斑纹清晰油亮的老虎斑鱼皮，葱丝红椒丝铺满鱼面"
+            },
+            {
+              "shotNumber": 2,
+              "duration": "4s",
+              "description": "微距横移：鱼皮斑纹缓缓移动，深褐斑纹与雪白蒜瓣肉交界处纹理清晰，蒸后鱼皮微裂露出雪白肉面，葱丝在微风中轻轻颤动",
+              "referenceShot": "微距横移",
+              "emotion": "升：质感沉浸",
+              "sceneTag": "纯黑背景",
+              "lighting": "侧逆光，鱼皮斑纹形成高光带，蒜瓣肉面柔光",
+              "soundEffect": "极安静环境音",
+              "storyboardPrompt": "微距横移法+斑纹纹理美学，鱼皮斑纹与蒜瓣肉的交界是清蒸鱼最精致的微观美学",
+              "videoMotionPrompt": "微距贴面横移鱼皮斑纹，深褐斑纹与雪白蒜瓣肉交界纹理清晰，鱼皮微裂露出雪白肉面，葱丝轻轻颤动，侧逆光，4秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：深褐斑纹与雪白蒜瓣肉交界，鱼皮微裂纹理清晰"
+            },
+            {
+              "shotNumber": 3,
+              "duration": "4s",
+              "description": "热油激香：滚油浇淋鱼身，葱丝遇油嗞嗞作响微卷，蒸鱼豉油在热油激荡下香气四溢，油花在鱼面飞溅，红椒丝在油光中鲜艳欲滴",
+              "referenceShot": "微距热油特写",
+              "emotion": "爆：香气爆发",
+              "sceneTag": "纯黑背景",
+              "lighting": "逆光，油花飞溅折射金色光点，葱丝微卷动态",
+              "soundEffect": "热油浇淋嗞嗞声（放大3倍）+葱丝微卷声+豉油激荡声",
+              "storyboardPrompt": "热油激香法+逆光油花美学，热油浇淋是清蒸鱼最爆裂的视觉听觉双重高潮",
+              "videoMotionPrompt": "微距特写滚油浇淋鱼身，葱丝遇油嗞嗞微卷，豉油激荡香气四溢，油花飞溅折射金色光点，红椒丝油光中鲜艳欲滴，逆光，0.5倍慢动作，4秒",
+              "character": "仅手部，手执油壶浇淋",
+              "thumbnailDescription": "静态定格：热油浇淋后鱼身油花飞溅，葱丝微卷红椒欲滴"
+            },
+            {
+              "shotNumber": 4,
+              "duration": "3s",
+              "description": "全景慢推：椭圆白瓷长盘中老虎斑完整呈现，斑纹鱼皮油亮，葱丝红椒丝点缀，配以白瓷勺，蒸汽轻柔升起，镜头前推后定格渐暗",
+              "referenceShot": "全景定格",
+              "emotion": "平：满足余韵",
+              "sceneTag": "深色餐台",
+              "lighting": "伦勃朗光，主光45度打在鱼身上形成三角光斑",
+              "soundEffect": "蒸汽微弱嘶声渐弱至静默",
+              "storyboardPrompt": "定帧留白法+慢推诗意化，从热油激荡骤然收至静帧，以静制动",
+              "videoMotionPrompt": "镜头缓慢前推全景，椭圆白瓷长盘老虎斑完整呈现斑纹鱼皮油亮葱丝红椒丝点缀，白瓷勺，蒸汽轻柔升起，伦勃朗光，2秒前推后定格渐暗，3秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：椭圆白瓷长盘中老虎斑完整呈现，斑纹油亮葱丝点缀"
+            }
+          ],
+          "clipStructure": "clip-a",
+          "fractalType": "15s-clip"
+        }
+      }
+    },
+    {
+      "id": "storyboard:laohu-ban-t4-contrast",
+      "type": "flow",
+      "name": "老虎斑·剪辑炫技",
+      "summary": "反差型。MrBeast风格。L1 80%+L2 20%。技法钩子：蒸→揭盖→浇油快切。6镜20秒。情绪：震撼→加速→爆发→余韵。零人物",
+      "tags": [
+        "剪辑炫技",
+        "反差型",
+        "MrBeast",
+        "快切",
+        "20秒"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "storyboard": {
+          "dishId": "dish:laohu-ban",
+          "storyboardType": "edit-showcase",
+          "storyboardTypeName": "T4 剪辑炫技",
+          "roleCategory": "contrast",
+          "totalDuration": "20s",
+          "shotCount": 6,
+          "styleId": "style:mrbeast-daoyan",
+          "styleName": "MrBeast",
+          "emotionCurve": "震撼→加速→爆发→余韵",
+          "hookType": "技法钩子",
+          "characterDensity": "10%",
+          "characterNote": "无需人物。运镜本身就是内容。若AI视频制作需要手部参考，通过女娲技能生成最小化手部模型",
+          "shots": [
+            {
+              "shotNumber": 1,
+              "duration": "2s",
+              "description": "视觉钩子：不可能的运镜——从鱼眼特写猛拉至蒸笼全景，蒸笼白气喷涌而出，0.5秒内从微观到宏观",
+              "referenceShot": "鱼眼→全景猛拉",
+              "emotion": "震撼：不可能的运镜",
+              "sceneTag": "蒸笼区",
+              "lighting": "蒸汽逆光，白气中鱼身若隐若现",
+              "soundEffect": "蒸笼揭盖白气喷涌声（放大2倍）",
+              "storyboardPrompt": "不可能运镜法，0.5秒内从微观到宏观的极端镜头运动，让观众想知道怎么拍的",
+              "videoMotionPrompt": "鱼眼特写猛拉至蒸笼全景，蒸笼白气喷涌而出，0.5秒微观到宏观，蒸汽逆光，2秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：蒸笼白气喷涌中鱼身若隐若现"
+            },
+            {
+              "shotNumber": 2,
+              "duration": "2s",
+              "description": "快切1：鱼身划斜刀，刀锋划过鱼皮，刀口微微张开",
+              "referenceShot": "特写快切",
+              "emotion": "加速：节奏蒙太奇开始",
+              "sceneTag": "备料台",
+              "lighting": "顶光硬亮，刀锋高光",
+              "soundEffect": "刀锋划过鱼皮声（快切节奏）",
+              "storyboardPrompt": "快切节奏法，1-2秒一个镜头，速度递增制造视觉过山车",
+              "videoMotionPrompt": "特写快切刀锋划过鱼皮斜刀，刀口微微张开，顶光硬亮刀锋高光，2秒",
+              "character": "仅手部，手握刀划斜刀",
+              "thumbnailDescription": "静态定格：刀锋划过鱼皮，刀口微微张开"
+            },
+            {
+              "shotNumber": 3,
+              "duration": "2s",
+              "description": "快切2：猛火蒸8分钟压缩为2秒——蒸笼白气升腾→鱼眼凸起变白→鱼皮开裂露白肉，跳切压缩",
+              "referenceShot": "跳切压缩",
+              "emotion": "加速：时间压缩",
+              "sceneTag": "蒸笼区",
+              "lighting": "蒸汽光变化：白气弥漫→暖光透出",
+              "soundEffect": "猛火蒸气声→鱼皮开裂声（跳切节奏）",
+              "storyboardPrompt": "时间压缩跳切法，8分钟压缩为2秒3个跳切，速度感拉满",
+              "videoMotionPrompt": "跳切压缩：蒸笼白气升腾→鱼眼凸起变白→鱼皮开裂露白肉，3个跳切2秒，蒸汽光变化，2秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：鱼皮开裂露出雪白蒜瓣肉"
+            },
+            {
+              "shotNumber": 4,
+              "duration": "3s",
+              "description": "快切3：倒掉蒸汁→铺葱姜丝红椒丝→淋蒸鱼豉油，三个动作3秒3个跳切",
+              "referenceShot": "快切三连",
+              "emotion": "加速：操作三连",
+              "sceneTag": "出菜台",
+              "lighting": "顶光，每个动作有专属高光",
+              "soundEffect": "倒汁声→葱丝声→豉油声（三连节奏）",
+              "storyboardPrompt": "操作三连快切法，3秒3个跳切，节奏如鼓点",
+              "videoMotionPrompt": "快切三连：倒掉蒸汁→铺葱姜丝红椒丝→淋蒸鱼豉油，3个跳切3秒，顶光，3秒",
+              "character": "仅手部，双手快速操作",
+              "thumbnailDescription": "静态定格：葱丝姜丝红椒丝铺满鱼面，蒸鱼豉油沿鱼身流淌"
+            },
+            {
+              "shotNumber": 5,
+              "duration": "5s",
+              "description": "高潮慢镜：滚油浇淋鱼身，0.3倍极慢——油花飞溅每一滴清晰可见，葱丝遇油微卷每一根动态分明，蒸鱼豉油在热油激荡下起泡膨胀，红椒丝在油光中鲜艳欲滴",
+              "referenceShot": "极慢热油",
+              "emotion": "爆发：视觉爆发点",
+              "sceneTag": "出菜台",
+              "lighting": "逆光，油花飞溅折射金色光点，每一滴油清晰可见",
+              "soundEffect": "热油嗞嗞声（极慢放低音调）+葱丝微卷声",
+              "storyboardPrompt": "极慢高潮法+逆光油花美学，0.3倍慢动作让热油浇淋的每一帧都是视觉爆发点",
+              "videoMotionPrompt": "0.3倍极慢滚油浇淋鱼身，油花飞溅每滴清晰可见，葱丝遇油微卷每根动态分明，豉油热油激荡起泡膨胀，红椒丝油光鲜艳欲滴，逆光金色光点，5秒",
+              "character": "仅手部，手执油壶浇淋",
+              "thumbnailDescription": "静态定格：油花飞溅每滴清晰可见，葱丝微卷红椒欲滴"
+            },
+            {
+              "shotNumber": 6,
+              "duration": "6s",
+              "description": "收尾定帧：回到正常速度，椭圆白瓷长盘老虎斑完整呈现，斑纹鱼皮油亮葱丝红椒丝点缀，镜头缓缓后拉，余韵渐收",
+              "referenceShot": "全景后拉",
+              "emotion": "余韵：从过山车回到平静",
+              "sceneTag": "餐台",
+              "lighting": "伦勃朗光，暖调收束",
+              "soundEffect": "蒸汽微弱嘶声→静默",
+              "storyboardPrompt": "速度收束法，从极慢回到正常速度再后拉，过山车安全着陆",
+              "videoMotionPrompt": "正常速度椭圆白瓷长盘老虎斑完整呈现，斑纹鱼皮油亮葱丝红椒丝点缀，镜头缓缓后拉，伦勃朗光暖调收束，6秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：椭圆白瓷长盘老虎斑完整呈现，斑纹油亮葱丝点缀"
+            }
+          ],
+          "fractalType": "standard"
+        }
+      }
+    },
+    {
+      "id": "storyboard:laohu-ban-t5-platform",
+      "type": "flow",
+      "name": "老虎斑·感官沉浸",
+      "summary": "平台型。侘寂风格。L1 90%+L2 10%。声音钩子：蒸气声+热油嗞嗞声。3镜28秒。情绪：静→沉浸→高潮→静。零人物",
+      "tags": [
+        "感官沉浸",
+        "平台型",
+        "侘寂",
+        "ASMR",
+        "28秒"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "storyboard": {
+          "dishId": "dish:laohu-ban",
+          "storyboardType": "sensory-immersion",
+          "storyboardTypeName": "T5 感官沉浸",
+          "roleCategory": "platform",
+          "totalDuration": "28s",
+          "shotCount": 3,
+          "styleId": "style:riben-wajiki",
+          "styleName": "侘寂",
+          "emotionCurve": "静→沉浸→高潮→静",
+          "hookType": "声音钩子",
+          "characterDensity": "5%",
+          "characterNote": "无需人物。声音是主角。若AI视频制作需要手部参考，通过女娲技能生成最小化手部模型",
+          "shots": [
+            {
+              "shotNumber": 1,
+              "duration": "10s",
+              "description": "声音建立世界：蒸笼微弱嘶嘶声，远处水沸腾低沉嗡鸣，然后静默。视觉：极近特写蒸笼中老虎斑在蒸汽中若隐若现，鱼皮斑纹在暖色暗光中微弱发光，蒸汽极慢螺旋上升。10秒通过耳朵进入蒸笼的世界",
+              "referenceShot": "极近特写静止",
+              "emotion": "静：进入蒸笼世界",
+              "sceneTag": "暗色蒸笼区",
+              "lighting": "单一暖色暗光源，侘寂阴影，蒸汽柔化鱼身轮廓",
+              "soundEffect": "蒸笼微弱嘶嘶声（5秒）→静默（2秒）→极轻水沸声（3秒）。ASMR级收音，无音乐",
+              "storyboardPrompt": "声音先行沉浸法+侘寂留白，蒸笼嘶嘶声是清蒸鱼最本真的声音，10秒纯氛围入口",
+              "videoMotionPrompt": "极近特写蒸笼中老虎斑蒸汽中若隐若现，鱼皮斑纹暖色暗光微弱发光，蒸汽极慢螺旋上升，侘寂留白，10秒，无音乐仅ASMR",
+              "character": "无",
+              "thumbnailDescription": "静态定格：蒸汽中老虎斑若隐若现，鱼皮斑纹暖色暗光微弱发光"
+            },
+            {
+              "shotNumber": 2,
+              "duration": "10s",
+              "description": "ASMR蒸制声三联画：水沸咕嘟声（猛火蒸制）→鱼皮开裂微弱噼啪声（蒸熟皮裂）→蒸汁流淌声（倒掉蒸汁去腥）。视觉：微距质感三联画——蒸汽中鱼身若隐若现→鱼皮开裂露出雪白蒜瓣肉→蒸汁沿鱼身流淌",
+              "referenceShot": "微距质感系列",
+              "emotion": "沉浸：声音成为质感",
+              "sceneTag": "蒸笼→出菜台",
+              "lighting": "蒸汽光→暖光过渡，每段有专属光线",
+              "soundEffect": "水沸咕嘟声（3秒）→鱼皮开裂噼啪声（3秒）→蒸汁流淌声（4秒）。ASMR近场收音，无音乐",
+              "storyboardPrompt": "声音触发视觉法+质感三联画，蒸制声是清蒸鱼最治愈的ASMR",
+              "videoMotionPrompt": "微距质感三联画：蒸汽中鱼身若隐若现→鱼皮开裂露出雪白蒜瓣肉→蒸汁沿鱼身流淌，每段3-4秒，ASMR声音先行，10秒",
+              "character": "仅手部短暂，手部短暂倒掉蒸汁",
+              "thumbnailDescription": "静态定格：鱼皮开裂露出雪白蒜瓣肉，蒸汁沿鱼身流淌"
+            },
+            {
+              "shotNumber": 3,
+              "duration": "8s",
+              "description": "声音高潮+视觉高潮：热油浇淋嗞嗞声，放大5倍，葱丝遇油微卷声，然后逐渐消退至静默。视觉：慢动作热油浇淋，葱丝微卷，豉油激荡，然后缓慢淡出至暗色静物——椭圆白瓷长盘老虎斑，葱丝红椒丝，蒸汽消散，光线渐暗。终结于静默",
+              "referenceShot": "微距热油→静物",
+              "emotion": "高潮→静：满足与静默",
+              "sceneTag": "静物收尾",
+              "lighting": "起始戏剧性逆光热油，逐渐消退至单一暗暖光静物",
+              "soundEffect": "热油嗞嗞声放大5倍（1秒）→葱丝微卷声（2秒）→蒸汽嘶声（2秒）→逐渐静默（3秒）。全程无音乐",
+              "storyboardPrompt": "声音高潮+视觉消退至静默，热油嗞嗞声是28秒中唯一的响亮时刻，终结于静默是侘寂的方式",
+              "videoMotionPrompt": "慢动作热油浇淋嗞嗞声，葱丝微卷，豉油激荡，然后缓慢淡出至暗色静物椭圆白瓷长盘老虎斑葱丝红椒丝，蒸汽消散光线渐暗，终结于静默，8秒",
+              "character": "无",
+              "thumbnailDescription": "静态定格：椭圆白瓷长盘老虎斑静物，葱丝红椒丝蒸汽消散"
+            }
+          ],
+          "fractalType": "standard"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "storyboard:laohu-ban-t1-hero",
+      "target": "style:pingguo-fabuhui",
+      "type": "styled_by",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:laohu-ban-t1-hero",
+      "target": "technique:weijutexie",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:laohu-ban-t1-hero",
+      "target": "technique:shenghuatongbu",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "storyboard:laohu-ban-t1-hero",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "storyboard:laohu-ban-t4-contrast",
+      "target": "style:mrbeast-daoyan",
+      "type": "styled_by",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:laohu-ban-t4-contrast",
+      "target": "technique:tiaoqieshengluo",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:laohu-ban-t4-contrast",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "storyboard:laohu-ban-t4-contrast",
+      "target": "technique:weijutexie",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "storyboard:laohu-ban-t5-platform",
+      "target": "style:riben-wajiki",
+      "type": "styled_by",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:laohu-ban-t5-platform",
+      "target": "technique:shenghuatongbu",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:laohu-ban-t5-platform",
+      "target": "technique:weijutexie",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "storyboard:laohu-ban-t5-platform",
+      "target": "technique:ziranguangzhigan",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.85
+    }
+  ]
+}
