@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRAE-Rule 4.0 — PC 域化架构 · 全局强制规则</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f5;
+  --bg-warm: #f5f0e8;
+  --bg-card: #fffdf9;
+  --text: #2c2420;
+  --text-muted: #7a6e66;
+  --text-light: #a89888;
+  --accent: #c45d3e;
+  --accent-light: #e8a08a;
+  --accent-bg: #fdf0ea;
+  --green: #4a7c59;
+  --green-bg: #e8f3ea;
+  --blue: #3d6b8e;
+  --blue-bg: #e5f0f7;
+  --gold: #b8860b;
+  --gold-bg: #fdf6e3;
+  --border: #e8e0d6;
+  --shadow: 0 1px 3px rgba(44,36,32,0.06), 0 4px 12px rgba(44,36,32,0.04);
+  --shadow-lg: 0 4px 20px rgba(44,36,32,0.08), 0 8px 32px rgba(44,36,32,0.04);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font-serif: 'Noto Serif SC', Georgia, serif;
+  --font-sans: 'Noto Sans SC', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ====== 导航栏 ====== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(250,248,245,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+.nav.scrolled { box-shadow: var(--shadow); }
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  gap: 32px;
+}
+.nav-logo {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--accent);
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+.nav-links {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex: 1;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.nav-link:hover { color: var(--text); background: var(--bg-warm); }
+.nav-link.active { color: var(--accent); background: var(--accent-bg); }
+
+/* ====== Hero ====== */
+.hero {
+  margin-top: 56px;
+  padding: 80px 32px 64px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+.hero h1 span { color: var(--accent); }
+.hero-desc {
+  max-width: 640px;
+  margin: 0 auto 32px;
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.hero-stat-label {
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* ====== Section 通用 ====== */
+.section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 32px;
+}
+.section-header { margin-bottom: 40px; }
+.section-tag {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.section-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 720px;
+  line-height: 1.8;
+}
+
+/* ====== 卡片网格 ====== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.scene-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: all 0.25s;
+}
+.scene-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.scene-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+.scene-card-icon.red { background: var(--accent-bg); }
+.scene-card-icon.green { background: var(--green-bg); }
+.scene-card-icon.blue { background: var(--blue-bg); }
+.scene-card-icon.gold { background: var(--gold-bg); }
+.scene-card h3 {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.scene-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ====== Tab 切换 ====== */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  font-family: var(--font-sans);
+}
+.tab-btn:hover { color: var(--text); border-color: var(--accent-light); }
+.tab-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.tab-panel {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.tab-panel.active { display: block; }
+.tab-panel h4 {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.tab-panel p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+.tab-panel .highlight-box {
+  background: var(--accent-bg);
+  border-left: 3px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 16px 0;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.7;
+}
+.tab-panel .code-inline {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-warm);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+/* ====== 卡片轮播 ====== */
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  flex: 1;
+  padding: 8px 0;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.25s;
+}
+.carousel-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.carousel-card .priority-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+.priority-badge.p0 { background: var(--accent-bg); color: var(--accent); }
+.priority-badge.p1 { background: var(--blue-bg); color: var(--blue); }
+.priority-badge.p2 { background: var(--gold-bg); color: var(--gold); }
+.carousel-card h4 {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.carousel-card .card-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.carousel-card .card-quote {
+  font-size: 12px;
+  color: var(--text-light);
+  font-style: italic;
+  padding: 10px 12px;
+  background: var(--bg-warm);
+  border-radius: var(--radius-sm);
+  line-height: 1.6;
+}
+.carousel-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  color: var(--text-muted);
+}
+.carousel-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ====== 可折叠代码块 ====== */
+.collapsible-code {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin: 12px 0;
+}
+.collapsible-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  cursor: pointer;
+  background: var(--bg-warm);
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+  user-select: none;
+}
+.collapsible-code-header:hover { background: var(--border); }
+.collapsible-code-header h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.collapsible-code-header .toggle-icon {
+  font-size: 12px;
+  transition: transform 0.2s;
+  color: var(--text-muted);
+}
+.collapsible-code-header .toggle-icon.open { transform: rotate(90deg); }
+.collapsible-code-body {
+  display: none;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+}
+.collapsible-code-body.open { display: block; }
+.rule-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  font-family: var(--font-mono);
+}
+.rule-badge.ban { background: var(--accent-bg); color: var(--accent); }
+.rule-badge.hab { background: var(--gold-bg); color: var(--gold); }
+.code-block {
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text);
+  overflow-x: auto;
+  margin: 0;
+}
+.code-block .forbidden { color: var(--accent); }
+.code-block .correct { color: var(--green); }
+
+/* ====== 表格 ====== */
+.comparison-table {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  overflow-x: auto;
+}
+.comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 13px;
+}
+th, td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  font-weight: 600;
+  color: var(--text);
+  background: var(--bg-warm);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  position: sticky;
+  top: 0;
+}
+td { color: var(--text-muted); }
+tr:last-child td { border-bottom: none; }
+td code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-warm);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+/* ====== 可折叠树 ====== */
+.collapsible-tree {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  line-height: 1.9;
+}
+.tree-item { margin: 2px 0; }
+.tree-toggle {
+  display: inline-block;
+  width: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  color: var(--text-muted);
+  user-select: none;
+}
+.tree-toggle.open { transform: rotate(90deg); }
+.tree-children {
+  display: none;
+  margin-left: 20px;
+  padding-left: 12px;
+  border-left: 1px solid var(--border);
+}
+.tree-children.open { display: block; }
+.tree-folder { color: var(--blue); font-weight: 500; }
+.tree-file { color: var(--text); }
+.tree-comment { color: var(--text-light); margin-left: 8px; font-style: italic; }
+
+/* ====== 命名规范表格 ====== */
+.naming-table {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  overflow-x: auto;
+}
+.naming-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 13px;
+}
+.naming-table th {
+  background: var(--bg-warm);
+  position: sticky;
+  top: 0;
+}
+.naming-table td code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-warm);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.naming-table .warning-row td {
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ====== 页脚 ====== */
+.footer {
+  text-align: center;
+  padding: 32px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-light);
+}
+.footer span { color: var(--accent); font-weight: 600; }
+
+/* ====== 手机端适配 ====== */
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; gap: 16px; }
+  .hero { padding: 48px 16px 40px; }
+  .section { padding: 40px 16px; }
+  .hero-stats { gap: 24px; }
+  .card-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .scene-card { padding: 18px; }
+  .scene-card-icon { width: 34px; height: 34px; font-size: 16px; margin-bottom: 10px; }
+  .scene-card h3 { font-size: 14px; }
+  .scene-card p { font-size: 12px; }
+
+  /* Tab 按钮横向滑动 */
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-panel { padding: 18px; }
+
+  /* 轮播 */
+  .carousel-container { padding: 0; }
+  .carousel-btn { display: none; }
+  .carousel-card { flex: 0 0 85vw; }
+
+  /* 树形 */
+  .collapsible-tree { font-size: 12px; padding: 16px; }
+  .tree-children { margin-left: 16px; padding-left: 8px; }
+
+  /* 表格转卡片 */
+  .comparison-table table,
+  .naming-table table { display: block; }
+  .comparison-table thead,
+  .naming-table thead { display: none; }
+  .comparison-table tbody,
+  .naming-table tbody { display: block; }
+  .comparison-table tr,
+  .naming-table tr {
+    display: block;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    background: var(--bg);
+  }
+  .comparison-table td,
+  .naming-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: none;
+    font-size: 14px;
+  }
+  .comparison-table td::before,
+  .naming-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text);
+    margin-right: 12px;
+    flex-shrink: 0;
+    font-size: 13px;
+  }
+  .naming-table .warning-row td {
+    background: transparent;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 16px; }
+  .hero-stat-num { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ====== 导航栏 ====== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">TRAE-Rule 4.0</div>
+    <div class="nav-links">
+      <a href="#scenes" class="nav-link" data-section="scenes">核心场景</a>
+      <a href="#architecture" class="nav-link" data-section="architecture">PC 域架构</a>
+      <a href="#revisit" class="nav-link" data-section="revisit">深度回访</a>
+      <a href="#banhab" class="nav-link" data-section="banhab">BAN/HAB</a>
+      <a href="#deps" class="nav-link" data-section="deps">环境检测</a>
+      <a href="#index" class="nav-link" data-section="index">详细层索引</a>
+      <a href="#naming" class="nav-link" data-section="naming">命名规范</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ====== Hero ====== -->
+<header class="hero">
+  <div class="hero-badge">4.0 核心层</div>
+  <h1>TRAE-Rule <span>4.0</span></h1>
+  <p class="hero-desc">PC 域化架构 · 全局强制规则 · Agent 协作体系<br>所有 AGENT 对话的行为准则，详细层按需加载，核心层常驻注入</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">8</div>
+      <div class="hero-stat-label">核心场景</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">11</div>
+      <div class="hero-stat-label">详细层</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">5+4</div>
+      <div class="hero-stat-label">BAN + HAB</div>
+    </div>
+  </div>
+</header>
+
+<!-- ====== Section 1: 八大核心场景 ====== -->
+<section class="section" id="scenes">
+  <div class="section-header">
+    <div class="section-tag">Core Scenarios</div>
+    <h2 class="section-title">八大核心场景</h2>
+    <p class="section-desc">TRAE-Rule 4.0 覆盖 Agent 协作全链路，从回访衔接到编码安全，从虫洞统筹到日志追溯。</p>
+  </div>
+  <div class="card-grid">
+    <div class="scene-card">
+      <div class="scene-card-icon red">&#128172;</div>
+      <h3>回访衔接</h3>
+      <p>深度回访弹窗，创造力触发，任务无缝衔接</p>
+    </div>
+    <div class="scene-card">
+      <div class="scene-card-icon red">&#128274;</div>
+      <h3>编码安全</h3>
+      <p>BAN/HAB 标签系统防止不可逆损坏</p>
+    </div>
+    <div class="scene-card">
+      <div class="scene-card-icon blue">&#128301;</div>
+      <h3>虫洞统筹</h3>
+      <p>PC 域化架构，Symlink 注入系统提示词</p>
+    </div>
+    <div class="scene-card">
+      <div class="scene-card-icon green">&#128221;</div>
+      <h3>日志体系</h3>
+      <p>全局+脚本双层日志，工作可追溯</p>
+    </div>
+    <div class="scene-card">
+      <div class="scene-card-icon gold">&#9889;</div>
+      <h3>技能体系</h3>
+      <p>30 个字母化技能目录，一处更新全局生效</p>
+    </div>
+    <div class="scene-card">
+      <div class="scene-card-icon blue">&#9881;</div>
+      <h3>脚本体系</h3>
+      <p>一体化运行系统，7段结构</p>
+    </div>
+    <div class="scene-card">
+      <div class="scene-card-icon green">&#128230;</div>
+      <h3>BAK 机制</h3>
+      <p>不删除、归类保留、虫洞化汇聚</p>
+    </div>
+    <div class="scene-card">
+      <div class="scene-card-icon gold">&#128203;</div>
+      <h3>占用待办</h3>
+      <p>文件占用时 BAK 化+待办+回访联动</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Section 2: PC 域化架构 ====== -->
+<section class="section" id="architecture">
+  <div class="section-header">
+    <div class="section-tag">Architecture</div>
+    <h2 class="section-title">PC 域化架构</h2>
+    <p class="section-desc">4.0 核心虫洞：C:\Users\PC → Z:\PC\ → Z:\XiangMu-KongJian\，独立用户域，等效于 Z 盘化。</p>
+  </div>
+  <div class="tabs" id="archTabs">
+    <button class="tab-btn active" data-tab="mapping">三层映射</button>
+    <button class="tab-btn" data-tab="detection">动态检测</button>
+    <button class="tab-btn" data-tab="wormhole">虫洞化汇聚</button>
+  </div>
+  <div class="tab-panel active" id="tab-mapping">
+    <h4>三层映射架构</h4>
+    <p>PC 域 = 独立用户域，等效于 Z 盘化（盘符固定 + 用户名固定）。所有应用通过 PC 域自动获得正确的环境变量和路径，C 盘只留一个 Symlink：C:\Users\PC → Z:\PC\，其余全部自动生效。</p>
+    <div class="comparison-table" style="margin-top:16px;">
+      <table>
+        <tr>
+          <th>层级</th>
+          <th>移动盘位置</th>
+          <th>Windows 映射</th>
+          <th>职责</th>
+        </tr>
+        <tr>
+          <td data-label="层级">用户配置层</td>
+          <td data-label="移动盘位置"><code>Z:\PC\</code></td>
+          <td data-label="Windows 映射"><code>C:\Users\PC\</code></td>
+          <td data-label="职责">用户域数据（dotfile + 系统目录）</td>
+        </tr>
+        <tr>
+          <td data-label="层级">漫游数据层</td>
+          <td data-label="移动盘位置"><code>credentials\{账号}\Roaming-*</code></td>
+          <td data-label="Windows 映射"><code>C:\Users\{用户}\AppData\Roaming</code></td>
+          <td data-label="职责">应用漫游数据</td>
+        </tr>
+        <tr>
+          <td data-label="层级">应用管理层</td>
+          <td data-label="移动盘位置"><code>Z:\XiangMu-KongJian\</code></td>
+          <td data-label="Windows 映射"><code>盘符\多层级散落\{APPNAME}</code></td>
+          <td data-label="职责">应用关联文件</td>
+        </tr>
+      </table>
+    </div>
+    <div class="highlight-box">
+      &#9888;&#65039; Z:\PC\ 与 Z:\XiangMu-KongJian\ 是同级目录，不是父子关系！<br>
+      &#10060; <code>Z:\XiangMu-KongJian\PC\.rizhi\</code>（错误）<br>
+      &#9989; <code>Z:\PC\.rizhi\</code>（正确）
+    </div>
+  </div>
+  <div class="tab-panel" id="tab-detection">
+    <h4>动态检测（五变量，禁止硬编码）</h4>
+    <p>所有脚本必须通过动态检测获取环境变量，禁止硬编码盘符、用户名等值。Z盘化后盘符稳定命中 Z:。</p>
+    <div class="comparison-table" style="margin-top:16px;">
+      <table>
+        <tr>
+          <th>变量</th>
+          <th>获取方式</th>
+        </tr>
+        <tr>
+          <td data-label="变量">盘符</td>
+          <td data-label="获取方式">Z→D 倒序遍历找 XiangMu-KongJian</td>
+        </tr>
+        <tr>
+          <td data-label="变量">用户名</td>
+          <td data-label="获取方式"><code>$env:USERNAME</code></td>
+        </tr>
+        <tr>
+          <td data-label="变量">机器名</td>
+          <td data-label="获取方式"><code>$env:COMPUTERNAME</code></td>
+        </tr>
+        <tr>
+          <td data-label="变量">Node.js</td>
+          <td data-label="获取方式"><code>Get-ChildItem "$ProjectRoot\node\node-v*" -Directory | Select-Object -First 1</code></td>
+        </tr>
+        <tr>
+          <td data-label="变量">PC 域</td>
+          <td data-label="获取方式"><code>C:\Users\PC</code> → <code>Z:\PC\</code></td>
+        </tr>
+      </table>
+    </div>
+    <div class="highlight-box">
+      ProcessStartInfo 注入（启动应用必须）：<br>
+      USERPROFILE = C:\Users\PC<br>
+      APPDATA = C:\Users\PC\AppData\Roaming<br>
+      LOCALAPPDATA = C:\Users\PC\AppData\Local
+    </div>
+  </div>
+  <div class="tab-panel" id="tab-wormhole">
+    <h4>虫洞化汇聚</h4>
+    <p>总控通过 Symlink 汇聚各项目数据。一处更新全局生效——项目实体随项目走，总控只持有 Symlink 指向。</p>
+    <div class="comparison-table" style="margin-top:16px;">
+      <table>
+        <tr>
+          <th>总控目录</th>
+          <th>功能</th>
+          <th>说明</th>
+        </tr>
+        <tr>
+          <td data-label="总控目录"><code>Z:\PC\.rizhi\</code></td>
+          <td data-label="功能">日志总控</td>
+          <td data-label="说明">Symlink 指向项目目录下的实体，不持有数据</td>
+        </tr>
+        <tr>
+          <td data-label="总控目录"><code>Z:\PC\.jiaoben\</code></td>
+          <td data-label="功能">脚本快速调用</td>
+          <td data-label="说明">Symlink 指向项目 JiaoBen 目录</td>
+        </tr>
+        <tr>
+          <td data-label="总控目录"><code>Z:\PC\.agents\</code></td>
+          <td data-label="功能">技能体系</td>
+          <td data-label="说明">30 个字母化技能目录，唯一真实数据源</td>
+        </tr>
+        <tr>
+          <td data-label="总控目录"><code>Z:\PC\ZhiShi-TuPu\</code></td>
+          <td data-label="功能">知识图谱总控</td>
+          <td data-label="说明">一站式查阅，断链无需维护</td>
+        </tr>
+      </table>
+    </div>
+    <div class="highlight-box">
+      5.0 虫洞命名逻辑：目录 <code>.全小写拼音</code>，文件 <code>{AppName}-PascalCase拼音</code><br>
+      删除项目 → 实体自然消失 → 总控 Symlink 断链 → 苍穹自动标记"已卸载" → 零维护
+    </div>
+  </div>
+</section>
+
+<!-- ====== Section 3: 深度回访 ====== -->
+<section class="section" id="revisit">
+  <div class="section-header">
+    <div class="section-tag">Deep Revisit</div>
+    <h2 class="section-title">深度回访</h2>
+    <p class="section-desc">回访弹窗不是"任务结束的仪式"，而是"下一轮深化的入口"。选项本身就是提示词——用户点一下，Agent 直接进入对应模式。</p>
+  </div>
+  <div class="carousel-container" id="revisitCarousel">
+    <button class="carousel-btn prev" onclick="scrollCarousel('revisitCarousel', -300)">&#8249;</button>
+    <div class="carousel-track">
+      <div class="carousel-card">
+        <span class="priority-badge p0">P0 高频</span>
+        <h4>推到边界</h4>
+        <p class="card-desc">把当前成果推到极限，问"如果做到极致会怎样"</p>
+        <div class="card-quote">"把这份架构推到极限——如果用户量增长1000倍，哪一层最先崩？"</div>
+      </div>
+      <div class="carousel-card">
+        <span class="priority-badge p0">P0 高频</span>
+        <h4>找矛盾</h4>
+        <p class="card-desc">检视当前方案/成果的内在张力</p>
+        <div class="card-quote">"这份架构有没有内在矛盾？比如'简洁'和'可扩展'之间是否冲突？"</div>
+      </div>
+      <div class="carousel-card">
+        <span class="priority-badge p0">P0 高频</span>
+        <h4>往下挖</h4>
+        <p class="card-desc">当前方向对但太浅，深入一层</p>
+        <div class="card-quote">"这个 bug 的根因是什么？修掉的是症状还是病因？"</div>
+      </div>
+      <div class="carousel-card">
+        <span class="priority-badge p1">P1 中频</span>
+        <h4>反直觉</h4>
+        <p class="card-desc">找一个和当前方向相反的结论</p>
+        <div class="card-quote">"有没有可能这个 bug 其实暴露了一个被忽略的需求？"</div>
+      </div>
+      <div class="carousel-card">
+        <span class="priority-badge p1">P1 中频</span>
+        <h4>回原点</h4>
+        <p class="card-desc">从零重新审视当前问题</p>
+        <div class="card-quote">"抛开 GIL，如果从零设计 Python 的并发模型，你会怎么做？"</div>
+      </div>
+      <div class="carousel-card">
+        <span class="priority-badge p2">P2 低频</span>
+        <h4>换立场</h4>
+        <p class="card-desc">切换到另一个角色看当前问题</p>
+        <div class="card-quote">"站在触发这个 bug 的用户角度，他真正想要的是什么？"</div>
+      </div>
+      <div class="carousel-card">
+        <span class="priority-badge p2">P2 低频</span>
+        <h4>换隐喻</h4>
+        <p class="card-desc">用比喻重新描述当前问题</p>
+        <div class="card-quote">"如果用交通系统来比喻 GIL，它是什么？红绿灯？单行道？收费站？"</div>
+      </div>
+    </div>
+    <button class="carousel-btn next" onclick="scrollCarousel('revisitCarousel', 300)">&#8250;</button>
+  </div>
+</section>
+
+<!-- ====== Section 4: BAN/HAB 速查 ====== -->
+<section class="section" id="banhab">
+  <div class="section-header">
+    <div class="section-tag">Coding Safety</div>
+    <h2 class="section-title">BAN/HAB 速查</h2>
+    <p class="section-desc">BAN = 不可逆损坏，零容忍；HAB = Agent 坏习惯，3次+重复需纠正。</p>
+  </div>
+
+  <h3 style="font-family:var(--font-serif);font-size:18px;margin-bottom:16px;color:var(--accent);">&#128683; BAN 禁止规则</h3>
+
+  <div class="collapsible-code">
+    <div class="collapsible-code-header" onclick="toggleCode(this)">
+      <h4><span class="toggle-icon">&#9654;</span> <span class="rule-badge ban">BAN-001</span> 禁止 PowerShell Set-Content 写中文</h4>
+    </div>
+    <div class="collapsible-code-body">
+      <div class="code-block">
+<span class="forbidden">&#10060; Set-Content -Path "config.json" -Value $jsonContent</span>  <span class="forbidden"># 原始字节永久丢失</span>
+<span class="correct">&#9989; Node.js: fs.writeFileSync(path, data, 'utf8')</span>  <span class="correct"># 必须用 Node.js</span>
+<span class="correct">&#9989; 回退: [System.IO.File]::WriteAllText($path, $content, [System.Text.UTF8Encoding]::new($true))</span></div>
+    </div>
+  </div>
+
+  <div class="collapsible-code">
+    <div class="collapsible-code-header" onclick="toggleCode(this)">
+      <h4><span class="toggle-icon">&#9654;</span> <span class="rule-badge ban">BAN-002</span> 禁止 Set-Content 修改脚本文件</h4>
+    </div>
+    <div class="collapsible-code-body">
+      <div class="code-block">
+<span class="forbidden">&#10060; Set-Content -Path "script.ps1" -Value $newContent</span>
+<span class="correct">&#9989; 必须用 SearchReplace 工具（Edit tool）修改脚本文件</span></div>
+    </div>
+  </div>
+
+  <div class="collapsible-code">
+    <div class="collapsible-code-header" onclick="toggleCode(this)">
+      <h4><span class="toggle-icon">&#9654;</span> <span class="rule-badge ban">BAN-003</span> 禁止 $env: + Start-Process 注入环境变量</h4>
+    </div>
+    <div class="collapsible-code-body">
+      <div class="code-block">
+<span class="forbidden">&#10060; $env:USERPROFILE = "C:\Users\PC"; Start-Process $exe</span>  <span class="forbidden"># 环境变量泄漏到父进程</span>
+<span class="correct">&#9989; $psi = [System.Diagnostics.ProcessStartInfo]::new($exe)</span>
+<span class="correct">   $psi.EnvironmentVariables["USERPROFILE"] = "C:\Users\PC"</span>
+<span class="correct">   [System.Diagnostics.Process]::Start($psi)</span></div>
+    </div>
+  </div>
+
+  <div class="collapsible-code">
+    <div class="collapsible-code-header" onclick="toggleCode(this)">
+      <h4><span class="toggle-icon">&#9654;</span> <span class="rule-badge ban">BAN-004</span> 禁止 Junction (mklink /D)</h4>
+    </div>
+    <div class="collapsible-code-body">
+      <div class="code-block">
+<span class="forbidden">&#10060; cmd /c mklink /D "C:\link" "Z:\target"</span>  <span class="forbidden"># Junction 不支持相对路径、跨盘符行为异常</span>
+<span class="correct">&#9989; New-Item -ItemType SymbolicLink -Path "C:\link" -Target "Z:\target"</span>
+<span class="correct">&#9989; cmd /c mklink "C:\link" "Z:\target"</span>  <span class="correct"># 无 /D = SymbolicLink</span></div>
+    </div>
+  </div>
+
+  <div class="collapsible-code">
+    <div class="collapsible-code-header" onclick="toggleCode(this)">
+      <h4><span class="toggle-icon">&#9654;</span> <span class="rule-badge ban">BAN-005</span> 禁止双引号中 ${Var}: 不加 ${}</h4>
+    </div>
+    <div class="collapsible-code-body">
+      <div class="code-block">
+<span class="forbidden">&#10060; "$AppName: OK"</span>  <span class="forbidden"># 解析阶段语法错误，脚本闪退</span>
+<span class="correct">&#9989; "${AppName}: OK"</span>  <span class="correct"># 变量后紧跟冒号等非变量名字符必须用 ${}</span></div>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--font-serif);font-size:18px;margin:32px 0 16px;color:var(--gold);">&#9888;&#65039; HAB 坏习惯</h3>
+
+  <div class="collapsible-code">
+    <div class="collapsible-code-header" onclick="toggleCode(this)">
+      <h4><span class="toggle-icon">&#9654;</span> <span class="rule-badge hab">HAB-001</span> 默认用 PowerShell 处理中文文本</h4>
+    </div>
+    <div class="collapsible-code-body">
+      <div class="code-block">
+<span class="forbidden">&#10060; Get-Content / Set-Content 处理中文 JSON/文本</span>
+<span class="correct">&#9989; 一律用 Node.js（fs.writeFileSync + utf8）</span></div>
+    </div>
+  </div>
+
+  <div class="collapsible-code">
+    <div class="collapsible-code-header" onclick="toggleCode(this)">
+      <h4><span class="toggle-icon">&#9654;</span> <span class="rule-badge hab">HAB-002</span> 默认用 mklink /D 创建 Junction</h4>
+    </div>
+    <div class="collapsible-code-body">
+      <div class="code-block">
+<span class="forbidden">&#10060; mklink /D → Junction</span>
+<span class="correct">&#9989; 用 New-SafeSymLink 或 mklink（无 /D）→ SymbolicLink</span></div>
+    </div>
+  </div>
+
+  <div class="collapsible-code">
+    <div class="collapsible-code-header" onclick="toggleCode(this)">
+      <h4><span class="toggle-icon">&#9654;</span> <span class="rule-badge hab">HAB-003</span> 默认 dot-source 在函数调用之后</h4>
+    </div>
+    <div class="collapsible-code-body">
+      <div class="code-block">
+<span class="forbidden">&#10060; Invoke-MyFunc; . .\lib.ps1</span>  <span class="forbidden"># 函数未定义就调用</span>
+<span class="correct">&#9989; . .\lib.ps1; Invoke-MyFunc</span>  <span class="correct"># 先 dot-source 再调用</span></div>
+    </div>
+  </div>
+
+  <div class="collapsible-code">
+    <div class="collapsible-code-header" onclick="toggleCode(this)">
+      <h4><span class="toggle-icon">&#9654;</span> <span class="rule-badge hab">HAB-004</span> 默认用 robocopy /MOVE 一步到位</h4>
+    </div>
+    <div class="collapsible-code-body">
+      <div class="code-block">
+<span class="forbidden">&#10060; robocopy /MOVE（复制+删除一步完成，失败时数据丢失）</span>
+<span class="correct">&#9989; 先 robocopy 复制 → 验证文件完整性 → 再删除源目录</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Section 5: 环境依赖前置检测 ====== -->
+<section class="section" id="deps">
+  <div class="section-header">
+    <div class="section-tag">Dependencies</div>
+    <h2 class="section-title">环境依赖前置检测</h2>
+    <p class="section-desc">Agent 遇到相关任务时必须先检测，不可假设已安装。缺失时通过回访告知用户，Agent 可代为执行。</p>
+  </div>
+  <div class="comparison-table">
+    <table>
+      <tr>
+        <th>依赖项</th>
+        <th>检测方式</th>
+        <th>缺失时处理</th>
+      </tr>
+      <tr>
+        <td data-label="依赖项">Node.js</td>
+        <td data-label="检测方式"><code>node --version</code></td>
+        <td data-label="缺失时处理">回访告知用户，Agent 代为安装</td>
+      </tr>
+      <tr>
+        <td data-label="依赖项">Symlink 权限</td>
+        <td data-label="检测方式"><code>whoami /priv | findstr SeCreateSymbolicLinkPrivilege</code></td>
+        <td data-label="缺失时处理">告知需管理员授权，Agent 代为执行</td>
+      </tr>
+      <tr>
+        <td data-label="依赖项">长路径支持</td>
+        <td data-label="检测方式">注册表 LongPathsEnabled</td>
+        <td data-label="缺失时处理">告知需开启，Agent 代为执行</td>
+      </tr>
+      <tr>
+        <td data-label="依赖项">开发者模式</td>
+        <td data-label="检测方式">Windows 设置 &gt; 开发者选项</td>
+        <td data-label="缺失时处理">Symlink 权限替代方案</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ====== Section 6: 详细层索引 ====== -->
+<section class="section" id="index">
+  <div class="section-header">
+    <div class="section-tag">Reference Index</div>
+    <h2 class="section-title">详细层索引</h2>
+    <p class="section-desc">核心层常驻注入，详细层按需加载。触发词匹配时读取 references/ 下对应文件。</p>
+  </div>
+  <div class="collapsible-tree" id="refTree">
+    <div class="tree-item" onclick="toggleTree(this)">
+      <span class="tree-toggle open">&#9654;</span>
+      <span class="tree-folder">TRAE-Rule/</span>
+      <div class="tree-children open">
+        <div><span class="tree-file">SKILL.md</span><span class="tree-comment"># 核心层（常驻注入）</span></div>
+        <div class="tree-item" onclick="toggleTree(this)">
+          <span class="tree-toggle open">&#9654;</span>
+          <span class="tree-folder">references/</span>
+          <span class="tree-comment"># 详细层（按需加载）</span>
+          <div class="tree-children open">
+            <div><span class="tree-file">00-shenDu-huiFang.md</span><span class="tree-comment"># 深度回访模式</span></div>
+            <div><span class="tree-file">01-architecture.md</span><span class="tree-comment"># 4.0架构+三层映射+Z盘化</span></div>
+            <div><span class="tree-file">02-yiti-script.md</span><span class="tree-comment"># 7段结构+一体化脚本</span></div>
+            <div><span class="tree-file">03-symlink.md</span><span class="tree-comment"># Symlink+权限+credentials</span></div>
+            <div><span class="tree-file">04-coding-safety.md</span><span class="tree-comment"># 编码铁律+BAN/HAB</span></div>
+            <div><span class="tree-file">05-bak-mechanism.md</span><span class="tree-comment"># BAK机制+生命周期</span></div>
+            <div><span class="tree-file">06-workflow.md</span><span class="tree-comment"># 文档归类+脚本注册表</span></div>
+            <div><span class="tree-file">07-quality.md</span><span class="tree-comment"># 子代理派发+质量</span></div>
+            <div><span class="tree-file">08-operations.md</span><span class="tree-comment"># 日志+风险+备份策略</span></div>
+            <div><span class="tree-file">09-cangqiong.md</span><span class="tree-comment"># 苍穹四层架构</span></div>
+            <div><span class="tree-file">10-identity.md</span><span class="tree-comment"># 身份+灵魂+记忆</span></div>
+            <div><span class="tree-file">11-fenxing-jiagou.md</span><span class="tree-comment"># 分形+虫洞化（5.0）</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Section 7: 命名规范 ====== -->
+<section class="section" id="naming">
+  <div class="section-header">
+    <div class="section-tag">Naming Convention</div>
+    <h2 class="section-title">命名规范</h2>
+    <p class="section-desc">P0 强制规范，违反 = 苍穹无法发现应用。{AppName} 必须与 CangQiong-XiangMu.json 中的 name 字段一致。</p>
+  </div>
+  <div class="naming-table">
+    <table>
+      <tr>
+        <th>文件类型</th>
+        <th>命名格式</th>
+        <th>示例</th>
+      </tr>
+      <tr>
+        <td data-label="文件类型">一体化脚本</td>
+        <td data-label="命名格式"><code>{AppName}-YiTi.ps1</code></td>
+        <td data-label="示例"><code>QClaw-YiTi.ps1</code></td>
+      </tr>
+      <tr>
+        <td data-label="文件类型">一体化启动器</td>
+        <td data-label="命名格式"><code>{AppName}-YiTi.bat</code></td>
+        <td data-label="示例"><code>QClaw-YiTi.bat</code></td>
+      </tr>
+      <tr>
+        <td data-label="文件类型">隐藏启动器</td>
+        <td data-label="命名格式"><code>{AppName}-YiTi-Hidden.vbs</code></td>
+        <td data-label="示例"><code>QClaw-YiTi-Hidden.vbs</code></td>
+      </tr>
+      <tr>
+        <td data-label="文件类型">脚本日志</td>
+        <td data-label="命名格式"><code>JiaoBen-RiZhi.md</code></td>
+        <td data-label="示例"><code>JiaoBen-RiZhi.md</code></td>
+      </tr>
+      <tr>
+        <td data-label="文件类型">项目注册</td>
+        <td data-label="命名格式"><code>CangQiong-XiangMu.json</code></td>
+        <td data-label="示例"><code>CangQiong-XiangMu.json</code></td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer class="footer">
+  <p>TRAE-Rule <span>4.0</span> — PC 域化架构 · 全局强制规则 | 最后更新 2026-06-11</p>
+</footer>
+
+<script>
+// 1. 导航滚动高亮
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function() {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+var navLinks = document.querySelectorAll('.nav-link');
+var sections = document.querySelectorAll('.section');
+function updateActiveNav() {
+  var current = '';
+  sections.forEach(function(section) {
+    var top = section.offsetTop - 100;
+    if (window.scrollY >= top) current = section.id;
+  });
+  navLinks.forEach(function(link) {
+    link.classList.toggle('active', link.dataset.section === current);
+  });
+}
+window.addEventListener('scroll', updateActiveNav);
+
+// 2. Tab 切换
+var archTabs = document.getElementById('archTabs');
+if (archTabs) {
+  var tabButtons = archTabs.querySelectorAll('.tab-btn');
+  var panels = document.querySelectorAll('#architecture .tab-panel');
+  tabButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var targetTab = this.dataset.tab;
+      tabButtons.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      panels.forEach(function(panel) {
+        panel.classList.toggle('active', panel.id === 'tab-' + targetTab);
+      });
+    });
+  });
+}
+
+// 3. 轮播滚动
+function scrollCarousel(id, amount) {
+  var track = document.querySelector('#' + id + ' .carousel-track');
+  if (track) track.scrollBy({ left: amount, behavior: 'smooth' });
+}
+
+// 4. 树形折叠
+function toggleTree(el) {
+  var toggle = el.querySelector('.tree-toggle');
+  var children = el.querySelector(':scope > .tree-children');
+  if (children) {
+    children.classList.toggle('open');
+    if (toggle) toggle.classList.toggle('open');
+  }
+}
+
+// 5. 可折叠代码块
+function toggleCode(header) {
+  var parent = header.parentElement;
+  var body = parent.querySelector('.collapsible-code-body');
+  var icon = header.querySelector('.toggle-icon');
+  if (body) body.classList.toggle('open');
+  if (icon) icon.classList.toggle('open');
+}
+</script>
+</body>
+</html>
