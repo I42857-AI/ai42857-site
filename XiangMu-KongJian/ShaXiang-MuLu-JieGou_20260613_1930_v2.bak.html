@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沙箱环境目录结构 v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f5;
+  --bg-warm: #f5f0e8;
+  --bg-card: #fffdf9;
+  --text: #2c2420;
+  --text-muted: #7a6e66;
+  --text-light: #a89888;
+  --accent: #c45d3e;
+  --accent-light: #e8a08a;
+  --accent-bg: #fdf0ea;
+  --green: #4a7c59;
+  --green-bg: #e8f3ea;
+  --blue: #3d6b8e;
+  --blue-bg: #e5f0f7;
+  --gold: #b8860b;
+  --gold-bg: #fdf6e3;
+  --border: #e8e0d6;
+  --shadow: 0 1px 3px rgba(44,36,32,0.06), 0 4px 12px rgba(44,36,32,0.04);
+  --shadow-lg: 0 4px 20px rgba(44,36,32,0.08), 0 8px 32px rgba(44,36,32,0.04);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font-serif: 'Noto Serif SC', Georgia, serif;
+  --font-sans: 'Noto Sans SC', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(250,248,245,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-brand {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.hero {
+  margin-top: 56px;
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--bg-warm) 0%, var(--accent-bg) 50%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.hero .version-badge {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.35rem 1rem;
+  background: var(--accent);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-title .icon {
+  font-size: 1.4rem;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.arch-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 2rem 1rem;
+}
+
+.arch-box {
+  width: 100%;
+  max-width: 560px;
+  border-radius: var(--radius);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.arch-box:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.arch-box.datasource {
+  background: linear-gradient(135deg, #fff5f0, #ffe8dd);
+  border: 2px solid var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.arch-box.entity {
+  background: linear-gradient(135deg, #e8f3ea, #d5ead9);
+  border: 2px solid var(--green);
+  box-shadow: var(--shadow);
+}
+
+.arch-box.wormhole {
+  background: linear-gradient(135deg, #e5f0f7, #d0e2f0);
+  border: 2px solid var(--blue);
+  box-shadow: var(--shadow);
+}
+
+.arch-box .box-title {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  word-break: break-all;
+}
+
+.arch-box.datasource .box-title { color: var(--accent); }
+.arch-box.entity .box-title { color: var(--green); }
+.arch-box.wormhole .box-title { color: var(--blue); }
+
+.arch-box .box-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.arch-box .box-label {
+  position: absolute;
+  top: -12px;
+  left: 1.5rem;
+  padding: 0.15rem 0.75rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.arch-box.datasource .box-label {
+  background: var(--accent);
+  color: white;
+}
+
+.arch-box.entity .box-label {
+  background: var(--green);
+  color: white;
+}
+
+.arch-box.wormhole .box-label {
+  background: var(--blue);
+  color: white;
+}
+
+.arch-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.arch-arrow .arrow-line {
+  width: 2px;
+  height: 24px;
+  background: var(--text-light);
+}
+
+.arch-arrow .arrow-head {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid var(--text-light);
+}
+
+.arch-arrow .arrow-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 0.25rem;
+  white-space: nowrap;
+}
+
+.tree-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.tree-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-warm);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.tree-search {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  background: white;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.tree-search:focus {
+  border-color: var(--accent);
+}
+
+.tree-search::placeholder {
+  color: var(--text-light);
+}
+
+.tree-btn {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: white;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tree-btn:hover {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-color: var(--accent-light);
+}
+
+.tree-content {
+  padding: 0.75rem 0;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.tree-node {
+  user-select: none;
+}
+
+.tree-node-row {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem 1.25rem;
+  padding-left: calc(1.25rem + var(--depth, 0) * 1.5rem);
+  cursor: pointer;
+  transition: background 0.15s;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  line-height: 1.8;
+}
+
+.tree-node-row:hover {
+  background: var(--bg-warm);
+}
+
+.tree-toggle {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: var(--text-light);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.tree-toggle.expanded {
+  transform: rotate(90deg);
+}
+
+.tree-toggle.leaf {
+  visibility: hidden;
+}
+
+.tree-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.tree-name {
+  color: var(--text);
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.tree-name.dir-name {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.tree-name.file-name {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.tree-name.symlink-name {
+  color: var(--blue);
+  font-weight: 500;
+}
+
+.tree-count {
+  color: var(--text-light);
+  font-size: 0.75rem;
+  margin-left: 0.3rem;
+}
+
+.tree-symlink-target {
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  margin-left: 0.5rem;
+  opacity: 0.8;
+}
+
+.tree-badge {
+  display: inline-block;
+  padding: 0.05rem 0.45rem;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+.tree-badge.green {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.tree-badge.gold {
+  background: var(--gold-bg);
+  color: var(--gold);
+}
+
+.tree-badge.blue {
+  background: var(--blue-bg);
+  color: var(--blue);
+}
+
+.tree-children {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.tree-children.collapsed {
+  max-height: 0 !important;
+}
+
+.tree-node-row.symlink-row {
+  border-left: 3px solid var(--blue);
+  background: var(--blue-bg);
+  margin-left: 0.5rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.tree-node-row.symlink-row:hover {
+  background: #d5e5f0;
+}
+
+.tree-node.hidden { display: none; }
+
+.mapping-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.mapping-table thead {
+  background: var(--bg-warm);
+}
+
+.mapping-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text);
+  border-bottom: 2px solid var(--border);
+}
+
+.mapping-table td {
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.mapping-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.mapping-table tbody tr:hover {
+  background: var(--bg-warm);
+}
+
+.mapping-table .path {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+.mapping-table .status {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status.synced {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.status.created {
+  background: var(--blue-bg);
+  color: var(--blue);
+}
+
+.status.restored {
+  background: var(--gold-bg);
+  color: var(--gold);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0.35rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: white;
+}
+
+.timeline-item.cleanup::before {
+  border-color: var(--green);
+}
+
+.timeline-item.version::before {
+  border-color: var(--blue);
+  background: var(--blue);
+}
+
+.timeline-item .tl-version {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.timeline-item.cleanup .tl-version {
+  color: var(--green);
+}
+
+.timeline-item.version .tl-version {
+  color: var(--blue);
+}
+
+.timeline-item .tl-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .nav { padding: 0 1rem; gap: 1rem; }
+  .nav-links { gap: 1rem; }
+  .hero { padding: 3rem 1rem 2rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .section { padding: 2rem 1rem; }
+  .arch-box { padding: 1rem 1.25rem; }
+  .tree-node-row { padding-left: calc(0.75rem + var(--depth, 0) * 1.2rem); }
+}
+
+html { scroll-behavior: smooth; }
+
+.tree-content::-webkit-scrollbar { width: 6px; }
+.tree-content::-webkit-scrollbar-track { background: transparent; }
+.tree-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.tree-content::-webkit-scrollbar-thumb:hover { background: var(--text-light); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">🏗 沙箱目录</div>
+  <div class="nav-links">
+    <a href="#overview">概览</a>
+    <a href="#workspace-tree">/workspace</a>
+    <a href="#root-tree">/root</a>
+    <a href="#architecture">架构图</a>
+    <a href="#mapping">映射表</a>
+    <a href="#history">变更历史</a>
+  </div>
+</nav>
+
+<section class="hero" id="overview">
+  <h1>沙箱环境目录结构 v2</h1>
+  <p class="subtitle">纯虫洞化架构 · 零数据重复</p>
+  <span class="version-badge">v2.0 · 2026-06-13</span>
+</section>
+
+<section class="section" id="architecture">
+  <h2 class="section-title"><span class="icon">🏛</span> 架构概览</h2>
+  <p class="section-desc">三层纯 Symlink 架构，数据源唯一，层层链接，零数据重复</p>
+  <div class="arch-diagram">
+    <div class="arch-box datasource">
+      <span class="box-label">数据源</span>
+      <div class="box-title">/workspace/.agents/skills/</div>
+      <div class="box-desc">唯一真实数据源 · Git 仓库 · 67个技能</div>
+    </div>
+    <div class="arch-arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+      <div class="arrow-label">ln -s (实体层)</div>
+    </div>
+    <div class="arch-box entity">
+      <span class="box-label">实体层</span>
+      <div class="box-title">/root/.agents/skills/</div>
+      <div class="box-desc">实体层 Symlink → 数据源 · 41 自研 + 26 飞书</div>
+    </div>
+    <div class="arch-arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+      <div class="arrow-label">ln -s (虫洞层)</div>
+    </div>
+    <div class="arch-box wormhole">
+      <span class="box-label">虫洞层</span>
+      <div class="box-title">/root/.trae-cn/skills/</div>
+      <div class="box-desc">虫洞层 Symlink → 实体层 · 67 个技能入口</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="workspace-tree">
+  <h2 class="section-title"><span class="icon">📁</span> /workspace 目录树</h2>
+  <p class="section-desc">沙箱工作区完整目录结构，包含唯一数据源</p>
+  <div class="tree-container" id="workspace-tree-container">
+    <div class="tree-toolbar">
+      <input type="text" class="tree-search" placeholder="搜索文件或目录..." data-tree="workspace">
+      <button class="tree-btn" onclick="expandAll('workspace')">展开全部</button>
+      <button class="tree-btn" onclick="collapseAll('workspace')">折叠全部</button>
+    </div>
+    <div class="tree-content" id="workspace-tree-content"></div>
+  </div>
+</section>
+
+<section class="section" id="root-tree">
+  <h2 class="section-title"><span class="icon">📁</span> /root 目录树</h2>
+  <p class="section-desc">沙箱根用户目录结构，含 Symlink 实体层与虫洞层</p>
+  <div class="tree-container" id="root-tree-container">
+    <div class="tree-toolbar">
+      <input type="text" class="tree-search" placeholder="搜索文件或目录..." data-tree="root">
+      <button class="tree-btn" onclick="expandAll('root')">展开全部</button>
+      <button class="tree-btn" onclick="collapseAll('root')">折叠全部</button>
+    </div>
+    <div class="tree-content" id="root-tree-content"></div>
+  </div>
+</section>
+
+<section class="section" id="mapping">
+  <h2 class="section-title"><span class="icon">🗺</span> 路径映射表</h2>
+  <p class="section-desc">本地路径与沙箱路径的对应关系</p>
+  <table class="mapping-table">
+    <thead>
+      <tr>
+        <th>本地路径</th>
+        <th>沙箱路径</th>
+        <th>类型</th>
+        <th>状态</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="path">Z:\PC\.agents\</td>
+        <td class="path">/workspace/.agents/</td>
+        <td>Git 数据源</td>
+        <td><span class="status synced">已同步</span></td>
+      </tr>
+      <tr>
+        <td class="path">Z:\PC\.trae\rules\</td>
+        <td class="path">/workspace/.trae/rules/</td>
+        <td>项目规则</td>
+        <td><span class="status restored">已恢复</span></td>
+      </tr>
+      <tr>
+        <td class="path">Z:\PC\.rizhi\</td>
+        <td class="path">/workspace/.rizhi/</td>
+        <td>日志总控</td>
+        <td><span class="status created">已创建</span></td>
+      </tr>
+      <tr>
+        <td class="path">Z:\PC\.jiaoben\</td>
+        <td class="path">/workspace/.jiaoben/</td>
+        <td>脚本入口</td>
+        <td><span class="status created">已创建</span></td>
+      </tr>
+      <tr>
+        <td class="path">Z:\PC\.qianzhi-gongju\</td>
+        <td class="path">/workspace/.qianzhi-gongju/</td>
+        <td>工具安装</td>
+        <td><span class="status created">已创建</span></td>
+      </tr>
+      <tr>
+        <td class="path">Z:\XiangMu-KongJian\</td>
+        <td class="path">/workspace/XiangMu-KongJian/</td>
+        <td>项目空间</td>
+        <td><span class="status created">已创建</span></td>
+      </tr>
+      <tr>
+        <td class="path">Z:\PC\.zhuce-biao\</td>
+        <td class="path">/workspace/.zhuce-biao/</td>
+        <td>注册表</td>
+        <td><span class="status created">已创建</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section" id="history">
+  <h2 class="section-title"><span class="icon">📜</span> 变更历史</h2>
+  <p class="section-desc">从 v1 到 v2 的架构演进</p>
+  <div class="timeline">
+    <div class="timeline-item version">
+      <div class="tl-version">v1.0.0</div>
+      <div class="tl-desc">初始同步，复制文件到实体层</div>
+    </div>
+    <div class="timeline-item version">
+      <div class="tl-version">v1.1.0</div>
+      <div class="tl-desc">支持 lark-skills 子目录</div>
+    </div>
+    <div class="timeline-item version">
+      <div class="tl-version">v1.2.0</div>
+      <div class="tl-desc">实体层改为 Symlink，零数据重复</div>
+    </div>
+    <div class="timeline-item cleanup">
+      <div class="tl-version">清理</div>
+      <div class="tl-desc">删除 /workspace/workspace/ 重复目录</div>
+    </div>
+    <div class="timeline-item cleanup">
+      <div class="tl-version">清理</div>
+      <div class="tl-desc">删除 /workspace/skills/ 旧版残留</div>
+    </div>
+    <div class="timeline-item cleanup">
+      <div class="tl-version">清理</div>
+      <div class="tl-desc">删除 BAK 目录</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  沙箱环境目录结构 v2 · 纯虫洞化架构 · 零数据重复 · 生成于 2026-06-13 19:30
+</footer>
+
+<script>
+const workspaceData = {"name": "/workspace", "type": "dir", "children": [{"name": "JiaoBen-RiZhi.md", "type": "file"}, {"name": "Skills-TongBu.sh", "type": "file"}, {"name": "XiangMu-KongJian", "type": "dir", "children": [{"name": "ShaXiang-MuLu-JieGou_20260613_1830_v1.bak.html", "type": "file"}]}, {"name": "agents", "type": "dir", "children": [{"name": ".git", "type": "dir", "children": [{"name": "COMMIT_EDITMSG", "type": "file"}, {"name": "FETCH_HEAD", "type": "file"}, {"name": "HEAD", "type": "file"}, {"name": "ORIG_HEAD", "type": "file"}, {"name": "branches", "type": "file"}, {"name": "config", "type": "file"}, {"name": "description", "type": "file"}, {"name": "hooks", "type": "dir", "children": [{"name": "applypatch-msg.sample", "type": "file"}, {"name": "commit-msg.sample", "type": "file"}, {"name": "fsmonitor-watchman.sample", "type": "file"}, {"name": "post-update.sample", "type": "file"}, {"name": "pre-applypatch.sample", "type": "file"}, {"name": "pre-commit.sample", "type": "file"}, {"name": "pre-merge-commit.sample", "type": "file"}, {"name": "pre-push.sample", "type": "file"}, {"name": "pre-rebase.sample", "type": "file"}, {"name": "pre-receive.sample", "type": "file"}, {"name": "prepare-commit-msg.sample", "type": "file"}, {"name": "push-to-checkout.sample", "type": "file"}, {"name": "sendemail-validate.sample", "type": "file"}, {"name": "update.sample", "type": "file"}]}, {"name": "index", "type": "file"}, {"name": "info", "type": "dir", "children": [{"name": "exclude", "type": "file"}]}, {"name": "logs", "type": "dir", "children": [{"name": "HEAD", "type": "file"}, {"name": "refs", "type": "dir", "children": [{"name": "heads", "type": "dir", "children": [{"name": "main", "type": "file"}]}, {"name": "remotes", "type": "dir", "children": [{"name": "origin", "type": "dir", "children": [{"name": "HEAD", "type": "file"}, {"name": "main", "type": "file"}]}]}]}]}, {"name": "objects", "type": "dir", "children": [{"name": "00", "type": "dir", "children": [{"name": "42f9872b3a38d4264bc2a0cf89c3001a005de6", "type": "file"}, {"name": "ebfc695a36aa329b2b7791b9203a3b76a3d381", "type": "file"}]}, {"name": "01", "type": "dir", "children": [{"name": "263fcb3c60ba7a1685051eec8427559ca3c090", "type": "file"}, {"name": "90018e92523e96aa702bd6f308272f7ec4a7a8", "type": "file"}]}, {"name": "02", "type": "dir", "children": [{"name": "da02c5ed790572a053469926f2d6a15aa0f3e3", "type": "file"}]}, {"name": "03", "type": "dir", "children": [{"name": "24c522e074a965c617f4a1d785c2f80efb87cd", "type": "file"}, {"name": "3e61f95e22d9ffdc6c3a13eb677e5fd30971bc", "type": "file"}, {"name": "6b5c24283d18416f96b248d2cd702d7babbf3a", "type": "file"}, {"name": "ad0c6684d4aa2f2da24230313424400cb7d3de", "type": "file"}, {"name": "de50909e972c3e8d5da00a0c6454fe2d2eaad4", "type": "file"}]}, {"name": "04", "type": "dir", "children": [{"name": "19b513fbcc365b219216bb632461f65931d0ad", "type": "file"}]}, {"name": "05", "type": "dir", "children": [{"name": "105994f538a562a1da93f3a23dfd62190cef0c", "type": "file"}, {"name": "1d9f2a3d3c2a61246dcc8fab7dc451d71e3fe0", "type": "file"}]}, {"name": "06", "type": "dir", "children": [{"name": "eb4a66e368ba2ad75714fe19a79e2d721198bf", "type": "file"}]}, {"name": "07", "type": "dir", "children": [{"name": "1add73756d82e45b03dc0e3f45d8fa124f5a4b", "type": "file"}]}, {"name": "08", "type": "dir", "children": [{"name": "e2c5f5f5c99b74bb147454547ef6fd72751821", "type": "file"}, {"name": "f89cc42d2adb950435c8cfc1e7ee247ce9b674", "type": "file"}]}, {"name": "09", "type": "dir", "children": [{"name": "0dbcda59dbba43df51f9f7e0ebc997fab1e753", "type": "file"}]}, {"name": "0a", "type": "dir", "children": [{"name": "1b27310ad5a0781e197d3d7fe09ee246e1a073", "type": "file"}, {"name": "1ca3a944898e3193e326e444253ae2a07bfb1d", "type": "file"}, {"name": "8906050c107335f942efeab6b6b77840bc5e0e", "type": "file"}, {"name": "94e1eec06d4846f6561bab48458d9ea0946aae", "type": "file"}]}, {"name": "0b", "type": "dir", "children": [{"name": "5ec5bf165a33a237cfaaaf1d9aa3480ac673ff", "type": "file"}, {"name": "9ed3909b04bb1122d5e00c3e00915c039d61d3", "type": "file"}]}, {"name": "0c", "type": "dir", "children": [{"name": "253bcac0d8854a36f07bcb6263233ffa58b4c4", "type": "file"}, {"name": "5a604168aa3d735daa304a6e422d17954140df", "type": "file"}]}, {"name": "0e", "type": "dir", "children": [{"name": "526cca44cbaa950434cd9ca2f22af3d0f4b3b1", "type": "file"}]}, {"name": "0f", "type": "dir", "children": [{"name": "7e834ecd4ed438d9de0430410f2f034139519d", "type": "file"}]}, {"name": "10", "type": "dir", "children": [{"name": "04112e51e22c35c4d2a9f3b7883ab451cd0830", "type": "file"}, {"name": "ea86e16b651f7b4551b41373d5b6dde1586700", "type": "file"}]}, {"name": "11", "type": "dir", "children": [{"name": "3a87780f1990a8bb20a25168126bb0035c5ddf", "type": "file"}, {"name": "8c5ef8a6fca8a796d941057fa434210b7ec012", "type": "file"}]}, {"name": "12", "type": "dir", "children": [{"name": "b82c63f8aba4f7bde94539401cf87360672671", "type": "file"}]}, {"name": "16", "type": "dir", "children": [{"name": "06ebd4c33dbd5271713ecb1b83424adf397348", "type": "file"}, {"name": "473e3b76d33cb46aa390ad18a300e86b7fcdfc", "type": "file"}, {"name": "52249324c9044e9d3de0798a1baa002fac9b79", "type": "file"}, {"name": "be56b8f33c5877d79a673d04d1df67cfa18ca7", "type": "file"}]}, {"name": "17", "type": "dir", "children": [{"name": "3cdac10524b72ed85fbfa110c27ceaa5888f3a", "type": "file"}, {"name": "e739588c746032b9d3397e62f47c1b91e74275", "type": "file"}]}, {"name": "18", "type": "dir", "children": [{"name": "6bb700849f071b0d6844969c15c4f926ad34a9", "type": "file"}]}, {"name": "19", "type": "dir", "children": [{"name": "21571d0c64f8f60c6af2dbcf70155544f50fc5", "type": "file"}]}, {"name": "1a", "type": "dir", "children": [{"name": "f119553666c9e269f76462e635732364658a1d", "type": "file"}]}, {"name": "1b", "type": "dir", "children": [{"name": "9aa438d5f7ebfb25b50f0404729bbae4e13c1e", "type": "file"}, {"name": "e428090cc2693980342b303f9d6cee8f17e6ce", "type": "file"}, {"name": "fab71983d5e7413ecc5aaee5802775c6b15d38", "type": "file"}]}, {"name": "1c", "type": "dir", "children": [{"name": "291c5c9b7443b90199e5d2f3efe3f86fee2e5a", "type": "file"}, {"name": "2988d17c5a154fe1cf13ee853f1645fb39be25", "type": "file"}]}, {"name": "1e", "type": "dir", "children": [{"name": "dbc6d85fdc6e4f40d85468bd0d2a1fb8b599e7", "type": "file"}]}, {"name": "1f", "type": "dir", "children": [{"name": "59fe3d38dbea8e1f35ef4f498e74318f7333ff", "type": "file"}]}, {"name": "20", "type": "dir", "children": [{"name": "41cac8ef46cb63e6b147c7540fe131130bee16", "type": "file"}]}, {"name": "22", "type": "dir", "children": [{"name": "93c014c78687784ccfb6c04420c550ecc96654", "type": "file"}]}, {"name": "23", "type": "dir", "children": [{"name": "26659f7324123df4ce2cacd895fbfeb8edeebb", "type": "file"}]}, {"name": "24", "type": "dir", "children": [{"name": "44d5bc73e14328d2d4a23f9019050603b99664", "type": "file"}]}, {"name": "25", "type": "dir", "children": [{"name": "191cd883e732791c974dfd4d80642ff9ebbff6", "type": "file"}]}, {"name": "26", "type": "dir", "children": [{"name": "a2ccd58835febe7b8853ef90ea0a664c651719", "type": "file"}, {"name": "c6e2e0b480cf11ea45bd046e4e1ece454b77c7", "type": "file"}]}, {"name": "27", "type": "dir", "children": [{"name": "3c91e9fbea0aed6191a7580534188cd87ac6c9", "type": "file"}]}, {"name": "2b", "type": "dir", "children": [{"name": "0f53a5fede2f6e5dd4e108b1a8f4164c94a32d", "type": "file"}, {"name": "7e1df99ee6ea8edc264c3b9e268a50a9a3805b", "type": "file"}, {"name": "b49b9e1948da0292cf7cbdfe6c8ffaf58050de", "type": "file"}, {"name": "ea2ec8fcde6a2f7c70de1a6f4600a33423c304", "type": "file"}]}, {"name": "2c", "type": "dir", "children": [{"name": "3f1e057535e100b4db75ba3b18cb0ed74143ec", "type": "file"}]}, {"name": "2d", "type": "dir", "children": [{"name": "289e2369c40e72511b94c2bd810281db4827bf", "type": "file"}, {"name": "8fd75d66ccd952e408c2fae313f68cfdb70029", "type": "file"}]}, {"name": "2e", "type": "dir", "children": [{"name": "139a58d5076c2dfe2db911e5b5be40b789f0d3", "type": "file"}, {"name": "1bd7567e25faf1860f0c571eb480292c96565d", "type": "file"}, {"name": "670b7933440e4911de897df247da88da2ed71b", "type": "file"}, {"name": "6ac84c7761e7ee648e3d306be4e9edea579d25", "type": "file"}, {"name": "fa4da5ddd879bb0c1290d4401ab195a974fbfd", "type": "file"}]}, {"name": "2f", "type": "dir", "children": [{"name": "266d3a11b7a7fe90a283f99e62a4327a0bccb7", "type": "file"}, {"name": "496938b2f946989a5486b22d584043b7618647", "type": "file"}, {"name": "81167fa07510fdfc2e891c6af621384bce2cda", "type": "file"}]}, {"name": "32", "type": "dir", "children": [{"name": "18a928189bb43d5298c1805863e74641d0834e", "type": "file"}]}, {"name": "35", "type": "dir", "children": [{"name": "6bdb643774511e2aaf4ed147bac8893cf0c46a", "type": "file"}, {"name": "8c72c004df4293b0e76e1ca6908a258056603b", "type": "file"}]}, {"name": "36", "type": "dir", "children": [{"name": "0c26c7259a4cc453c87e4237e6079b49c1418c", "type": "file"}, {"name": "32d723749ba8afedd8028a61ef3f015046632f", "type": "file"}, {"name": "48ff231e42c7be49186ccfd6b026c718adbc1c", "type": "file"}, {"name": "4b2a27c14b8332cfab409447df9211e3364b9f", "type": "file"}, {"name": "aab9de08dc9bbb091a392e137617c8f605e4af", "type": "file"}, {"name": "b6682dde4d7f6d69f9464fb01e63f3a7b2b623", "type": "file"}, {"name": "e3d1e540368f847e2eb033a874697600c787e1", "type": "file"}]}, {"name": "37", "type": "dir", "children": [{"name": "156009fae131bc9653a082793e087e75889612", "type": "file"}, {"name": "31f922fb6464f59f479894f552421706b67d1e", "type": "file"}, {"name": "e54cd5e23da49de78bfd6e04ea0c3485644665", "type": "file"}]}, {"name": "3a", "type": "dir", "children": [{"name": "170e946e0d6d2d5cc80618e325999883051074", "type": "file"}, {"name": "f2d88853ed000765c8045952c5d4e1e194e782", "type": "file"}, {"name": "f8cdaf769f266eac0682ecf1f81b9500066413", "type": "file"}]}, {"name": "3b", "type": "dir", "children": [{"name": "3c8da2c18a9dbe34dd0db6e662682d306374be", "type": "file"}, {"name": "f985e94885c213b3037f0d2e6219e5d9ee2880", "type": "file"}]}, {"name": "3c", "type": "dir", "children": [{"name": "242f9efc83919f9083c9ec6a8f89ed718c89a6", "type": "file"}, {"name": "d35cdf221147000124f771a0e08ccd31771c03", "type": "file"}, {"name": "ec9c76f355f41b417f13fcb7ec8e7893123e8a", "type": "file"}]}, {"name": "3d", "type": "dir", "children": [{"name": "b7c329c2450fd22fe10774794237ecce683b37", "type": "file"}]}, {"name": "3e", "type": "dir", "children": [{"name": "ed0f6bade90d6c69403e5b51ce91c2e96c61e4", "type": "file"}]}, {"name": "3f", "type": "dir", "children": [{"name": "1591bd1d131143dc351e1b9c4fdbc34bb8d908", "type": "file"}, {"name": "598dcddb2d51f35c24e4b81bc5459d52bc364d", "type": "file"}]}, {"name": "41", "type": "dir", "children": [{"name": "10919d5c8bea256d607888f400adf992e81fe3", "type": "file"}, {"name": "7ff8e1106bfe7e3083be49b9a6717dda23f002", "type": "file"}]}, {"name": "43", "type": "dir", "children": [{"name": "c5fd8d8ca6c6020874df27172298e4b1380028", "type": "file"}, {"name": "ee91f681aa6c6a10fe09e2e4bff400774f4158", "type": "file"}]}, {"name": "44", "type": "dir", "children": [{"name": "9ffe77337629b49b8341728cef73ebf2f7c115", "type": "file"}]}, {"name": "46", "type": "dir", "children": [{"name": "46567142c7d48999800963616162bd0a9eca39", "type": "file"}]}, {"name": "47", "type": "dir", "children": [{"name": "74f616b20baf642422bfcc76ac647c1da96aba", "type": "file"}]}, {"name": "48", "type": "dir", "children": [{"name": "c7ea6dde1adc1d60bb3d94d21cf53d2a5fe228", "type": "file"}]}, {"name": "49", "type": "dir", "children": [{"name": "03553ca8ffd48b1669ea88fbda2bf0578827b3", "type": "file"}, {"name": "1e6a0730590e273bc0aa0be7894e436304a942", "type": "file"}, {"name": "20a17c953a9585ca4be182f8827d908c3fc49d", "type": "file"}, {"name": "9aa0539f32c6be312b978081b1e6cfecf99825", "type": "file"}]}, {"name": "4a", "type": "dir", "children": [{"name": "db2d0d85918328b6517146a747ac7ae3fe7742", "type": "file"}, {"name": "f0c3f4bc9564bb70c6ca451b0e710b6a94cf72", "type": "file"}]}, {"name": "4b", "type": "dir", "children": [{"name": "7fa3c7504fd0cb9b57030eaf4d255ae10cf637", "type": "file"}]}, {"name": "4c", "type": "dir", "children": [{"name": "ae51fc2430f5187069f0bb8b9c685bfbf63ba4", "type": "file"}]}, {"name": "4d", "type": "dir", "children": [{"name": "0eb59c22c2cd0facf17fe7d804cf8493254fa1", "type": "file"}, {"name": "2af6143705621520eb1de047275811b30dde6e", "type": "file"}]}, {"name": "4f", "type": "dir", "children": [{"name": "1d6cdc2043d4d42e37bba1d80314de91ae0461", "type": "file"}, {"name": "2ba8281bde510b13a4af9ed205982fc3fd8ebc", "type": "file"}, {"name": "82d9cf9719763eca6a1df34cd38d91d2eb0047", "type": "file"}, {"name": "c1c8edd4315b9d7a5e745e04ee7354b1728c62", "type": "file"}, {"name": "dd8db129543aff07197bc47ab311f09c521074", "type": "file"}]}, {"name": "50", "type": "dir", "children": [{"name": "0feca414c0a5352a82062e68d80e090847f107", "type": "file"}, {"name": "6076f1429a0e8fd0fcced7237682efdede0256", "type": "file"}, {"name": "8193a09250b545d77c4b63fd2344966f853a56", "type": "file"}]}, {"name": "51", "type": "dir", "children": [{"name": "673014d533094e6544987830f4d5521e17ffc6", "type": "file"}, {"name": "731fa0355c9fed82bf89c0bb8d514be14c41bb", "type": "file"}, {"name": "bf09915058f3d11de2aebd5a67484de194a6e3", "type": "file"}]}, {"name": "52", "type": "dir", "children": [{"name": "b05770bc305c2a85c02040a7a02106569f3bbe", "type": "file"}]}, {"name": "53", "type": "dir", "children": [{"name": "2bbe5cf70fd3a1121e26f6203557ba67a78451", "type": "file"}, {"name": "7a25a836e6003029854aed67b5db2bd4b565f9", "type": "file"}, {"name": "7bedb22954f9852c6d7816c2f19c180a13e732", "type": "file"}, {"name": "a9f631a62223e2993ebd493b7904a38527742a", "type": "file"}]}, {"name": "54", "type": "dir", "children": [{"name": "bad6a2ef49517a1f214b7a896d84c4c48a77b8", "type": "file"}]}, {"name": "55", "type": "dir", "children": [{"name": "433de4e29aecfde98e13bb85aaa78ccd19a411", "type": "file"}, {"name": "68c8cb902a2b9cd6da67ca8f14a9b0fbbd503b", "type": "file"}, {"name": "abe233e1a2e89415844930fc211ac430d03490", "type": "file"}, {"name": "f813a69705abed10fbaec8fe2e8d2b76fe53a0", "type": "file"}]}, {"name": "57", "type": "dir", "children": [{"name": "65f69116e2eead401588d441c69e48685a95c3", "type": "file"}, {"name": "e8cf3e190d735044ba613da375f654e502f1fa", "type": "file"}]}, {"name": "59", "type": "dir", "children": [{"name": "4ecca355b537d7b0fc8b2727bbcdcf58cf52e1", "type": "file"}]}, {"name": "5a", "type": "dir", "children": [{"name": "74e2728c988fe21f642660ce60fb3c4607cd51", "type": "file"}]}, {"name": "5b", "type": "dir", "children": [{"name": "07ef56fa58f8fa7daef1a101b20c78618f515e", "type": "file"}]}, {"name": "5c", "type": "dir", "children": [{"name": "c37de116dd71d531b9b5e4deb8928eccfdd8d8", "type": "file"}, {"name": "d4b34e5b8077fe6302f89815b2734a42d09755", "type": "file"}]}, {"name": "5d", "type": "dir", "children": [{"name": "3af9fdcda03a5ec5f6dd5c76692bbfbe3f7098", "type": "file"}, {"name": "7fa5f02b4c982aef599a1fa5002151fd2af633", "type": "file"}, {"name": "9a46350b59489297efe9a8e2c0896f80e64954", "type": "file"}, {"name": "a65d49071bbfeeae011faabda4eb31c8150eaf", "type": "file"}]}, {"name": "5e", "type": "dir", "children": [{"name": "1d0ceca269da8c0441c405b1ab8fd01249b4ef", "type": "file"}, {"name": "50c81ff1782cfcf9e354fb4ddffc3c729bcf26", "type": "file"}]}, {"name": "5f", "type": "dir", "children": [{"name": "0abecf98e8279179ff5f0a34b8bbee5976b870", "type": "file"}, {"name": "18b79aeb94cc018df94b8849db24d0727450cf", "type": "file"}, {"name": "55d0b915c6f37bb5db040870b28a53a008e8c4", "type": "file"}, {"name": "9149e2041470145d5f5e1cb2ca760c65a3e448", "type": "file"}, {"name": "ef15165ef26d0ff21d3c35b7a8b95b4bcc367a", "type": "file"}]}, {"name": "60", "type": "dir", "children": [{"name": "cf9eca26c3105c5232fa78548681a7b05f4547", "type": "file"}, {"name": "e7730d4f6102bae3fa23d95b8648764b2f842c", "type": "file"}]}, {"name": "61", "type": "dir", "children": [{"name": "159a24fc9889daedae62d90e5257ae7e8883c5", "type": "file"}, {"name": "c21d761e101642db4a4d9db2fe64cbac522b90", "type": "file"}]}, {"name": "62", "type": "dir", "children": [{"name": "c1b2fdeecb18a6c37494c83f78d79d919f1652", "type": "file"}]}, {"name": "63", "type": "dir", "children": [{"name": "ad335e13441ee76e1b0d87e65ae1516fde23f8", "type": "file"}]}, {"name": "65", "type": "dir", "children": [{"name": "dc0ed58986bcb6ecaafebc0d21089dc5bbb582", "type": "file"}, {"name": "f8d840781d7d4bde8c30512519c6d00c7e4366", "type": "file"}]}, {"name": "67", "type": "dir", "children": [{"name": "9d5d86863b8881d74f79fbe1c2fb64ced957bc", "type": "file"}]}, {"name": "68", "type": "dir", "children": [{"name": "cc16e1c2557d5c0c4e35d25fd69fe81d053c57", "type": "file"}]}, {"name": "69", "type": "dir", "children": [{"name": "11434731d458758b8e2c05c0b581807811c745", "type": "file"}, {"name": "69320bd368d2d21f49c971c940cef5c9903a44", "type": "file"}, {"name": "fdcd799af73f7bdf5ee3ae5faf61fed464014b", "type": "file"}]}, {"name": "6a", "type": "dir", "children": [{"name": "22893cdd9ce665c47b1367f2c065a47a855701", "type": "file"}, {"name": "25447b055bb9d327506cc6af4aa34c40e615a7", "type": "file"}, {"name": "54d603fe6343e9050b13fa82c7e37f05b6f47e", "type": "file"}, {"name": "88dcde24a773d9160bda681045c2eef0560c76", "type": "file"}, {"name": "c38d9d614d115396a4bb80452526f08888b180", "type": "file"}]}, {"name": "6b", "type": "dir", "children": [{"name": "a3fa6d904781591162cad9f42927228b338fab", "type": "file"}]}, {"name": "6c", "type": "dir", "children": [{"name": "6ede0e518298b29561ae3cae5f31308e640cbe", "type": "file"}, {"name": "d7bc675ad44d2e97069603bb38186d36a08ae9", "type": "file"}]}, {"name": "6d", "type": "dir", "children": [{"name": "26a90c0a2e67195a73a12523c8fec971ef83f6", "type": "file"}, {"name": "3d8951135810f81370982cb30bf204bd0d2055", "type": "file"}, {"name": "50394e38edbe39f2aac2a9925f50ce8c57bfaf", "type": "file"}, {"name": "54da3a1e1fef7f48bef3b44af966bc443f1046", "type": "file"}]}, {"name": "6f", "type": "dir", "children": [{"name": "ee00fcf2a3a58ee2ca68137ce7232b81c08aef", "type": "file"}]}, {"name": "70", "type": "dir", "children": [{"name": "0366a1629722dd441bcb991cc3a1008070138b", "type": "file"}, {"name": "408416d3a144834c7ca63a24aa13b8fcdc0349", "type": "file"}, {"name": "4171b7e7bf5847637af4606ca68037f26e95ba", "type": "file"}, {"name": "f7fd0e32807400424118140c862a632767e162", "type": "file"}]}, {"name": "71", "type": "dir", "children": [{"name": "b380c1781a76d5f3cdb9b0718a0d47c8e2ab16", "type": "file"}]}, {"name": "73", "type": "dir", "children": [{"name": "0046101e041af86a0daadf825c87c040dc7d7c", "type": "file"}, {"name": "76434b7f247047de0edf23f1a56e1a3559b45c", "type": "file"}, {"name": "966a2a0369da7b225a239fdd0cbfca8263bdc6", "type": "file"}, {"name": "f4946c8e7d73fe2704347b518f07d84fb9f105", "type": "file"}]}, {"name": "74", "type": "dir", "children": [{"name": "922931ee7f5621edd027c5e2a9fed994da35ad", "type": "file"}, {"name": "dbd182a65571b4bf9d8e03e05840dd22dfb9f8", "type": "file"}]}, {"name": "75", "type": "dir", "children": [{"name": "4e3237c97559c58d247112825248148dea084e", "type": "file"}, {"name": "83a0713534486c8f707cd5d1977bd082dd9984", "type": "file"}, {"name": "aab35adb19e9608ffd59adf983fb1ffa21ac63", "type": "file"}, {"name": "f5e2fe11c1a13fe9036eae552e6609bd27606c", "type": "file"}]}, {"name": "76", "type": "dir", "children": [{"name": "716f769e6d1d4287af6af3b76dbc3d4b2bd5c7", "type": "file"}, {"name": "d5acba07ef2e394d84a74fc4c9e42cc5c7188a", "type": "file"}, {"name": "dbc08125a9f5d65df3f5789b16cd4062f829cc", "type": "file"}]}, {"name": "78", "type": "dir", "children": [{"name": "00660931d7f508ae646f0016e0cdc28b22ef66", "type": "file"}]}, {"name": "79", "type": "dir", "children": [{"name": "2475ca493b867452b11cdf81a81cb4a0e3a19e", "type": "file"}, {"name": "d34a411b0849a802d9e5186cf75a7779f4cf9e", "type": "file"}]}, {"name": "7a", "type": "dir", "children": [{"name": "c2870aae4630137768532629eaf3b9673675da", "type": "file"}]}, {"name": "7b", "type": "dir", "children": [{"name": "9d03b4a6d8e69195e624d4c49fb9ae5e8cce85", "type": "file"}]}, {"name": "7c", "type": "dir", "children": [{"name": "3b7a574bbf0c093705abfc3cb1e519823d9297", "type": "file"}, {"name": "6c28e7df61c2527354f7ec676ce99e5b981e6e", "type": "file"}, {"name": "946df4d1a389af737f3fc100f4aae4e03d20cc", "type": "file"}]}, {"name": "7d", "type": "dir", "children": [{"name": "0b090e3c454b9ae7d867aad623c02aa40eec45", "type": "file"}]}, {"name": "7e", "type": "dir", "children": [{"name": "1d27dd8e2ddeb67be5f2e8f5d40bf8b2cfc3c0", "type": "file"}, {"name": "5c31f5f60182fb57d80d0f9b8b790da2497a4f", "type": "file"}, {"name": "b150919b29f2c8b549a9e1d68a2703dbb632a3", "type": "file"}]}, {"name": "82", "type": "dir", "children": [{"name": "1a841be82b67e51578b639ddd0982720c7c7ea", "type": "file"}, {"name": "336ff486cbcb3636142ec21e1bf23ea35a38de", "type": "file"}, {"name": "76c3655b504d81311982c65bc79aa73d863b04", "type": "file"}, {"name": "9a03eec09a53ac7fcf9284d6050ab311bdd1a7", "type": "file"}]}, {"name": "83", "type": "dir", "children": [{"name": "8a985cd0c75c7c5ce4a355c61dc6e93be3346c", "type": "file"}]}, {"name": "84", "type": "dir", "children": [{"name": "60ddf3c815be52a3f4e57acd0fa4d75d8496fe", "type": "file"}, {"name": "70323f8a8728aa06fe9094e00439dea98f9eed", "type": "file"}]}, {"name": "85", "type": "dir", "children": [{"name": "9a81499b380be92ee05ab16ba947912786c54a", "type": "file"}, {"name": "e33bce395b2734b7826b4bcbca1bcd8441542e", "type": "file"}, {"name": "fd8cc36874a06066a40d781c7e53ce57b07bf3", "type": "file"}]}, {"name": "86", "type": "dir", "children": [{"name": "2cfa1e6fa1157a1ec42fa458ecc3c7c6c4f098", "type": "file"}, {"name": "405ba8b6d1c3fae763ab9e96e0881cd9973d0b", "type": "file"}, {"name": "5ca7d826e184f04619e2116f5211f9dcf6f020", "type": "file"}]}, {"name": "87", "type": "dir", "children": [{"name": "0d537f108bf20bb83185a201b29536e7cd4d79", "type": "file"}, {"name": "aaaff90428fa60aa7a09ad806c8dbffa3b0f1c", "type": "file"}, {"name": "c126f068a9aad8bd4ab491efa617b88ca335bd", "type": "file"}]}, {"name": "88", "type": "dir", "children": [{"name": "e4e54256b567b0c9e9adcc9505e834c45ad83b", "type": "file"}]}, {"name": "89", "type": "dir", "children": [{"name": "bb0227611137aa3a00b1234e295ec65e519622", "type": "file"}]}, {"name": "8b", "type": "dir", "children": [{"name": "4813eccaac8081b8e8b3c4c6f55be347f5f784", "type": "file"}, {"name": "93e142ebdd4a478d9158aba000586ba57d7848", "type": "file"}, {"name": "f2e7d61131316762b2b3d77d8043c8c63a6059", "type": "file"}]}, {"name": "8d", "type": "dir", "children": [{"name": "f008b759f32346acefc7107da2d8e50a0b8d5f", "type": "file"}]}, {"name": "8e", "type": "dir", "children": [{"name": "35adf4ca6b590e3ba58c5477716d64224782f0", "type": "file"}]}, {"name": "8f", "type": "dir", "children": [{"name": "03bad15a885de5a59dda770ca0bd50c95e3658", "type": "file"}]}, {"name": "90", "type": "dir", "children": [{"name": "6b85c1c0e5104d45ebcdde283da2b4b0055300", "type": "file"}]}, {"name": "91", "type": "dir", "children": [{"name": "258c121e56bafdb1ab4d6d2f8a113fa28784f4", "type": "file"}, {"name": "361134c1df9d8290f843710c50d984d6a09e41", "type": "file"}, {"name": "3a89056034477d5822567872286dba395c7ba1", "type": "file"}, {"name": "6f53f646d5f7a21ccf851714b274c7d7cf6efd", "type": "file"}]}, {"name": "92", "type": "dir", "children": [{"name": "71511d2d63bf25223a620df2d4e5c71d2504dd", "type": "file"}, {"name": "e27478af54c1752ce8fac54f0976cc905edfff", "type": "file"}]}, {"name": "94", "type": "dir", "children": [{"name": "0903d10e10fd2a1c836730f37777d59cc832af", "type": "file"}, {"name": "69f79e8b74163f08f11c03260323ecc74fc91c", "type": "file"}, {"name": "7ed7f5abba5ff69987b60a610822ae3236272f", "type": "file"}]}, {"name": "95", "type": "dir", "children": [{"name": "45161cdf5a67d93a10e71b6b849a4495cb038f", "type": "file"}, {"name": "d6211d45134981e1dbd38a14ff3d54aa2e5981", "type": "file"}]}, {"name": "96", "type": "dir", "children": [{"name": "3aefe71141ddb2988b63e784517cd7650c9308", "type": "file"}, {"name": "9d7a92575dff68c259d90f071bae22cf473108", "type": "file"}, {"name": "ed90409dd36bfa9d84d3cb3b83bc14cf28af39", "type": "file"}]}, {"name": "99", "type": "dir", "children": [{"name": "153d341d65c3c984cb18a5a248ed11e0852238", "type": "file"}, {"name": "1b973d7eb67e9e07a6163145256ea620e68f30", "type": "file"}, {"name": "8e31e7ef906f57458b19b534481dd3f0ff182c", "type": "file"}]}, {"name": "9a", "type": "dir", "children": [{"name": "7e9894712d750addb5247632993d59fa7cfcdb", "type": "file"}]}, {"name": "9b", "type": "dir", "children": [{"name": "557b70117b993565b95afea320c4a60d3f0c58", "type": "file"}, {"name": "5d35aa0a14142ffe59ad48ced013ce1e3162ba", "type": "file"}]}, {"name": "9c", "type": "dir", "children": [{"name": "60bccd4922787289ba29e0021e32e882835dd4", "type": "file"}, {"name": "9b3634099ddad13bb1537e87cdd90707332594", "type": "file"}]}, {"name": "9d", "type": "dir", "children": [{"name": "23ca952bd11d8d66600da3923a26ba8b9b02a7", "type": "file"}, {"name": "58ea09b7bd4eb11186f747475d9d752f077f9c", "type": "file"}, {"name": "6c18e8ac12e8ecad548ba91a65be3bd494f711", "type": "file"}]}, {"name": "9f", "type": "dir", "children": [{"name": "07495e323090096c08b91b7ceffcbfc1f396cc", "type": "file"}, {"name": "4ed91ceb6cae0c9e5dd485856a951cbc42a39c", "type": "file"}, {"name": "bfd6932140ad394ea1ba725dba7e6c511eefd2", "type": "file"}]}, {"name": "a0", "type": "dir", "children": [{"name": "47da847b6c855760260c97855b0b2036266468", "type": "file"}]}, {"name": "a1", "type": "dir", "children": [{"name": "47915ec57b1c17480ac44153a6d217c0e6faeb", "type": "file"}]}, {"name": "a3", "type": "dir", "children": [{"name": "4b705c5ffde41d2bccbe90f8ed661435649771", "type": "file"}, {"name": "9bcc9150bf2fe4ed1f725ff8c9f591d960aaa8", "type": "file"}, {"name": "bdf6b8ad8d687f07daec3b3727fa12cbdf0355", "type": "file"}]}, {"name": "a4", "type": "dir", "children": [{"name": "b4c5759bd684946b41d0d1d98e5467aceb65e3", "type": "file"}, {"name": "d66409e824585a1b4b58460c0f30e1f79f56b5", "type": "file"}]}, {"name": "a5", "type": "dir", "children": [{"name": "5f30ae08887583cc52f2cd352aee9370bf54bb", "type": "file"}, {"name": "5ffaf995a997f85f3f442f8e79fa71b9c92e64", "type": "file"}]}, {"name": "a6", "type": "dir", "children": [{"name": "d505b9a1d6ed22f4968f7f77ad2d136e7dfb98", "type": "file"}]}, {"name": "a7", "type": "dir", "children": [{"name": "00d1959a5bfde3fcb619835aa1be25a550dc25", "type": "file"}, {"name": "f579ca9d34efb66632401f983eefc873dabd02", "type": "file"}]}, {"name": "a8", "type": "dir", "children": [{"name": "19c87cd63ca91e061f6158d85855eb5b306b9e", "type": "file"}, {"name": "790d16c6a2ea28c7647c84954247cc43461215", "type": "file"}, {"name": "c7c4f5a29b8fa6442e457343d2645f76bf4ce7", "type": "file"}]}, {"name": "a9", "type": "dir", "children": [{"name": "40b5f9550b49d1a7cad97b99c7017d29f24799", "type": "file"}]}, {"name": "aa", "type": "dir", "children": [{"name": "30d6701a0b28ce85add9b02e3b9c348e9cae2e", "type": "file"}, {"name": "3ed710b55bd1401dcb09718ac23c657f86b46c", "type": "file"}]}, {"name": "ab", "type": "dir", "children": [{"name": "3d657a1402d20d1fced59138f593267e1dbd48", "type": "file"}]}, {"name": "ac", "type": "dir", "children": [{"name": "41b6a18890e9f0de6c0d27dbadadce1ad8ca71", "type": "file"}, {"name": "464ee297d462d6991f98dde793a59b0f76f654", "type": "file"}, {"name": "7a1223a03e791092a9c11db2fc2c35d3b2bf3c", "type": "file"}]}, {"name": "ae", "type": "dir", "children": [{"name": "481fd9cc13f1d7ae905f0c2acb9dfcb06fa779", "type": "file"}]}, {"name": "af", "type": "dir", "children": [{"name": "93affe13dd921f006fb123477300614d4aeb6e", "type": "file"}, {"name": "d41e737fdffcc7f634e7851dda662a2eebe2f9", "type": "file"}, {"name": "eca6e4ea208c5d0f621acb9386f811f271595c", "type": "file"}]}, {"name": "b1", "type": "dir", "children": [{"name": "b7257c10fb8fcdd2e76c5efd42b072b0e1599c", "type": "file"}]}, {"name": "b2", "type": "dir", "children": [{"name": "800ea2c1da1ce1b2c40eae3db95dc6ec53fbcc", "type": "file"}, {"name": "880d891342c8763e3a57661febc801eb273bdf", "type": "file"}, {"name": "9bebffd5f7f678272e3a91485896bd834868e3", "type": "file"}, {"name": "e405a81e2c7a2b324efe9a43874155a7bd364a", "type": "file"}]}, {"name": "b3", "type": "dir", "children": [{"name": "c42b8f768be54fa937684342a9de5dddb9b981", "type": "file"}]}, {"name": "b4", "type": "dir", "children": [{"name": "2fc4e81d8906f595aa359cc0a6401ec15213c3", "type": "file"}, {"name": "adf061500fe331fe1a9f1a269e6be26de5b7ee", "type": "file"}]}, {"name": "b6", "type": "dir", "children": [{"name": "a1dcda0021aa83e7b6215c8dd41bac6d5f4ff7", "type": "file"}, {"name": "a3644efb0a8dd2bbc9d85124a7f2e0e89a35af", "type": "file"}]}, {"name": "b7", "type": "dir", "children": [{"name": "060af5f3033913265b4aa5852ee284b1f0b65f", "type": "file"}]}, {"name": "b8", "type": "dir", "children": [{"name": "0ce251249652b06d3c0dabcdcb1a3e5691c87b", "type": "file"}, {"name": "5394b09c451bca9ecdfe3db4c2c24676bd411c", "type": "file"}]}, {"name": "ba", "type": "dir", "children": [{"name": "6be37620a11548e4449499b4d6be9fbddecbb2", "type": "file"}]}, {"name": "bb", "type": "dir", "children": [{"name": "4b2ced4a77837aac71d6bf8638064e9f1a5e91", "type": "file"}, {"name": "9cd6631d53e6ad1a0d2a7efabe305e614a79b8", "type": "file"}]}, {"name": "bc", "type": "dir", "children": [{"name": "5aca82a3175c7b0a5ce3501d736b27c02d55ad", "type": "file"}]}, {"name": "bd", "type": "dir", "children": [{"name": "59f933ea03127653b410aa7579f72dd3115d26", "type": "file"}]}, {"name": "be", "type": "dir", "children": [{"name": "87890f28e9faa16b02d9b032bb01a9f3974bd3", "type": "file"}, {"name": "e46785d60e0e32fb61d02d1f1740f60aef7b60", "type": "file"}]}, {"name": "bf", "type": "dir", "children": [{"name": "e77c3a39810b7b57e7ddd7043fe61313701f5d", "type": "file"}]}, {"name": "c0", "type": "dir", "children": [{"name": "316fd8fd9ede9ff3da6011e8c4a39a85fe3038", "type": "file"}, {"name": "3f89b35fd0e42366e1fd1465b6fbbcac0a49fc", "type": "file"}]}, {"name": "c1", "type": "dir", "children": [{"name": "1d28d16bab52d33da709e763b387aec069b4a6", "type": "file"}]}, {"name": "c3", "type": "dir", "children": [{"name": "97c53844b2e2c59e934b6db3707763a2fde106", "type": "file"}, {"name": "9d3c7d212ccaa69e7a635203dde5b4ffe9eb1d", "type": "file"}, {"name": "ad87000477fd9f5a08098f6c7cdeea55e8913d", "type": "file"}, {"name": "ff04a77cdb54283e6625261b8ff8a8057cdf87", "type": "file"}]}, {"name": "c5", "type": "dir", "children": [{"name": "4a4754f6b5b63bced8fcb4e1838d40b30d8a9b", "type": "file"}, {"name": "da5040e23025f4a25da227f6509ffec29b0062", "type": "file"}]}, {"name": "c6", "type": "dir", "children": [{"name": "32805606e2bc55654f624ba697a5b7d8eac1a9", "type": "file"}, {"name": "a8e6ef3d4e8ff82d2e75540b4f1a6f8d9e5728", "type": "file"}]}, {"name": "c7", "type": "dir", "children": [{"name": "10e5e48da0db7943d32b9cfb2aadbbcfdbe1fd", "type": "file"}, {"name": "a71474d2c61ed5a72a010306d202611a3dfd9c", "type": "file"}, {"name": "c915c485868ffab85914661a2e6c00f08a276a", "type": "file"}, {"name": "e596f8418c70d70bbfefc773caaf758e4eb45e", "type": "file"}]}, {"name": "c8", "type": "dir", "children": [{"name": "6b6e79d2e563fc2f559e56cf897183e7285a81", "type": "file"}]}, {"name": "ca", "type": "dir", "children": [{"name": "9450b9393255be0b9b2b9708ebd634d88dbe9c", "type": "file"}]}, {"name": "cb", "type": "dir", "children": [{"name": "ea8a62ce3b21778698613ac29ddfbfe182fbe8", "type": "file"}]}, {"name": "cd", "type": "dir", "children": [{"name": "b3f566a8c098d638d3d5031f34d4ac8aed02b7", "type": "file"}]}, {"name": "ce", "type": "dir", "children": [{"name": "00d6ddd1d877b9c330bae28ee52d23c6230bfd", "type": "file"}, {"name": "5ad8daa1b5a998077bfab014704d2a86e95521", "type": "file"}, {"name": "c6099ee0a2491a31ed016ca7c396e68a21fa28", "type": "file"}]}, {"name": "cf", "type": "dir", "children": [{"name": "10bdedba30a87fea5f264c3117645b7fcbdeb9", "type": "file"}]}, {"name": "d0", "type": "dir", "children": [{"name": "62ee8c66e90d473325afbbe266372d5af8d353", "type": "file"}, {"name": "7dda5fbe35777f4699ccafdd0eaa9d03c5f4d7", "type": "file"}]}, {"name": "d1", "type": "dir", "children": [{"name": "bbed98983f945974ffa0d07087ca7ba6e6b52c", "type": "file"}, {"name": "ffc57aca1f99be91ddf1c92ae2a88f5f3a77ca", "type": "file"}]}, {"name": "d2", "type": "dir", "children": [{"name": "0bf4dbcd9e48a0896a518ae13dde26983f9f3f", "type": "file"}]}, {"name": "d5", "type": "dir", "children": [{"name": "7e8c651f685cbb0ed39216833b0f5ee5bb625d", "type": "file"}]}, {"name": "d6", "type": "dir", "children": [{"name": "36b0aa9381fbac8ef953c39c54ac0a87b773d8", "type": "file"}]}, {"name": "d7", "type": "dir", "children": [{"name": "24096a1983f4a6b93a76ba4774db86485fbaba", "type": "file"}]}, {"name": "d8", "type": "dir", "children": [{"name": "7ec87e6ab9798836b7f7c36bebd931f8ea0c08", "type": "file"}]}, {"name": "da", "type": "dir", "children": [{"name": "2e7f3e381c4ff06ed534340b0f4fc57d8654e5", "type": "file"}, {"name": "d7a1bb5e8d6e1857aa7544b26d61bc17853b19", "type": "file"}]}, {"name": "dc", "type": "dir", "children": [{"name": "a8cc0fa91bc6cc8e7767b6472d6301c2d74ea5", "type": "file"}, {"name": "af0033d5258ceb13bd2ba4b783478fd3820d74", "type": "file"}]}, {"name": "dd", "type": "dir", "children": [{"name": "57a989a340617428826e23f50bbadc3e78dab6", "type": "file"}, {"name": "772f24636393c7cfbf4606e22fd3999880c05d", "type": "file"}, {"name": "9ba9f6e0d641931c70224b12bb5f4dbb07ab75", "type": "file"}, {"name": "c5e29e56c21748c0fcf3e47bb583c5d66125a3", "type": "file"}]}, {"name": "de", "type": "dir", "children": [{"name": "320ce4545607a8d0e0c8f0b8679785c245a137", "type": "file"}, {"name": "b19e733f07ba07d776b72f61fcdcfe4b40db07", "type": "file"}, {"name": "f3b5ae3f1ebe5cb24f268899946bca0582be86", "type": "file"}]}, {"name": "df", "type": "dir", "children": [{"name": "531dbdb01bc737cd107fa00cbd3d71180c4794", "type": "file"}]}, {"name": "e0", "type": "dir", "children": [{"name": "45c6e274760a4767457fa0b3ac029a669af422", "type": "file"}, {"name": "db561a3bb25bc10e8d6bf43266247cfc9b0872", "type": "file"}]}, {"name": "e1", "type": "dir", "children": [{"name": "7c9da660d90d206ee2ab58363a6045d2510777", "type": "file"}, {"name": "d6ae39b3d134da535ac49723557a569e628717", "type": "file"}]}, {"name": "e2", "type": "dir", "children": [{"name": "3a4d80dc9c36fbf43c325c173c57e43c879209", "type": "file"}, {"name": "8fecb6471298831082d323df85ec92e8c66b23", "type": "file"}]}, {"name": "e5", "type": "dir", "children": [{"name": "ce6bc14d36848ac5adfcd289a371e989db2292", "type": "file"}]}, {"name": "e6", "type": "dir", "children": [{"name": "9dbbc9843ad05e9c76345471cb7d4ecf949766", "type": "file"}]}, {"name": "e9", "type": "dir", "children": [{"name": "5ddad6cfa08492889ec9351a8eba64ca376f6f", "type": "file"}, {"name": "fe59c4d500437df7f9ebfb32bf7c08eeb7652d", "type": "file"}]}, {"name": "ea", "type": "dir", "children": [{"name": "4fc24b20ca0e391c852cf784de1a33ac91f15f", "type": "file"}]}, {"name": "eb", "type": "dir", "children": [{"name": "619cb960202eaa9845e8f3680b905ce7f98bd5", "type": "file"}]}, {"name": "ed", "type": "dir", "children": [{"name": "346da42a9df32ce72f30ec522d18a0beafafd8", "type": "file"}, {"name": "54e48308eb68c5f5b6fb7154e58832ee06f9d6", "type": "file"}, {"name": "614fb0e10584957d9840e762a4799f8e096583", "type": "file"}, {"name": "8ea4ccb4da8a6ee92d5d7e2648effb1d68eed7", "type": "file"}, {"name": "9a684bed2df46cff989f89488649efd704c0bc", "type": "file"}, {"name": "e96da706eddbac7462c2cf3c0e9ebe3c95369e", "type": "file"}]}, {"name": "ef", "type": "dir", "children": [{"name": "e7c3075be74fe65248278aec5401592f765ec1", "type": "file"}]}, {"name": "f1", "type": "dir", "children": [{"name": "91c8634999fde153a4366213c0ae687a3197d8", "type": "file"}, {"name": "b5fca6c3be545bc4f03a317e4cc1fb5af1ff32", "type": "file"}, {"name": "c074e5310b0900323d4d6dd76e313ae8f1030a", "type": "file"}]}, {"name": "f2", "type": "dir", "children": [{"name": "b6fc995b61016c017e42f58d5a71a1cc4f555b", "type": "file"}]}, {"name": "f3", "type": "dir", "children": [{"name": "0f3549e346187abcb4400c8d98665a9837bba8", "type": "file"}]}, {"name": "f4", "type": "dir", "children": [{"name": "0c4632a755c0cc824d11987f40f56fc14a8225", "type": "file"}, {"name": "19a520279d62dcad0bab848a7e3d74fbfb2759", "type": "file"}, {"name": "6dba2b41f6aa6d227ac889f85d78d5ad7676d4", "type": "file"}]}, {"name": "f5", "type": "dir", "children": [{"name": "60b5efafa29b27d71c81ec8e0c2b01aa93f4a6", "type": "file"}, {"name": "7b8908377b1aa747421386e32f2ab350c37f70", "type": "file"}, {"name": "9df645a83ab1275d6e73ca3f1b8a7dcfcc3fad", "type": "file"}]}, {"name": "f6", "type": "dir", "children": [{"name": "2b3114b2f60fb9188623ff3a58f18aba926a18", "type": "file"}, {"name": "6a8fc8f8a605bc63dd6a8f6bb20af545713a05", "type": "file"}]}, {"name": "f7", "type": "dir", "children": [{"name": "5a9e1ada9d4df5b796ff2d78dad41a7d3aef4e", "type": "file"}, {"name": "6eafe742152fa37b491236885282ad4c788b02", "type": "file"}, {"name": "edbc5d4238657d5c5d81e5007da70957405ebd", "type": "file"}]}, {"name": "f9", "type": "dir", "children": [{"name": "819b98695a72ee08c405ccf7244a42ed923122", "type": "file"}, {"name": "e5b6f5373b240586f9ba5be6dfa6d7b20235af", "type": "file"}]}, {"name": "fb", "type": "dir", "children": [{"name": "7aa363c28ed0e357d912e41a77095fd60f82b6", "type": "file"}, {"name": "f0a039b0f02f2cf2a39cf2ca64d1bef49a84ea", "type": "file"}]}, {"name": "fd", "type": "dir", "children": [{"name": "2d4cde6273edf51857d866639fb9a2169af4f6", "type": "file"}, {"name": "70bc467fc7a8dae121aecb4eb4e2d6184d5446", "type": "file"}, {"name": "70d236d583441e78c37d79218e5b50fcb2556b", "type": "file"}]}, {"name": "ff", "type": "dir", "children": [{"name": "a44340fc10321c100c27acad4d52b6fe5e1b2e", "type": "file"}, {"name": "a68508383e3a7dda26124804bcae9277ff8d7e", "type": "file"}, {"name": "c179679eefdfee87294eb2cc6005416dc107ce", "type": "file"}]}, {"name": "info", "type": "file"}, {"name": "pack", "type": "dir", "children": [{"name": "pack-b9886c43072e9e0cc27eabe118161636908da6ef.idx", "type": "file"}, {"name": "pack-b9886c43072e9e0cc27eabe118161636908da6ef.pack", "type": "file"}, {"name": "pack-b9886c43072e9e0cc27eabe118161636908da6ef.rev", "type": "file"}]}]}, {"name": "packed-refs", "type": "file"}, {"name": "refs", "type": "dir", "children": [{"name": "heads", "type": "dir", "children": [{"name": "main", "type": "file"}]}, {"name": "remotes", "type": "dir", "children": [{"name": "origin", "type": "dir", "children": [{"name": "HEAD", "type": "file"}, {"name": "main", "type": "file"}]}]}, {"name": "tags", "type": "file"}]}]}, {"name": ".gitignore", "type": "file"}, {"name": ".skill-lock.json", "type": "file"}, {"name": "JiaoBen-RiZhi.md", "type": "file"}, {"name": "Skills-TongBu.sh", "type": "file"}, {"name": "archive", "type": "file"}, {"name": "project_rules.md", "type": "file"}, {"name": "skills", "type": "dir", "children": [{"name": "DouBao-ShengTu", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "DouBao-ShengTu-ZhuCe-Biao", "type": "dir", "children": [{"name": "DouBao-ShengTu-ZhuCe-Biao.md", "type": "file"}]}, {"name": "JiaoBen", "type": "file"}, {"name": "SKILL.md", "type": "file"}]}, {"name": "FanYi-JiNeng", "type": "dir", "children": [{"name": "FanYi-JiNeng-ZhuCe-Biao", "type": "dir", "children": [{"name": "FanYi-JiNeng-ZhuCe-Biao.md", "type": "file"}]}, {"name": "SKILL.md", "type": "file"}, {"name": "glossary.json", "type": "file"}]}, {"name": "JiaoBen-GuiFan", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "JiaoBen-GuiFan-ZhuCe-Biao", "type": "dir", "children": [{"name": "JiaoBen-GuiFan-ZhuCe-Biao.md", "type": "file"}]}, {"name": "SKILL.md", "type": "file"}]}, {"name": "QClaw-Account", "type": "dir", "children": [{"name": "QClaw-Account-ZhuCe-Biao", "type": "dir", "children": [{"name": "QClaw-Account-ZhuCe-Biao.md", "type": "file"}]}, {"name": "SKILL.md", "type": "file"}]}, {"name": "QianYi-WanWu", "type": "dir", "children": [{"name": "JiaoBen", "type": "file"}, {"name": "QianYi-WanWu-ZhuCe-Biao", "type": "dir", "children": [{"name": "QianYi-WanWu-ZhuCe-Biao.md", "type": "file"}]}, {"name": "SKILL.md", "type": "file"}]}, {"name": "RiZhi-GuiFan", "type": "dir", "children": [{"name": "RiZhi-GuiFan-ZhuCe-Biao", "type": "dir", "children": [{"name": "RiZhi-GuiFan-ZhuCe-Biao.md", "type": "file"}]}, {"name": "SKILL.md", "type": "file"}]}, {"name": "RunningHUB-AI", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "README.md", "type": "file"}, {"name": "RunningHUB-AI-ZhuCe-Biao", "type": "dir", "children": [{"name": "RunningHUB-AI-ZhuCe-Biao.md", "type": "file"}]}, {"name": "SKILL.md", "type": "file"}, {"name": "ShiLi", "type": "file"}]}, {"name": "TRAE-Rule", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "TRAE-Rule-JiaoFu_20260611_1130.html", "type": "file"}, {"name": "TRAE-Rule-ZhuCe-Biao", "type": "dir", "children": [{"name": "TRAE-Rule-ZhuCe-Biao.md", "type": "file"}]}]}, {"name": "WenShengTu", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "JiaoBen", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "WenShengTu-ZhuCe-Biao", "type": "dir", "children": [{"name": "WenShengTu-ZhuCe-Biao.md", "type": "file"}]}]}, {"name": "ZhongJiangMingDan", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "ZhongJiangMingDan-ZhuCe-Biao", "type": "dir", "children": [{"name": "ZhongJiangMingDan-ZhuCe-Biao.md", "type": "file"}]}]}, {"name": "chart-visualization", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "JiaoBen", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "chart-visualization-ZhuCe-Biao", "type": "dir", "children": [{"name": "chart-visualization-ZhuCe-Biao.md", "type": "file"}]}]}, {"name": "consulting-analysis", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "consulting-analysis-ZhuCe-Biao", "type": "dir", "children": [{"name": "consulting-analysis-ZhuCe-Biao.md", "type": "file"}]}]}, {"name": "data-analysis", "type": "dir", "children": [{"name": "JiaoBen", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "data-analysis-ZhuCe-Biao", "type": "dir", "children": [{"name": "data-analysis-ZhuCe-Biao.md", "type": "file"}]}]}, {"name": "html-report-design-system", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "html-report-design-system-ZhuCe-Biao", "type": "dir", "children": [{"name": "html-report-design-system-ZhuCe-Biao.md", "type": "file"}]}]}, {"name": "lark-skills", "type": "dir", "children": [{"name": "lark-approval", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}]}, {"name": "lark-apps", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-apps-access-scope-get.md", "type": "file"}, {"name": "lark-apps-access-scope-set.md", "type": "file"}, {"name": "lark-apps-create.md", "type": "file"}, {"name": "lark-apps-html-publish.md", "type": "file"}, {"name": "lark-apps-list.md", "type": "file"}, {"name": "lark-apps-update.md", "type": "file"}]}]}, {"name": "lark-attendance", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}]}, {"name": "lark-base", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "dashboard-block-data-config.md", "type": "file"}, {"name": "formula-field-guide.md", "type": "file"}, {"name": "lark-base-cell-value.md", "type": "file"}, {"name": "lark-base-dashboard-block-get-data.md", "type": "file"}, {"name": "lark-base-dashboard.md", "type": "file"}, {"name": "lark-base-data-analysis-sop.md", "type": "file"}, {"name": "lark-base-data-query-guide.md", "type": "file"}, {"name": "lark-base-data-query.md", "type": "file"}, {"name": "lark-base-field-create.md", "type": "file"}, {"name": "lark-base-field-json.md", "type": "file"}, {"name": "lark-base-field-update.md", "type": "file"}, {"name": "lark-base-form-detail.md", "type": "file"}, {"name": "lark-base-form-questions-create.md", "type": "file"}, {"name": "lark-base-form-questions-update.md", "type": "file"}, {"name": "lark-base-form-submit.md", "type": "file"}, {"name": "lark-base-record-batch-create.md", "type": "file"}, {"name": "lark-base-record-batch-update.md", "type": "file"}, {"name": "lark-base-record-history-list.md", "type": "file"}, {"name": "lark-base-record-upsert.md", "type": "file"}, {"name": "lark-base-role-guide.md", "type": "file"}, {"name": "lark-base-view-set-filter.md", "type": "file"}, {"name": "lark-base-workflow-guide.md", "type": "file"}, {"name": "lark-base-workflow-schema.md", "type": "file"}, {"name": "lookup-field-guide.md", "type": "file"}, {"name": "role-config.md", "type": "file"}]}]}, {"name": "lark-calendar", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-calendar-agenda.md", "type": "file"}, {"name": "lark-calendar-create.md", "type": "file"}, {"name": "lark-calendar-freebusy.md", "type": "file"}, {"name": "lark-calendar-room-find.md", "type": "file"}, {"name": "lark-calendar-rsvp.md", "type": "file"}, {"name": "lark-calendar-schedule-meeting.md", "type": "file"}, {"name": "lark-calendar-suggestion.md", "type": "file"}, {"name": "lark-calendar-update.md", "type": "file"}]}]}, {"name": "lark-contact", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-contact-get-user.md", "type": "file"}, {"name": "lark-contact-search-user.md", "type": "file"}]}]}, {"name": "lark-doc", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-doc-create.md", "type": "file"}, {"name": "lark-doc-fetch.md", "type": "file"}, {"name": "lark-doc-md.md", "type": "file"}, {"name": "lark-doc-media-download.md", "type": "file"}, {"name": "lark-doc-media-insert.md", "type": "file"}, {"name": "lark-doc-media-preview.md", "type": "file"}, {"name": "lark-doc-update.md", "type": "file"}, {"name": "lark-doc-whiteboard.md", "type": "file"}, {"name": "lark-doc-xml.md", "type": "file"}, {"name": "style", "type": "dir", "children": [{"name": "lark-doc-create-workflow.md", "type": "file"}, {"name": "lark-doc-style.md", "type": "file"}, {"name": "lark-doc-update-workflow.md", "type": "file"}]}]}]}, {"name": "lark-drive", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-drive-add-comment.md", "type": "file"}, {"name": "lark-drive-apply-permission.md", "type": "file"}, {"name": "lark-drive-cover.md", "type": "file"}, {"name": "lark-drive-create-folder.md", "type": "file"}, {"name": "lark-drive-create-shortcut.md", "type": "file"}, {"name": "lark-drive-delete.md", "type": "file"}, {"name": "lark-drive-download.md", "type": "file"}, {"name": "lark-drive-export-download.md", "type": "file"}, {"name": "lark-drive-export.md", "type": "file"}, {"name": "lark-drive-files-list.md", "type": "file"}, {"name": "lark-drive-import.md", "type": "file"}, {"name": "lark-drive-inspect.md", "type": "file"}, {"name": "lark-drive-move.md", "type": "file"}, {"name": "lark-drive-preview.md", "type": "file"}, {"name": "lark-drive-pull.md", "type": "file"}, {"name": "lark-drive-push.md", "type": "file"}, {"name": "lark-drive-reactions.md", "type": "file"}, {"name": "lark-drive-search.md", "type": "file"}, {"name": "lark-drive-secure-label.md", "type": "file"}, {"name": "lark-drive-status.md", "type": "file"}, {"name": "lark-drive-task-result.md", "type": "file"}, {"name": "lark-drive-upload.md", "type": "file"}, {"name": "lark-drive-version-delete.md", "type": "file"}, {"name": "lark-drive-version-get.md", "type": "file"}, {"name": "lark-drive-version-history.md", "type": "file"}, {"name": "lark-drive-version-revert.md", "type": "file"}, {"name": "lark-drive-workflow-knowledge-organize-analysis.md", "type": "file"}, {"name": "lark-drive-workflow-knowledge-organize-discovery.md", "type": "file"}, {"name": "lark-drive-workflow-knowledge-organize-execution.md", "type": "file"}, {"name": "lark-drive-workflow-knowledge-organize-planning.md", "type": "file"}, {"name": "lark-drive-workflow-knowledge-organize-rollback.md", "type": "file"}, {"name": "lark-drive-workflow-knowledge-organize.md", "type": "file"}]}]}, {"name": "lark-event", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-event-im.md", "type": "file"}, {"name": "lark-event-minutes.md", "type": "file"}, {"name": "lark-event-vc.md", "type": "file"}, {"name": "lark-event-whiteboard.md", "type": "file"}]}]}, {"name": "lark-im", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-im-chat-create.md", "type": "file"}, {"name": "lark-im-chat-identity.md", "type": "file"}, {"name": "lark-im-chat-list.md", "type": "file"}, {"name": "lark-im-chat-messages-list.md", "type": "file"}, {"name": "lark-im-chat-search.md", "type": "file"}, {"name": "lark-im-chat-update.md", "type": "file"}, {"name": "lark-im-feed-group-list-item.md", "type": "file"}, {"name": "lark-im-feed-group-list.md", "type": "file"}, {"name": "lark-im-feed-group-query-item.md", "type": "file"}, {"name": "lark-im-feed-groups.md", "type": "file"}, {"name": "lark-im-feed-shortcut-create.md", "type": "file"}, {"name": "lark-im-feed-shortcut-list.md", "type": "file"}, {"name": "lark-im-feed-shortcut-remove.md", "type": "file"}, {"name": "lark-im-flag-cancel.md", "type": "file"}, {"name": "lark-im-flag-create.md", "type": "file"}, {"name": "lark-im-flag-list.md", "type": "file"}, {"name": "lark-im-message-enrichment.md", "type": "file"}, {"name": "lark-im-messages-mget.md", "type": "file"}, {"name": "lark-im-messages-reply.md", "type": "file"}, {"name": "lark-im-messages-resources-download.md", "type": "file"}, {"name": "lark-im-messages-search.md", "type": "file"}, {"name": "lark-im-messages-send.md", "type": "file"}, {"name": "lark-im-reactions.md", "type": "file"}, {"name": "lark-im-threads-messages-list.md", "type": "file"}]}]}, {"name": "lark-mail", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "assets", "type": "dir", "children": [{"name": "templates", "type": "dir", "children": [{"name": "job-application--resume.html", "type": "file"}, {"name": "newsletter--weekly-brief.html", "type": "file"}, {"name": "research--market-report.html", "type": "file"}, {"name": "weekly--personal-report.html", "type": "file"}, {"name": "weekly--team-report.html", "type": "file"}]}]}, {"name": "references", "type": "dir", "children": [{"name": "lark-mail-decline-receipt.md", "type": "file"}, {"name": "lark-mail-draft-create.md", "type": "file"}, {"name": "lark-mail-draft-edit.md", "type": "file"}, {"name": "lark-mail-forward.md", "type": "file"}, {"name": "lark-mail-html.md", "type": "file"}, {"name": "lark-mail-lint-html.md", "type": "file"}, {"name": "lark-mail-message.md", "type": "file"}, {"name": "lark-mail-messages.md", "type": "file"}, {"name": "lark-mail-reply-all.md", "type": "file"}, {"name": "lark-mail-reply.md", "type": "file"}, {"name": "lark-mail-send-receipt.md", "type": "file"}, {"name": "lark-mail-send.md", "type": "file"}, {"name": "lark-mail-share-to-chat.md", "type": "file"}, {"name": "lark-mail-signature.md", "type": "file"}, {"name": "lark-mail-template-create.md", "type": "file"}, {"name": "lark-mail-template-update.md", "type": "file"}, {"name": "lark-mail-thread.md", "type": "file"}, {"name": "lark-mail-triage.md", "type": "file"}, {"name": "lark-mail-watch.md", "type": "file"}]}]}, {"name": "lark-markdown", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-markdown-create.md", "type": "file"}, {"name": "lark-markdown-diff.md", "type": "file"}, {"name": "lark-markdown-fetch.md", "type": "file"}, {"name": "lark-markdown-overwrite.md", "type": "file"}, {"name": "lark-markdown-patch.md", "type": "file"}]}]}, {"name": "lark-minutes", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-minutes-download.md", "type": "file"}, {"name": "lark-minutes-search.md", "type": "file"}, {"name": "lark-minutes-speaker-replace.md", "type": "file"}, {"name": "lark-minutes-update.md", "type": "file"}, {"name": "lark-minutes-upload.md", "type": "file"}]}]}, {"name": "lark-okr", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-okr-contentblock.md", "type": "file"}, {"name": "lark-okr-cycle-detail.md", "type": "file"}, {"name": "lark-okr-cycle-list.md", "type": "file"}, {"name": "lark-okr-entities.md", "type": "file"}, {"name": "lark-okr-image-upload.md", "type": "file"}, {"name": "lark-okr-progress-create.md", "type": "file"}, {"name": "lark-okr-progress-delete.md", "type": "file"}, {"name": "lark-okr-progress-get.md", "type": "file"}, {"name": "lark-okr-progress-list.md", "type": "file"}, {"name": "lark-okr-progress-update.md", "type": "file"}]}]}, {"name": "lark-openapi-explorer", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}]}, {"name": "lark-shared", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}]}, {"name": "lark-sheets", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-sheets-batch-update.md", "type": "file"}, {"name": "lark-sheets-chart.md", "type": "file"}, {"name": "lark-sheets-conditional-format.md", "type": "file"}, {"name": "lark-sheets-core-operations.md", "type": "file"}, {"name": "lark-sheets-filter-view.md", "type": "file"}, {"name": "lark-sheets-filter.md", "type": "file"}, {"name": "lark-sheets-float-image.md", "type": "file"}, {"name": "lark-sheets-formula-translation.md", "type": "file"}, {"name": "lark-sheets-pivot-table.md", "type": "file"}, {"name": "lark-sheets-range-operations.md", "type": "file"}, {"name": "lark-sheets-read-data.md", "type": "file"}, {"name": "lark-sheets-search-replace.md", "type": "file"}, {"name": "lark-sheets-sheet-structure.md", "type": "file"}, {"name": "lark-sheets-sparkline.md", "type": "file"}, {"name": "lark-sheets-visual-standards.md", "type": "file"}, {"name": "lark-sheets-workbook.md", "type": "file"}, {"name": "lark-sheets-write-cells.md", "type": "file"}]}]}, {"name": "lark-skill-maker", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}]}, {"name": "lark-slides", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "assets", "type": "dir", "children": [{"name": "templates", "type": "dir", "children": [{"name": "administration--all_hands_meeting.xml", "type": "file"}, {"name": "administration--annual_gala.xml", "type": "file"}, {"name": "administration--company_intro.xml", "type": "file"}, {"name": "administration--corporate_culture.xml", "type": "file"}, {"name": "hr--employee_training.xml", "type": "file"}, {"name": "hr--employee_training_workshop.xml", "type": "file"}, {"name": "hr--onboarding.xml", "type": "file"}, {"name": "marketing--brand_communication.xml", "type": "file"}, {"name": "marketing--brand_logo_design.xml", "type": "file"}, {"name": "marketing--brand_operations_plan.xml", "type": "file"}, {"name": "marketing--business_plan.xml", "type": "file"}, {"name": "marketing--marketing_plan.xml", "type": "file"}, {"name": "marketing--marketing_strategy.xml", "type": "file"}, {"name": "marketing--product_whitepaper.xml", "type": "file"}, {"name": "marketing--roadshow_business_plan.xml", "type": "file"}, {"name": "misc--book_sharing.xml", "type": "file"}, {"name": "misc--club_event_plan.xml", "type": "file"}, {"name": "misc--student_career_plan.xml", "type": "file"}, {"name": "office--dark_general.xml", "type": "file"}, {"name": "office--dept_annual_report.xml", "type": "file"}, {"name": "office--light_general.xml", "type": "file"}, {"name": "office--project_kickoff.xml", "type": "file"}, {"name": "office--quarterly_review.xml", "type": "file"}, {"name": "office--work_report.xml", "type": "file"}, {"name": "office--work_summary.xml", "type": "file"}, {"name": "office--work_summary_report.xml", "type": "file"}, {"name": "operations--brand_logo_design.xml", "type": "file"}, {"name": "operations--brand_operations_plan.xml", "type": "file"}, {"name": "operations--marketing_plan.xml", "type": "file"}, {"name": "operations--product_promotion.xml", "type": "file"}, {"name": "personal--experience_sharing.xml", "type": "file"}, {"name": "personal--personal_resume.xml", "type": "file"}, {"name": "personal--promotion_defense.xml", "type": "file"}, {"name": "personal--promotion_report.xml", "type": "file"}, {"name": "personal--self_intro.xml", "type": "file"}, {"name": "personal--teaching_sharing.xml", "type": "file"}, {"name": "product--business_case_analysis.xml", "type": "file"}, {"name": "product--market_analysis.xml", "type": "file"}, {"name": "product--product_analysis.xml", "type": "file"}, {"name": "product--product_intro.xml", "type": "file"}, {"name": "product--product_promotion.xml", "type": "file"}, {"name": "product--product_promotion_2.xml", "type": "file"}]}]}, {"name": "references", "type": "dir", "children": [{"name": "asset-planning.md", "type": "file"}, {"name": "examples.md", "type": "file"}, {"name": "iconpark-index.json", "type": "file"}, {"name": "iconpark.md", "type": "file"}, {"name": "lark-slides-create.md", "type": "file"}, {"name": "lark-slides-edit-workflows.md", "type": "file"}, {"name": "lark-slides-media-upload.md", "type": "file"}, {"name": "lark-slides-replace-slide.md", "type": "file"}, {"name": "lark-slides-whiteboard.md", "type": "file"}, {"name": "lark-slides-xml-presentation-slide-create.md", "type": "file"}, {"name": "lark-slides-xml-presentation-slide-delete.md", "type": "file"}, {"name": "lark-slides-xml-presentation-slide-get.md", "type": "file"}, {"name": "lark-slides-xml-presentation-slide-replace.md", "type": "file"}, {"name": "lark-slides-xml-presentations-get.md", "type": "file"}, {"name": "planning-layer.md", "type": "file"}, {"name": "slide-templates.md", "type": "file"}, {"name": "slides_demo.xml", "type": "file"}, {"name": "slides_xml_schema_definition.xml", "type": "file"}, {"name": "template-catalog.md", "type": "file"}, {"name": "template-index.json", "type": "file"}, {"name": "troubleshooting.md", "type": "file"}, {"name": "validation-checklist.md", "type": "file"}, {"name": "visual-planning.md", "type": "file"}, {"name": "xml-format-guide.md", "type": "file"}, {"name": "xml-schema-quick-ref.md", "type": "file"}]}, {"name": "scripts", "type": "dir", "children": [{"name": "iconpark_tool.py", "type": "file"}, {"name": "iconpark_tool_test.py", "type": "file"}, {"name": "template_tool.py", "type": "file"}, {"name": "template_tool_test.py", "type": "file"}, {"name": "xml_text_overlap_lint.py", "type": "file"}, {"name": "xml_text_overlap_lint_test.py", "type": "file"}]}]}, {"name": "lark-task", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-task-assign.md", "type": "file"}, {"name": "lark-task-comment.md", "type": "file"}, {"name": "lark-task-complete.md", "type": "file"}, {"name": "lark-task-create.md", "type": "file"}, {"name": "lark-task-followers.md", "type": "file"}, {"name": "lark-task-get-my-tasks.md", "type": "file"}, {"name": "lark-task-get-related-tasks.md", "type": "file"}, {"name": "lark-task-reminder.md", "type": "file"}, {"name": "lark-task-reopen.md", "type": "file"}, {"name": "lark-task-search.md", "type": "file"}, {"name": "lark-task-set-ancestor.md", "type": "file"}, {"name": "lark-task-subscribe-event.md", "type": "file"}, {"name": "lark-task-tasklist-create.md", "type": "file"}, {"name": "lark-task-tasklist-members.md", "type": "file"}, {"name": "lark-task-tasklist-search.md", "type": "file"}, {"name": "lark-task-tasklist-task-add.md", "type": "file"}, {"name": "lark-task-update.md", "type": "file"}, {"name": "lark-task-upload-attachment.md", "type": "file"}]}]}, {"name": "lark-vc", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-vc-notes.md", "type": "file"}, {"name": "lark-vc-recording.md", "type": "file"}, {"name": "lark-vc-search.md", "type": "file"}, {"name": "vc-domain-boundaries.md", "type": "file"}]}]}, {"name": "lark-vc-agent", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-vc-agent-meeting-events.md", "type": "file"}, {"name": "lark-vc-agent-meeting-join.md", "type": "file"}, {"name": "lark-vc-agent-meeting-leave.md", "type": "file"}]}]}, {"name": "lark-whiteboard", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "connectors.md", "type": "file"}, {"name": "content.md", "type": "file"}, {"name": "image.md", "type": "file"}, {"name": "lark-whiteboard-query.md", "type": "file"}, {"name": "lark-whiteboard-update.md", "type": "file"}, {"name": "layout.md", "type": "file"}, {"name": "schema.md", "type": "file"}, {"name": "style.md", "type": "file"}, {"name": "typography.md", "type": "file"}]}, {"name": "routes", "type": "dir", "children": [{"name": "dsl.md", "type": "file"}, {"name": "mermaid.md", "type": "file"}, {"name": "svg.md", "type": "file"}]}, {"name": "scenes", "type": "dir", "children": [{"name": "architecture.md", "type": "file"}, {"name": "bar-chart.md", "type": "file"}, {"name": "comparison.md", "type": "file"}, {"name": "fishbone.md", "type": "file"}, {"name": "flowchart.md", "type": "file"}, {"name": "flywheel.md", "type": "file"}, {"name": "funnel.md", "type": "file"}, {"name": "line-chart.md", "type": "file"}, {"name": "mermaid.md", "type": "file"}, {"name": "milestone.md", "type": "file"}, {"name": "organization.md", "type": "file"}, {"name": "photo-showcase.md", "type": "file"}, {"name": "pyramid.md", "type": "file"}, {"name": "swimlane.md", "type": "file"}, {"name": "treemap.md", "type": "file"}]}]}, {"name": "lark-wiki", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "lark-wiki-delete-space.md", "type": "file"}, {"name": "lark-wiki-member-add.md", "type": "file"}, {"name": "lark-wiki-member-list.md", "type": "file"}, {"name": "lark-wiki-member-remove.md", "type": "file"}, {"name": "lark-wiki-move.md", "type": "file"}, {"name": "lark-wiki-node-copy.md", "type": "file"}, {"name": "lark-wiki-node-create.md", "type": "file"}, {"name": "lark-wiki-node-delete.md", "type": "file"}, {"name": "lark-wiki-node-get.md", "type": "file"}, {"name": "lark-wiki-node-list.md", "type": "file"}, {"name": "lark-wiki-space-create.md", "type": "file"}, {"name": "lark-wiki-space-list.md", "type": "file"}]}]}, {"name": "lark-workflow-meeting-summary", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}]}, {"name": "lark-workflow-standup-report", "type": "dir", "children": [{"name": ".preheat", "type": "file"}, {"name": "SKILL.md", "type": "file"}]}]}, {"name": "market", "type": "dir", "children": [{"name": "SouSuo-SuCha", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "baoyu-comic", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "JiaoBen", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "baoyu-comic-ZhuCe-Biao", "type": "dir", "children": [{"name": "baoyu-comic-ZhuCe-Biao.md", "type": "file"}]}, {"name": "meta.json", "type": "file"}]}, {"name": "baoyu-compress-image", "type": "dir", "children": [{"name": "JiaoBen", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "baoyu-compress-image-ZhuCe-Biao", "type": "dir", "children": [{"name": "baoyu-compress-image-ZhuCe-Biao.md", "type": "file"}]}, {"name": "meta.json", "type": "file"}]}, {"name": "baoyu-image-gen", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "JiaoBen", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "baoyu-image-gen-ZhuCe-Biao", "type": "dir", "children": [{"name": "baoyu-image-gen-ZhuCe-Biao.md", "type": "file"}]}]}, {"name": "deploy-to-vercel", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "ZiYuan", "type": "file"}, {"name": "deploy-to-vercel-ZhuCe-Biao", "type": "dir", "children": [{"name": "deploy-to-vercel-ZhuCe-Biao.md", "type": "file"}]}, {"name": "meta.json", "type": "file"}]}, {"name": "find-skills", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "meta.json", "type": "file"}]}, {"name": "frontend-design", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "meta.json", "type": "file"}]}, {"name": "grill-me", "type": "dir", "children": [{"name": "README.md", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "meta.json", "type": "file"}]}, {"name": "humanizer", "type": "dir", "children": [{"name": "HuaXue", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "SKILL.md.zh", "type": "file"}, {"name": "ZhuCe-Biao.md", "type": "file"}]}, {"name": "README.md", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "ShuXue", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "SKILL.md.zh", "type": "file"}, {"name": "ZhuCe-Biao.md", "type": "file"}]}, {"name": "WenYanWen", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "WuLi", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "SKILL.md.zh", "type": "file"}, {"name": "ZhuCe-Biao.md", "type": "file"}]}, {"name": "YinYu", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "SKILL.md.zh", "type": "file"}]}, {"name": "ZhongWen", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "ZiRan-YuYan-MoShi.md", "type": "file"}, {"name": "_meta.json", "type": "file"}, {"name": "meta.json", "type": "file"}]}, {"name": "local-asr", "type": "dir", "children": [{"name": "JiaoBen", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "local-asr-ZhuCe-Biao", "type": "dir", "children": [{"name": "local-asr-ZhuCe-Biao.md", "type": "file"}]}, {"name": "meta.json", "type": "file"}]}, {"name": "local-computer-use", "type": "dir", "children": [{"name": "JiaoBen", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "ZiYuan", "type": "file"}, {"name": "local-computer-use-ZhuCe-Biao", "type": "dir", "children": [{"name": "local-computer-use-ZhuCe-Biao.md", "type": "file"}]}, {"name": "meta.json", "type": "file"}, {"name": "test_case.json", "type": "file"}]}, {"name": "local-tts", "type": "dir", "children": [{"name": "JiaoBen", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "ZiYuan", "type": "file"}, {"name": "local-tts-ZhuCe-Biao", "type": "dir", "children": [{"name": "local-tts-ZhuCe-Biao.md", "type": "file"}]}, {"name": "meta.json", "type": "file"}, {"name": "requirements.txt", "type": "file"}, {"name": "vendor", "type": "dir", "children": [{"name": "README.md", "type": "file"}]}]}, {"name": "local-txt2img", "type": "dir", "children": [{"name": "JiaoBen", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "local-txt2img-ZhuCe-Biao", "type": "dir", "children": [{"name": "local-txt2img-ZhuCe-Biao.md", "type": "file"}]}, {"name": "meta.json", "type": "file"}, {"name": "requirements.txt", "type": "file"}, {"name": "vendor", "type": "dir", "children": [{"name": "README.md", "type": "file"}, {"name": "optimum_intel-1.27.0.dev0+2f62e5a-py3-none-any.whl", "type": "file"}, {"name": "optimum_onnx-0.1.0.dev0-py3-none-any.whl", "type": "file"}]}]}, {"name": "mrbeast-perspective", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "JiaoBen", "type": "file"}, {"name": "LICENSE", "type": "file"}, {"name": "README.md", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "ShiLi", "type": "file"}, {"name": "meta.json", "type": "file"}, {"name": "mrbeast-perspective-ZhuCe-Biao", "type": "dir", "children": [{"name": "mrbeast-perspective-ZhuCe-Biao.md", "type": "file"}]}]}, {"name": "remotion-best-practices", "type": "dir", "children": [{"name": "GuiZe", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "SKILL_20260610_115022_975.md", "type": "file"}, {"name": "meta.json", "type": "file"}]}, {"name": "skill-creator", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "JiaoBen", "type": "file"}, {"name": "LICENSE.txt", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "_meta.json", "type": "file"}, {"name": "meta.json", "type": "file"}]}, {"name": "soultrace", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "meta.json", "type": "file"}]}, {"name": "summarize", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "meta.json", "type": "file"}, {"name": "summarize-ZhuCe-Biao", "type": "dir", "children": [{"name": "summarize-ZhuCe-Biao.md", "type": "file"}]}]}, {"name": "supabase-postgres-best-practices", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "README.md", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "meta.json", "type": "file"}]}, {"name": "tencent-esign-contract", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "JiaoBen", "type": "file"}, {"name": "LICENSE", "type": "file"}, {"name": "README.md", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "icons", "type": "file"}, {"name": "meta.json", "type": "file"}]}, {"name": "vercel-react-best-practices", "type": "dir", "children": [{"name": "AGENTS.md", "type": "file"}, {"name": "GuiZe", "type": "file"}, {"name": "README.md", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "meta.json", "type": "file"}, {"name": "metadata.json", "type": "file"}]}, {"name": "web-design-guidelines", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "meta.json", "type": "file"}]}]}, {"name": "nuwa-skill-main", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "JiaoBen", "type": "file"}, {"name": "LICENSE", "type": "file"}, {"name": "README.md", "type": "file"}, {"name": "README_EN.md", "type": "file"}, {"name": "README_ES.md", "type": "file"}, {"name": "README_JA.md", "type": "file"}, {"name": "README_KO.md", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "ShiLi", "type": "file"}, {"name": "ZiYuan", "type": "file"}, {"name": "nuwa-skill-main-ZhuCe-Biao", "type": "dir", "children": [{"name": "nuwa-skill-main-ZhuCe-Biao.md", "type": "file"}]}, {"name": "x-thread-en.md", "type": "file"}]}, {"name": "role-diversion", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "JiaoBen", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "role-diversion-ZhuCe-Biao", "type": "dir", "children": [{"name": "role-diversion-ZhuCe-Biao.md", "type": "file"}]}]}, {"name": "theme-factory", "type": "dir", "children": [{"name": "LICENSE.txt", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "theme-factory-ZhuCe-Biao", "type": "dir", "children": [{"name": "theme-factory-ZhuCe-Biao.md", "type": "file"}]}, {"name": "themes", "type": "dir", "children": [{"name": "arctic-frost.md", "type": "file"}, {"name": "botanical-garden.md", "type": "file"}, {"name": "desert-rose.md", "type": "file"}, {"name": "forest-canopy.md", "type": "file"}, {"name": "golden-hour.md", "type": "file"}, {"name": "midnight-galaxy.md", "type": "file"}, {"name": "modern-minimalist.md", "type": "file"}, {"name": "ocean-depths.md", "type": "file"}, {"name": "sunset-boulevard.md", "type": "file"}, {"name": "tech-innovation.md", "type": "file"}]}]}, {"name": "understand-anything", "type": "dir", "children": [{"name": "CanKao", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "understand-anything-ZhuCe-Biao", "type": "dir", "children": [{"name": "understand-anything-ZhuCe-Biao.md", "type": "file"}]}]}, {"name": "unilink", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "unilink-ZhuCe-Biao", "type": "dir", "children": [{"name": "unilink-ZhuCe-Biao.md", "type": "file"}]}]}]}, {"name": "workspace", "type": "dir", "children": [{"name": "AGENTS.md", "type": "file"}, {"name": "HEARTBEAT.md", "type": "file"}, {"name": "IDENTITY.md", "type": "file"}, {"name": "MEMORY.md", "type": "file"}, {"name": "PC-Yu-PeiZhi.json", "type": "file"}, {"name": "SOUL.md", "type": "file"}, {"name": "USER.md", "type": "file"}]}]}, {"name": "archive", "type": "dir", "children": [{"name": "pre-unilink", "type": "dir", "children": [{"name": "skills_skills", "type": "dir", "children": [{"name": "1password", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "apple-notes", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "apple-reminders", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "bear-notes", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "blogwatcher", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "blucli", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "bluebubbles", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "camsnap", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "canvas", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "chart-image", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "coding-agent", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "context-manager", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "core-agent", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "core-browser", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "core-command", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "core-fileops", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "core-index", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "core-memory", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "core-message", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "core-search", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "core-system", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "core-taskmgmt", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "core-web", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "cost-report", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "design-review", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "discord", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "eightctl", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "excel-xlsx", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "figma", "type": "dir", "children": [{"name": "LICENSE.txt", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "agents", "type": "dir", "children": [{"name": "openai.yaml", "type": "file"}]}, {"name": "assets", "type": "dir", "children": [{"name": "figma-small.svg", "type": "file"}, {"name": "figma.png", "type": "file"}, {"name": "icon.svg", "type": "file"}]}, {"name": "references", "type": "dir", "children": [{"name": "figma-mcp-config.md", "type": "file"}, {"name": "figma-tools-and-prompts.md", "type": "file"}]}]}, {"name": "frontend-design", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "gemini", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "gh-issues", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "gifgrep", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "git-commit", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "github", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "gog", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "goplaces", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "healthcheck", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "himalaya", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "imsg", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "karpathy-guidelines", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "mcporter", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "mimo-omni", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "mimo-tts-wav", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "model-usage", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}, {"name": "nano-banana-pro", "type": "dir", "children": [{"name": ".gitignore", "type": "file"}, {"name": ".python-version", "type": "file"}, {"name": "README.md", "type": "file"}, {"name": "SKILL.md", "type": "file"}, {"name": "list_models.py", "type": "file"}, {"name": "main.py", "type": "file"}, {"name": "pyproject.toml", "type": "file"}, {"name": "test_api.py", "type": "file"}, {"name": "uv.lock", "type": "file"}]}, {"name": "role-diversion", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}, {"name": "references", "type": "dir", "children": [{"name": "examples-3d-modeler.md", "type": "file"}, {"name": "examples-designer.md", "type": "file"}, {"name": "examples-video-editor.md", "type": "file"}]}, {"name": "scripts", "type": "dir", "children": [{"name": "role-diversion.ps1", "type": "file"}]}]}, {"name": "unilink", "type": "dir", "children": [{"name": "SKILL.md", "type": "file"}]}]}]}]}, {"name": "git", "type": "file"}, {"name": "gitignore", "type": "file"}, {"name": "jiaoben", "type": "file"}, {"name": "project_rules.md", "type": "file"}, {"name": "qianzhi-gongju", "type": "file"}, {"name": "rizhi", "type": "dir", "children": [{"name": "ShaXiang-QingLi_20260613.md", "type": "file"}]}, {"name": "skill-lock.json", "type": "file"}, {"name": "trae", "type": "dir", "children": [{"name": "rules", "type": "dir", "children": [{"name": "project_rules.md", "type": "file"}]}]}, {"name": "zhuce-biao", "type": "file"}]};
+const rootData = {"name": "/root", "type": "dir", "children": [{"name": "adal", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "agents", "type": "dir", "children": [{"name": ".skill-lock.json", "type": "file"}, {"name": "skills", "type": "dir", "children": [{"name": "DouBao-ShengTu", "type": "file"}, {"name": "FanYi-JiNeng", "type": "file"}, {"name": "JiaoBen-GuiFan", "type": "file"}, {"name": "QClaw-Account", "type": "file"}, {"name": "QianYi-WanWu", "type": "file"}, {"name": "RiZhi-GuiFan", "type": "file"}, {"name": "RunningHUB-AI", "type": "file"}, {"name": "SouSuo-SuCha", "type": "file"}, {"name": "TRAE-Rule", "type": "file"}, {"name": "WenShengTu", "type": "file"}, {"name": "ZhongJiangMingDan", "type": "file"}, {"name": "baoyu-comic", "type": "file"}, {"name": "baoyu-compress-image", "type": "file"}, {"name": "baoyu-image-gen", "type": "file"}, {"name": "chart-visualization", "type": "file"}, {"name": "consulting-analysis", "type": "file"}, {"name": "data-analysis", "type": "file"}, {"name": "deploy-to-vercel", "type": "file"}, {"name": "find-skills", "type": "file"}, {"name": "frontend-design", "type": "file"}, {"name": "grill-me", "type": "file"}, {"name": "html-report-design-system", "type": "file"}, {"name": "humanizer", "type": "file"}, {"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}, {"name": "local-asr", "type": "file"}, {"name": "local-computer-use", "type": "file"}, {"name": "local-tts", "type": "file"}, {"name": "local-txt2img", "type": "file"}, {"name": "mrbeast-perspective", "type": "file"}, {"name": "nuwa-skill-main", "type": "file"}, {"name": "remotion-best-practices", "type": "file"}, {"name": "role-diversion", "type": "file"}, {"name": "skill-creator", "type": "file"}, {"name": "soultrace", "type": "file"}, {"name": "summarize", "type": "file"}, {"name": "supabase-postgres-best-practices", "type": "file"}, {"name": "tencent-esign-contract", "type": "file"}, {"name": "theme-factory", "type": "file"}, {"name": "understand-anything", "type": "file"}, {"name": "unilink", "type": "file"}, {"name": "vercel-react-best-practices", "type": "file"}, {"name": "web-design-guidelines", "type": "file"}]}]}, {"name": "aider-desk", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "astrbot", "type": "dir", "children": [{"name": "data", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}]}, {"name": "augment", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "autohand", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "bashrc", "type": "file"}, {"name": "bob", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "cache", "type": "file"}, {"name": "cargo", "type": "file"}, {"name": "claude", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "codeartsdoer", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "codebuddy", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "codeium", "type": "dir", "children": [{"name": "windsurf", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}]}, {"name": "codemaker", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "codestudio", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "commandcode", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "config", "type": "file"}, {"name": "continue", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "factory", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "forge", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "gnupg", "type": "file"}, {"name": "gradle", "type": "file"}, {"name": "hermes", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "iflow", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "inferencesh", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "jazz", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "junie", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "kilocode", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "kiro", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "kode", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "lingma", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "local", "type": "file"}, {"name": "mcpjam", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "moxby", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "mux", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "neovate", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "npm", "type": "file"}, {"name": "nvm", "type": "file"}, {"name": "oh-my-zsh", "type": "file"}, {"name": "ona", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "openclaw", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "openhands", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "phpenv", "type": "file"}, {"name": "pi", "type": "dir", "children": [{"name": "agent", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}]}, {"name": "pochi", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "profile", "type": "file"}, {"name": "pyenv", "type": "file"}, {"name": "qoder", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "qoder-cn", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "qwen", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "reasonix", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "roo", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "rovodev", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "rustup", "type": "file"}, {"name": "snowflake", "type": "dir", "children": [{"name": "cortex", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}]}, {"name": "ssh", "type": "file"}, {"name": "swiftly", "type": "dir", "children": [{"name": "bin", "type": "dir", "children": [{"name": "aarch64-swift-linux-musl-clang++.cfg", "type": "file"}, {"name": "aarch64-swift-linux-musl-clang.cfg", "type": "file"}, {"name": "clang", "type": "file"}, {"name": "clang++", "type": "file"}, {"name": "clang-17", "type": "file"}, {"name": "clang-21", "type": "file"}, {"name": "clang-cache", "type": "file"}, {"name": "clang-cl", "type": "file"}, {"name": "clang-cpp", "type": "file"}, {"name": "clangd", "type": "file"}, {"name": "docc", "type": "file"}, {"name": "ld.lld", "type": "file"}, {"name": "ld64.lld", "type": "file"}, {"name": "lld", "type": "file"}, {"name": "lld-link", "type": "file"}, {"name": "lldb", "type": "file"}, {"name": "lldb-argdumper", "type": "file"}, {"name": "lldb-dap", "type": "file"}, {"name": "lldb-server", "type": "file"}, {"name": "llvm-ar", "type": "file"}, {"name": "llvm-cov", "type": "file"}, {"name": "llvm-nm", "type": "file"}, {"name": "llvm-objcopy", "type": "file"}, {"name": "llvm-objdump", "type": "file"}, {"name": "llvm-profdata", "type": "file"}, {"name": "llvm-ranlib", "type": "file"}, {"name": "llvm-symbolizer", "type": "file"}, {"name": "plutil", "type": "file"}, {"name": "repl_swift", "type": "file"}, {"name": "sdk-module-lists", "type": "file"}, {"name": "sourcekit-lsp", "type": "file"}, {"name": "swift", "type": "file"}, {"name": "swift-api-checker.py", "type": "file"}, {"name": "swift-api-digester", "type": "file"}, {"name": "swift-autolink-extract", "type": "file"}, {"name": "swift-build", "type": "file"}, {"name": "swift-build-sdk-interfaces", "type": "file"}, {"name": "swift-build-tool", "type": "file"}, {"name": "swift-cache-tool", "type": "file"}, {"name": "swift-demangle", "type": "file"}, {"name": "swift-driver", "type": "file"}, {"name": "swift-experimental-sdk", "type": "file"}, {"name": "swift-format", "type": "file"}, {"name": "swift-frontend", "type": "file"}, {"name": "swift-help", "type": "file"}, {"name": "swift-legacy-driver", "type": "file"}, {"name": "swift-package", "type": "file"}, {"name": "swift-package-collection", "type": "file"}, {"name": "swift-package-registry", "type": "file"}, {"name": "swift-plugin-server", "type": "file"}, {"name": "swift-run", "type": "file"}, {"name": "swift-sdk", "type": "file"}, {"name": "swift-symbolgraph-extract", "type": "file"}, {"name": "swift-synthesize-interface", "type": "file"}, {"name": "swift-test", "type": "file"}, {"name": "swiftc", "type": "file"}, {"name": "swiftc-legacy-driver", "type": "file"}, {"name": "swiftly", "type": "file"}, {"name": "wasm-ld", "type": "file"}, {"name": "wasmkit", "type": "file"}, {"name": "x86_64-swift-linux-musl-clang++.cfg", "type": "file"}, {"name": "x86_64-swift-linux-musl-clang.cfg", "type": "file"}]}]}, {"name": "tabnine", "type": "dir", "children": [{"name": "agent", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}]}, {"name": "terramind", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "tinycloud", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "trae", "type": "file"}, {"name": "trae-cn", "type": "dir", "children": [{"name": "skills", "type": "file"}]}, {"name": "vibe", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "yarn", "type": "dir", "children": [{"name": "berry", "type": "file"}]}, {"name": "zencoder", "type": "dir", "children": [{"name": "skills", "type": "dir", "children": [{"name": "lark-approval", "type": "file"}, {"name": "lark-apps", "type": "file"}, {"name": "lark-attendance", "type": "file"}, {"name": "lark-base", "type": "file"}, {"name": "lark-calendar", "type": "file"}, {"name": "lark-contact", "type": "file"}, {"name": "lark-doc", "type": "file"}, {"name": "lark-drive", "type": "file"}, {"name": "lark-event", "type": "file"}, {"name": "lark-im", "type": "file"}, {"name": "lark-mail", "type": "file"}, {"name": "lark-markdown", "type": "file"}, {"name": "lark-minutes", "type": "file"}, {"name": "lark-okr", "type": "file"}, {"name": "lark-openapi-explorer", "type": "file"}, {"name": "lark-shared", "type": "file"}, {"name": "lark-sheets", "type": "file"}, {"name": "lark-skill-maker", "type": "file"}, {"name": "lark-slides", "type": "file"}, {"name": "lark-task", "type": "file"}, {"name": "lark-vc", "type": "file"}, {"name": "lark-vc-agent", "type": "file"}, {"name": "lark-whiteboard", "type": "file"}, {"name": "lark-wiki", "type": "file"}, {"name": "lark-workflow-meeting-summary", "type": "file"}, {"name": "lark-workflow-standup-report", "type": "file"}]}]}, {"name": "zshenv", "type": "file"}, {"name": "zshrc", "type": "file"}]};
+
+function countChildren(node) {
+  if (node.type === 'file') return 0;
+  if (!node.children) return 0;
+  return node.children.length;
+}
+
+function getSymlinkInfo(path, name) {
+  if (path === '/root/.agents/skills') {
+    return { target: '/workspace/.agents/skills/' + name };
+  }
+  if (path === '/root/agents/skills') {
+    return { target: '/workspace/.agents/skills/' + name };
+  }
+  if (path === '/root/agents/skills/lark-skills') {
+    return { target: '/workspace/.agents/skills/lark-skills/' + name };
+  }
+  if (path === '/root/.trae-cn/skills') {
+    return { target: '../../.agents/skills/' + name };
+  }
+  return null;
+}
+
+function getBadge(path, name) {
+  if (name === 'lark-skills') return { text: '飞书', cls: 'green' };
+  if (name === 'market') return { text: '市场', cls: 'gold' };
+  return null;
+}
+
+const treeStates = {
+  workspace: { expanded: new Set(), rendered: new Set(), data: workspaceData },
+  root: { expanded: new Set(), rendered: new Set(), data: rootData }
+};
+
+let nodeIdCounter = 0;
+
+function generateNodeId() {
+  return 'node-' + (nodeIdCounter++);
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function escapeAttr(str) {
+  return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function renderTreeNode(node, depth, parentPath, treeId) {
+  const path = parentPath + '/' + node.name;
+  const isDir = node.type === 'dir';
+  const childCount = isDir ? countChildren(node) : 0;
+  const nodeId = generateNodeId();
+  const symlinkInfo = treeId === 'root' ? getSymlinkInfo(parentPath, node.name) : null;
+  const isSymlink = symlinkInfo !== null;
+  const badge = isDir ? getBadge(parentPath, node.name) : null;
+
+  let icon = '';
+  let nameClass = '';
+
+  if (isSymlink) {
+    icon = '🔗';
+    nameClass = 'symlink-name';
+  } else if (isDir) {
+    icon = '📁';
+    nameClass = 'dir-name';
+  } else {
+    icon = '📄';
+    nameClass = 'file-name';
+  }
+
+  const rowClass = isSymlink ? 'tree-node-row symlink-row' : 'tree-node-row';
+
+  let h = '<div class="tree-node" data-path="' + escapeAttr(path) + '" data-name="' + escapeAttr(node.name) + '" id="' + nodeId + '">';
+  h += '<div class="' + rowClass + '" style="--depth:' + depth + '" onclick="toggleNode(\'' + treeId + '\', \'' + nodeId + '\')">';
+  h += isDir ? '<span class="tree-toggle" id="toggle-' + nodeId + '">▶</span>' : '<span class="tree-toggle leaf"></span>';
+  h += '<span class="tree-icon">' + icon + '</span>';
+  h += '<span class="tree-name ' + nameClass + '">' + escapeHtml(node.name) + '</span>';
+  if (isDir && childCount > 0) h += '<span class="tree-count">(' + childCount + ')</span>';
+  if (badge) h += '<span class="tree-badge ' + badge.cls + '">' + badge.text + '</span>';
+  if (isSymlink) h += '<span class="tree-symlink-target">→ ' + escapeHtml(symlinkInfo.target) + '</span>';
+  h += '</div>';
+  if (isDir) h += '<div class="tree-children collapsed" id="children-' + nodeId + '"></div>';
+  h += '</div>';
+  return h;
+}
+
+function findNodeByPath(data, targetPath, currentPath) {
+  if (currentPath === targetPath) return data;
+  if (data.type !== 'dir' || !data.children) return null;
+  for (const child of data.children) {
+    const childPath = currentPath + '/' + child.name;
+    const found = findNodeByPath(child, targetPath, childPath);
+    if (found) return found;
+  }
+  return null;
+}
+
+function toggleNode(treeId, nodeId) {
+  const state = treeStates[treeId];
+  const childrenEl = document.getElementById('children-' + nodeId);
+  const toggleEl = document.getElementById('toggle-' + nodeId);
+  const nodeEl = document.getElementById(nodeId);
+  if (!childrenEl || !nodeEl) return;
+
+  if (state.expanded.has(nodeId)) {
+    state.expanded.delete(nodeId);
+    childrenEl.classList.add('collapsed');
+    toggleEl.classList.remove('expanded');
+  } else {
+    state.expanded.add(nodeId);
+    toggleEl.classList.add('expanded');
+    if (!state.rendered.has(nodeId)) {
+      const path = nodeEl.getAttribute('data-path');
+      const nodeData = findNodeByPath(state.data, path, '');
+      if (nodeData && nodeData.children) {
+        let ch = '';
+        for (const child of nodeData.children) {
+          ch += renderTreeNode(child, 1, path, treeId);
+        }
+        childrenEl.innerHTML = ch;
+        state.rendered.add(nodeId);
+      }
+    }
+    childrenEl.classList.remove('collapsed');
+  }
+}
+
+function expandAll(treeId) {
+  const state = treeStates[treeId];
+  const container = document.getElementById(treeId + '-tree-content');
+  function doExpand(node, parentPath, depth) {
+    if (node.type !== 'dir' || !node.children) return;
+    const path = parentPath + '/' + node.name;
+    const nodeEl = container.querySelector('[data-path="' + CSS.escape(path) + '"]');
+    if (!nodeEl) return;
+    const nodeId = nodeEl.id;
+    const childrenEl = document.getElementById('children-' + nodeId);
+    const toggleEl = document.getElementById('toggle-' + nodeId);
+    if (!state.expanded.has(nodeId)) {
+      state.expanded.add(nodeId);
+      if (toggleEl) toggleEl.classList.add('expanded');
+      if (!state.rendered.has(nodeId)) {
+        if (node.children) {
+          let ch = '';
+          for (const child of node.children) {
+            ch += renderTreeNode(child, depth + 1, path, treeId);
+          }
+          if (childrenEl) childrenEl.innerHTML = ch;
+          state.rendered.add(nodeId);
+        }
+      }
+      if (childrenEl) childrenEl.classList.remove('collapsed');
+    }
+    if (node.children) {
+      for (const child of node.children) {
+        if (child.type === 'dir') doExpand(child, path, depth + 1);
+      }
+    }
+  }
+  doExpand(state.data, '', 0);
+}
+
+function collapseAll(treeId) {
+  const state = treeStates[treeId];
+  for (const nodeId of state.expanded) {
+    const childrenEl = document.getElementById('children-' + nodeId);
+    const toggleEl = document.getElementById('toggle-' + nodeId);
+    if (childrenEl) childrenEl.classList.add('collapsed');
+    if (toggleEl) toggleEl.classList.remove('expanded');
+  }
+  state.expanded.clear();
+}
+
+function setupSearch(treeId) {
+  const input = document.querySelector('.tree-search[data-tree="' + treeId + '"]');
+  input.addEventListener('input', function() {
+    const query = this.value.toLowerCase().trim();
+    const container = document.getElementById(treeId + '-tree-content');
+    const allNodes = container.querySelectorAll('.tree-node');
+    if (!query) {
+      allNodes.forEach(n => n.classList.remove('hidden'));
+      return;
+    }
+    allNodes.forEach(node => {
+      const name = (node.getAttribute('data-name') || '').toLowerCase();
+      if (name.includes(query)) {
+        node.classList.remove('hidden');
+        let parent = node.parentElement;
+        while (parent && parent.classList && parent.classList.contains('tree-children')) {
+          const parentNode = parent.parentElement;
+          if (parentNode && parentNode.classList.contains('tree-node')) {
+            parentNode.classList.remove('hidden');
+          }
+          parent = parentNode ? parentNode.parentElement : null;
+        }
+      } else {
+        node.classList.add('hidden');
+      }
+    });
+  });
+}
+
+function initTree(treeId) {
+  const state = treeStates[treeId];
+  const container = document.getElementById(treeId + '-tree-content');
+  const root = state.data;
+  container.innerHTML = renderTreeNode(root, 0, '', treeId);
+  const rootEl = container.querySelector('.tree-node');
+  if (rootEl) toggleNode(treeId, rootEl.id);
+  setupSearch(treeId);
+}
+
+function setupScrollSpy() {
+  const sections = document.querySelectorAll('section[id], .hero[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-80px 0px -60% 0px' });
+  sections.forEach(section => observer.observe(section));
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  initTree('workspace');
+  initTree('root');
+  setupScrollSpy();
+});
+</script>
+
+</body>
+</html>
