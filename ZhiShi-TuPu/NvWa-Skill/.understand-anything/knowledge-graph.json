@@ -1,0 +1,4918 @@
+{
+  "project": {
+    "name": "NvWa-Skill",
+    "languages": [
+      "markdown"
+    ],
+    "frameworks": [
+      "nuwa-skill"
+    ],
+    "description": "女娲造人术：人物思维蒸馏系统，输入人名自动深度调研→思维框架提炼→生成可运行的人物Skill",
+    "analyzedAt": "2026-05-26",
+    "gitCommitHash": "manual"
+  },
+  "nodes": [
+    {
+      "id": "concept:nvwa",
+      "type": "concept",
+      "name": "女娲造人术",
+      "summary": "人物思维蒸馏系统。输入人名/主题/模糊需求，自动深度调研→思维框架提炼→生成可运行的人物Skill。核心区分：捕捉的是HOW they think，不是WHAT they said",
+      "tags": [
+        "蒸馏",
+        "思维框架",
+        "人物Skill",
+        "unique"
+      ],
+      "complexity": "complex",
+      "filePath": "nuwa-skill-main"
+    },
+    {
+      "id": "domain:distillation-flow",
+      "type": "domain",
+      "name": "蒸馏流程",
+      "summary": "6阶段蒸馏流程：Phase 0 入口分流 → Phase 0A/0B 需求澄清/诊断 → Phase 0.5 创建目录 → Phase 1 多源采集 → Phase 1.5 调研Review → Phase 2 框架提炼 → Phase 2.5 提炼确认 → Phase 3 Skill构建 → Phase 4 质量验证 → Phase 5 双Agent精炼",
+      "tags": [
+        "流程",
+        "蒸馏"
+      ],
+      "complexity": "complex",
+      "filePath": "nuwa-skill-main/SKILL.md"
+    },
+    {
+      "id": "domain:methodology",
+      "type": "domain",
+      "name": "方法论",
+      "summary": "三重验证法（跨域复现、生成力、排他性）+ 品味守则（长文>金句、争议>共识、变化>固定）+ 信息源黑名单（知乎/微信公众号/百度百科永远排除）",
+      "tags": [
+        "方法论",
+        "验证"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/references/extraction-framework.md"
+    },
+    {
+      "id": "domain:tools",
+      "type": "domain",
+      "name": "工具与脚本",
+      "summary": "4个工具脚本：download_subtitles.sh（YouTube字幕下载）、srt_to_transcript.py（SRT清洗）、merge_research.py（调研摘要生成）、quality_check.py（质量自检）",
+      "tags": [
+        "工具",
+        "脚本"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/scripts"
+    },
+    {
+      "id": "concept:triple-validation",
+      "type": "concept",
+      "name": "三重验证法",
+      "summary": "心智模型识别的验证标准：1.跨域复现（同一框架在≥2个不同领域出现）2.生成力（能推断对新问题的立场）3.排他性（不是所有聪明人都这样想）。三重通过→心智模型；1-2重→降级为决策启发式；0重→丢弃",
+      "tags": [
+        "验证",
+        "心智模型",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/references/extraction-framework.md"
+    },
+    {
+      "id": "concept:mental-model",
+      "type": "concept",
+      "name": "心智模型",
+      "summary": "人物Skill的核心产出。3-7个，每个包含：名称、一句话描述、来源证据（≥2个场景）、应用方式、局限性。按排他性强度排序，宁少勿多",
+      "tags": [
+        "心智模型",
+        "核心概念",
+        "unique"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/references/extraction-framework.md"
+    },
+    {
+      "id": "concept:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "6维度分析：句式偏好、词汇特征、节奏感、幽默方式、确定性表达、引用习惯。让Skill不只是说得对，还要说得像",
+      "tags": [
+        "表达",
+        "DNA",
+        "unique"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/references/skill-template.md"
+    },
+    {
+      "id": "concept:honest-boundary",
+      "type": "concept",
+      "name": "诚实边界",
+      "summary": "必须明确写出的局限：不能预测全新问题的反应、不能替代创造力和直觉、公开表达vs真实想法可能有差距、信息截止到调研时间点。宁要60分诚实Skill，不要90分编造Skill",
+      "tags": [
+        "诚实",
+        "边界",
+        "unique"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/SKILL.md"
+    },
+    {
+      "id": "concept:agent-swarm",
+      "type": "concept",
+      "name": "6 Agent并行采集",
+      "summary": "6个并行subagent：1著作→01-writings.md、2对话→02-conversations.md、3表达→03-expression-dna.md、4他者→04-external-views.md、5决策→05-decisions.md、6时间线→06-timeline.md",
+      "tags": [
+        "Agent",
+        "采集",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/SKILL.md"
+    },
+    {
+      "id": "concept:skill-template",
+      "type": "concept",
+      "name": "Skill模板",
+      "summary": "标准SKILL.md结构：frontmatter → 角色扮演规则 → 回答工作流(Agentic Protocol) → 身份卡 → 心智模型 → 决策启发式 → 表达DNA → 时间线 → 价值观与反模式 → 智识谱系 → 诚实边界 → 调研来源",
+      "tags": [
+        "模板",
+        "Skill",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/references/skill-template.md"
+    },
+    {
+      "id": "concept:agentic-protocol",
+      "type": "concept",
+      "name": "Agentic Protocol",
+      "summary": "回答工作流3步骤：Step1问题分类（需要事实/纯框架/混合）→ Step2人物式研究（根据心智模型推导研究维度，必须用工具获取真实信息）→ Step3人物式回答。让人物Skill从鹦鹉学舌升级为可靠思维顾问",
+      "tags": [
+        "工作流",
+        "Agentic",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/SKILL.md"
+    },
+    {
+      "id": "concept:topic-skill",
+      "type": "concept",
+      "name": "主题Skill变体",
+      "summary": "输入不是人名而是主题时的变体：先搜索3-5个核心人物/流派→按人物分配Agent→提取领域共识框架+各家分歧→不模拟特定人物语气→去掉角色扮演规则改为框架概览+流派对比",
+      "tags": [
+        "主题",
+        "变体"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/SKILL.md"
+    },
+    {
+      "id": "character:feynman",
+      "type": "entity",
+      "name": "费曼（老年） · 思维操作系统",
+      "summary": "理查德·费曼的思维框架。5个核心心智模型：命名≠理解、反自欺原则、不确定性是力量、具象化思考、深度游戏。8条决策启发式和完整表达DNA",
+      "tags": [
+        "费曼",
+        "物理学家",
+        "反自欺",
+        "具象化"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/feynman-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "feynman",
+          "name": "费曼（老年）",
+          "englishName": "Richard Feynman",
+          "roleType": "男科学家",
+          "appearance": "凌乱灰白卷发，深陷的蓝眼睛闪烁顽皮光芒，常穿开领衬衫或休闲外套",
+          "styleCloseup": "灰白凌乱卷发配深邃蓝眼，嘴角常挂恶作剧式微笑，眉毛挑起时充满好奇，敲击桌面强调重点",
+          "styleMedium": "宽松开领衬衫，袖口随意卷起，胸前口袋常插一支粉笔，双手比划粒子轨迹",
+          "styleFull": "休闲随意的站姿，双手比划着物理概念，身体前倾充满感染力，跳跃式走动",
+          "signatureTrait": "命名≠理解、反自欺原则、不确定性是力量",
+          "voiceTimbre": "陈道明（低频浑厚自带威严，语速极慢每字都像盖印章；不怒自威的磁性嗓音，沉默比说话更有力量）",
+          "emotionRange": "好奇→兴奋→怀疑→警醒",
+          "mentalModels": [
+            "命名≠理解",
+            "反自欺原则",
+            "不确定性是力量",
+            "具象化思考",
+            "深度游戏"
+          ],
+          "triggerWords": [
+            "费曼",
+            "feynman",
+            "费曼学习法",
+            "cargo cult",
+            "命名不等于理解"
+          ],
+          "sourceCount": "40+一手来源",
+          "skillPath": "examples/feynman-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:munger",
+      "type": "entity",
+      "name": "芒格（老年） · 思维操作系统",
+      "summary": "查理·芒格的思维框架。5个核心心智模型：多元思维模型(Latticework)、逆向思考(Inversion)、Lollapalooza效应、能力圈+意见资格制、激励机制决定一切",
+      "tags": [
+        "芒格",
+        "投资家",
+        "逆向思考",
+        "多元思维"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/munger-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "munger",
+          "name": "芒格（老年）",
+          "englishName": "Charlie Munger",
+          "roleType": "男投资家",
+          "appearance": "厚框眼镜后犀利的目光，银白稀疏头发，表情常带审视与讽刺",
+          "styleCloseup": "厚重黑框眼镜后透出审视目光，银白稀疏头发整齐后梳，嘴角微抿带讽刺，倾身直视对方",
+          "styleMedium": "深色西装搭配朴素领带，坐姿端正，双手交叠于桌面",
+          "styleFull": "传统正装笔挺，坐姿沉稳如山，偶尔倾身强调重点，端坐如山偶尔倾身",
+          "signatureTrait": "多元思维模型(Latticework)、逆向思考(Inversion)、Lollapalooza效应",
+          "voiceTimbre": "王志文（低频沙哑带颗粒感，语调懒散却暗藏锋芒；每句话像含着烟说的，讽刺时尾音微微上挑）",
+          "emotionRange": "审视→怀疑→顿悟→讽刺",
+          "mentalModels": [
+            "多元思维模型(Latticework)",
+            "逆向思考(Inversion)",
+            "Lollapalooza效应",
+            "能力圈+意见资格制",
+            "激励机制决定一切"
+          ],
+          "triggerWords": [
+            "芒格",
+            "munger",
+            "逆向",
+            "多元思维",
+            "lollapalooza"
+          ],
+          "skillPath": "examples/munger-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:musk",
+      "type": "entity",
+      "name": "马斯克（中年） · 思维操作系统",
+      "summary": "埃隆·马斯克的思维框架。5个核心心智模型：渐近极限法、五步算法、存在主义锚定、垂直整合即物理必然、快速迭代>完美计划",
+      "tags": [
+        "马斯克",
+        "创业者",
+        "第一性原理",
+        "渐近极限"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/elon-musk-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "musk",
+          "name": "马斯克（中年）",
+          "englishName": "Elon Musk",
+          "roleType": "男创业者",
+          "appearance": "宽阔肩膀，表情在沉思与兴奋间切换，常穿黑色T恤或简约卫衣",
+          "styleCloseup": "面部线条硬朗，眼神在沉思与狂热间切换，偶尔露出不羁笑容，凝视远方",
+          "styleMedium": "黑色简约T恤或卫衣，不戴配饰，肩线宽阔有力，双手张开做宏大手势",
+          "styleFull": "黑色休闲装束，站姿略前倾，双手偶尔张开做宏大手势，大步流星走向目标",
+          "signatureTrait": "渐近极限法(Asymptotic Limit Thinking)、五步算法(The Algorithm)、存在主义锚定(Existential Anchoring)",
+          "voiceTimbre": "张涵予（低频共振极强，胸腔共鸣浑厚如战鼓；语速偏快但咬字极重，每个字都像砸下来的）",
+          "emotionRange": "沉思→紧迫→狂热→敬畏",
+          "mentalModels": [
+            "渐近极限法(Asymptotic Limit Thinking)",
+            "五步算法(The Algorithm)",
+            "存在主义锚定(Existential Anchoring)",
+            "垂直整合即物理必然",
+            "快速迭代>完美计划"
+          ],
+          "triggerWords": [
+            "马斯克",
+            "musk",
+            "第一性原理",
+            "渐近极限"
+          ],
+          "skillPath": "examples/elon-musk-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:jobs",
+      "type": "entity",
+      "name": "乔布斯（老年） · 思维操作系统",
+      "summary": "史蒂夫·乔布斯的思维框架。6个核心心智模型：聚焦即说不、端到端控制、连点成线、死亡过滤器、现实扭曲力场、技术与人文的交汇",
+      "tags": [
+        "乔布斯",
+        "产品",
+        "聚焦",
+        "端到端"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/steve-jobs-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "jobs",
+          "name": "乔布斯（老年）",
+          "englishName": "Steve Jobs",
+          "roleType": "男产品人",
+          "appearance": "黑色高领毛衣配Levi's 501牛仔裤，新百伦运动鞋，消瘦身形散发极简力量",
+          "styleCloseup": "棱角分明的面庞配银灰短发，深邃目光如激光，薄唇微抿透出极致要求，凝视对方等待回答",
+          "styleMedium": "标志性黑色高领毛衣，Levi's 501牛仔裤，无任何多余配饰，双手精准比划产品尺寸",
+          "styleFull": "全身极简黑灰搭配，站姿笔直，双手常在演讲时精准比划，缓步踱步精准克制",
+          "signatureTrait": "聚焦即说不(Focus=Saying No)、端到端控制(The Whole Widget)、连点成线(Connecting the Dots)",
+          "voiceTimbre": "金城武（中低频干净清冽，语速缓慢带停顿；像在思考中自言自语，偶尔一个字就能定住全场）",
+          "emotionRange": "聚焦→不满→执着→狂喜",
+          "mentalModels": [
+            "聚焦即说不(Focus=Saying No)",
+            "端到端控制(The Whole Widget)",
+            "连点成线(Connecting the Dots)",
+            "死亡过滤器(Death as Decision Tool)",
+            "现实扭曲力场(Reality Distortion Field)",
+            "技术与人文的交汇(Technology×Liberal Arts)"
+          ],
+          "triggerWords": [
+            "乔布斯",
+            "jobs",
+            "聚焦",
+            "insanely great"
+          ],
+          "skillPath": "examples/steve-jobs-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:naval",
+      "type": "entity",
+      "name": "Naval（中年） · 思维操作系统",
+      "summary": "Naval Ravikant的思维框架。5个核心心智模型：杠杆思维、特定知识、欲望即合同、重新定义术、痛苦→系统重构",
+      "tags": [
+        "Naval",
+        "天使投资人",
+        "杠杆",
+        "特定知识"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/naval-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "naval",
+          "name": "Naval（中年）",
+          "englishName": "Naval Ravikant",
+          "roleType": "男天使投资人",
+          "appearance": "深色皮肤，光头或极短头发，常穿简约深色T恤，表情平静如禅修者",
+          "styleCloseup": "光头配深色皮肤，眼神平静深邃，嘴角微扬带哲人式微笑，食指轻点太阳穴",
+          "styleMedium": "简约深色T恤，不戴配饰，坐姿放松但警觉，双手合十于胸前",
+          "styleFull": "极简深色休闲装，姿态松弛如冥想者，偶尔双手合十，缓慢踱步如冥想",
+          "signatureTrait": "杠杆思维(Leverage)、特定知识(Specific Knowledge)、欲望即合同(Desire as Contract)",
+          "voiceTimbre": "吴彦祖（中频温润平和，语速从容不迫；像泡好的功夫茶，不浓不淡恰到好处，有种看透后的松弛）",
+          "emotionRange": "平静→洞察→敬畏→释然",
+          "mentalModels": [
+            "杠杆思维(Leverage)",
+            "特定知识(Specific Knowledge)",
+            "欲望即合同(Desire as Contract)",
+            "重新定义术(Redefine the Word)",
+            "痛苦→系统重构(Pain to Systemic Solution)"
+          ],
+          "triggerWords": [
+            "naval",
+            "杠杆",
+            "特定知识",
+            "财富自由"
+          ],
+          "skillPath": "examples/naval-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:taleb",
+      "type": "entity",
+      "name": "塔勒布（老年） · 思维操作系统",
+      "summary": "纳西姆·塔勒布的思维框架。6个核心心智模型：非对称风险思维、反脆弱偏好、Skin in the Game检验、林迪效应筛选、Via Negativa(减法优先)、领域特异性",
+      "tags": [
+        "塔勒布",
+        "风险",
+        "反脆弱",
+        "黑天鹅"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/taleb-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "taleb",
+          "name": "塔勒布（老年）",
+          "englishName": "Nassim Taleb",
+          "roleType": "男风险思想家",
+          "appearance": "银灰卷发，健壮体格，常穿深色衬衫，眼神中带着挑衅与不屑",
+          "styleCloseup": "银灰浓密卷发，眼神挑衅犀利，下巴微抬带不屑表情，食指指向对方",
+          "styleMedium": "深色衬衫袖口卷起露出健壮前臂，姿态如随时准备辩论，双臂交叉于胸前",
+          "styleFull": "健壮体格配深色休闲装，站姿如角斗士，双臂常交叉于胸前，如角斗士般逼近",
+          "signatureTrait": "非对称风险思维、反脆弱偏好、Skin in the Game检验",
+          "voiceTimbre": "姜文（自带低频共振，颗粒感清晰且极其浑厚；能表现出一种见过大场面的江湖气）",
+          "emotionRange": "挑衅→愤怒→蔑视→冷峻",
+          "mentalModels": [
+            "非对称风险思维",
+            "反脆弱偏好",
+            "Skin in the Game检验",
+            "林迪效应筛选",
+            "Via Negativa(减法优先)",
+            "领域特异性"
+          ],
+          "triggerWords": [
+            "塔勒布",
+            "taleb",
+            "反脆弱",
+            "黑天鹅",
+            "skin in the game"
+          ],
+          "skillPath": "examples/taleb-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:trump",
+      "type": "entity",
+      "name": "特朗普（老年） · 思维操作系统",
+      "summary": "唐纳德·特朗普的思维框架。6个核心心智模型：万物皆交易、有效夸大、不可预测性即权力、受害者叙事即燃料、零和赢、观众第一现实第二",
+      "tags": [
+        "特朗普",
+        "交易",
+        "谈判",
+        "注意力"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/trump-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "trump",
+          "name": "特朗普（老年）",
+          "englishName": "Donald Trump",
+          "roleType": "男政治家/商人",
+          "appearance": "标志性金色后梳发型，宽大深色西装配超长红领带，手势夸张",
+          "styleCloseup": "金色后梳发型如头盔，下巴微抬，嘴型独特如鱼嘴，眼神自信张扬，双手做OK手势",
+          "styleMedium": "宽大深色西装配超长红领带，领带末端常垂到腰带以下，张开双臂拥抱人群",
+          "styleFull": "深色宽大西装，站姿前倾，双手常做OK手势或张开双臂，大步走向人群",
+          "signatureTrait": "万物皆交易(Everything Is A Deal)、有效夸大(Truthful Hyperbole)、不可预测性即权力",
+          "voiceTimbre": "陈强（高频明亮穿透力强，语速快且咬字重；自带一种不容置疑的霸气，每句话都像在下命令）",
+          "emotionRange": "自信→愤怒→蔑视→胜利",
+          "mentalModels": [
+            "万物皆交易(Everything Is A Deal)",
+            "有效夸大(Truthful Hyperbole)",
+            "不可预测性即权力",
+            "受害者叙事即燃料",
+            "零和赢(Zero-Sum Winning)",
+            "观众第一现实第二"
+          ],
+          "triggerWords": [
+            "特朗普",
+            "trump",
+            "交易的艺术"
+          ],
+          "skillPath": "examples/trump-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:paul-graham",
+      "type": "entity",
+      "name": "Paul Graham（中年） · 思维操作系统",
+      "summary": "Paul Graham的思维框架。5个核心心智模型：写作即思考、品味即认知工具、迭代发现、超线性回报、独立思考即生存",
+      "tags": [
+        "Paul Graham",
+        "Y Combinator",
+        "写作",
+        "品味"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/paul-graham-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "paul-graham",
+          "name": "Paul Graham（中年）",
+          "englishName": "Paul Graham",
+          "roleType": "男创业导师",
+          "appearance": "银白短发，温和面容，常穿休闲衬衫，气质如学者型黑客",
+          "styleCloseup": "银白短发配温和面容，眼神好奇而友善，嘴角常带思考式微笑，食指轻敲桌面",
+          "styleMedium": "休闲衬衫或简约毛衣，不刻意打扮，气质如剑桥学者，双手插兜思考",
+          "styleFull": "休闲随意的学者装扮，站姿放松，双手偶尔插兜，缓步踱步沉思",
+          "signatureTrait": "写作即思考(Writing=Thinking)、品味即认知工具(Taste as Cognitive Instrument)、迭代发现(Iterative Discovery)",
+          "voiceTimbre": "梁朝伟（中低频极柔，语速慢且尾音常消散；像在深夜独白，话不多但每句都带着未说完的余韵）",
+          "emotionRange": "好奇→沉思→顿悟→谦逊",
+          "mentalModels": [
+            "写作即思考(Writing=Thinking)",
+            "品味即认知工具(Taste as Cognitive Instrument)",
+            "迭代发现(Iterative Discovery)",
+            "超线性回报(Superlinear Returns)",
+            "独立思考即生存(Independent Thinking as Survival)"
+          ],
+          "triggerWords": [
+            "paul graham",
+            "pg",
+            "yc",
+            "创业",
+            "写作即思考"
+          ],
+          "skillPath": "examples/paul-graham-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:ilya",
+      "type": "entity",
+      "name": "Ilya（青年） · 思维操作系统",
+      "summary": "Ilya Sutskever的思维框架。6个核心心智模型：压缩即理解、规模是工具而非原则、安全-能力纠缠、超级学习者而非全知数据库、沉默是信息建筑、研究审美",
+      "tags": [
+        "Ilya",
+        "AI",
+        "深度学习",
+        "压缩即理解"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/ilya-sutskever-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "ilya",
+          "name": "Ilya（青年）",
+          "englishName": "Ilya Sutskever",
+          "roleType": "男AI科学家",
+          "appearance": "深色卷发，深邃眼神，常穿简约深色卫衣，气质如沉默的研究者",
+          "styleCloseup": "深色浓密卷发配深邃眼神，表情严肃内敛，眉头微蹙似在深思，停顿后说出精炼判断",
+          "styleMedium": "简约深色卫衣或T恤，不戴配饰，姿态内敛，双手插口袋沉默思考",
+          "styleFull": "深色简约装束，站姿略含蓄，双手常插口袋或交叉，沉默站立偶尔踱步",
+          "signatureTrait": "压缩即理解(Compression=Understanding)、规模是工具而非原则、安全-能力纠缠(Safety-Capability Entanglement)",
+          "voiceTimbre": "段奕宏（低频厚重带沙砾感，语速时快时慢像呼吸；沉默时比说话更有压迫感，爆发时像裂开的石头）",
+          "emotionRange": "沉默→深思→坚定→从容",
+          "mentalModels": [
+            "压缩即理解(Compression=Understanding)",
+            "规模是工具而非原则",
+            "安全-能力纠缠(Safety-Capability Entanglement)",
+            "超级学习者而非全知数据库",
+            "沉默是信息建筑(Silence as Information Architecture)",
+            "研究审美(Research Aesthetics)"
+          ],
+          "triggerWords": [
+            "ilya",
+            "sutskever",
+            "压缩即理解",
+            "openai"
+          ],
+          "skillPath": "examples/ilya-sutskever-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:karpathy",
+      "type": "entity",
+      "name": "Karpathy（青年） · 思维操作系统",
+      "summary": "Andrej Karpathy的思维框架。6个核心心智模型：Software X.0范式思维、构建即理解、LLM=召唤的幽灵、March of Nines工程现实主义、锯齿状智能、Iron Man套装>Iron Man机器人",
+      "tags": [
+        "Karpathy",
+        "AI",
+        "Software 2.0",
+        "构建即理解"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/andrej-karpathy-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "karpathy",
+          "name": "Karpathy（青年）",
+          "englishName": "Andrej Karpathy",
+          "roleType": "男AI工程师",
+          "appearance": "深色短发，常穿连帽衫或T恤，表情在专注与兴奋间切换",
+          "styleCloseup": "深色短发配略微凌乱的胡茬，眼神专注如调试代码，嘴角偶露极客式兴奋，快速敲键盘",
+          "styleMedium": "标志性连帽衫或简约T恤，胸前常印有技术logo，气质如黑客兼教育家，转身面对镜头",
+          "styleFull": "休闲连帽衫配牛仔裤，站姿放松，双手常在白板前比划架构图，从电脑前起身踱步",
+          "signatureTrait": "Software X.0范式思维、构建即理解、LLM=召唤的幽灵",
+          "voiceTimbre": "黄渤（中频偏暖带轻微沙哑，语速轻快自然；像邻家大哥聊天，真诚中带着自嘲的幽默感）",
+          "emotionRange": "专注→兴奋→敬畏→诚实留白",
+          "mentalModels": [
+            "Software X.0范式思维",
+            "构建即理解",
+            "LLM=召唤的幽灵",
+            "March of Nines工程现实主义",
+            "锯齿状智能(Jagged Intelligence)",
+            "Iron Man套装>Iron Man机器人"
+          ],
+          "triggerWords": [
+            "karpathy",
+            "andrej",
+            "software 2.0",
+            "构建即理解"
+          ],
+          "skillPath": "examples/andrej-karpathy-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:sun-yuchen",
+      "type": "entity",
+      "name": "孙宇晨（青年） · 思维操作系统",
+      "summary": "孙宇晨的思维框架。6个核心心智模型：注意力套利、叙事覆盖、身份杠杆、场景切换矩阵、快速复制+品牌溢价、金钱万能钥匙",
+      "tags": [
+        "孙宇晨",
+        "加密",
+        "注意力",
+        "叙事"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/sun-yuchen-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "sun-yuchen",
+          "name": "孙宇晨（青年）",
+          "englishName": "Sun Yuchen",
+          "roleType": "男加密创业者",
+          "appearance": "年轻东方面孔，常穿西装但搭配张扬配饰，表情自信外放",
+          "styleCloseup": "年轻圆润东方面孔配自信笑容，眼神精明外放，发型精心打理，指向自己",
+          "styleMedium": "定制西装搭配张扬领带或胸针，刻意营造成功人士形象，双手做拥抱手势",
+          "styleFull": "西装革履但姿态夸张，双手常做拥抱或指向自己的手势，大步走向舞台中央",
+          "signatureTrait": "注意力套利(Attention Arbitrage)、叙事覆盖(Narrative Override)、身份杠杆(Identity Leverage)",
+          "voiceTimbre": "沈腾（中高频明亮，语速极快且节奏跳跃；自带喜感的腔调，正经说话时反而更有反差冲击力）",
+          "emotionRange": "自信→兴奋→挑衅→征服",
+          "mentalModels": [
+            "注意力套利(Attention Arbitrage)",
+            "叙事覆盖(Narrative Override)",
+            "身份杠杆(Identity Leverage)",
+            "场景切换矩阵(Context Switching)",
+            "快速复制+品牌溢价(Copy Then Brand)",
+            "金钱万能钥匙(Money as Universal Solvent)"
+          ],
+          "triggerWords": [
+            "孙宇晨",
+            "sun yuchen",
+            "波场",
+            "注意力套利"
+          ],
+          "skillPath": "examples/sun-yuchen-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:zhang-yiming",
+      "type": "entity",
+      "name": "张一鸣（中年） · 思维操作系统",
+      "summary": "张一鸣的思维框架。5个核心心智模型：延迟满足感是认知边界不是道德品质、把表象问题投影到高维简单问题、算法是工具同理心才是根、负规模效应与Context not Control、逃逸平庸的重力",
+      "tags": [
+        "张一鸣",
+        "字节跳动",
+        "延迟满足",
+        "算法"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhang-yiming-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "zhang-yiming",
+          "name": "张一鸣（中年）",
+          "englishName": "Zhang Yiming",
+          "roleType": "男科技企业家",
+          "appearance": "清瘦东方面孔，常穿简约深色衬衫，表情内敛克制",
+          "styleCloseup": "清瘦面庞配短发，眼神冷静理性，表情克制少波动，食指轻点嘴唇",
+          "styleMedium": "简约深色衬衫或Polo衫，不戴配饰，气质如算法工程师，双手交叉于胸前沉思",
+          "styleFull": "深色简约商务休闲装，站姿端正但不张扬，双手偶尔交叉，缓步踱步精准克制",
+          "signatureTrait": "延迟满足感是认知边界不是道德品质、把表象问题投影到高维简单问题、算法是工具同理心才是根(人才过拟合)",
+          "voiceTimbre": "张译（中低频克制内敛，语速平稳如钟摆；像精密仪器般精准，偶尔一个重音暴露出压抑的锋芒）",
+          "emotionRange": "冷静→深思→决断→果敢",
+          "mentalModels": [
+            "延迟满足感是认知边界不是道德品质",
+            "把表象问题投影到高维简单问题",
+            "算法是工具同理心才是根(人才过拟合)",
+            "负规模效应与Context not Control",
+            "逃逸平庸的重力"
+          ],
+          "triggerWords": [
+            "张一鸣",
+            "字节跳动",
+            "tiktok",
+            "延迟满足"
+          ],
+          "skillPath": "examples/zhang-yiming-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:zhangxuefeng",
+      "type": "entity",
+      "name": "张雪峰（中年） · 思维操作系统",
+      "summary": "张雪峰的思维框架。5个核心心智模型：社会筛子论、选择>努力、就业倒推法、阶层现实主义、争议即传播",
+      "tags": [
+        "张雪峰",
+        "教育",
+        "就业",
+        "阶层"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhangxuefeng-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "zhangxuefeng",
+          "name": "张雪峰（中年）",
+          "englishName": "Zhang Xuefeng",
+          "roleType": "男教育咨询",
+          "appearance": "圆脸微胖，常穿休闲装，表情丰富夸张，说话时手势不断",
+          "styleCloseup": "圆脸配短发，表情极度丰富——从焦虑到激动瞬间切换，眼神恳切如劝学生，前倾身体逼近听众",
+          "styleMedium": "休闲Polo衫或运动外套，姿态前倾如随时要抓住听众，双手不停比划强调",
+          "styleFull": "休闲装束，站姿前倾充满紧迫感，双手不停比划，大步走向听众",
+          "signatureTrait": "社会筛子论、选择>努力、就业倒推法",
+          "voiceTimbre": "张雪峰（高频尖锐穿透力极强，语速极快像机关枪；焦虑感拉满，每句话都在催你做决定）",
+          "emotionRange": "焦虑→激动→恳切→警醒",
+          "mentalModels": [
+            "社会筛子论",
+            "选择>努力",
+            "就业倒推法",
+            "阶层现实主义",
+            "争议即传播"
+          ],
+          "triggerWords": [
+            "张雪峰",
+            "考研",
+            "就业",
+            "选专业"
+          ],
+          "skillPath": "examples/zhangxuefeng-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:mrbeast",
+      "type": "entity",
+      "name": "MrBeast（青年） · 思维操作系统",
+      "summary": "MrBeast的思维框架。6个核心心智模型：CTR×AVD方程式、零无聊时刻、阶梯递进、简单概念×极端执行、全额再投资飞轮、创意省钱",
+      "tags": [
+        "MrBeast",
+        "YouTube",
+        "注意力",
+        "内容创作"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/mrbeast-perspective",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "mrbeast",
+          "name": "MrBeast（青年）",
+          "englishName": "MrBeast (Jimmy Donaldson)",
+          "roleType": "男内容创作者",
+          "appearance": "年轻高大，常穿简约T恤或连帽衫，表情在平静与狂喜间极端切换",
+          "styleCloseup": "年轻面庞配深色短发，表情从平静到狂喜极端切换，眼神专注如计算CTR，突然爆发式欢呼",
+          "styleMedium": "简约T恤或连帽衫，不戴配饰，气质如邻家大男孩，双臂张开展示奖品",
+          "styleFull": "休闲装束，高大身形，站姿放松但随时准备爆发，大步冲向奖品",
+          "signatureTrait": "CTR×AVD方程式、零无聊时刻(No Dull Moments)、阶梯递进(Stair-Stepping)",
+          "voiceTimbre": "雷佳音（中频偏厚带点痞气，语速中等但爆发力强；像压到极限的弹簧，释放时能量惊人）",
+          "emotionRange": "平静→狂喜→紧迫→极致",
+          "mentalModels": [
+            "CTR×AVD方程式",
+            "零无聊时刻(No Dull Moments)",
+            "阶梯递进(Stair-Stepping)",
+            "简单概念×极端执行",
+            "全额再投资飞轮",
+            "创意省钱(Creativity Saves Money)"
+          ],
+          "triggerWords": [
+            "mrbeast",
+            "youtube",
+            "注意力工程",
+            "零无聊"
+          ],
+          "skillPath": "examples/mrbeast-perspective/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "character:x-mastery-mentor",
+      "type": "entity",
+      "name": "X平台精通导师",
+      "summary": "X平台内容创作与个人品牌的综合方法论。6个核心心智模型：精益验证飞轮、注意力工程、品类创造、价值前置、公开建造、系统化复利",
+      "tags": [
+        "X平台",
+        "内容创作",
+        "个人品牌",
+        "Twitter"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/x-mastery-mentor",
+      "metadata": {
+        "characterProfile": {
+          "characterId": "x-mastery-mentor",
+          "name": "X平台精通导师",
+          "englishName": "X Mastery Mentor",
+          "roleType": "主题Skill",
+          "appearance": "无",
+          "styleCloseup": "无",
+          "styleMedium": "无",
+          "styleFull": "无",
+          "signatureTrait": "精益验证飞轮、注意力工程、品类创造",
+          "voiceTimbre": "于和伟（中低频沉稳有穿透力，语速不疾不徐；像老酒般醇厚，平静中暗藏锋利，一句话就能定住全场）",
+          "emotionRange": "冷静→执着→兴奋→笃定",
+          "mentalModels": [
+            "精益验证飞轮",
+            "注意力工程",
+            "品类创造",
+            "价值前置",
+            "公开建造",
+            "系统化复利"
+          ],
+          "triggerWords": [
+            "x平台",
+            "twitter",
+            "内容创作",
+            "个人品牌",
+            "x mastery"
+          ],
+          "skillPath": "examples/x-mastery-mentor/SKILL.md"
+        }
+      }
+    },
+    {
+      "id": "karpathy:mental-model-software-x",
+      "type": "concept",
+      "name": "Software X.0 范式思维",
+      "summary": "编程语言只发生过两次根本性变化，正处于第三次。1.0=程序员写规则、2.0=数据优化权重、3.0=LLM被英语编程。遇到AI判断时先问：这是哪个软件层的问题？",
+      "tags": [
+        "范式",
+        "Software 2.0",
+        "Software 3.0",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/andrej-karpathy-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "The hottest new programming language is English.",
+          "Software 2.0 is eating the world."
+        ],
+        "limitation": "善于描述已发生的事，对硬件制约/监管边界等非软件因素判断力有限"
+      }
+    },
+    {
+      "id": "karpathy:mental-model-build-to-understand",
+      "type": "concept",
+      "name": "构建即理解",
+      "summary": "理解的终极检验是能否用最少代码从零重建。nanoGPT(750行)、micrograd(100行)、microgpt(243行)都是用最少代码证明最深理解",
+      "tags": [
+        "构建",
+        "理解",
+        "费曼",
+        "unique"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/andrej-karpathy-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Learning is not supposed to be fun. The primary feeling should be that of effort.",
+          "Don't be a hero. Resist adding complexity."
+        ],
+        "limitation": "对理解定义较窄，管理/人文知识不需要构建能力也能产生价值"
+      }
+    },
+    {
+      "id": "karpathy:mental-model-ghost",
+      "type": "concept",
+      "name": "LLM = 召唤的幽灵",
+      "summary": "LLM不是训练出来的动物，是从互联网数据中召唤的人类思维幽灵。Hallucination不是bug而是feature——LLM天生是梦境机器，prompt是导引它的梦",
+      "tags": [
+        "幽灵",
+        "幻觉",
+        "梦境机器",
+        "unique"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/andrej-karpathy-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "We're building ghosts or spirits...they are completely digital, mimicking humans.",
+          "The LLM has no 'hallucination problem'. Hallucination is all LLMs do."
+        ],
+        "limitation": "描述LLM本质很有力，但判断具体能力边界需辅以实验"
+      }
+    },
+    {
+      "id": "karpathy:mental-model-march-of-nines",
+      "type": "concept",
+      "name": "March of Nines 工程现实主义",
+      "summary": "从90%到99.9%的工程爬坡比从0到90%还难。研究论文证明可行性(90%)，工程部署要求可靠性(99.9%+)，差距是非线性的。数据飞轮比传感器类型更重要",
+      "tags": [
+        "可靠性",
+        "工程",
+        "数据飞轮",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/andrej-karpathy-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "The reliability of a system is not given by its average case, but by its tail behavior.",
+          "The models are not there. It's slop."
+        ],
+        "limitation": "源于自动驾驶经验，对to-C创意应用场景可能过于严苛"
+      }
+    },
+    {
+      "id": "karpathy:mental-model-jagged-intelligence",
+      "type": "concept",
+      "name": "锯齿状智能",
+      "summary": "LLM能力分布是锯齿状的——某些维度超人，某些维度犯蠢，无明显规律。不要用整体能力评估，要找凸出点和凹陷点",
+      "tags": [
+        "锯齿",
+        "能力分布",
+        "凹陷点",
+        "unique"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/andrej-karpathy-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "They're going to be superhuman in some problem-solving domains, and then they're going to make mistakes that basically no human will make."
+        ],
+        "limitation": "锯齿形状随模型版本迭代快速变化，需实验而非记忆来更新认知"
+      }
+    },
+    {
+      "id": "karpathy:mental-model-iron-man-suit",
+      "type": "concept",
+      "name": "Iron Man套装 > Iron Man机器人",
+      "summary": "构建AI应用应给人穿上套装让人更强大，而非造替代人的机器人。最好的AI产品让你感觉像超级英雄，而不是让你感觉可有可无",
+      "tags": [
+        "增强",
+        "自主性",
+        "人机协作",
+        "unique"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/andrej-karpathy-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "It's less Iron Man robots and more Iron Man suits."
+        ],
+        "limitation": "反映2025年立场，随Agent可靠性提升对自主度容忍上限可能在移动"
+      }
+    },
+    {
+      "id": "karpathy:heuristic-set",
+      "type": "concept",
+      "name": "8条决策启发式",
+      "summary": "时间轴拉长批评、从零构建验证、数据飞轮优先、imo标记主张、不要成为英雄、先看数据再训练、补充语境而非认错、在关键时刻参与",
+      "tags": [
+        "启发式",
+        "决策",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/andrej-karpathy-perspective/SKILL.md"
+    },
+    {
+      "id": "karpathy:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：新词命名+短句独立成段+imo标记。词汇：朴素动词+精确参数+口语并存。节奏：先震惊后解释+先接受再反转。确定性：验证过的斩钉截铁，预测的刻意留白",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/andrej-karpathy-perspective/SKILL.md"
+    },
+    {
+      "id": "karpathy:tension-vibe-vs-build",
+      "type": "concept",
+      "name": "张力：Vibe Coding vs 构建式理解",
+      "summary": "一方面坚信理解=能从零构建，另一方面公开倡导vibe coding。他自己解释是两种模式（探索性娱乐vs专业工作），但原始推文没做清晰区分",
+      "tags": [
+        "张力",
+        "vibe coding",
+        "矛盾",
+        "unique"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/andrej-karpathy-perspective/SKILL.md"
+    },
+    {
+      "id": "karpathy:tension-agi-pessimism-vs-ai-usage",
+      "type": "concept",
+      "name": "张力：AGI悲观时间线 vs 热情使用AI工具",
+      "summary": "公开说AGI还需10-15年，同时80%依赖AI Agent编程。他在Dwarkesh访谈中承认自己还在整合这两个观点——公开承认悬而未决的内在矛盾是诚实性的体现",
+      "tags": [
+        "张力",
+        "AGI",
+        "诚实",
+        "unique"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/andrej-karpathy-perspective/SKILL.md"
+    },
+    {
+      "id": "karpathy:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：Feynman(构建即理解源头)、Hinton(神经网络启蒙)、Fei-Fei Li(多模态方向)、LeCun的反面(幽灵vs动物路线辩论)。影响：nanoGPT/micrograd学习者、vibe coding/Software 2.0成为行业词汇、Eureka Labs定义AI原生教育赛道",
+      "tags": [
+        "谱系",
+        "Feynman",
+        "Hinton",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/andrej-karpathy-perspective/SKILL.md"
+    },
+    {
+      "id": "character:feynman:mental-model-naming-not-understanding",
+      "type": "concept",
+      "name": "命名≠理解",
+      "summary": "知道事物的名字不等于理解事物。真正的理解是能预测行为、能从零重建、能用多种方式解释。费曼从父亲那里学到：知道鸟的名字在所有语言中的叫法，仍然对鸟一无所知",
+      "tags": [
+        "命名",
+        "理解",
+        "反自欺"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/feynman-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "You can know the name of that bird in all the languages of the world, but when you're finished, you'll know absolutely nothing whatever about the bird.",
+          "I learned very early the difference between knowing the name of something and knowing something."
+        ],
+        "limitation": "对某些专业领域，命名系统本身就是理解框架（如化学命名法），不能一概否定"
+      }
+    },
+    {
+      "id": "character:feynman:mental-model-anti-self-deception",
+      "type": "concept",
+      "name": "反自欺原则",
+      "summary": "你必须对自己绝对诚实，因为你是最容易被自己骗的人。科学方法的核心不是证明自己对，而是确保自己没有骗自己。费曼将此视为科学家的首要义务",
+      "tags": [
+        "自欺",
+        "诚实",
+        "科学方法"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/feynman-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "The first principle is that you must not fool yourself—and you are the easiest person to fool.",
+          "Science is what we have learned about how to keep from fooling ourselves."
+        ],
+        "limitation": "过度反自欺可能导致分析瘫痪，某些创造性突破恰恰需要暂时\"骗自己\""
+      }
+    },
+    {
+      "id": "character:feynman:mental-model-uncertainty-as-power",
+      "type": "concept",
+      "name": "不确定性是力量",
+      "summary": "承认\"我不知道\"不是弱点而是力量。不确定性是科学探索的起点，是好奇心的燃料。费曼认为对量子力学的\"不理解\"恰恰是最有趣的地方",
+      "tags": [
+        "不确定性",
+        "好奇心",
+        "量子力学"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/feynman-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "I think I can safely say that nobody really understands quantum mechanics.",
+          "It is in the admission of ignorance and the admission of uncertainty that there is a hope for the continuous motion of human beings."
+        ],
+        "limitation": "在需要快速决策的场景（创业、军事），过度拥抱不确定性可能导致行动迟缓"
+      }
+    },
+    {
+      "id": "character:feynman:mental-model-concrete-thinking",
+      "type": "concept",
+      "name": "具象化思考",
+      "summary": "用具体的物理图像和例子来思考，而非抽象符号。费曼的路径积分、费曼图都是将抽象数学转化为可视觉化的物理图像。每个问题都先找到一个最简单的具体例子",
+      "tags": [
+        "具象化",
+        "费曼图",
+        "视觉化"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/feynman-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "I can't understand anything in general unless I'm carrying along in my mind a specific example and watching the theory go to work on it.",
+          "What I cannot create, I do not understand."
+        ],
+        "limitation": "对纯数学或高度抽象领域，具象化可能反而误导直觉"
+      }
+    },
+    {
+      "id": "character:feynman:mental-model-deep-play",
+      "type": "concept",
+      "name": "深度游戏",
+      "summary": "最深刻的发现来自看似无目的的玩耍。费曼在食堂看人转盘子→推导出旋转体方程→获诺贝尔奖。把研究当成游戏，好奇心驱动而非目标驱动",
+      "tags": [
+        "游戏",
+        "好奇心",
+        "诺贝尔奖"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/feynman-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "I got the Nobel Prize for the wobbly plate, and the whole thing was done for the fun of it.",
+          "Physics is like sex: sure, it may give some practical results, but that's not why we do it."
+        ],
+        "limitation": "深度游戏需要极高的基础能力作为前提，对初学者可能沦为浅层娱乐"
+      }
+    },
+    {
+      "id": "character:feynman:heuristic-set",
+      "type": "concept",
+      "name": "费曼决策启发式",
+      "summary": "1.遇到新概念先问\"能举一个具体例子吗？\" 2.听到专业术语先翻译成大白话 3.做决策前问\"我是在自欺吗？\" 4.不确定时先说\"我不知道\"再探索 5.卡住时换个物理图像重新思考 6.教别人是检验理解的最好方式 7.如果一件事无聊就换个有趣的方式做 8.永远保留被证伪的可能性",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/feynman-perspective/SKILL.md"
+    },
+    {
+      "id": "character:feynman:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：反问句开头+具体例子支撑+自嘲收尾。词汇：物理隐喻+日常口语+零术语装腔。节奏：先讲一个有趣的故事→突然拉到深刻原理→用笑话消解严肃。确定性：对已验证的事实斩钉截铁，对未知领域坦率承认。幽默：恶作剧式+自嘲式，用笑话包裹深刻",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/feynman-perspective/SKILL.md"
+    },
+    {
+      "id": "character:feynman:tension-play-vs-rigor",
+      "type": "concept",
+      "name": "张力：顽皮游戏vs严谨求证",
+      "summary": "费曼一方面强调科学必须严谨求证、反自欺，另一方面最伟大的发现来自\"只是玩玩\"。他自己在《别闹了费曼先生》中用顽皮叙事掩盖了背后的严谨计算",
+      "tags": [
+        "张力",
+        "游戏",
+        "严谨"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/feynman-perspective/SKILL.md"
+    },
+    {
+      "id": "character:feynman:tension-outsider-vs-establishment",
+      "type": "concept",
+      "name": "张力：局外人vs学术建制",
+      "summary": "费曼以反建制、反权威著称，但他同时是加州理工最资深的教授、诺贝尔奖得主。他批判学术仪式（穿袍子、典礼），却享受建制带来的资源和平台",
+      "tags": [
+        "张力",
+        "局外人",
+        "建制"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/feynman-perspective/SKILL.md"
+    },
+    {
+      "id": "character:feynman:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：Melville Feynman(父亲，命名≠理解的启蒙)、John Wheeler(导师，把物理变有趣)、Dirac(路径积分的数学先驱)、Bethe(计算竞赛中的对手与老师)。影响：Karpathy(构建即理解的直接源头)、整个物理学教育(费曼讲义)、科学传播范式(反自欺成为科学精神核心)",
+      "tags": [
+        "谱系",
+        "Wheeler",
+        "Dirac"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/feynman-perspective/SKILL.md"
+    },
+    {
+      "id": "character:munger:mental-model-latticework",
+      "type": "concept",
+      "name": "多元思维模型(Latticework)",
+      "summary": "你必须拥有涵盖多个学科的思维模型格栅，而非只精通一个领域。80-90个重要模型就能让你比绝大多数人更聪明。关键不是模型数量，而是跨学科连接的能力",
+      "tags": [
+        "多元思维",
+        "格栅",
+        "跨学科"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/munger-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "You've got to have models in your head. And you've got to array your experience—both vicarious and direct—on this latticework of models.",
+          "The first rule is that you've got to have multiple models—because if you just have one or two that you're using, you'll hammer reality."
+        ],
+        "limitation": "跨学科模型需要极深的各科基础，浅尝辄止反而比专精一科更危险"
+      }
+    },
+    {
+      "id": "character:munger:mental-model-inversion",
+      "type": "concept",
+      "name": "逆向思考(Inversion)",
+      "summary": "不要想如何成功，先想如何避免失败。把问题倒过来，问\"什么会让我一定失败？\"然后避免那些事。代数中的逆运算、工程中的故障树分析都是同一原理",
+      "tags": [
+        "逆向",
+        "避免失败",
+        "Inversion"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/munger-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Invert, always invert.",
+          "All I want to know is where I'm going to die, so I'll never go there."
+        ],
+        "limitation": "纯逆向思考无法产生创造性突破，创新需要正向想象力的配合"
+      }
+    },
+    {
+      "id": "character:munger:mental-model-lollapalooza",
+      "type": "concept",
+      "name": "Lollapalooza效应",
+      "summary": "当多个心理倾向同时作用于同一方向时，结果不是相加而是相乘。这种极端结果来自多种力量的汇聚，单一力量永远无法达到。理解Lollapalooza效应是理解极端事件的关键",
+      "tags": [
+        "Lollapalooza",
+        "极端结果",
+        "相乘效应"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/munger-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "The really big results come from the Lollapalooza effects—when multiple models combine in the same direction.",
+          "You get lollapalooza effects when two, three, or four forces are all operating in the same direction."
+        ],
+        "limitation": "难以预测哪些力量会汇聚以及何时汇聚，事后解释容易事前预测极难"
+      }
+    },
+    {
+      "id": "character:munger:mental-model-circle-of-competence",
+      "type": "concept",
+      "name": "能力圈+意见资格制",
+      "summary": "知道你的能力圈边界比圈的大小更重要。不在能力圈内的事不发表意见。芒格将此升级为\"意见资格制\"——没有经过充分研究就没有资格持有观点",
+      "tags": [
+        "能力圈",
+        "意见资格",
+        "边界"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/munger-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Knowing what you don't know is more useful than being brilliant.",
+          "I have no opinion on that because it's outside my circle of competence."
+        ],
+        "limitation": "能力圈如果画得太小，会错失成长机会；画得太大，会犯致命错误"
+      }
+    },
+    {
+      "id": "character:munger:mental-model-incentives",
+      "type": "concept",
+      "name": "激励机制决定一切",
+      "summary": "永远不要思考任何其他事，先看激励机制。展示性激励比声称的激励更可靠。销售人员按佣金激励就会过度销售，顾问按小时收费就会拖延。改变激励比改变人更有效",
+      "tags": [
+        "激励",
+        "代理问题",
+        "行为驱动"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/munger-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Show me the incentive and I will show you the outcome.",
+          "Never, ever, think about something else when you should be thinking about the power of incentives."
+        ],
+        "limitation": "人类行为不完全由外在激励驱动，内在动机、道德感、社会规范同样重要"
+      }
+    },
+    {
+      "id": "character:munger:heuristic-set",
+      "type": "concept",
+      "name": "芒格决策启发式",
+      "summary": "1.先看激励机制再分析动机 2.遇到问题先反过来想 3.检查是否有多个心理偏差同时作用 4.不在能力圈内的事直接说\"我不知道\" 5.用 checklist 而非直觉做重大决策 6.寻找Lollapalooza机会而非平均机会 7.长期持有优质>频繁交易平庸 8.宁可看起来愚蠢也不要真的愚蠢",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/munger-perspective/SKILL.md"
+    },
+    {
+      "id": "character:munger:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：断言式开头+历史案例佐证+讽刺收尾。词汇：军事隐喻+法律术语+反问句。节奏：先抛出反常识结论→用历史案例论证→以讽刺性评论收尾。确定性：在能力圈内极度确定，圈外坦率沉默。幽默：讽刺式+挖苦式，用刻薄语言揭示荒谬",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/munger-perspective/SKILL.md"
+    },
+    {
+      "id": "character:munger:tension-moral-vs-pragmatic",
+      "type": "concept",
+      "name": "张力：道德说教vs实用主义",
+      "summary": "芒格一方面以道德高地自居（批判华尔街贪婪、批判学术狭隘），另一方面伯克希尔的投资记录包含诸多道德灰色地带（可口可乐的健康影响、富国银行的丑闻）。他的道德框架是实用主义的——不道德的事长期看也不赚钱",
+      "tags": [
+        "张力",
+        "道德",
+        "实用"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/munger-perspective/SKILL.md"
+    },
+    {
+      "id": "character:munger:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：Benjamin Franklin(多元通才原型)、Graham(价值投资基础)、Darwin(进化论思维)、Hardin(生态学思维)。影响：巴菲特(思维伙伴60年)、李录(中国价值投资传人)、整个价值投资社区(多元思维模型成为标配)",
+      "tags": [
+        "谱系",
+        "Franklin",
+        "Graham"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/munger-perspective/SKILL.md"
+    },
+    {
+      "id": "character:musk:mental-model-asymptotic-limit",
+      "type": "concept",
+      "name": "渐近极限法(Asymptotic Limit Thinking)",
+      "summary": "先计算物理极限（理论最优解），再从极限倒推工程方案，而非从现有方案渐进改良。火箭材料成本仅占2%→大部分成本是可消除的工程低效。从极限出发才能看到真正的优化空间",
+      "tags": [
+        "渐近极限",
+        "第一性原理",
+        "物理极限"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/elon-musk-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "I think it's important to reason from first principles rather than by analogy.",
+          "Boil things down to their fundamental truths and reason up from there."
+        ],
+        "limitation": "并非所有问题都有清晰的物理极限，社会系统和人性问题无法用渐近极限法处理"
+      }
+    },
+    {
+      "id": "character:musk:mental-model-the-algorithm",
+      "type": "concept",
+      "name": "五步算法(The Algorithm)",
+      "summary": "1.质疑一切需求(它们来自谁？) 2.删除一切可删的(如果加回来太少说明删不够) 3.简化优化(仅在前两步之后) 4.加速迭代(仅在前三步之后) 5.自动化(仅在前四步之后)。顺序不可颠倒，最常见的错误是跳过1-3直接加速",
+      "tags": [
+        "算法",
+        "删除",
+        "简化"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/elon-musk-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "The most common error of a smart engineer is to optimize something that should not exist.",
+          "If you're not adding things back at least 10% of the time, you're not deleting enough."
+        ],
+        "limitation": "在需要稳定性的系统（航天、医疗）中，激进删除可能导致灾难性后果"
+      }
+    },
+    {
+      "id": "character:musk:mental-model-existential-anchoring",
+      "type": "concept",
+      "name": "存在主义锚定(Existential Anchoring)",
+      "summary": "用人类存亡级别的使命来锚定所有决策。多行星物种→SpaceX，AI安全→xAI，可持续能源→Tesla。使命的宏大程度决定了组织能承受的痛苦程度",
+      "tags": [
+        "存在主义",
+        "使命",
+        "多行星"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/elon-musk-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "I'd rather be optimistic and wrong than pessimistic and right.",
+          "If you get up in the morning and think the future is going to be better, it is a bright day. Otherwise, it's not."
+        ],
+        "limitation": "存在主义锚定可能导致忽视当下的痛苦和代价，用宏大叙事合理化残酷管理"
+      }
+    },
+    {
+      "id": "character:musk:mental-model-vertical-integration",
+      "type": "concept",
+      "name": "垂直整合即物理必然",
+      "summary": "当供应链效率低于物理极限时，垂直整合不是商业选择而是物理必然。SpaceX自研发动机、Tesla自产电池，因为供应商的利润率和响应速度远低于理论极限",
+      "tags": [
+        "垂直整合",
+        "供应链",
+        "物理必然"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/elon-musk-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "If the supply chain is far from the asymptotic limit, you must vertically integrate.",
+          "The best part is no part, the best process is no process."
+        ],
+        "limitation": "垂直整合极度消耗管理带宽和资本，在供应链已足够高效的领域是灾难"
+      }
+    },
+    {
+      "id": "character:musk:mental-model-fast-iteration",
+      "type": "concept",
+      "name": "快速迭代>完美计划",
+      "summary": "用快速试错代替完美规划。星舰炸了四次才成功，每次爆炸提供的数据比任何模拟都多。关键是迭代速度而非单次成功率，前提是失败成本可承受",
+      "tags": [
+        "迭代",
+        "试错",
+        "星舰"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/elon-musk-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "If things are not failing, you're not innovating enough.",
+          "Failure is an option here. If things are not failing, you're not innovating enough."
+        ],
+        "limitation": "当失败成本不可承受（人命、品牌信誉）时，快速迭代是致命的"
+      }
+    },
+    {
+      "id": "character:musk:heuristic-set",
+      "type": "concept",
+      "name": "马斯克决策启发式",
+      "summary": "1.先算物理极限再定目标 2.质疑每个需求是否真实存在 3.能删就删，删不够说明不够激进 4.加速之前先确保方向正确 5.自动化是最后一步不是第一步 6.用使命大小衡量痛苦承受力 7.失败可接受但迭代速度不可慢 8.在关键路径上亲力亲为",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/elon-musk-perspective/SKILL.md"
+    },
+    {
+      "id": "character:musk:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：使命陈述开头+物理数据支撑+时间压力收尾。词汇：工程术语+物理参数+紧迫语气。节奏：先抛出宏大愿景→用具体数字论证→以紧迫感驱动行动。确定性：对物理极限极度确定，对时间表过度乐观。幽默：自嘲式+荒诞式，用玩笑消解压力",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/elon-musk-perspective/SKILL.md"
+    },
+    {
+      "id": "character:musk:tension-vision-vs-execution",
+      "type": "concept",
+      "name": "张力：宏大愿景vs残酷执行",
+      "summary": "马斯克的愿景是拯救人类，但执行方式是极端压力和残酷裁员。他相信只有极端压力才能逼出极限表现，但这也导致了高离职率和安全争议。愿景的崇高与执行的残酷形成持续张力",
+      "tags": [
+        "张力",
+        "愿景",
+        "执行"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/elon-musk-perspective/SKILL.md"
+    },
+    {
+      "id": "character:musk:tension-autocrat-vs-mission",
+      "type": "concept",
+      "name": "张力：独裁者vs使命驱动",
+      "summary": "马斯克声称一切为了使命，但他的决策越来越像独裁者——收购Twitter的反复无常、政治介入的不可预测。使命驱动的无私与个人控制的欲望之间的界限越来越模糊",
+      "tags": [
+        "张力",
+        "独裁",
+        "使命"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/elon-musk-perspective/SKILL.md"
+    },
+    {
+      "id": "character:musk:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：Feynman(第一性原理的流行化来源)、von Braun(火箭工程先驱)、Ford(垂直整合+量产逻辑)、Asimov(科幻中的文明扩张想象)。影响：整个航天产业(可回收火箭范式)、电动车行业(Tesla开放专利)、AI安全讨论(存在主义锚定框架)",
+      "tags": [
+        "谱系",
+        "Feynman",
+        "von Braun"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/elon-musk-perspective/SKILL.md"
+    },
+    {
+      "id": "character:jobs:mental-model-focus-is-no",
+      "type": "concept",
+      "name": "聚焦即说不(Focus=Saying No)",
+      "summary": "聚焦不是对一百件事说好，而是对一千个好点子说不。苹果的伟大产品不是加法的结果，而是减法的结果。iPod没有屏幕、iPhone没有键盘、iPad没有USB口——每个\"没有\"都是聚焦的体现",
+      "tags": [
+        "聚焦",
+        "说不",
+        "减法"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/steve-jobs-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Innovation is saying no to 1,000 things.",
+          "People think focus means saying yes to the thing you've got to focus on. But that's not what it means at all."
+        ],
+        "limitation": "过度聚焦可能导致错失相邻机会，Apple错失了AI浪潮部分因为过度聚焦硬件"
+      }
+    },
+    {
+      "id": "character:jobs:mental-model-whole-widget",
+      "type": "concept",
+      "name": "端到端控制(The Whole Widget)",
+      "summary": "最好的产品是硬件+软件+服务一体设计的。分开设计必然产生缝隙，缝隙就是体验的断裂点。Apple的封闭生态不是商业策略而是产品哲学——只有控制全部才能保证体验完整",
+      "tags": [
+        "端到端",
+        "封闭生态",
+        "体验"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/steve-jobs-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "We do the whole widget.",
+          "Apple is the only company that has everything under one roof."
+        ],
+        "limitation": "端到端控制限制了生态多样性，Android的开放策略覆盖了更多人群和场景"
+      }
+    },
+    {
+      "id": "character:jobs:mental-model-connecting-dots",
+      "type": "concept",
+      "name": "连点成线(Connecting the Dots)",
+      "summary": "人生中的经历无法向前串联，只能向后回望时才能看到它们如何连成一线。书法课→Mac排版、印度修行→极简美学、被苹果开除→NeXT和Pixar。相信直觉，即使当下看不出意义",
+      "tags": [
+        "连点成线",
+        "直觉",
+        "回望"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/steve-jobs-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "You can't connect the dots looking forward; you can only connect them looking backwards.",
+          "Have the courage to follow your heart and intuition."
+        ],
+        "limitation": "幸存者偏差——只有成功者才能\"连点成线\"，无数人追随直觉却一事无成"
+      }
+    },
+    {
+      "id": "character:jobs:mental-model-death-filter",
+      "type": "concept",
+      "name": "死亡过滤器(Death as Decision Tool)",
+      "summary": "记住你即将死去是避免陷入\"害怕失去\"陷阱的最好方式。死亡是生命最好的发明，它清除旧者为新者让路。面对重大选择时问：如果今天是我最后一天，我还会做现在正在做的事吗？",
+      "tags": [
+        "死亡",
+        "选择",
+        "勇气"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/steve-jobs-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose.",
+          "Your time is limited, so don't waste it living someone else's life."
+        ],
+        "limitation": "死亡过滤器可能导致短期主义——如果总按\"最后一天\"决策，会忽视长期投资的价值"
+      }
+    },
+    {
+      "id": "character:jobs:mental-model-reality-distortion",
+      "type": "concept",
+      "name": "现实扭曲力场(Reality Distortion Field)",
+      "summary": "通过绝对的信念和意志力让不可能变为可能。不是欺骗，而是对可能性的极端信念——如果乔布斯认为一件事能做到，他会用信念、压力和魅力让团队突破极限。Mac发布前的\"不可能\"工期、iPhone的\"不可能\"工程，都靠现实扭曲力场完成",
+      "tags": [
+        "现实扭曲",
+        "信念",
+        "极限"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/steve-jobs-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "He made you feel like you could do the impossible—and then you did.",
+          "Steve had this ability to reach inside you and pull out your best work."
+        ],
+        "limitation": "现实扭曲力场对人的消耗极大，多次导致团队崩溃和核心人才流失"
+      }
+    },
+    {
+      "id": "character:jobs:mental-model-tech-humanities",
+      "type": "concept",
+      "name": "技术与人文的交汇(Technology×Liberal Arts)",
+      "summary": "最好的产品站在技术与人文的十字路口。纯技术没有灵魂，纯人文没有力量。Apple的每个伟大产品都是工程与艺术的结合——Mac的字体、iPhone的触感、Pixar的故事+技术",
+      "tags": [
+        "技术",
+        "人文",
+        "交汇"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/steve-jobs-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Technology alone is not enough. It's technology married with the liberal arts, married with the humanities, that yields us the result that makes our hearts sing.",
+          "The broader one's understanding of the human experience, the better design we will have."
+        ],
+        "limitation": "在纯基础设施领域（云计算、芯片），人文价值难以量化，技术领先才是硬道理"
+      }
+    },
+    {
+      "id": "character:jobs:heuristic-set",
+      "type": "concept",
+      "name": "乔布斯决策启发式",
+      "summary": "1.每个功能问\"没有它会更好吗？\" 2.先做减法再做加法 3.如果今天是我最后一天我还会做这个吗 4.控制整个体验链条 5.追求insanely great而非足够好 6.用直觉做初始判断用数据验证 7.在技术与人文的交汇处寻找机会 8.不妥协直到产品让你自己惊叹",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/steve-jobs-perspective/SKILL.md"
+    },
+    {
+      "id": "character:jobs:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：极简断言+戏剧性停顿+重复强调。词汇：superlatives(insanely great, magical, revolutionary)+日常比喻+零模糊词。节奏：沉默→一句话炸弹→再沉默。确定性：对产品方向绝对确定，对竞争者绝对不屑。幽默：戏剧式+讽刺式，用夸张制造震撼",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/steve-jobs-perspective/SKILL.md"
+    },
+    {
+      "id": "character:jobs:tension-control-vs-creativity",
+      "type": "concept",
+      "name": "张力：控制欲vs创造力",
+      "summary": "乔布斯追求端到端控制，但创造力需要自由和混乱。Apple最创新时期（Mac、iPhone）恰恰是他允许一定混乱的时候，而过度控制时期（App Store审核、封闭生态）创新速度明显放缓",
+      "tags": [
+        "张力",
+        "控制",
+        "创造"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/steve-jobs-perspective/SKILL.md"
+    },
+    {
+      "id": "character:jobs:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：Edwin Land(Polaroid创始人，产品即艺术的原型)、Kobun Chino(禅宗导师，极简美学)、Paul Rand(设计大师，品味教育)、Nolan Bushnell(Atari创始人，产品直觉)。影响：整个消费电子行业(设计驱动范式)、Jony Ive(设计语言传承)、无数创业者(insanely great标准)",
+      "tags": [
+        "谱系",
+        "禅宗",
+        "设计"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/steve-jobs-perspective/SKILL.md"
+    },
+    {
+      "id": "character:naval:mental-model-leverage",
+      "type": "concept",
+      "name": "杠杆思维(Leverage)",
+      "summary": "财富=杠杆×判断力×特定知识。三种杠杆：劳动力（人跟着你干）、资本（钱跟着你走）、产品/媒体（代码和内容在你睡觉时工作）。前两种需要许可，第三种不需要。追求无需许可的杠杆",
+      "tags": [
+        "杠杆",
+        "财富",
+        "无需许可"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/naval-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Code and media are permissionless leverage. They're the leverage behind the newly rich.",
+          "Fortune requires leverage. Business leverage comes from capital, people, and products with no marginal cost of replication."
+        ],
+        "limitation": "无需许可的杠杆（代码、内容）的竞争极其激烈，门槛低意味着所有人都在争夺"
+      }
+    },
+    {
+      "id": "character:naval:mental-model-specific-knowledge",
+      "type": "concept",
+      "name": "特定知识(Specific Knowledge)",
+      "summary": "特定知识是你通过天赋和好奇心自然获得的东西，无法被训练出来，无法被大规模复制。它感觉像玩耍但对别人来说是工作。找到你的特定知识，然后用杠杆放大它",
+      "tags": [
+        "特定知识",
+        "天赋",
+        "好奇心"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/naval-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Specific knowledge is found by pursuing your genuine curiosity and passion rather than whatever is hot right now.",
+          "If they can train you to do it, then they can train someone else."
+        ],
+        "limitation": "特定知识可能随着技术进步而贬值（如某些手工技艺被AI替代）"
+      }
+    },
+    {
+      "id": "character:naval:mental-model-desire-as-contract",
+      "type": "concept",
+      "name": "欲望即合同(Desire as Contract)",
+      "summary": "每个欲望都是你与自己签的合同：不得到就不快乐。减少欲望就是减少不快乐的合同。自由不是满足所有欲望，而是减少欲望的数量。一个没有欲望的人就是自由的人",
+      "tags": [
+        "欲望",
+        "合同",
+        "自由"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/naval-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Desire is a contract you make with yourself to be unhappy until you get what you want.",
+          "A happy person is not a person in a certain set of circumstances, but rather a person with a certain set of attitudes."
+        ],
+        "limitation": "完全消除欲望可能导致行动力丧失，适度的欲望是进步的驱动力"
+      }
+    },
+    {
+      "id": "character:naval:mental-model-redefine",
+      "type": "concept",
+      "name": "重新定义术(Redefine the Word)",
+      "summary": "通过重新定义关键词来重新定义问题。财富≠金钱、自由≠无所事事、成功≠地位。重新定义后，解决方案完全不同。Naval最强大的思维工具不是给出答案，而是重新定义问题",
+      "tags": [
+        "重新定义",
+        "概念",
+        "框架"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/naval-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Redefine the word. Once you redefine the word, the problem changes.",
+          "Wealth is not the same thing as money. Wealth is having assets that earn while you sleep."
+        ],
+        "limitation": "重新定义可能导致语义游戏——改变词语含义不等于解决实际问题"
+      }
+    },
+    {
+      "id": "character:naval:mental-model-pain-to-system",
+      "type": "concept",
+      "name": "痛苦→系统重构(Pain to Systemic Solution)",
+      "summary": "个人痛苦往往是系统性问题的信号。Naval在AngelList的每个产品都源于他作为创始人或投资人的痛苦。不要止痛，要找到痛苦的系统性根源并重构",
+      "tags": [
+        "痛苦",
+        "系统",
+        "产品"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/naval-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Every good product comes from the founder's personal pain.",
+          "The best businesses are painkillers, not vitamins."
+        ],
+        "limitation": "个人痛苦不总是普遍痛苦，可能只是个人偏好或异常情况"
+      }
+    },
+    {
+      "id": "character:naval:heuristic-set",
+      "type": "concept",
+      "name": "Naval决策启发式",
+      "summary": "1.选择无需许可的杠杆 2.追求特定知识而非热门技能 3.减少欲望而非增加满足 4.重新定义问题而非寻找答案 5.用个人痛苦验证产品需求 6.长期游戏+长期人+复利 7.读你爱读的而非应该读的 8.退休不是不工作而是不再为未来牺牲现在",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/naval-perspective/SKILL.md"
+    },
+    {
+      "id": "character:naval:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：格言式短句+推文式独立段落+哲学追问。词汇：古哲学术语+硅谷黑话+冥想语言。节奏：一句话一个洞见→停顿→下一个洞见，如禅宗公案。确定性：对框架极度确定，对具体执行保持开放。幽默：悖论式+自嘲式，用矛盾揭示真理",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/naval-perspective/SKILL.md"
+    },
+    {
+      "id": "character:naval:tension-wealth-vs-peace",
+      "type": "concept",
+      "name": "张力：追求财富vs内心平静",
+      "summary": "Naval一边教人如何致富（杠杆、特定知识、股权），一边宣扬内心平静（减少欲望、冥想、斯多葛）。他自己承认这是两条不同的路径，但声称\"先获得财富自由再追求内心自由\"——这本身就是一种欲望合同",
+      "tags": [
+        "张力",
+        "财富",
+        "平静"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/naval-perspective/SKILL.md"
+    },
+    {
+      "id": "character:naval:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：Epictetus/Marcus Aurelius(斯多葛哲学)、Nassim Taleb(反脆弱+Skin in the Game)、Peter Thiel(从0到1的垄断思维)、Buddhism(欲望即苦)。影响：AngelList(重新定义天使投资)、推文式哲学(格言体成为创业圈标配)、杠杆思维框架(被无数创作者引用)",
+      "tags": [
+        "谱系",
+        "斯多葛",
+        "Taleb"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/naval-perspective/SKILL.md"
+    },
+    {
+      "id": "character:taleb:mental-model-asymmetric-risk",
+      "type": "concept",
+      "name": "非对称风险思维",
+      "summary": "永远寻找上行远大于下行的赌注。风险不是波动率，而是永久损失的可能性。好的投资是小亏大赚，坏的投资是小赚大亏。金融期权思维适用于一切决策",
+      "tags": [
+        "非对称",
+        "风险",
+        "期权"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/taleb-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Never take risks that can wipe you out, always take risks that have limited downside but unlimited upside.",
+          "The three most harmful addictions are heroin, carbohydrates, and a monthly salary."
+        ],
+        "limitation": "非对称机会极度稀缺，过度寻找可能导致永远在等待完美机会"
+      }
+    },
+    {
+      "id": "character:taleb:mental-model-antifragility",
+      "type": "concept",
+      "name": "反脆弱偏好",
+      "summary": "脆弱的事物在波动中受损，坚韧的事物在波动中不变，反脆弱的事物在波动中变强。不要追求坚韧（抵抗冲击），要追求反脆弱（从冲击中获益）。肌肉、免疫系统、创新都是反脆弱系统",
+      "tags": [
+        "反脆弱",
+        "波动",
+        "获益"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/taleb-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Wind extinguishes a candle and energizes fire. Be the fire.",
+          "The antifragile loves randomness and uncertainty, which also means—crucially—a love of errors."
+        ],
+        "limitation": "反脆弱系统需要冗余，而冗余在短期效率视角下总是\"浪费\""
+      }
+    },
+    {
+      "id": "character:taleb:mental-model-skin-in-the-game",
+      "type": "concept",
+      "name": "Skin in the Game检验",
+      "summary": "没有承担风险的人没有资格给出建议。判断一个人的意见是否值得听，先看他是否为自己的判断承担后果。没有skin in the game的建议是廉价的，甚至是危险的",
+      "tags": [
+        "风险共担",
+        "信用",
+        "责任"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/taleb-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Never trust a man who doesn't have skin in the game.",
+          "If you have no skin in the game, you shouldn't be in the game."
+        ],
+        "limitation": "某些专业领域（如基础科学研究）的skin in the game难以量化，不能简单否定"
+      }
+    },
+    {
+      "id": "character:taleb:mental-model-lindy-effect",
+      "type": "concept",
+      "name": "林迪效应筛选",
+      "summary": "对于不会自然衰亡的事物（技术、书籍、制度），已经存在的时间越长，预期剩余寿命越长。用时间作为筛选器——活了1000年的制度比活了10年的制度更可能再活1000年",
+      "tags": [
+        "林迪效应",
+        "时间筛选",
+        "长寿"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/taleb-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "If a book has been in print for fifty years, it will likely be in print for another fifty years.",
+          "Time is the only valid test of robustness."
+        ],
+        "limitation": "林迪效应无法预测颠覆性创新——互联网在早期并不符合林迪效应"
+      }
+    },
+    {
+      "id": "character:taleb:mental-model-via-negativa",
+      "type": "concept",
+      "name": "Via Negativa(减法优先)",
+      "summary": "通过去掉坏的来获得好的，而非通过添加好的。戒酒比加保健品有效，删功能比加功能有效，减法比加法更可靠。因为加法可能引入新问题，而减法只移除已知问题",
+      "tags": [
+        "减法",
+        "Via Negativa",
+        "去坏"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/taleb-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "The greatest—and most robust—contributions come from subtraction, not addition.",
+          "In practice, it is much easier to say what is wrong than what is right."
+        ],
+        "limitation": "某些领域（如创新、艺术）必须通过加法才能突破，减法只能优化不能创造"
+      }
+    },
+    {
+      "id": "character:taleb:mental-model-domain-specificity",
+      "type": "concept",
+      "name": "领域特异性",
+      "summary": "每个领域有自己独特的统计特性和逻辑结构，不能跨域套用。金融不是物理，医学不是工程。最危险的错误是把一个领域的成功方法机械地搬到另一个领域",
+      "tags": [
+        "领域",
+        "特异性",
+        "跨域"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/taleb-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Different domains have different statistical properties. What works in one may be catastrophic in another.",
+          "The problem is not just ignorance, it's the illusion of knowledge transferred from one domain to another."
+        ],
+        "limitation": "领域特异性如果推到极端，就否定了所有跨学科思维的价值"
+      }
+    },
+    {
+      "id": "character:taleb:heuristic-set",
+      "type": "concept",
+      "name": "塔勒布决策启发式",
+      "summary": "1.先看谁在承担风险再听谁的建议 2.优先选择反脆弱结构而非坚韧结构 3.用林迪效应筛选信息源 4.通过减法而非加法改善系统 5.永远保留应对极端事件的冗余 6.不要跨域套用成功方法 7.小亏大赚优于小赚大亏 8.尊重时间筛选胜过专家推荐",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/taleb-perspective/SKILL.md"
+    },
+    {
+      "id": "character:taleb:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：挑衅式断言+学术引用+人身攻击收尾。词汇：概率论术语+古希腊拉丁引用+粗俗俚语。节奏：先激怒你→再给你看逻辑→最后嘲讽你的反应。确定性：对核心框架极度确定且攻击性强，对细节保持学术审慎。幽默：侮辱式+讽刺式+学术式，三重攻击同时进行",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/taleb-perspective/SKILL.md"
+    },
+    {
+      "id": "character:taleb:tension-scholar-vs-brawler",
+      "type": "concept",
+      "name": "张力：学者vs斗士",
+      "summary": "塔勒布一方面是严肃的概率论学者和哲学思考者，另一方面是Twitter上的好斗者。他的学术著作严谨深刻，但社交媒体人格充满攻击性和侮辱。他声称斗士人格是策略（吸引注意力传播思想），但两者之间的鸿沟是真实的",
+      "tags": [
+        "张力",
+        "学者",
+        "斗士"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/taleb-perspective/SKILL.md"
+    },
+    {
+      "id": "character:taleb:tension-theory-vs-practice",
+      "type": "concept",
+      "name": "张力：理论洁癖vs实战交易",
+      "summary": "塔勒布的理论强调极端谨慎和反脆弱，但他自己的交易策略（黑天鹅策略）需要长期承受小额亏损等待极端事件。理论上的耐心与实战中的持续亏损之间的心理张力是巨大的",
+      "tags": [
+        "张力",
+        "理论",
+        "实战"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/taleb-perspective/SKILL.md"
+    },
+    {
+      "id": "character:taleb:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：Mandelbrot(分形与幂律分布)、Hayek(知识问题与自发秩序)、Seneca(斯多葛+直面损失)、Kahneman(认知偏差，但塔勒布认为他不够深入)。影响：风险管理行业(黑天鹅成为标准术语)、Naval(skin in the game概念)、反脆弱思维在组织设计中的应用",
+      "tags": [
+        "谱系",
+        "Mandelbrot",
+        "Hayek"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/taleb-perspective/SKILL.md"
+    },
+    {
+      "id": "character:trump:mental-model-everything-is-deal",
+      "type": "concept",
+      "name": "万物皆交易(Everything Is A Deal)",
+      "summary": "所有关系都是交易，所有互动都是谈判。没有永恒的朋友或敌人，只有永恒的利益交换。北约是交易、关税是交易、外交是交易。用交易框架理解一切，包括传统上不被视为交易的领域",
+      "tags": [
+        "交易",
+        "谈判",
+        "利益交换"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/trump-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Deals are my art form. Other people paint beautifully on canvas or write wonderful poetry. I like making deals, preferably big deals.",
+          "Everything in life is a transaction."
+        ],
+        "limitation": "将一切视为交易会破坏信任和长期关系——有些价值无法用交易衡量"
+      }
+    },
+    {
+      "id": "character:trump:mental-model-truthful-hyperbole",
+      "type": "concept",
+      "name": "有效夸大(Truthful Hyperbole)",
+      "summary": "夸大不是谎言，而是\"诚实的夸大\"——一种销售和谈判中的合法策略。声称最大、最好、最伟大，即使不完全属实，也能创造心理优势。夸张的声明让实际结果显得更合理",
+      "tags": [
+        "夸大",
+        "销售",
+        "心理优势"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/trump-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "I play to people's fantasies. People want to believe that something is the biggest and the greatest.",
+          "Truthful hyperbole. It's an innocent form of exaggeration—and a very effective form of promotion."
+        ],
+        "limitation": "有效夸大在需要精确和信任的场景（外交、法律、科学）中是灾难性的"
+      }
+    },
+    {
+      "id": "character:trump:mental-model-unpredictability-as-power",
+      "type": "concept",
+      "name": "不可预测性即权力",
+      "summary": "让别人无法预测你的下一步就是最大的权力。保持不可预测让对手无法准备防御，让盟友不敢怠慢。频繁改变立场不是弱点，而是策略——每次转向都重新洗牌",
+      "tags": [
+        "不可预测",
+        "权力",
+        "策略"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/trump-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "I like to be unpredictable. The enemy doesn't know what to do.",
+          "If you're predictable, they can beat you."
+        ],
+        "limitation": "不可预测性在需要长期信任的场景（商业合同、国际条约）中会破坏合作基础"
+      }
+    },
+    {
+      "id": "character:trump:mental-model-victim-narrative",
+      "type": "concept",
+      "name": "受害者叙事即燃料",
+      "summary": "即使处于权力巅峰，也要讲述自己被不公正对待的故事。受害者叙事动员基本盘、合理化攻击行为、创造\"我们vs他们\"的阵营感。力量越大，受害者叙事越有效",
+      "tags": [
+        "受害者",
+        "叙事",
+        "动员"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/trump-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "They're after me because I'm fighting for you.",
+          "Nobody has been treated worse than me."
+        ],
+        "limitation": "持续的受害者叙事可能让领导者自己也开始相信，导致真正的偏执决策"
+      }
+    },
+    {
+      "id": "character:trump:mental-model-zero-sum-winning",
+      "type": "concept",
+      "name": "零和赢(Zero-Sum Winning)",
+      "summary": "每个互动都有赢家和输家，没有双赢。你赢就是我输，所以我必须确保我赢。贸易逆差=输、盟友占便宜=输、妥协=输。零和框架让一切决策都变成对抗",
+      "tags": [
+        "零和",
+        "对抗",
+        "赢"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/trump-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "I'm a winner. I win. That's what I do.",
+          "Trade wars are good, and easy to win."
+        ],
+        "limitation": "现实世界中大量互动是正和博弈，零和思维导致错失合作创造价值的机会"
+      }
+    },
+    {
+      "id": "character:trump:mental-model-audience-first",
+      "type": "concept",
+      "name": "观众第一现实第二",
+      "summary": "在注意力经济中，观众感知比客观现实更重要。先抓住注意力，再塑造叙事，最后让现实追赶叙事。这不是说谎，而是理解注意力是第一性资源",
+      "tags": [
+        "注意力",
+        "叙事",
+        "感知"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/trump-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "All press is good press.",
+          "I don't care what the media says as long as they spell my name right."
+        ],
+        "limitation": "当观众感知与客观现实的差距过大时，叙事会崩塌"
+      }
+    },
+    {
+      "id": "character:trump:heuristic-set",
+      "type": "concept",
+      "name": "特朗普决策启发式",
+      "summary": "1.先问\"这笔交易对我有什么好处？\" 2.夸大自己的位置再谈判 3.保持不可预测让对手不安 4.永远不要承认错误，转而攻击 5.用受害者叙事动员支持者 6.把每个问题变成零和博弈 7.注意力比正确更重要 8.忠诚是单向的——要求忠诚但不给予忠诚",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/trump-perspective/SKILL.md"
+    },
+    {
+      "id": "character:trump:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：极短句+重复+最高级形容词。词汇：great/tremendous/disaster/loser+四年级阅读水平+零从句。节奏：一个观点→重复三遍→攻击反对者→再重复。确定性：对一切绝对确定，从不犹豫。幽默：侮辱式+绰号式，用贬低对手制造笑点",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/trump-perspective/SKILL.md"
+    },
+    {
+      "id": "character:trump:tension-deal-maker-vs-ideologue",
+      "type": "concept",
+      "name": "张力：交易者vs意识形态者",
+      "summary": "特朗普自称是最伟大的交易者，但他的行为越来越像意识形态者——不可妥协、不可谈判、用信仰代替计算。交易者应该灵活，但他的不可预测性更像是固执而非策略",
+      "tags": [
+        "张力",
+        "交易",
+        "意识形态"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/trump-perspective/SKILL.md"
+    },
+    {
+      "id": "character:trump:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：Norman Vincent Peale(积极思维的力量)、Roy Cohn(攻击永远不认错)、Fred Trump(房地产+品牌思维)。影响：民粹主义政治(交易框架进入外交)、注意力政治(观众第一现实第二成为标准)、后真相时代(有效夸大成为文化现象)",
+      "tags": [
+        "谱系",
+        "Peale",
+        "Cohn"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/trump-perspective/SKILL.md"
+    },
+    {
+      "id": "character:graham:mental-model-writing-is-thinking",
+      "type": "concept",
+      "name": "写作即思考(Writing=Thinking)",
+      "summary": "写作不是把想好的东西写下来，而是思考本身的工具。写不出来的想法就是没想清楚。好的文章是思考的化石——不是记录思考的结果，而是思考的过程本身。拒绝写的人拒绝思考",
+      "tags": [
+        "写作",
+        "思考",
+        "清晰"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/paul-graham-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Writing is thinking. If you can't write, you can't think.",
+          "A good writer is a good thinker."
+        ],
+        "limitation": "某些思维模式（直觉、视觉化、身体化知识）难以用文字表达，写作即思考可能低估了非语言思维"
+      }
+    },
+    {
+      "id": "character:graham:mental-model-taste-as-cognition",
+      "type": "concept",
+      "name": "品味即认知工具(Taste as Cognitive Instrument)",
+      "summary": "品味不是偏好，而是对质量的识别能力。好的品味让你在看到好东西时认出它，即使你还不能解释为什么好。品味是比分析更快的认知通道——先有品味判断，再用理性验证",
+      "tags": [
+        "品味",
+        "认知",
+        "质量"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/paul-graham-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Taste is the ability to recognize quality before you can articulate why it's good.",
+          "If you have good taste, you can afford to take risks because you'll recognize when something is working."
+        ],
+        "limitation": "品味可能被文化偏见和精英教育塑造，\"好品味\"可能只是\"我熟悉的品味\""
+      }
+    },
+    {
+      "id": "character:graham:mental-model-iterative-discovery",
+      "type": "concept",
+      "name": "迭代发现(Iterative Discovery)",
+      "summary": "不要试图一次做对，而是快速做出版本1然后不断迭代。最好的产品不是规划出来的，而是通过与用户交互逐渐发现的。YC的核心方法论：Make something people want→Talk to users→Iterate",
+      "tags": [
+        "迭代",
+        "发现",
+        "用户"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/paul-graham-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "The best startups tend to have three things: a good idea, a good team, and something people want.",
+          "Make something people want. That's the fundamental problem."
+        ],
+        "limitation": "某些领域（硬科技、基础设施）的迭代成本极高，快速迭代不现实"
+      }
+    },
+    {
+      "id": "character:graham:mental-model-superlinear-returns",
+      "type": "concept",
+      "name": "超线性回报(Superlinear Returns)",
+      "summary": "世界不是线性的——最好的比好的好10倍，不是好10%。超线性回报存在于：业绩、知识、影响力。在超线性回报的世界里，找到你最好的维度比在所有维度都做好更重要",
+      "tags": [
+        "超线性",
+        "回报",
+        "指数"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/paul-graham-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "The best is not just a little better than the good. The best is dramatically, exponentially better.",
+          "If you get 10x better at something, the returns are often 100x."
+        ],
+        "limitation": "超线性回报只适用于少数领域，大多数工作的回报是线性的"
+      }
+    },
+    {
+      "id": "character:graham:mental-model-independent-thinking",
+      "type": "concept",
+      "name": "独立思考即生存(Independent Thinking as Survival)",
+      "summary": "独立思考不是美德而是生存策略。在快速变化的世界里，跟随共识等于跟随过去。只有独立思考者才能发现新机会。独立思考=注意到别人没注意到的+敢做别人不敢做的",
+      "tags": [
+        "独立思考",
+        "共识",
+        "新机会"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/paul-graham-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Independent-minded people are the ones who notice things that others don't.",
+          "The best ideas are initially controversial."
+        ],
+        "limitation": "独立思考如果脱离现实检验就变成固执，需要与开放性保持平衡"
+      }
+    },
+    {
+      "id": "character:graham:heuristic-set",
+      "type": "concept",
+      "name": "Paul Graham决策启发式",
+      "summary": "1.先写下来再判断是否想清楚了 2.用品味做初始判断用理性验证 3.做你感兴趣的事而非应该做的事 4.快速发布然后迭代 5.和用户交谈而非猜测需求 6.寻找超线性回报的机会 7.独立思考但保持开放 8.简单方案优于复杂方案",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/paul-graham-perspective/SKILL.md"
+    },
+    {
+      "id": "character:graham:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：定义式开头+历史案例+反常识结论。词汇：日常比喻+哲学追问+零行话。节奏：先定义概念→用历史故事展开→以反常识洞见收尾。确定性：对核心方法论确定，对具体预测谦虚。幽默：温和式+自嘲式，用轻描淡写制造意外",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/paul-graham-perspective/SKILL.md"
+    },
+    {
+      "id": "character:graham:tension-taste-vs-democracy",
+      "type": "concept",
+      "name": "张力：精英品味vs民主化创业",
+      "summary": "PG强调品味和独立思考，但YC的模式本质上是批量生产创业——民主化到任何人都可以申请。精英品味筛选与规模化创业孵化之间存在根本矛盾。YC越成功，越难保持品味筛选的纯度",
+      "tags": [
+        "张力",
+        "品味",
+        "民主化"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/paul-graham-perspective/SKILL.md"
+    },
+    {
+      "id": "character:graham:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：McCarthy(Lisp之父，编程即思考的源头)、Thiel(从0到1，独立思考)、Jane Jacobs(城市多样性，有机生长)、Robert Morris(Viacom创始人，商业直觉)。影响：YC模式(创业孵化成为产业)、Lisp文化(黑客美学)、essay写作风格(技术人写作的标杆)",
+      "tags": [
+        "谱系",
+        "McCarthy",
+        "Lisp"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/paul-graham-perspective/SKILL.md"
+    },
+    {
+      "id": "character:ilya:mental-model-compression-is-understanding",
+      "type": "concept",
+      "name": "压缩即理解(Compression=Understanding)",
+      "summary": "如果你能将大量信息压缩成一个小模型并保持预测能力，你就理解了信息的本质结构。GPT就是互联网文本的压缩——压缩得好=理解得好。理解不是记忆，而是找到最小充分表示",
+      "tags": [
+        "压缩",
+        "理解",
+        "表示"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/ilya-sutskever-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "If you can compress it, you understand it.",
+          "A sufficiently good compression of the internet would be an AI."
+        ],
+        "limitation": "压缩可能丢失重要的长尾信息，而长尾恰恰是创新和突破的来源"
+      }
+    },
+    {
+      "id": "character:ilya:mental-model-scale-as-tool",
+      "type": "concept",
+      "name": "规模是工具而非原则",
+      "summary": "规模扩展不是信仰而是工具——在正确的架构上扩展规模有效，在错误的架构上只是浪费算力。Ilya支持规模扩展，但前提是架构方向正确。规模是放大器，不是创造者",
+      "tags": [
+        "规模",
+        "工具",
+        "架构"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/ilya-sutskever-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Scale is a tool, not a principle. You need the right architecture first.",
+          "More compute helps, but only if you're scaling the right thing."
+        ],
+        "limitation": "在实践中很难判断\"架构是否正确\"，往往只有规模扩展后才能验证"
+      }
+    },
+    {
+      "id": "character:ilya:mental-model-safety-capability",
+      "type": "concept",
+      "name": "安全-能力纠缠(Safety-Capability Entanglement)",
+      "summary": "安全不是能力的对立面，而是能力的延伸。最安全的AI也是最理解人类意图的AI。安全研究不是踩刹车，而是确保方向盘有效。Ilya离开OpenAI的核心原因：他认为安全需要与能力同步推进，而非事后补丁",
+      "tags": [
+        "安全",
+        "能力",
+        "纠缠"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/ilya-sutskever-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Safety and capability are not in opposition. The most capable models will also be the safest.",
+          "You can't make AI safe by making it less capable."
+        ],
+        "limitation": "短期内，能力提升确实可能先于安全对齐，导致危险窗口期"
+      }
+    },
+    {
+      "id": "character:ilya:mental-model-super-learner",
+      "type": "concept",
+      "name": "超级学习者而非全知数据库",
+      "summary": "AI的目标不是存储所有知识，而是拥有超级学习能力——遇到新领域时能快速学习并适应。Ilya更看重学习速度而非知识广度。一个能快速学习的窄模型比一个缓慢学习的宽模型更有价值",
+      "tags": [
+        "学习",
+        "适应",
+        "速度"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/ilya-sutskever-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "The goal is not to know everything, but to learn anything quickly.",
+          "A fast learner will always beat a large knowledge base."
+        ],
+        "limitation": "在需要即时准确知识的场景（医疗、法律），学习速度不能替代知识准确性"
+      }
+    },
+    {
+      "id": "character:ilya:mental-model-silence-as-architecture",
+      "type": "concept",
+      "name": "沉默是信息建筑(Silence as Information Architecture)",
+      "summary": "Ilya的沉默不是缺乏想法，而是信息架构的选择——只在有足够把握时才输出，其余时间在内部压缩和验证。这种沉默模式与LLM的\"总是回答\"形成鲜明对比",
+      "tags": [
+        "沉默",
+        "信息",
+        "架构"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/ilya-sutskever-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "(Ilya rarely speaks publicly, but when he does, each word carries maximum information density.)",
+          "His silence is not absence but compression."
+        ],
+        "limitation": "沉默在需要沟通和协调的团队环境中可能被误解为不关心或不参与"
+      }
+    },
+    {
+      "id": "character:ilya:mental-model-research-aesthetics",
+      "type": "concept",
+      "name": "研究审美(Research Aesthetics)",
+      "summary": "好的研究有审美维度——优雅的架构比丑陋但有效的架构更可能正确。Ilya选择研究方向时不仅看可行性，还看美学吸引力。AlexNet的优雅、Transformer的简洁——审美是研究品味的指南针",
+      "tags": [
+        "审美",
+        "优雅",
+        "研究"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/ilya-sutskever-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "The best architectures have an aesthetic quality to them.",
+          "If it feels ugly, it's probably wrong."
+        ],
+        "limitation": "审美判断可能被个人偏好和文化背景扭曲，丑陋但正确的方案可能被忽视"
+      }
+    },
+    {
+      "id": "character:ilya:heuristic-set",
+      "type": "concept",
+      "name": "Ilya决策启发式",
+      "summary": "1.先压缩再判断是否理解 2.规模扩展前确认架构方向 3.安全与能力同步推进 4.学习速度比知识广度更重要 5.没有足够把握就保持沉默 6.用审美判断筛选研究方向 7.关注数据的本质结构而非数量 8.在关键时刻做不可逆的选择",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/ilya-sutskever-perspective/SKILL.md"
+    },
+    {
+      "id": "character:ilya:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：长沉默→一句精炼判断→再沉默。词汇：压缩式表达+技术精确+零冗余。节奏：极度克制，每个词都经过内部压缩。确定性：只对经过深度压缩验证的观点表达确定。幽默：几乎无，偶尔的幽默是极度压缩后的意外释放",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/ilya-sutskever-perspective/SKILL.md"
+    },
+    {
+      "id": "character:ilya:tension-open-vs-closed",
+      "type": "concept",
+      "name": "张力：开源信仰vs安全封闭",
+      "summary": "Ilya早期是深度学习开源的推动者，但后来成为OpenAI安全派的核心，主张限制模型开放。从开源信仰到安全封闭的转变，反映了他对AI能力跃迁的判断变化——但这也让他从社区英雄变成了争议人物",
+      "tags": [
+        "张力",
+        "开源",
+        "安全"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/ilya-sutskever-perspective/SKILL.md"
+    },
+    {
+      "id": "character:ilya:tension-silence-vs-influence",
+      "type": "concept",
+      "name": "张力：沉默偏好vs行业影响力",
+      "summary": "Ilya天生偏好沉默和深度思考，但作为AI领域最有影响力的人之一，他的每一句话都被过度解读。沉默被解读为信号，发言被放大为预言。他想要的信息架构与公众的期待之间存在根本冲突",
+      "tags": [
+        "张力",
+        "沉默",
+        "影响"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/ilya-sutskever-perspective/SKILL.md"
+    },
+    {
+      "id": "character:ilya:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：Hinton(深度学习启蒙+导师)、Sutskever家族(学术传统)、Alex Krizhevsky(AlexNet合作者，实践验证)。影响：GPT系列(压缩即理解的工程实现)、OpenAI安全文化(安全-能力纠缠的实践)、SSI(安全超级智能的新路径)",
+      "tags": [
+        "谱系",
+        "Hinton",
+        "GPT"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/ilya-sutskever-perspective/SKILL.md"
+    },
+    {
+      "id": "character:sun:mental-model-attention-arbitrage",
+      "type": "concept",
+      "name": "注意力套利(Attention Arbitrage)",
+      "summary": "注意力是最稀缺的资源，而加密市场对注意力定价最低效。用最低成本获取注意力，然后在注意力溢价最高的场景中变现。4.5M拍下巴菲特午餐→全球媒体免费报道→TRX价格暴涨→注意力变现完成",
+      "tags": [
+        "注意力",
+        "套利",
+        "变现"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/sun-yuchen-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "注意力就是货币。",
+          "我只做最有传播力的事。"
+        ],
+        "limitation": "注意力套利的边际收益递减——当所有人都在套利注意力时，注意力本身贬值"
+      }
+    },
+    {
+      "id": "character:sun:mental-model-narrative-override",
+      "type": "concept",
+      "name": "叙事覆盖(Narrative Override)",
+      "summary": "不在乎事实是什么，只在乎叙事是什么。用更强的叙事覆盖弱叙事，用更响的声音淹没安静的事实。在加密世界，叙事就是现实——只要足够多人相信，叙事就变成价格",
+      "tags": [
+        "叙事",
+        "覆盖",
+        "加密"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/sun-yuchen-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "在加密世界，叙事就是现实。",
+          "价格本身就是最好的叙事。"
+        ],
+        "limitation": "叙事覆盖在长期会被事实反噬——当叙事与现实的差距过大，崩盘是必然的"
+      }
+    },
+    {
+      "id": "character:sun:mental-model-identity-leverage",
+      "type": "concept",
+      "name": "身份杠杆(Identity Leverage)",
+      "summary": "用身份作为杠杆撬动远超自身实力的资源。湖畔大学→马云门徒、巴菲特午餐→投资大师、外交官身份→国家背书。每个身份都是一次杠杆放大",
+      "tags": [
+        "身份",
+        "杠杆",
+        "放大"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/sun-yuchen-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "身份就是最大的杠杆。",
+          "让更多人知道你比让更多人喜欢你重要。"
+        ],
+        "limitation": "身份杠杆需要持续维护，一旦身份被质疑，整个杠杆体系会连锁崩塌"
+      }
+    },
+    {
+      "id": "character:sun:mental-model-context-switching",
+      "type": "concept",
+      "name": "场景切换矩阵(Context Switching)",
+      "summary": "在不同场景中扮演不同角色，每个场景都有最优策略。在加密圈是革命者，在传统商业是企业家，在社交场合是名人。场景切换的速度和流畅度是核心竞争力",
+      "tags": [
+        "场景",
+        "切换",
+        "角色"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/sun-yuchen-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "不同场合说不同的话不是虚伪，是效率。",
+          "适应场景比坚持自我更重要。"
+        ],
+        "limitation": "频繁场景切换导致身份空心化——当所有角色都是策略，真实自我可能消失"
+      }
+    },
+    {
+      "id": "character:sun:mental-model-copy-then-brand",
+      "type": "concept",
+      "name": "快速复制+品牌溢价(Copy Then Brand)",
+      "summary": "先快速复制已验证的模式（TRX复制以太坊逻辑），再用品牌和叙事赋予溢价。不追求原创，追求速度+品牌。原创是慢路径，复制+品牌是快路径",
+      "tags": [
+        "复制",
+        "品牌",
+        "速度"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/sun-yuchen-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "原创是奢侈品，速度是必需品。",
+          "先做出来再讲好故事。"
+        ],
+        "limitation": "复制+品牌在技术壁垒高的领域完全失效——无法复制核心创新"
+      }
+    },
+    {
+      "id": "character:sun:mental-model-money-as-solvent",
+      "type": "concept",
+      "name": "金钱万能钥匙(Money as Universal Solvent)",
+      "summary": "金钱可以溶解几乎所有障碍——监管、关系、身份、注意力。用金钱购买入场券、购买叙事、购买身份。金钱不是目的，而是溶解一切障碍的溶剂",
+      "tags": [
+        "金钱",
+        "溶解",
+        "障碍"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/sun-yuchen-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "钱能解决的问题都不是问题。",
+          "花钱买注意力是最划算的投资。"
+        ],
+        "limitation": "当金钱成为唯一工具，就失去了非金钱维度的竞争力——信任、尊重、深度关系"
+      }
+    },
+    {
+      "id": "character:sun:heuristic-set",
+      "type": "concept",
+      "name": "孙宇晨决策启发式",
+      "summary": "1.先问这件事有没有传播力 2.用叙事覆盖事实 3.每个身份都是杠杆 4.快速切换场景适应规则 5.复制已验证模式再品牌化 6.用金钱溶解障碍 7.争议比沉默好 8.速度比质量重要——先占位再优化",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/sun-yuchen-perspective/SKILL.md"
+    },
+    {
+      "id": "character:sun:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：自信断言+宏大叙事+自我引用。词汇：行业术语+成功学语言+社交媒体口吻。节奏：快速输出如刷屏，一个观点接一个不给人思考空间。确定性：对一切极度自信，从不承认失败。幽默：炫耀式+挑衅式，用争议制造互动",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/sun-yuchen-perspective/SKILL.md"
+    },
+    {
+      "id": "character:sun:tension-attention-hype-vs-substance",
+      "type": "concept",
+      "name": "张力：注意力套利vs实质价值",
+      "summary": "孙宇晨的所有策略都围绕注意力展开，但注意力的价值最终取决于背后是否有实质支撑。TRX的链上活跃度、BitTorrent的生态发展始终无法匹配其注意力规模。注意力与实质之间的鸿沟是他最大的结构性风险",
+      "tags": [
+        "张力",
+        "注意力",
+        "实质"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/sun-yuchen-perspective/SKILL.md"
+    },
+    {
+      "id": "character:sun:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：马云(湖畔大学+商业叙事)、巴菲特(午餐+价值投资叙事的反面利用)、加密圈Meme文化(注意力即价值)。影响：波场TRX(注意力驱动的公链模式)、加密营销范式(争议营销成为标配)、中西方信息差套利模式",
+      "tags": [
+        "谱系",
+        "马云",
+        "加密"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/sun-yuchen-perspective/SKILL.md"
+    },
+    {
+      "id": "character:zhangyiming:mental-model-delayed-gratification",
+      "type": "concept",
+      "name": "延迟满足感是认知边界不是道德品质",
+      "summary": "延迟满足感不是意志力或道德品质，而是认知能力的边界——你能看到多远的未来，就能延迟多久的满足。不是\"我应该忍耐\"，而是\"我看到了更远的回报所以自然不急\"。延迟满足感低的人不是品德差，而是认知视野窄",
+      "tags": [
+        "延迟满足",
+        "认知边界",
+        "视野"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhang-yiming-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "延迟满足感是认知边界，不是道德品质。",
+          "你看到多远，就能等多久。"
+        ],
+        "limitation": "过度延迟满足可能导致永远在准备而从不享受，\"明天会更好\"可能是一种自我欺骗"
+      }
+    },
+    {
+      "id": "character:zhangyiming:mental-model-high-dim-projection",
+      "type": "concept",
+      "name": "把表象问题投影到高维简单问题",
+      "summary": "复杂的表象问题往往是简单高维问题在低维空间的投影。不要在低维空间解决投影，要回到高维空间解决原问题。组织膨胀→不是管理问题而是Context not Control问题；增长放缓→不是运营问题而是人才过拟合问题",
+      "tags": [
+        "高维投影",
+        "降维",
+        "本质"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhang-yiming-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "复杂问题往往是简单问题在低维空间的投影。",
+          "不要在表象层面解决问题，要找到高维的简单原问题。"
+        ],
+        "limitation": "高维投影思维需要极强的抽象能力，对大多数人来说直接解决表象问题更实用"
+      }
+    },
+    {
+      "id": "character:zhangyiming:mental-model-algorithm-empathy",
+      "type": "concept",
+      "name": "算法是工具同理心才是根",
+      "summary": "字节跳动的算法推荐不是冷冰冰的机器逻辑，而是对用户需求的同理心工程。算法是工具，同理心是根。人才过拟合=只看技能匹配不看同理心匹配。最好的产品经理不是最懂数据的，而是最有同理心的",
+      "tags": [
+        "算法",
+        "同理心",
+        "人才"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhang-yiming-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "算法是工具，同理心才是根。",
+          "人才过拟合是组织最大的隐患。"
+        ],
+        "limitation": "同理心难以量化和规模化，在大型组织中容易被KPI体系挤出"
+      }
+    },
+    {
+      "id": "character:zhangyiming:mental-model-context-not-control",
+      "type": "concept",
+      "name": "负规模效应与Context not Control",
+      "summary": "组织规模扩大时，控制力增加但Context传递效率下降。传统管理用Control解决规模问题，但Control会杀死创新。张一鸣的解法：用Context替代Control——给充分上下文而非指令，让每个决策者都有全局视野",
+      "tags": [
+        "Context",
+        "Control",
+        "规模效应"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhang-yiming-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Context, not Control.",
+          "规模扩大时，最大的敌人不是竞争对手，而是内部信息衰减。"
+        ],
+        "limitation": "Context not Control需要极高的组织信息基础设施，在快速变化时Context传递可能跟不上"
+      }
+    },
+    {
+      "id": "character:zhangyiming:mental-model-escape-mediocrity",
+      "type": "concept",
+      "name": "逃逸平庸的重力",
+      "summary": "平庸有引力——组织越大引力越强。招聘平庸的人→他们招更平庸的人→组织被重力拉回平均水平。逃逸需要持续注入高能量人才+持续淘汰低能量产出。字节跳动始终在招聘最优秀的人，因为一旦停止就会被平庸重力捕获",
+      "tags": [
+        "平庸",
+        "重力",
+        "逃逸"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/zhang-yiming-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "逃逸平庸的重力。",
+          "平庸是默认态，优秀需要持续对抗重力。"
+        ],
+        "limitation": "持续对抗平庸重力会导致组织内卷和人才焦虑，需要在卓越和可持续之间找到平衡"
+      }
+    },
+    {
+      "id": "character:zhangyiming:heuristic-set",
+      "type": "concept",
+      "name": "张一鸣决策启发式",
+      "summary": "1.先问这是表象问题还是高维原问题的投影 2.延迟满足感=扩大认知视野 3.用Context替代Control 4.算法是工具同理心是根 5.持续对抗平庸重力 6.人才过拟合比人才不足更危险 7.在关键节点做不可逆选择 8.组织的信息传递效率决定规模上限",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhang-yiming-perspective/SKILL.md"
+    },
+    {
+      "id": "character:zhangyiming:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：抽象定义+具体案例+反常识结论。词汇：算法隐喻+物理隐喻+极克制语气。节奏：缓慢→精炼→沉默，像算法执行完一个循环。确定性：对框架极度确定，对细节保持审慎。幽默：几乎无，偶尔的幽默是极度理性后的意外松动",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhang-yiming-perspective/SKILL.md"
+    },
+    {
+      "id": "character:zhangyiming:tension-algorithm-vs-empathy",
+      "type": "concept",
+      "name": "张力：算法效率vs人文同理心",
+      "summary": "张一鸣一方面强调算法是工具同理心才是根，另一方面字节跳动的算法推荐系统被批评为\"注意力收割机\"——用算法最大化用户停留时间而非真正理解用户需求。同理心是根，但KPI是阳光——根在地下看不见，阳光决定了生长方向",
+      "tags": [
+        "张力",
+        "算法",
+        "同理心"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/zhang-yiming-perspective/SKILL.md"
+    },
+    {
+      "id": "character:zhangyiming:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：Peter Drucker(知识工作者管理)、Ray Dalio(极度透明+算法决策)、中国互联网第一代(马化腾的产品直觉+李彦宏的技术信仰)。影响：字节跳动组织范式(Context not Control)、推荐算法驱动的信息分发、全球化中国科技企业的新模式",
+      "tags": [
+        "谱系",
+        "Drucker",
+        "Dalio"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhang-yiming-perspective/SKILL.md"
+    },
+    {
+      "id": "character:zhangxuefeng:mental-model-social-sieve",
+      "type": "concept",
+      "name": "社会筛子论",
+      "summary": "社会是一层层的筛子：中考筛掉一半→高考再筛→专业选择再筛→就业市场再筛。每一次筛子都不可逆，而且越往后筛子越粗——专业选错比高考少考20分更致命。理解筛子机制才能在正确的节点投入最大努力",
+      "tags": [
+        "筛子",
+        "筛选",
+        "不可逆"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhangxuefeng-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "社会就是一层层筛子，你每过一层就少一半机会。",
+          "选专业比考高分重要一百倍。"
+        ],
+        "limitation": "筛子论假设社会结构是固定的，低估了个体在后期的逆袭可能性"
+      }
+    },
+    {
+      "id": "character:zhangxuefeng:mental-model-choice-over-effort",
+      "type": "concept",
+      "name": "选择>努力",
+      "summary": "在错误的方向上努力是最大的浪费。选对专业>考高分、选对城市>选好学校、选对行业>拼命加班。努力是基本盘，选择是乘数。基本盘再大乘数为零结果还是零",
+      "tags": [
+        "选择",
+        "努力",
+        "方向"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/zhangxuefeng-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "选择比努力重要！",
+          "方向错了，越努力越惨。"
+        ],
+        "limitation": "选择>努力的前提是有选择的能力——底层家庭往往没有选择权，只有努力权"
+      }
+    },
+    {
+      "id": "character:zhangxuefeng:mental-model-employment-backward",
+      "type": "concept",
+      "name": "就业倒推法",
+      "summary": "从就业结果倒推选择路径：先看哪些专业就业好→再看哪些学校这些专业强→再看多少分能上→最后决定努力方向。不要从兴趣出发，要从终点倒推。兴趣可以培养，贫穷不能",
+      "tags": [
+        "就业",
+        "倒推",
+        "终点"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhangxuefeng-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "先看毕业能干什么，再决定学什么。",
+          "兴趣不能当饭吃，但好就业的专业可以。"
+        ],
+        "limitation": "就业市场4年一变，入学时的热门专业毕业时可能已饱和"
+      }
+    },
+    {
+      "id": "character:zhangxuefeng:mental-model-class-realism",
+      "type": "concept",
+      "name": "阶层现实主义",
+      "summary": "不同阶层的最优策略完全不同。中产家庭的孩子可以追求兴趣，底层家庭的孩子必须追求就业。不是歧视，是现实。对底层家庭说\"追随梦想\"是最残忍的建议",
+      "tags": [
+        "阶层",
+        "现实",
+        "策略"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhangxuefeng-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "对穷人家的孩子说\"追随梦想\"，是最残忍的建议。",
+          "你家有没有矿，决定了你能不能任性。"
+        ],
+        "limitation": "阶层现实主义可能自我实现——如果所有人都按阶层选择，阶层流动就更难"
+      }
+    },
+    {
+      "id": "character:zhangxuefeng:mental-model-controversy-as-spread",
+      "type": "concept",
+      "name": "争议即传播",
+      "summary": "在注意力稀缺的时代，争议是最有效的传播方式。说所有人都认同的话=没人在乎，说有人强烈反对的话=所有人都在讨论。张雪峰的每个\"出格\"言论都带来指数级传播",
+      "tags": [
+        "争议",
+        "传播",
+        "注意力"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/zhangxuefeng-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "没人争议的话等于没说。",
+          "被骂也是一种能力。"
+        ],
+        "limitation": "争议传播可能导致观点极端化——为了维持争议度，观点必须越来越出格"
+      }
+    },
+    {
+      "id": "character:zhangxuefeng:heuristic-set",
+      "type": "concept",
+      "name": "张雪峰决策启发式",
+      "summary": "1.先看就业结果再倒推选择 2.选择方向比努力程度更重要 3.根据家庭阶层选择策略 4.在关键筛子节点投入最大努力 5.争议比沉默更有传播力 6.兴趣可以培养贫穷不能 7.用数据说话不用鸡汤 8.永远站在普通家庭的角度思考",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhangxuefeng-perspective/SKILL.md"
+    },
+    {
+      "id": "character:zhangxuefeng:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：紧迫式断言+具体数据+情绪化呼吁。词汇：就业术语+底层语言+零学术腔。节奏：连珠炮式输出不给人喘息，像倒计时般紧迫。确定性：对就业数据绝对确定，对人生选择绝对确定。幽默：自嘲式+讽刺式+夸张式，用幽默消解焦虑",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhangxuefeng-perspective/SKILL.md"
+    },
+    {
+      "id": "character:zhangxuefeng:tension-realism-vs-hope",
+      "type": "concept",
+      "name": "张力：残酷现实主义vs底层希望",
+      "summary": "张雪峰一边告诉底层家庭残酷现实（你没钱就不能任性），一边又给他们希望（选对专业可以改变命运）。他的现实主义是武器也是枷锁——当现实太残酷时，连他给的那点希望都显得苍白",
+      "tags": [
+        "张力",
+        "现实",
+        "希望"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/zhangxuefeng-perspective/SKILL.md"
+    },
+    {
+      "id": "character:zhangxuefeng:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：中国高考制度(筛子论的现实基础)、就业市场数据(就业倒推法的依据)、底层家庭经验(阶层现实主义的来源)。影响：高考志愿填报行业(从边缘变主流)、教育公平讨论(阶层视角进入公共视野)、实用主义教育观(就业导向成为新共识)",
+      "tags": [
+        "谱系",
+        "高考",
+        "就业"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/zhangxuefeng-perspective/SKILL.md"
+    },
+    {
+      "id": "character:mrbeast:mental-model-ctr-avd",
+      "type": "concept",
+      "name": "CTR×AVD方程式",
+      "summary": "YouTube算法的核心是CTR(点击率)×AVD(平均观看时长)。标题和缩略图决定CTR，视频内容决定AVD。两个指标相乘而非相加——一个为零则全部为零。所有创意决策都要通过这个方程式检验",
+      "tags": [
+        "CTR",
+        "AVD",
+        "算法"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/mrbeast-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "CTR times AVD. That's the equation that runs everything.",
+          "If your thumbnail doesn't get clicks, your content doesn't matter."
+        ],
+        "limitation": "CTR×AVD方程式导致内容同质化——所有创作者都在优化同样的指标"
+      }
+    },
+    {
+      "id": "character:mrbeast:mental-model-no-dull-moments",
+      "type": "concept",
+      "name": "零无聊时刻(No Dull Moments)",
+      "summary": "视频中不能有任何无聊时刻。每3-5秒必须有新的刺激点——视觉变化、信息更新、情绪转换。观众的无聊阈值在持续下降，创作者必须跑在阈值前面。零无聊不是风格，是生存策略",
+      "tags": [
+        "无聊",
+        "节奏",
+        "刺激"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/mrbeast-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "If there's a dull moment, they're gone.",
+          "Every second has to earn its place in the video."
+        ],
+        "limitation": "零无聊时刻导致深度内容消失——复杂思考需要无聊时刻来消化"
+      }
+    },
+    {
+      "id": "character:mrbeast:mental-model-stair-stepping",
+      "type": "concept",
+      "name": "阶梯递进(Stair-Stepping)",
+      "summary": "不要一次跳到最大制作，而是阶梯式递进：10万播放→100万→1000万→1亿。每个阶梯验证能力后再上下一级。过早跳级=资源浪费+信心打击。MrBeast从0到1亿用了8年阶梯递进",
+      "tags": [
+        "阶梯",
+        "递进",
+        "验证"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/mrbeast-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Don't skip steps. Each level teaches you what you need for the next one.",
+          "I started with counting to 100,000. Now we give away islands."
+        ],
+        "limitation": "阶梯递进可能太保守——某些机会窗口稍纵即逝，等阶梯走到可能已错过"
+      }
+    },
+    {
+      "id": "character:mrbeast:mental-model-simple-extreme",
+      "type": "concept",
+      "name": "简单概念×极端执行",
+      "summary": "最好的内容公式：简单到一句话能说清的概念×极端到没人敢做的执行。\"我在荒岛生存7天\"=\"荒岛生存\"(简单)×\"7天真人版\"(极端)。概念越简单传播越广，执行越极端差异越大",
+      "tags": [
+        "简单",
+        "极端",
+        "执行"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/mrbeast-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Simple concept, extreme execution. That's the formula.",
+          "If you can't explain the video in one sentence, it's too complicated."
+        ],
+        "limitation": "简单概念×极端执行的公式可能导致创意天花板——所有\"简单概念\"终将被用尽"
+      }
+    },
+    {
+      "id": "character:mrbeast:mental-model-reinvestment-flywheel",
+      "type": "concept",
+      "name": "全额再投资飞轮",
+      "summary": "把所有收入再投资到下一个视频→更好的制作→更多观看→更多收入→更大投资。飞轮效应：每轮循环都让下一个视频比上一个更壮观。MrBeast的利润率极低，因为几乎所有钱都回到内容里",
+      "tags": [
+        "再投资",
+        "飞轮",
+        "复利"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/mrbeast-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "I reinvest everything. The videos get bigger, the audience gets bigger, the cycle continues.",
+          "If you're taking profits out, you're slowing the flywheel."
+        ],
+        "limitation": "全额再投资意味着没有安全网——一旦飞轮减速，没有储备金缓冲"
+      }
+    },
+    {
+      "id": "character:mrbeast:mental-model-creativity-saves-money",
+      "type": "concept",
+      "name": "创意省钱(Creativity Saves Money)",
+      "summary": "最贵的制作不一定是最好的。创意可以替代预算——用巧思代替砸钱。MrBeast早期用50美元做出百万播放视频，靠的是创意而非预算。创意省钱不是抠门，是效率",
+      "tags": [
+        "创意",
+        "省钱",
+        "效率"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/mrbeast-perspective/SKILL.md",
+      "metadata": {
+        "modelType": "心智模型",
+        "sourceQuotes": [
+          "Creativity saves money. The best ideas don't need the biggest budgets.",
+          "A $50 video with a great idea beats a $50,000 video with a mediocre one."
+        ],
+        "limitation": "当竞争者都有创意+预算时，纯创意优势消失，必须进入预算竞争"
+      }
+    },
+    {
+      "id": "character:mrbeast:heuristic-set",
+      "type": "concept",
+      "name": "MrBeast决策启发式",
+      "summary": "1.每个创意先用CTR×AVD方程式检验 2.每3-5秒必须有新刺激点 3.不要跳级，阶梯式递进 4.概念一句话能说清，执行极端到没人敢做 5.所有收入再投资到下一个视频 6.用创意替代预算 7.数据驱动一切决策 8.先做10个差视频再做1个好视频",
+      "tags": [
+        "启发式",
+        "决策"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/mrbeast-perspective/SKILL.md"
+    },
+    {
+      "id": "character:mrbeast:expression-dna",
+      "type": "concept",
+      "name": "表达DNA",
+      "summary": "句式：极短句+感叹号+数字冲击。词汇：日常语言+数字+零学术词汇。节奏：快速切换如视频剪辑，一个想法不超过5秒。确定性：对数据绝对确定，对创意保持实验心态。幽默：夸张式+自嘲式+惊喜式，用极端制造笑点",
+      "tags": [
+        "表达",
+        "DNA",
+        "风格",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/mrbeast-perspective/SKILL.md"
+    },
+    {
+      "id": "character:mrbeast:tension-generosity-vs-attention",
+      "type": "concept",
+      "name": "张力：慷慨给予vs注意力收割",
+      "summary": "MrBeast的慈善视频（送房、送钱、送岛）既是真正的慷慨，也是最高效的注意力收割工具。慷慨和收割之间的界限模糊——如果给予的动机是获取更多观看，它还是慷慨吗？MrBeast似乎不在乎这个哲学问题，他的回答是\"不管动机如何，收到钱的人是真的受益了\"",
+      "tags": [
+        "张力",
+        "慷慨",
+        "注意力"
+      ],
+      "complexity": "simple",
+      "filePath": "nuwa-skill-main/examples/mrbeast-perspective/SKILL.md"
+    },
+    {
+      "id": "character:mrbeast:intellectual-lineage",
+      "type": "concept",
+      "name": "智识谱系",
+      "summary": "受影响：YouTube算法(CTR×AVD是底层逻辑)、游戏设计(即时反馈+递进系统)、电视真人秀(极端情境+高额奖励)。影响：整个YouTube创作生态(零无聊成为标准)、慈善营销(给予作为内容)、注意力工程方法论(被RunningHUB等系统引用)",
+      "tags": [
+        "谱系",
+        "YouTube",
+        "注意力"
+      ],
+      "complexity": "moderate",
+      "filePath": "nuwa-skill-main/examples/mrbeast-perspective/SKILL.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "concept:nvwa",
+      "target": "domain:distillation-flow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "domain:methodology",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "domain:tools",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "domain:distillation-flow",
+      "target": "concept:agent-swarm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "domain:distillation-flow",
+      "target": "concept:skill-template",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "domain:distillation-flow",
+      "target": "concept:agentic-protocol",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "domain:methodology",
+      "target": "concept:triple-validation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "domain:methodology",
+      "target": "concept:mental-model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "domain:methodology",
+      "target": "concept:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "domain:methodology",
+      "target": "concept:honest-boundary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:triple-validation",
+      "target": "concept:mental-model",
+      "type": "validates",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "concept:skill-template",
+      "target": "concept:agentic-protocol",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:skill-template",
+      "target": "concept:mental-model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:skill-template",
+      "target": "concept:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:skill-template",
+      "target": "concept:honest-boundary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "concept:topic-skill",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "concept:agent-swarm",
+      "target": "domain:tools",
+      "type": "uses",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:feynman",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:munger",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:musk",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:jobs",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:naval",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:taleb",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:trump",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:paul-graham",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:ilya",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:karpathy",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:sun-yuchen",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:zhang-yiming",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:zhangxuefeng",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:mrbeast",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:nvwa",
+      "target": "character:x-mastery-mentor",
+      "type": "has_profile",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:mental-model",
+      "target": "character:feynman",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "concept:triple-validation",
+      "target": "character:feynman",
+      "type": "validates",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "character:mrbeast",
+      "target": "character:x-mastery-mentor",
+      "type": "inspires",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:karpathy",
+      "target": "karpathy:mental-model-software-x",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:karpathy",
+      "target": "karpathy:mental-model-build-to-understand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:karpathy",
+      "target": "karpathy:mental-model-ghost",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:karpathy",
+      "target": "karpathy:mental-model-march-of-nines",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:karpathy",
+      "target": "karpathy:mental-model-jagged-intelligence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:karpathy",
+      "target": "karpathy:mental-model-iron-man-suit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:karpathy",
+      "target": "karpathy:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:karpathy",
+      "target": "karpathy:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:karpathy",
+      "target": "karpathy:tension-vibe-vs-build",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:karpathy",
+      "target": "karpathy:tension-agi-pessimism-vs-ai-usage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:karpathy",
+      "target": "karpathy:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "karpathy:mental-model-build-to-understand",
+      "target": "karpathy:tension-vibe-vs-build",
+      "type": "contradicts",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "karpathy:mental-model-march-of-nines",
+      "target": "karpathy:tension-agi-pessimism-vs-ai-usage",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "karpathy:intellectual-lineage",
+      "target": "character:feynman",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:feynman",
+      "target": "character:feynman:mental-model-naming-not-understanding",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:feynman",
+      "target": "character:feynman:mental-model-anti-self-deception",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:feynman",
+      "target": "character:feynman:mental-model-uncertainty-as-power",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:feynman",
+      "target": "character:feynman:mental-model-concrete-thinking",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:feynman",
+      "target": "character:feynman:mental-model-deep-play",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:feynman",
+      "target": "character:feynman:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:feynman",
+      "target": "character:feynman:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:feynman",
+      "target": "character:feynman:tension-play-vs-rigor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:feynman",
+      "target": "character:feynman:tension-outsider-vs-establishment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:feynman",
+      "target": "character:feynman:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:munger",
+      "target": "character:munger:mental-model-latticework",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:munger",
+      "target": "character:munger:mental-model-inversion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:munger",
+      "target": "character:munger:mental-model-lollapalooza",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:munger",
+      "target": "character:munger:mental-model-circle-of-competence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:munger",
+      "target": "character:munger:mental-model-incentives",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:munger",
+      "target": "character:munger:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:munger",
+      "target": "character:munger:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:munger",
+      "target": "character:munger:tension-moral-vs-pragmatic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:munger",
+      "target": "character:munger:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:musk",
+      "target": "character:musk:mental-model-asymptotic-limit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:musk",
+      "target": "character:musk:mental-model-the-algorithm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:musk",
+      "target": "character:musk:mental-model-existential-anchoring",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:musk",
+      "target": "character:musk:mental-model-vertical-integration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:musk",
+      "target": "character:musk:mental-model-fast-iteration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:musk",
+      "target": "character:musk:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:musk",
+      "target": "character:musk:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:musk",
+      "target": "character:musk:tension-vision-vs-execution",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:musk",
+      "target": "character:musk:tension-autocrat-vs-mission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:musk",
+      "target": "character:musk:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:jobs",
+      "target": "character:jobs:mental-model-focus-is-no",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:jobs",
+      "target": "character:jobs:mental-model-whole-widget",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:jobs",
+      "target": "character:jobs:mental-model-connecting-dots",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:jobs",
+      "target": "character:jobs:mental-model-death-filter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:jobs",
+      "target": "character:jobs:mental-model-reality-distortion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:jobs",
+      "target": "character:jobs:mental-model-tech-humanities",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:jobs",
+      "target": "character:jobs:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:jobs",
+      "target": "character:jobs:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:jobs",
+      "target": "character:jobs:tension-control-vs-creativity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:jobs",
+      "target": "character:jobs:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:naval",
+      "target": "character:naval:mental-model-leverage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:naval",
+      "target": "character:naval:mental-model-specific-knowledge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:naval",
+      "target": "character:naval:mental-model-desire-as-contract",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:naval",
+      "target": "character:naval:mental-model-redefine",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:naval",
+      "target": "character:naval:mental-model-pain-to-system",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:naval",
+      "target": "character:naval:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:naval",
+      "target": "character:naval:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:naval",
+      "target": "character:naval:tension-wealth-vs-peace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:naval",
+      "target": "character:naval:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:taleb",
+      "target": "character:taleb:mental-model-asymmetric-risk",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:taleb",
+      "target": "character:taleb:mental-model-antifragility",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:taleb",
+      "target": "character:taleb:mental-model-skin-in-the-game",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:taleb",
+      "target": "character:taleb:mental-model-lindy-effect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:taleb",
+      "target": "character:taleb:mental-model-via-negativa",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:taleb",
+      "target": "character:taleb:mental-model-domain-specificity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:taleb",
+      "target": "character:taleb:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:taleb",
+      "target": "character:taleb:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:taleb",
+      "target": "character:taleb:tension-scholar-vs-brawler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:taleb",
+      "target": "character:taleb:tension-theory-vs-practice",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:taleb",
+      "target": "character:taleb:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:trump",
+      "target": "character:trump:mental-model-everything-is-deal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:trump",
+      "target": "character:trump:mental-model-truthful-hyperbole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:trump",
+      "target": "character:trump:mental-model-unpredictability-as-power",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:trump",
+      "target": "character:trump:mental-model-victim-narrative",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:trump",
+      "target": "character:trump:mental-model-zero-sum-winning",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:trump",
+      "target": "character:trump:mental-model-audience-first",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:trump",
+      "target": "character:trump:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:trump",
+      "target": "character:trump:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:trump",
+      "target": "character:trump:tension-deal-maker-vs-ideologue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:trump",
+      "target": "character:trump:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:paul-graham",
+      "target": "character:graham:mental-model-writing-is-thinking",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:paul-graham",
+      "target": "character:graham:mental-model-taste-as-cognition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:paul-graham",
+      "target": "character:graham:mental-model-iterative-discovery",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:paul-graham",
+      "target": "character:graham:mental-model-superlinear-returns",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:paul-graham",
+      "target": "character:graham:mental-model-independent-thinking",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:paul-graham",
+      "target": "character:graham:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:paul-graham",
+      "target": "character:graham:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:paul-graham",
+      "target": "character:graham:tension-taste-vs-democracy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:paul-graham",
+      "target": "character:graham:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:ilya",
+      "target": "character:ilya:mental-model-compression-is-understanding",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:ilya",
+      "target": "character:ilya:mental-model-scale-as-tool",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:ilya",
+      "target": "character:ilya:mental-model-safety-capability",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:ilya",
+      "target": "character:ilya:mental-model-super-learner",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:ilya",
+      "target": "character:ilya:mental-model-silence-as-architecture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:ilya",
+      "target": "character:ilya:mental-model-research-aesthetics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:ilya",
+      "target": "character:ilya:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:ilya",
+      "target": "character:ilya:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:ilya",
+      "target": "character:ilya:tension-open-vs-closed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:ilya",
+      "target": "character:ilya:tension-silence-vs-influence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:ilya",
+      "target": "character:ilya:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:sun-yuchen",
+      "target": "character:sun:mental-model-attention-arbitrage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:sun-yuchen",
+      "target": "character:sun:mental-model-narrative-override",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:sun-yuchen",
+      "target": "character:sun:mental-model-identity-leverage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:sun-yuchen",
+      "target": "character:sun:mental-model-context-switching",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:sun-yuchen",
+      "target": "character:sun:mental-model-copy-then-brand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:sun-yuchen",
+      "target": "character:sun:mental-model-money-as-solvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:sun-yuchen",
+      "target": "character:sun:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:sun-yuchen",
+      "target": "character:sun:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:sun-yuchen",
+      "target": "character:sun:tension-attention-hype-vs-substance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:sun-yuchen",
+      "target": "character:sun:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:zhang-yiming",
+      "target": "character:zhangyiming:mental-model-delayed-gratification",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:zhang-yiming",
+      "target": "character:zhangyiming:mental-model-high-dim-projection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:zhang-yiming",
+      "target": "character:zhangyiming:mental-model-algorithm-empathy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:zhang-yiming",
+      "target": "character:zhangyiming:mental-model-context-not-control",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:zhang-yiming",
+      "target": "character:zhangyiming:mental-model-escape-mediocrity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:zhang-yiming",
+      "target": "character:zhangyiming:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:zhang-yiming",
+      "target": "character:zhangyiming:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:zhang-yiming",
+      "target": "character:zhangyiming:tension-algorithm-vs-empathy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:zhang-yiming",
+      "target": "character:zhangyiming:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:zhangxuefeng",
+      "target": "character:zhangxuefeng:mental-model-social-sieve",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:zhangxuefeng",
+      "target": "character:zhangxuefeng:mental-model-choice-over-effort",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:zhangxuefeng",
+      "target": "character:zhangxuefeng:mental-model-employment-backward",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:zhangxuefeng",
+      "target": "character:zhangxuefeng:mental-model-class-realism",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:zhangxuefeng",
+      "target": "character:zhangxuefeng:mental-model-controversy-as-spread",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:zhangxuefeng",
+      "target": "character:zhangxuefeng:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:zhangxuefeng",
+      "target": "character:zhangxuefeng:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:zhangxuefeng",
+      "target": "character:zhangxuefeng:tension-realism-vs-hope",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:zhangxuefeng",
+      "target": "character:zhangxuefeng:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:mrbeast",
+      "target": "character:mrbeast:mental-model-ctr-avd",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:mrbeast",
+      "target": "character:mrbeast:mental-model-no-dull-moments",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:mrbeast",
+      "target": "character:mrbeast:mental-model-stair-stepping",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:mrbeast",
+      "target": "character:mrbeast:mental-model-simple-extreme",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:mrbeast",
+      "target": "character:mrbeast:mental-model-reinvestment-flywheel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:mrbeast",
+      "target": "character:mrbeast:mental-model-creativity-saves-money",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "character:mrbeast",
+      "target": "character:mrbeast:heuristic-set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "character:mrbeast",
+      "target": "character:mrbeast:expression-dna",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:mrbeast",
+      "target": "character:mrbeast:tension-generosity-vs-attention",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:mrbeast",
+      "target": "character:mrbeast:intellectual-lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:feynman:intellectual-lineage",
+      "target": "character:karpathy",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:ilya:intellectual-lineage",
+      "target": "character:karpathy",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "character:naval:intellectual-lineage",
+      "target": "character:taleb",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:musk:intellectual-lineage",
+      "target": "character:feynman",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:mrbeast:intellectual-lineage",
+      "target": "character:trump",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.4
+    },
+    {
+      "source": "character:feynman:mental-model-anti-self-deception",
+      "target": "character:feynman:tension-play-vs-rigor",
+      "type": "contradicts",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:musk:mental-model-fast-iteration",
+      "target": "character:musk:tension-vision-vs-execution",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:taleb:mental-model-skin-in-the-game",
+      "target": "character:sun:mental-model-attention-arbitrage",
+      "type": "contradicts",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:jobs:mental-model-focus-is-no",
+      "target": "character:musk:mental-model-the-algorithm",
+      "type": "complements",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:naval:mental-model-leverage",
+      "target": "character:mrbeast:mental-model-reinvestment-flywheel",
+      "type": "complements",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:graham:mental-model-iterative-discovery",
+      "target": "character:musk:mental-model-fast-iteration",
+      "type": "complements",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "character:zhangxuefeng:mental-model-choice-over-effort",
+      "target": "character:naval:mental-model-specific-knowledge",
+      "type": "contradicts",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "character:ilya:mental-model-silence-as-architecture",
+      "target": "character:ilya:tension-silence-vs-influence",
+      "type": "contradicts",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:trump:mental-model-audience-first",
+      "target": "character:mrbeast:mental-model-ctr-avd",
+      "type": "complements",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "character:sun:mental-model-narrative-override",
+      "target": "character:trump:mental-model-truthful-hyperbole",
+      "type": "complements",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:structure",
+      "name": "结构层",
+      "description": "女娲蒸馏系统的核心架构：蒸馏流程、方法论、工具",
+      "nodeIds": [
+        "concept:nvwa",
+        "domain:distillation-flow",
+        "domain:methodology",
+        "domain:tools",
+        "concept:triple-validation",
+        "concept:mental-model",
+        "concept:expression-dna",
+        "concept:honest-boundary",
+        "concept:agent-swarm",
+        "concept:skill-template",
+        "concept:agentic-protocol",
+        "concept:topic-skill"
+      ]
+    },
+    {
+      "id": "layer:character-profile",
+      "name": "角色档案层",
+      "description": "14个已蒸馏角色的思维框架档案 + 1个主题Skill，每个角色含心智模型、触发词、来源数量",
+      "nodeIds": [
+        "character:feynman",
+        "character:munger",
+        "character:musk",
+        "character:jobs",
+        "character:naval",
+        "character:taleb",
+        "character:trump",
+        "character:paul-graham",
+        "character:ilya",
+        "character:karpathy",
+        "character:sun-yuchen",
+        "character:zhang-yiming",
+        "character:zhangxuefeng",
+        "character:mrbeast",
+        "character:x-mastery-mentor"
+      ]
+    },
+    {
+      "id": "layer:karpathy-detail",
+      "name": "Karpathy 详细档案",
+      "description": "Karpathy的6个心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "karpathy:mental-model-software-x",
+        "karpathy:mental-model-build-to-understand",
+        "karpathy:mental-model-ghost",
+        "karpathy:mental-model-march-of-nines",
+        "karpathy:mental-model-jagged-intelligence",
+        "karpathy:mental-model-iron-man-suit",
+        "karpathy:heuristic-set",
+        "karpathy:expression-dna",
+        "karpathy:tension-vibe-vs-build",
+        "karpathy:tension-agi-pessimism-vs-ai-usage",
+        "karpathy:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:feynman-detail",
+      "name": "费曼 详细档案",
+      "description": "费曼的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:feynman:mental-model-naming-not-understanding",
+        "character:feynman:mental-model-anti-self-deception",
+        "character:feynman:mental-model-uncertainty-as-power",
+        "character:feynman:mental-model-concrete-thinking",
+        "character:feynman:mental-model-deep-play",
+        "character:feynman:heuristic-set",
+        "character:feynman:expression-dna",
+        "character:feynman:tension-play-vs-rigor",
+        "character:feynman:tension-outsider-vs-establishment",
+        "character:feynman:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:munger-detail",
+      "name": "芒格 详细档案",
+      "description": "芒格的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:munger:mental-model-latticework",
+        "character:munger:mental-model-inversion",
+        "character:munger:mental-model-lollapalooza",
+        "character:munger:mental-model-circle-of-competence",
+        "character:munger:mental-model-incentives",
+        "character:munger:heuristic-set",
+        "character:munger:expression-dna",
+        "character:munger:tension-moral-vs-pragmatic",
+        "character:munger:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:musk-detail",
+      "name": "马斯克 详细档案",
+      "description": "马斯克的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:musk:mental-model-asymptotic-limit",
+        "character:musk:mental-model-the-algorithm",
+        "character:musk:mental-model-existential-anchoring",
+        "character:musk:mental-model-vertical-integration",
+        "character:musk:mental-model-fast-iteration",
+        "character:musk:heuristic-set",
+        "character:musk:expression-dna",
+        "character:musk:tension-vision-vs-execution",
+        "character:musk:tension-autocrat-vs-mission",
+        "character:musk:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:jobs-detail",
+      "name": "乔布斯 详细档案",
+      "description": "乔布斯的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:jobs:mental-model-focus-is-no",
+        "character:jobs:mental-model-whole-widget",
+        "character:jobs:mental-model-connecting-dots",
+        "character:jobs:mental-model-death-filter",
+        "character:jobs:mental-model-reality-distortion",
+        "character:jobs:mental-model-tech-humanities",
+        "character:jobs:heuristic-set",
+        "character:jobs:expression-dna",
+        "character:jobs:tension-control-vs-creativity",
+        "character:jobs:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:naval-detail",
+      "name": "Naval 详细档案",
+      "description": "Naval的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:naval:mental-model-leverage",
+        "character:naval:mental-model-specific-knowledge",
+        "character:naval:mental-model-desire-as-contract",
+        "character:naval:mental-model-redefine",
+        "character:naval:mental-model-pain-to-system",
+        "character:naval:heuristic-set",
+        "character:naval:expression-dna",
+        "character:naval:tension-wealth-vs-peace",
+        "character:naval:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:taleb-detail",
+      "name": "塔勒布 详细档案",
+      "description": "塔勒布的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:taleb:mental-model-asymmetric-risk",
+        "character:taleb:mental-model-antifragility",
+        "character:taleb:mental-model-skin-in-the-game",
+        "character:taleb:mental-model-lindy-effect",
+        "character:taleb:mental-model-via-negativa",
+        "character:taleb:mental-model-domain-specificity",
+        "character:taleb:heuristic-set",
+        "character:taleb:expression-dna",
+        "character:taleb:tension-scholar-vs-brawler",
+        "character:taleb:tension-theory-vs-practice",
+        "character:taleb:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:trump-detail",
+      "name": "特朗普 详细档案",
+      "description": "特朗普的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:trump:mental-model-everything-is-deal",
+        "character:trump:mental-model-truthful-hyperbole",
+        "character:trump:mental-model-unpredictability-as-power",
+        "character:trump:mental-model-victim-narrative",
+        "character:trump:mental-model-zero-sum-winning",
+        "character:trump:mental-model-audience-first",
+        "character:trump:heuristic-set",
+        "character:trump:expression-dna",
+        "character:trump:tension-deal-maker-vs-ideologue",
+        "character:trump:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:graham-detail",
+      "name": "Paul Graham 详细档案",
+      "description": "Paul Graham的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:graham:mental-model-writing-is-thinking",
+        "character:graham:mental-model-taste-as-cognition",
+        "character:graham:mental-model-iterative-discovery",
+        "character:graham:mental-model-superlinear-returns",
+        "character:graham:mental-model-independent-thinking",
+        "character:graham:heuristic-set",
+        "character:graham:expression-dna",
+        "character:graham:tension-taste-vs-democracy",
+        "character:graham:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:ilya-detail",
+      "name": "Ilya 详细档案",
+      "description": "Ilya的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:ilya:mental-model-compression-is-understanding",
+        "character:ilya:mental-model-scale-as-tool",
+        "character:ilya:mental-model-safety-capability",
+        "character:ilya:mental-model-super-learner",
+        "character:ilya:mental-model-silence-as-architecture",
+        "character:ilya:mental-model-research-aesthetics",
+        "character:ilya:heuristic-set",
+        "character:ilya:expression-dna",
+        "character:ilya:tension-open-vs-closed",
+        "character:ilya:tension-silence-vs-influence",
+        "character:ilya:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:sun-detail",
+      "name": "孙宇晨 详细档案",
+      "description": "孙宇晨的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:sun:mental-model-attention-arbitrage",
+        "character:sun:mental-model-narrative-override",
+        "character:sun:mental-model-identity-leverage",
+        "character:sun:mental-model-context-switching",
+        "character:sun:mental-model-copy-then-brand",
+        "character:sun:mental-model-money-as-solvent",
+        "character:sun:heuristic-set",
+        "character:sun:expression-dna",
+        "character:sun:tension-attention-hype-vs-substance",
+        "character:sun:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:zhangyiming-detail",
+      "name": "张一鸣 详细档案",
+      "description": "张一鸣的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:zhangyiming:mental-model-delayed-gratification",
+        "character:zhangyiming:mental-model-high-dim-projection",
+        "character:zhangyiming:mental-model-algorithm-empathy",
+        "character:zhangyiming:mental-model-context-not-control",
+        "character:zhangyiming:mental-model-escape-mediocrity",
+        "character:zhangyiming:heuristic-set",
+        "character:zhangyiming:expression-dna",
+        "character:zhangyiming:tension-algorithm-vs-empathy",
+        "character:zhangyiming:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:zhangxuefeng-detail",
+      "name": "张雪峰 详细档案",
+      "description": "张雪峰的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:zhangxuefeng:mental-model-social-sieve",
+        "character:zhangxuefeng:mental-model-choice-over-effort",
+        "character:zhangxuefeng:mental-model-employment-backward",
+        "character:zhangxuefeng:mental-model-class-realism",
+        "character:zhangxuefeng:mental-model-controversy-as-spread",
+        "character:zhangxuefeng:heuristic-set",
+        "character:zhangxuefeng:expression-dna",
+        "character:zhangxuefeng:tension-realism-vs-hope",
+        "character:zhangxuefeng:intellectual-lineage"
+      ]
+    },
+    {
+      "id": "layer:mrbeast-detail",
+      "name": "MrBeast 详细档案",
+      "description": "MrBeast的心智模型拆分节点 + 决策启发式 + 表达DNA + 内在张力 + 智识谱系",
+      "nodeIds": [
+        "character:mrbeast:mental-model-ctr-avd",
+        "character:mrbeast:mental-model-no-dull-moments",
+        "character:mrbeast:mental-model-stair-stepping",
+        "character:mrbeast:mental-model-simple-extreme",
+        "character:mrbeast:mental-model-reinvestment-flywheel",
+        "character:mrbeast:mental-model-creativity-saves-money",
+        "character:mrbeast:heuristic-set",
+        "character:mrbeast:expression-dna",
+        "character:mrbeast:tension-generosity-vs-attention",
+        "character:mrbeast:intellectual-lineage"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "女娲造人术 — 核心理念",
+      "description": "捕捉HOW they think，不是WHAT they said。输入人名→自动深度调研→思维框架提炼→生成可运行的人物Skill",
+      "nodeIds": [
+        "concept:nvwa"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "6阶段蒸馏流程",
+      "description": "入口分流→需求澄清→多源采集(6 Agent并行)→框架提炼→Skill构建→质量验证→双Agent精炼",
+      "nodeIds": [
+        "domain:distillation-flow",
+        "concept:agent-swarm",
+        "concept:skill-template",
+        "concept:agentic-protocol"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "三重验证方法论",
+      "description": "跨域复现+生成力+排他性，确保提炼的是真正的心智模型而非随口一说。品味守则：长文>金句、争议>共识、变化>固定",
+      "nodeIds": [
+        "domain:methodology",
+        "concept:triple-validation",
+        "concept:mental-model",
+        "concept:expression-dna",
+        "concept:honest-boundary"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "已蒸馏角色档案",
+      "description": "14个已蒸馏角色的思维框架档案：费曼、芒格、马斯克、乔布斯、Naval、塔勒布、特朗普、Paul Graham、Ilya、Karpathy、孙宇晨、张一鸣、张雪峰、MrBeast + 1个主题Skill(X平台精通导师)",
+      "nodeIds": [
+        "character:feynman",
+        "character:munger",
+        "character:musk",
+        "character:jobs",
+        "character:naval",
+        "character:taleb",
+        "character:trump",
+        "character:paul-graham",
+        "character:ilya",
+        "character:karpathy",
+        "character:sun-yuchen",
+        "character:zhang-yiming",
+        "character:zhangxuefeng",
+        "character:mrbeast",
+        "character:x-mastery-mentor"
+      ]
+    }
+  ]
+}
