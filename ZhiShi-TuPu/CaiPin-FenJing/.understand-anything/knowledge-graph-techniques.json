@@ -1,0 +1,510 @@
+{
+  "nodes": [
+    {
+      "id": "technique:baisirouguangxiang",
+      "type": "concept",
+      "filePath": "jifa/guangying/baisirouguangxiang",
+      "name": "白色柔光箱",
+      "summary": "无影棚拍，纯白柔光消除一切阴影，食物如悬浮于虚空之中",
+      "tags": [
+        "技法",
+        "光影",
+        "柔光"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "光影",
+          "coreLogic": "用大面积柔光消除阴影和杂讯，让食物成为画面唯一信息，纯粹即高级",
+          "keyParams": [
+            "光源 大型柔光箱/环形灯",
+            "光比 <1:1.5",
+            "背景 纯黑/纯白"
+          ],
+          "applicableShots": "食材展示→成品特写",
+          "originStyle": "苹果发布会风格"
+        }
+      }
+    },
+    {
+      "id": "technique:dandian-guangyuan",
+      "type": "concept",
+      "filePath": "jifa/guangying/dandian-guangyuan",
+      "name": "单点光源",
+      "summary": "一束光只照亮食物，其余沉入黑暗，戏剧性与禅意并存",
+      "tags": [
+        "技法",
+        "光影",
+        "聚光"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "光影",
+          "coreLogic": "用单一光源创造明暗分界，食物是光明的孤岛，黑暗是留白的画布",
+          "keyParams": [
+            "光源类型 聚光灯/束光筒",
+            "光照范围 仅覆盖食物",
+            "暗部细节 保留5-10%"
+          ],
+          "applicableShots": "食材独白→成品冥想→收尾凝视",
+          "originStyle": "日式侘寂风格"
+        }
+      }
+    },
+    {
+      "id": "technique:nihong-shuangsewen",
+      "type": "concept",
+      "filePath": "jifa/guangying/nihong-shuangsewen",
+      "name": "霓虹双色温",
+      "summary": "暖黄+冷蓝双色温光源，暧昧不清的光影交界，情绪在冷暖间游移",
+      "tags": [
+        "技法",
+        "光影",
+        "霓虹"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "光影",
+          "coreLogic": "双色温制造视觉暧昧，暖色是欲望冷色是疏离，食物在矛盾光线下获得情绪深度",
+          "keyParams": [
+            "暖光源 3200K钨丝灯/霓虹黄",
+            "冷光源 6500K+蓝/青",
+            "冷暖交界线位置"
+          ],
+          "applicableShots": "处理暧昧→烹饪情绪→成品氛围",
+          "originStyle": "王家卫风格"
+        }
+      }
+    },
+    {
+      "id": "technique:huagui-yunsu-hengyi",
+      "type": "concept",
+      "filePath": "jifa/yundong/huagui-yunsu-hengyi",
+      "name": "滑轨匀速横移",
+      "summary": "滑轨水平匀速移动，食物如展品般被审视，冷静而精确",
+      "tags": [
+        "技法",
+        "运动",
+        "滑轨"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "运动",
+          "coreLogic": "匀速横移赋予食物展品感，运动本身不带情绪，让食物自己说话",
+          "keyParams": [
+            "移动速度 匀速0.5m/s",
+            "轨道长度 1-2m",
+            "移动方向 水平/微倾"
+          ],
+          "applicableShots": "食材巡礼→成品展示",
+          "originStyle": "苹果发布会风格"
+        }
+      }
+    },
+    {
+      "id": "technique:shouchi-huxigan",
+      "type": "concept",
+      "filePath": "jifa/yundong/shouchi-huxigan",
+      "name": "手持呼吸感",
+      "summary": "轻微手持晃动模拟人眼观察的呼吸节奏，增加临场感和亲密感",
+      "tags": [
+        "技法",
+        "运动",
+        "手持"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "运动",
+          "coreLogic": "手持晃动=人在现场=真实感，呼吸节奏的晃动让观众成为在场者而非旁观者",
+          "keyParams": [
+            "晃动幅度 微幅±2°",
+            "晃动频率 呼吸节奏0.3Hz",
+            "稳定性 70%稳+30%晃"
+          ],
+          "applicableShots": "处理过程→烹饪动作→收尾氛围",
+          "originStyle": "王家卫风格"
+        }
+      }
+    },
+    {
+      "id": "technique:guding-ningshi",
+      "type": "concept",
+      "filePath": "jifa/yundong/guding-ningshi",
+      "name": "固定凝视",
+      "summary": "三脚架固定机位不动，让时间流逝和食物变化成为唯一动态，沉默即力量",
+      "tags": [
+        "技法",
+        "运动",
+        "固定"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "运动",
+          "coreLogic": "机位不动，世界在动，固定凝视让食物的变化成为唯一的叙事动力",
+          "keyParams": [
+            "机位锁定 三脚架",
+            "画面内动态 仅食物变化",
+            "持续时长 3-8秒"
+          ],
+          "applicableShots": "食材静候→烹饪变化→收尾定格",
+          "originStyle": "日式侘寂风格"
+        }
+      }
+    },
+    {
+      "id": "technique:jijian-goutu-liubai",
+      "type": "concept",
+      "filePath": "jifa/goutu/jijian-goutu-liubai",
+      "name": "极简构图留白",
+      "summary": "食物居中或偏心，大面积留白，少即是多，留白即呼吸",
+      "tags": [
+        "技法",
+        "构图",
+        "留白"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "构图",
+          "coreLogic": "画面信息越少注意力越集中，留白不是空而是呼吸空间，让食物成为绝对主角",
+          "keyParams": [
+            "留白比例 50-80%",
+            "食物位置 居中/黄金分割点",
+            "背景 纯色/虚化"
+          ],
+          "applicableShots": "食材独白→成品展示→品牌定格",
+          "originStyle": "苹果发布会风格"
+        }
+      }
+    },
+    {
+      "id": "technique:buguize-pianxin-goutu",
+      "type": "concept",
+      "filePath": "jifa/goutu/buguize-pianxin-goutu",
+      "name": "不规则偏心构图",
+      "summary": "打破对称，食物偏置一侧，留出呼吸空间，构图即情绪",
+      "tags": [
+        "技法",
+        "构图",
+        "偏心"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "构图",
+          "coreLogic": "偏心构图制造视觉不安和情绪张力，不对称=不平静=有故事",
+          "keyParams": [
+            "偏心方向 左下/右上",
+            "偏移比例 画面1/3处",
+            "负空间利用"
+          ],
+          "applicableShots": "处理情绪→烹饪暧昧→成品叙事",
+          "originStyle": "王家卫风格"
+        }
+      }
+    },
+    {
+      "id": "technique:heichang-xuanzhuan-dengchang",
+      "type": "concept",
+      "filePath": "jifa/zhuanchang/heichang-xuanzhuan-dengchang",
+      "name": "黑场旋转登场",
+      "summary": "黑场中食物旋转出现，如产品发布会揭幕，仪式感拉满",
+      "tags": [
+        "技法",
+        "转场",
+        "登场"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "转场",
+          "coreLogic": "黑暗是舞台，旋转是仪式，食物从虚无中登场如同神迹降临",
+          "keyParams": [
+            "旋转角度 180-360°",
+            "登场速度 0.5-1.5s",
+            "背景 纯黑"
+          ],
+          "applicableShots": "开场登场→成品揭幕",
+          "originStyle": "苹果发布会风格"
+        }
+      }
+    },
+    {
+      "id": "technique:guzhang-zhuanchang",
+      "type": "concept",
+      "filePath": "jifa/zhuanchang/guzhang-zhuanchang",
+      "name": "故障转场",
+      "summary": "数字故障/信号干扰式转场，画面撕裂重组，科技感与未来感",
+      "tags": [
+        "技法",
+        "转场",
+        "故障"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "转场",
+          "coreLogic": "故障是数字世界的呼吸，画面撕裂重组暗示现实被技术重构，未来已来",
+          "keyParams": [
+            "故障类型 RGB分离/像素撕裂/信号干扰",
+            "故障时长 0.2-0.5s",
+            "故障强度 中等"
+          ],
+          "applicableShots": "衔接→节奏切换",
+          "originStyle": "赛博朋克风格"
+        }
+      }
+    },
+    {
+      "id": "technique:shuju-biaozhu-donghua",
+      "type": "concept",
+      "filePath": "jifa/xinxi/shuju-biaozhu-donghua",
+      "name": "数据标注动画",
+      "summary": "温度/时间/重量等数据以动画形式叠加画面，理性美学与食欲的碰撞",
+      "tags": [
+        "技法",
+        "信息",
+        "数据"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "信息",
+          "coreLogic": "数据标注赋予食物科学精确感，数字与食欲的碰撞产生理性美学",
+          "keyParams": [
+            "标注类型 温度/时间/重量/产地",
+            "动画风格 极简线条/科技感",
+            "出现时机 动作节点"
+          ],
+          "applicableShots": "食材标注→烹饪参数→成品数据",
+          "originStyle": "苹果发布会风格"
+        }
+      }
+    },
+    {
+      "id": "technique:chouzhen-duanxu",
+      "type": "concept",
+      "filePath": "jifa/shijian/chouzhen-duanxu",
+      "name": "抽帧断续",
+      "summary": "抽掉部分帧制造断续感，时间被切碎又重组，记忆的碎片化表达",
+      "tags": [
+        "技法",
+        "时间",
+        "抽帧"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "时间",
+          "coreLogic": "抽帧打破时间的连续性，断续=记忆=情绪，不完整比完整更有力量",
+          "keyParams": [
+            "抽帧比例 30-60%",
+            "保留帧分布 关键动作帧",
+            "节奏 不规则断续"
+          ],
+          "applicableShots": "处理碎片→力度断续→高潮碎裂",
+          "originStyle": "王家卫风格"
+        }
+      }
+    },
+    {
+      "id": "technique:fengmianzhen-jichengpin",
+      "type": "concept",
+      "filePath": "jifa/xushi/fengmianzhen-jichengpin",
+      "name": "封面帧即成品",
+      "summary": "第1帧就是成品极美特写，不做任何铺垫。0.5秒决策窗口让观众决定停留",
+      "tags": [
+        "技法",
+        "叙事",
+        "开头",
+        "成品",
+        "MrBeast"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "叙事",
+          "coreLogic": "第1帧=缩略图，0.5秒决策窗口，成品特写是最强力的停留信号",
+          "keyParams": [
+            "时长 0-2秒",
+            "景别 极近特写",
+            "角度 45°俯拍或平视微仰"
+          ],
+          "applicableShots": "开场",
+          "originStyle": "MrBeast导演风格"
+        }
+      }
+    },
+    {
+      "id": "technique:tiaoqie-shenglue",
+      "type": "concept",
+      "filePath": "jifa/xushi/tiaoqie-shenglue",
+      "name": "跳切省略法",
+      "summary": "砍掉所有中间过程，只保留动作起点和终点。省略=加速=零无聊",
+      "tags": [
+        "技法",
+        "叙事",
+        "剪辑",
+        "省略",
+        "MrBeast"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "叙事",
+          "coreLogic": "只保留起点和终点，删除一切中间过程。省略=加速=零无聊",
+          "keyParams": [
+            "禁止 任何超过1秒的静态等待画面",
+            "原则 起点即终点"
+          ],
+          "applicableShots": "处理→烹饪",
+          "originStyle": "MrBeast导演风格"
+        }
+      }
+    },
+    {
+      "id": "technique:sanduan-dijin",
+      "type": "concept",
+      "filePath": "jifa/xushi/sanduan-dijin",
+      "name": "三段递进曲线",
+      "summary": "30秒内完成3次食欲刺激升级：期待→冲击→爆发，不允许平台期",
+      "tags": [
+        "技法",
+        "叙事",
+        "递进",
+        "曲线",
+        "MrBeast"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "叙事",
+          "coreLogic": "30秒内3次升级：期待(0-10s)→冲击(10-20s)→爆发(20-30s)，每一镜刺激度必须高于前一镜",
+          "keyParams": [
+            "阶段1 0-10秒食材质感（期待）",
+            "阶段2 10-20秒烹饪爆发（冲击）",
+            "阶段3 20-30秒成品破坏（爆发）"
+          ],
+          "applicableShots": "节奏框架",
+          "originStyle": "MrBeast导演风格"
+        }
+      }
+    },
+    {
+      "id": "technique:manjing-lizi-qiguan",
+      "type": "concept",
+      "filePath": "jifa/xushi/manjing-lizi-qiguan",
+      "name": "慢镜粒子奇观",
+      "summary": "火焰/油花/蒸汽用120-240fps慢镜强调，常态速度无法捕捉的变成视觉奇观",
+      "tags": [
+        "技法",
+        "叙事",
+        "慢镜",
+        "粒子",
+        "MrBeast"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "叙事",
+          "coreLogic": "概念简单（慢镜）×执行极端（120-240fps），只在视觉爆发点使用",
+          "keyParams": [
+            "帧率 120-240fps",
+            "目标 火焰/油花/蒸汽/酱汁淋落",
+            "限制 每30秒最多2处慢镜"
+          ],
+          "applicableShots": "烹饪高潮→力度爆发",
+          "originStyle": "MrBeast导演风格"
+        }
+      }
+    },
+    {
+      "id": "technique:poihuai-xing-jieshi",
+      "type": "concept",
+      "filePath": "jifa/xushi/poihuai-xing-jieshi",
+      "name": "破坏性揭示",
+      "summary": "筷子夹起/刀切/戳破展示内在质感，完整食物是封闭的，破坏动作打开它",
+      "tags": [
+        "技法",
+        "叙事",
+        "破坏",
+        "揭示",
+        "MrBeast"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "叙事",
+          "coreLogic": "破坏动作=最强传达，打开封闭的食物展示内在——汁水、层次、质地",
+          "keyParams": [
+            "动作 筷子夹起/刀切/戳破/掰开",
+            "目标 汁水流出/层次分离/质地暴露",
+            "时机 25-30秒"
+          ],
+          "applicableShots": "成品揭示→收尾",
+          "originStyle": "MrBeast导演风格"
+        }
+      }
+    },
+    {
+      "id": "technique:shenghua-hubu-xushi",
+      "type": "concept",
+      "filePath": "jifa/xushi/shenghua-hubu-xushi",
+      "name": "声画互补叙事",
+      "summary": "画面展示质感（视觉），声音补充温度/氛围（听觉），互补而非重复",
+      "tags": [
+        "技法",
+        "叙事",
+        "声音",
+        "互补",
+        "MrBeast"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "叙事",
+          "coreLogic": "画面质感+声音温度，互补而非重复。视觉和听觉各讲一半故事，合起来是完整故事",
+          "keyParams": [
+            "互补 滋滋声配慢镜油花（好）",
+            "重复 滋滋声配火焰画面（差）"
+          ],
+          "applicableShots": "声画设计",
+          "originStyle": "MrBeast导演风格"
+        }
+      }
+    },
+    {
+      "id": "technique:jingmo-xuli-baofa",
+      "type": "concept",
+      "filePath": "jifa/xushi/jingmo-xuli-baofa",
+      "name": "静默蓄力爆发",
+      "summary": "落版前1秒完全静默，然后一击引爆。蓄力越深，释放越强",
+      "tags": [
+        "技法",
+        "叙事",
+        "静默",
+        "蓄力",
+        "MrBeast"
+      ],
+      "complexity": "simple",
+      "metadata": {
+        "techniqueProfile": {
+          "category": "叙事",
+          "coreLogic": "1秒静默→1击引爆，对比产生最大张力。没有静默就没有爆发",
+          "keyParams": [
+            "静默时长 1-1.5秒",
+            "静默内容 无音乐无环境音只有画面",
+            "爆发内容 破坏性动作+声音爆发"
+          ],
+          "applicableShots": "静默蓄力→最终爆发",
+          "originStyle": "MrBeast导演风格"
+        }
+      }
+    }
+  ]
+}
