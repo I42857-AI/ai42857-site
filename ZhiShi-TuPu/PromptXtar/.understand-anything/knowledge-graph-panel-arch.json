@@ -1,0 +1,146 @@
+{
+  "nodes": [
+    {
+      "id": "file:libs/panel-interface.js",
+      "type": "file",
+      "name": "panel-interface.js",
+      "filePath": "libs/panel-interface.js",
+      "summary": "PanelBase 基类，定义面板的生命周期接口（onCreate/onMount/onUnmount/onDestroy/render/serialize/deserialize）和事件系统"
+    },
+    {
+      "id": "file:libs/panel-shell.js",
+      "type": "file",
+      "name": "panel-shell.js",
+      "filePath": "libs/panel-shell.js",
+      "summary": "PanelShell 面板管理器，负责面板注册、Tab 切换、生命周期管理（switchTab 时离开→onUnmount+保存，进入→懒创建+init+onMount）和快捷键分发"
+    },
+    {
+      "id": "class:libs/panel-interface.js:PanelBase",
+      "type": "class",
+      "name": "PanelBase",
+      "filePath": "libs/panel-interface.js",
+      "summary": "面板基类，定义生命周期接口（onCreate/onMount/onUnmount/onDestroy/render/serialize/deserialize）和事件系统，所有面板模块必须继承此类"
+    },
+    {
+      "id": "class:libs/panel-shell.js:PanelShell",
+      "type": "class",
+      "name": "PanelShell",
+      "filePath": "libs/panel-shell.js",
+      "summary": "面板管理器，负责面板注册（registerTemplate）、Tab 切换（switchTo）、生命周期管理和快捷键分发，管理面板实例的创建和销毁"
+    },
+    {
+      "id": "module:libs/marked.min.js",
+      "type": "module",
+      "name": "marked.min.js",
+      "filePath": "libs/marked.min.js",
+      "summary": "Markdown 渲染库，将 Markdown 文本转换为 HTML，QuickMD 预览模式的核心依赖"
+    },
+    {
+      "id": "module:libs/highlight.min.js",
+      "type": "module",
+      "name": "highlight.min.js",
+      "filePath": "libs/highlight.min.js",
+      "summary": "代码高亮库，为 Markdown 中的代码块提供语法高亮，配合 marked.js 使用"
+    },
+    {
+      "id": "module:libs/katex.min.js",
+      "type": "module",
+      "name": "katex.min.js",
+      "filePath": "libs/katex.min.js",
+      "summary": "数学公式渲染库，支持 LaTeX 语法，QuickMD 预览中的数学公式显示"
+    },
+    {
+      "id": "module:libs/mermaid.min.js",
+      "type": "module",
+      "name": "mermaid.min.js",
+      "filePath": "libs/mermaid.min.js",
+      "summary": "图表渲染库，支持流程图、序列图等 Mermaid 语法，QuickMD 预览中的图表显示"
+    }
+  ],
+  "edges": [
+    {
+      "source": "domain:panel-arch",
+      "target": "file:libs/panel-interface.js",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:panel-arch",
+      "target": "file:libs/panel-shell.js",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:panel-arch",
+      "target": "module:libs/marked.min.js",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:panel-arch",
+      "target": "module:libs/highlight.min.js",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:panel-arch",
+      "target": "module:libs/katex.min.js",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:panel-arch",
+      "target": "module:libs/mermaid.min.js",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:libs/panel-interface.js",
+      "target": "class:libs/panel-interface.js:PanelBase",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:libs/panel-shell.js",
+      "target": "class:libs/panel-shell.js:PanelShell",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "class:libs/panel-shell.js:PanelShell",
+      "target": "class:libs/panel-interface.js:PanelBase",
+      "type": "depends_on",
+      "weight": 0.9,
+      "direction": "forward"
+    },
+    {
+      "source": "module:libs/highlight.min.js",
+      "target": "module:libs/marked.min.js",
+      "type": "depends_on",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "module:libs/katex.min.js",
+      "target": "module:libs/marked.min.js",
+      "type": "depends_on",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "module:libs/mermaid.min.js",
+      "target": "module:libs/marked.min.js",
+      "type": "depends_on",
+      "weight": 0.5,
+      "direction": "forward"
+    }
+  ]
+}
