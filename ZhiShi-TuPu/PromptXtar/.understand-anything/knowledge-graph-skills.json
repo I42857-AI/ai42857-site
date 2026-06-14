@@ -1,0 +1,17 @@
+{
+  "nodes": [
+    {
+      "id": "skill:cross-platform",
+      "type": "concept",
+      "name": "跨平台Prompt管理",
+      "summary": "跨AI平台的Prompt统一管理：支持TRAE/QClaw/Codex等多平台Prompt同步和版本控制",
+      "tags": [
+        "prompt",
+        "cross-platform",
+        "unique"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": []
+}
