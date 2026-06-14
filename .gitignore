@@ -1,0 +1,40 @@
+# BAK 化文件（保留历史，推送HB作为本地备用）
+*.bak
+.bak/
+
+# 整个 .bak 目录
+.agents.bak_*/
+JiaoBen-Agents.bak_*/
+workspace.bak/
+
+# 二进制/大文件
+*.exe
+*.dll
+*.zip
+*.msi
+*.wav
+*.mp3
+*.mp4
+*.pdf
+*.psd
+*.psb
+
+# 系统文件
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# macOS 残留
+__MACOSX/
