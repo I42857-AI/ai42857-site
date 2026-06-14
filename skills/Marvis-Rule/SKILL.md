@@ -58,7 +58,7 @@ P0 初次唤醒必读（不可略过）
   | 一问二选项/回访/A/B选项/延伸方向 | CanKao/00-yiWen-erXuanXiang.md | 一问二选项回访机制 |
   | 虫洞/Symlink/注入/链接 | CanKao/01-chongDong-hua.md | 虫洞化规范+Symlink操作 |
   | 子代理/派发/多Agent/协作/dispatch | CanKao/02-duoAgent-xieZuo.md | 多Agent协作+派发规范 |
-  | 编码/中文/乱码/BAN/HAB/BAK/备份 | CanKao/03-bianMa-anQuan-bak.md | 编码安全+BAN/HAB+BAK机制 |
+  | 编码/中文/乱码/BAN/HAB/BAK/备份/脱敏/推送GitHub/token/Secret/REDACTED | CanKao/03-bianMa-anQuan-bak.md | 编码安全+BAN/HAB+脱敏推送+BAK机制 |
   | 路径映射/目录/数据源/工作目录 | CanKao/04-luJing-yingShe.md | Marvis路径映射+目录规范 |
   | 日志/写日志/读日志/RiZhi/提炼 | CanKao/05-riZhi-guiFan.md | 日志规范（写入+提炼+生命周期） |
   | 分形/注册表/新建技能/技能注册 | CanKao/06-fenXing-jiaGou.md | 分形架构+技能注册表 |
