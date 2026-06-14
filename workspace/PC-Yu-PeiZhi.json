@@ -1,0 +1,238 @@
+{
+  "_comment": "PC Domain Declarative Configuration - lightweight DSC alternative",
+  "_version": "1.0",
+  "_updated": "2026-06-06",
+  "_usage": "PC-Yu-ShouLian.ps1 reads this file, detects deviations, auto-fixes",
+
+  "domain": "PC",
+  "targetRoot": "Z:\\PC",
+
+  "diskIdentifier": {
+    "serialNumber": "WX52A1507Z0A",
+    "volumeLabel": "YUANBAO",
+    "targetDriveLetter": "Z",
+    "signatureDirectories": ["XiangMu-KongJian", "PC"]
+  },
+
+  "prerequisites": [
+    {
+      "id": "P0-1",
+      "name": "PanFu-GuDingHua",
+      "description": "Z drive mounted and accessible",
+      "check": "Test-Path 'Z:\\XiangMu-KongJian'",
+      "autoFix": false,
+      "fixHint": "Run PanFu-GuDingHua.bat or manually assign Z: drive letter"
+    },
+    {
+      "id": "P0-2",
+      "name": "SymlinkTiQuan",
+      "description": "Developer mode or SeCreateSymbolicLinkPrivilege granted",
+      "check": "(whoami /priv 2>$null | Select-String 'SeCreateSymbolicLinkPrivilege' -Quiet) -or (Get-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\AppModelUnlock' -Name 'AllowDevelopmentWithoutDevLicense' -ErrorAction SilentlyContinue).AllowDevelopmentWithoutDevLicense -eq 1",
+      "autoFix": false,
+      "fixHint": "Run SeCreateSymbolicLinkPrivilege grant script or enable Developer Mode"
+    },
+    {
+      "id": "P0-3",
+      "name": "ChangLuJingZhiChi",
+      "description": "LongPathsEnabled = 1",
+      "check": "(Get-ItemProperty 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\FileSystem' -Name 'LongPathsEnabled' -ErrorAction SilentlyContinue).LongPathsEnabled -eq 1",
+      "autoFix": false,
+      "fixHint": "Set-ItemProperty HKLM:\\SYSTEM\\CurrentControlSet\\Control\\FileSystem -Name LongPathsEnabled -Value 1 (requires admin + reboot)"
+    }
+  ],
+
+  "links": [
+    {
+      "path": "C:\\Users\\PC",
+      "target": "Z:\\PC",
+      "type": "SymbolicLink",
+      "ensure": "Present",
+      "condition": null,
+      "description": "4.0 core wormhole - independent user domain"
+    },
+    {
+      "path": "C:\\Users\\PC\\.trae-cn",
+      "target": "Z:\\XiangMu-KongJian\\TRAE\\credentials\\Trae CN",
+      "type": "SymbolicLink",
+      "ensure": "Present",
+      "condition": "pcIsWormhole",
+      "description": "3.0 compat: TRAE credentials path (managed by TRAE-YiTi)"
+    },
+    {
+      "path": "C:\\Users\\PC\\.qclaw",
+      "target": "Z:\\PC\\.qclaw",
+      "type": "SymbolicLink",
+      "ensure": "Present",
+      "condition": "pcIsWormhole",
+      "description": "QClaw config (migrated to Z:\\PC)"
+    },
+    {
+      "path": "C:\\Users\\PC\\.openclaw",
+      "target": "Z:\\PC\\.openclaw",
+      "type": "SymbolicLink",
+      "ensure": "Present",
+      "condition": "pcIsWormhole",
+      "description": "QClaw open config (migrated)"
+    },
+    {
+      "path": "C:\\Users\\PC\\.codex",
+      "target": "Z:\\PC\\.codex",
+      "type": "SymbolicLink",
+      "ensure": "Present",
+      "condition": "pcIsWormhole",
+      "description": "Codex++ config (migrated)"
+    },
+    {
+      "path": "C:\\Users\\PC\\.agents",
+      "target": "Z:\\PC\\.agents",
+      "type": "SymbolicLink",
+      "ensure": "Present",
+      "condition": "pcIsWormhole",
+      "description": "Agent skills/rules/workspace"
+    },
+    {
+      "path": "C:\\Users\\PC\\CangQiong",
+      "target": "Z:\\PC\\CangQiong",
+      "type": "SymbolicLink",
+      "ensure": "Present",
+      "condition": null,
+      "description": "CangQiong tray manager"
+    },
+    {
+      "path": "C:\\Users\\PC\\RiZhi",
+      "target": "Z:\\PC\\RiZhi",
+      "type": "SymbolicLink",
+      "ensure": "Present",
+      "condition": "pcIsWormhole",
+      "description": "Log aggregation hub (wormhole equivalent)"
+    },
+    {
+      "path": "C:\\Users\\PC\\Understand-Anything-main",
+      "target": "Z:\\PC\\Understand-Anything-main",
+      "type": "SymbolicLink",
+      "ensure": "Present",
+      "condition": null,
+      "description": "Knowledge graph Dashboard"
+    },
+    {
+      "path": "C:\\Users\\PC\\ZhiShi-TuPu",
+      "target": "Z:\\PC\\ZhiShi-TuPu",
+      "type": "SymbolicLink",
+      "ensure": "Present",
+      "condition": null,
+      "description": "Knowledge graph launcher"
+    }
+  ],
+
+  "roaming": [
+    {
+      "app": "QClaw",
+      "vendorPath": "QClaw",
+      "targetSubdir": "credentials\\ChuShi\\Roaming-QClaw",
+      "ensure": "Present",
+      "accountAware": true
+    },
+    {
+      "app": "TRAE-Solo",
+      "vendorPath": "TRAE SOLO CN",
+      "targetSubdir": "credentials\\TRAE SOLO CN",
+      "ensure": "Present",
+      "accountAware": false
+    },
+    {
+      "app": "TRAE-CN",
+      "vendorPath": "Trae CN",
+      "targetSubdir": "credentials\\Trae CN",
+      "ensure": "Present",
+      "accountAware": false
+    },
+    {
+      "app": "Marvis",
+      "vendorPath": "Tencent\\Marvis",
+      "targetSubdir": "Tencent\\Marvis",
+      "ensure": "Present",
+      "accountAware": false,
+      "subLinks": [
+        {
+          "path": "User\\oAN1i2WhUlcrjFVEguteU74dEYeE\\skills",
+          "target": "Z:\\PC\\.agents\\skills",
+          "description": "Skills -> shared source"
+        },
+        {
+          "path": "User\\oAN1i2WhUlcrjFVEguteU74dEYeE\\workspace",
+          "target": "Z:\\PC\\.agents\\workspace",
+          "description": "Workspace -> shared with TRAE"
+        }
+      ]
+    },
+    {
+      "app": "Eagle",
+      "vendorPath": "Eagle",
+      "targetSubdir": "YongHu-ShuJu",
+      "ensure": "Present",
+      "accountAware": true
+    },
+    {
+      "app": "Codex",
+      "vendorPath": "Codex++",
+      "targetSubdir": "Roaming-Codex++",
+      "ensure": "Present",
+      "accountAware": false
+    },
+    {
+      "app": "Billfish",
+      "vendorPath": "Billfish",
+      "targetSubdir": "Roaming-Billfish",
+      "ensure": "Present",
+      "accountAware": true
+    },
+    {
+      "app": "Billfish-Pkg",
+      "vendorPath": "BillfishPkg",
+      "targetSubdir": "Roaming-BillfishPkg",
+      "ensure": "Present",
+      "accountAware": false
+    },
+    {
+      "app": "2345Pic",
+      "vendorPath": "2345Pic",
+      "targetSubdir": "Roaming-2345Pic",
+      "ensure": "Present",
+      "accountAware": false
+    },
+    {
+      "app": "2345Pic-Preview",
+      "vendorPath": "2345Preview",
+      "targetSubdir": "Roaming-2345Preview",
+      "ensure": "Present",
+      "accountAware": false
+    },
+    {
+      "app": "2345Pic-SafeCenter",
+      "vendorPath": "2345SafeCenter",
+      "targetSubdir": "Roaming-2345SafeCenter",
+      "ensure": "Present",
+      "accountAware": false
+    },
+    {
+      "app": "2345Pic-DomainMon",
+      "vendorPath": "2345DomainMon",
+      "targetSubdir": "Roaming-2345DomainMon",
+      "ensure": "Present",
+      "accountAware": false
+    }
+  ],
+
+  "traeCnInternalLinks": [
+    { "link": ".trae-cn\\skills", "target": "Z:\\PC\\.trae-cn\\skills", "description": "Skill injection (via .trae-cn root)" },
+    { "link": ".trae-cn\\AGENTS.md", "target": "Z:\\PC\\.trae-cn\\AGENTS.md", "description": "Behavior spec (via .trae-cn root)" },
+    { "link": ".trae-cn\\SOUL.md", "target": "Z:\\PC\\.trae-cn\\SOUL.md", "description": "Soul (via .trae-cn root)" },
+    { "link": ".trae-cn\\MEMORY.md", "target": "Z:\\PC\\.trae-cn\\MEMORY.md", "description": "Memory (via .trae-cn root)" },
+    { "link": ".trae-cn\\USER.md", "target": "Z:\\PC\\.trae-cn\\USER.md", "description": "User info (via .trae-cn root)" },
+    { "link": ".trae-cn\\IDENTITY.md", "target": "Z:\\PC\\.trae-cn\\IDENTITY.md", "description": "Identity (via .trae-cn root)" },
+    { "link": ".trae-cn\\TOOLS.md", "target": "Z:\\PC\\.trae-cn\\TOOLS.md", "description": "Tools/registry (via .trae-cn root)" },
+    { "link": ".trae-cn\\HEARTBEAT.md", "target": "Z:\\PC\\.trae-cn\\HEARTBEAT.md", "description": "Heartbeat (via .trae-cn root)" },
+    { "link": ".trae-cn\\rules\\project_rules.md", "target": "Z:\\PC\\.trae-cn\\rules\\project_rules.md", "description": "Global rules (via .trae-cn root)" },
+    { "link": ".trae-cn\\user_rules\\SKILL.md", "target": "Z:\\PC\\.trae-cn\\user_rules\\SKILL.md", "description": "User rules (via .trae-cn root)" }
+  ]
+}
