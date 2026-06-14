@@ -1,0 +1,1278 @@
+{
+  "version": "1.0.0",
+  "kind": "knowledge",
+  "project": {
+    "name": "MrBeast-FangFaLun",
+    "languages": [],
+    "frameworks": [
+      "mrbeast-methodology",
+      "seedance-2.0"
+    ],
+    "description": "MrBeast（Jimmy Donaldson）内容创造方法论知识图谱，涵盖6大心智模型、8条决策启发式、内容创造公式、30秒短视频适配和粤菜分镜核心技法",
+    "analyzedAt": "2026-05-25T12:00:00.000Z",
+    "gitCommitHash": ""
+  },
+  "nodes": [
+    {
+      "id": "concept:ctr-avd",
+      "type": "concept",
+      "name": "CTR × AVD 方程式",
+      "summary": "YouTube只有两个数字重要——点击率（CTR）和平均观看时长（AVD）。公式：视频成功 = CTR × AVD。CTR目标>12%（行业平均4.2%），AVD目标>50%完播率。所有内容决策都应回归到这两个指标的提升上",
+      "tags": [
+        "心智模型",
+        "核心",
+        "数据驱动",
+        "YouTube"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "concept:zero-dull",
+      "type": "concept",
+      "name": "零无聊时刻",
+      "summary": "观众手指永远悬在\"下一个视频\"上，每一秒都在和整个互联网竞争。核心不是\"加入有趣的东西\"，而是\"删掉所有不有趣的东西\"。无聊是内容的原罪，删除无聊比添加有趣更有效",
+      "tags": [
+        "心智模型",
+        "核心",
+        "注意力",
+        "删减",
+        "unique"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "concept:stair-stepping",
+      "type": "concept",
+      "name": "阶梯递进",
+      "summary": "内容必须不断升级，每一段比前一段更大更疯狂赌注更高。三种经典格式：Last to Leave（最后离开者赢）、Stair Stepping（$1 vs $1M逐级递增）、Chase/Hunt（追逐/猎取）。观众永远在期待\"接下来会怎样\"",
+      "tags": [
+        "心智模型",
+        "核心",
+        "递进",
+        "悬念",
+        "unique"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "concept:simple-extreme",
+      "type": "concept",
+      "name": "简单概念×极端执行",
+      "summary": "最好的视频概念一句话说清楚，但执行做到极端。公式：病毒度 = 概念简单度 × 执行极端度。概念越简单传播越广，执行越极端留存越深。两者缺一不可",
+      "tags": [
+        "心智模型",
+        "核心",
+        "简单",
+        "极端"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "concept:reinvest-flywheel",
+      "type": "concept",
+      "name": "全额再投资飞轮",
+      "summary": "赚的每一分钱都投回去做更好的视频，形成飞轮效应。纸面净资产26亿美元，个人账户不到100万。单视频预算300-400万美元。更好视频→更多观看→更多收入→更好视频，永不停歇的上升螺旋",
+      "tags": [
+        "心智模型",
+        "核心",
+        "飞轮",
+        "投资",
+        "增长"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "concept:creativity-saves",
+      "type": "concept",
+      "name": "创意省钱",
+      "summary": "$10K的创意解决方案胜过$100K的暴力砸钱。约束是创意的催化剂，预算限制反而逼出更好的内容。用脑力替代财力，用想象力替代购买力",
+      "tags": [
+        "心智模型",
+        "核心",
+        "创意",
+        "约束",
+        "省钱"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:one-sentence-test",
+      "type": "concept",
+      "name": "一句话测试",
+      "summary": "不能用一句话让人兴奋的概念就砍掉。如果概念需要解释才能让人理解，它就不够好。好的概念自带传播力，一句话就是最好的广告",
+      "tags": [
+        "启发式",
+        "决策",
+        "概念筛选"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:self-click-test",
+      "type": "concept",
+      "name": "自点击测试",
+      "summary": "做完缩略图问自己会不会点。每个视频测试50+变体，用数据而非直觉做决策。如果自己都不想点，观众更不会点",
+      "tags": [
+        "启发式",
+        "决策",
+        "缩略图",
+        "测试"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:reinvest-principle",
+      "type": "concept",
+      "name": "100%再投资原则",
+      "summary": "不留利润，全部投入下一个视频。短期牺牲换取长期飞轮效应。这是反直觉的——大多数人想赚钱，MrBeast只想做更好的视频",
+      "tags": [
+        "启发式",
+        "决策",
+        "投资",
+        "长期主义",
+        "unique"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:first-30s-rule",
+      "type": "concept",
+      "name": "前30秒法则",
+      "summary": "前30秒决定视频生死。必须完成四件事：建立前提→展示赌注→视觉预告→开始行动。任何一环缺失都会导致大量观众流失",
+      "tags": [
+        "启发式",
+        "决策",
+        "开头",
+        "留存"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:3min-reengage",
+      "type": "concept",
+      "name": "3分钟重参与",
+      "summary": "每3-5分钟必须有一个re-engagement moment——新的赌注、新的转折、新的视觉奇观。观众注意力不是线性衰减而是阶梯式断崖，重参与时刻是悬崖边的护栏",
+      "tags": [
+        "启发式",
+        "决策",
+        "节奏",
+        "留存"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:aplayer-standard",
+      "type": "concept",
+      "name": "A-Player三标准",
+      "summary": "团队只用A-Player，标准三条：痴迷（对内容创造有病态般的热爱）、可塑（能接受反馈并快速进化）、全投入（愿意为视频付出一切）。B-Player会拖垮整个团队",
+      "tags": [
+        "启发式",
+        "决策",
+        "团队",
+        "人才"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:title-thumb-complement",
+      "type": "concept",
+      "name": "标题-缩略图互补原则",
+      "summary": "标题和缩略图必须互补而非重复。缩略图说\"什么\"，标题说\"为什么重要\"。两者合在一起才构成完整的钩子，分开则各自无力",
+      "tags": [
+        "启发式",
+        "决策",
+        "标题",
+        "缩略图",
+        "互补"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:delivery-over-content",
+      "type": "concept",
+      "name": "传达>内容",
+      "summary": "60分创意+90分传达 > 90分创意+60分传达。一个普通概念用极致方式呈现，远胜过一个绝妙概念用平庸方式呈现。传达力是内容的乘数",
+      "tags": [
+        "启发式",
+        "决策",
+        "传达",
+        "执行"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "topic:title-formulas",
+      "type": "topic",
+      "name": "标题公式体系",
+      "summary": "5种高频标题模式：金钱锚定（52%使用率，如\"$1 vs $1,000,000 Hotel\"）、第一人称挑战（30%，如\"I Survived 50 Hours In\"）、时间压力（24%，如\"Last to Leave Wins\"）、极端对比（20%，如\"World's Largest vs Smallest\"）、情感触发（15%，如\"I Gave My 40,000,000th Subscriber\"）",
+      "tags": [
+        "公式",
+        "标题",
+        "模式",
+        "数据"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "topic:thumbnail-design",
+      "type": "topic",
+      "name": "缩略图三要素",
+      "summary": "一张脸+一个物体+一个问题。脸提供情感共鸣和注意力锚点，物体提供概念可视化，问题制造认知缺口。三要素缺一则点击率下降",
+      "tags": [
+        "公式",
+        "缩略图",
+        "设计",
+        "要素"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "topic:hook-structure",
+      "type": "topic",
+      "name": "前30秒Hook结构",
+      "summary": "四段式结构：0-3秒概念即画面（用画面而非语言建立概念）→3-8秒赌注声明（明确告诉观众赢或输的后果）→8-15秒视觉预告（展示最疯狂的画面片段）→15-30秒立即行动（开始第一轮挑战/行动）",
+      "tags": [
+        "公式",
+        "Hook",
+        "开头",
+        "结构"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "topic:retention-curve",
+      "type": "topic",
+      "name": "节奏控制/Retention曲线",
+      "summary": "目标留存率分段：0-1分钟>90%→1-3分钟>80%→3-6分钟>65%→6分钟+>50%。每个区间都有对应的节奏策略，关键是识别断崖点并在其前插入重参与时刻",
+      "tags": [
+        "公式",
+        "节奏",
+        "留存",
+        "数据"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:30s-hook",
+      "type": "concept",
+      "name": "30秒钩子映射",
+      "summary": "MrBeast\"概念即画面\"在30秒粤菜视频中的映射：成品直接砸脸极美特写，0.5秒决策窗口让人停下来。不做任何铺垫，第一帧就是最强烈的视觉冲击",
+      "tags": [
+        "30秒适配",
+        "钩子",
+        "粤菜",
+        "映射",
+        "unique"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:30s-tension",
+      "type": "concept",
+      "name": "30秒张力映射",
+      "summary": "MrBeast\"赌注声明\"在30秒粤菜视频中的映射：食材质感展示建立期待。生食的纹理、色泽、弹性暗示即将发生的蜕变，张力来自\"它会变成什么\"",
+      "tags": [
+        "30秒适配",
+        "张力",
+        "粤菜",
+        "映射",
+        "unique"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:30s-explosion",
+      "type": "concept",
+      "name": "30秒爆发映射",
+      "summary": "MrBeast\"视觉预告\"在30秒粤菜视频中的映射：最激烈烹饪瞬间，全片视觉能量最高点。火焰、油花、蒸汽——所有动态元素在此汇聚爆发",
+      "tags": [
+        "30秒适配",
+        "爆发",
+        "粤菜",
+        "映射",
+        "unique"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:30s-convergence",
+      "type": "concept",
+      "name": "30秒收束映射",
+      "summary": "MrBeast\"阶梯递进至高潮\"在30秒粤菜视频中的映射：装盘淋汁等精妙收尾。所有散落的视觉线索在此汇聚，从混乱到秩序，从过程到成品",
+      "tags": [
+        "30秒适配",
+        "收束",
+        "粤菜",
+        "映射",
+        "unique"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:30s-finale",
+      "type": "concept",
+      "name": "30秒落版映射",
+      "summary": "MrBeast\"高潮+收尾\"在30秒粤菜视频中的映射：完整成品+破坏性动作，让人产生\"现在就要吃\"的冲动。筷子夹起、刀切开、戳破——破坏动作揭示内在质感",
+      "tags": [
+        "30秒适配",
+        "落版",
+        "粤菜",
+        "映射",
+        "unique"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:technique-product-smash",
+      "type": "concept",
+      "name": "成品砸脸法则",
+      "summary": "第0-5秒直接展示成品最美瞬间，不做任何铺垫。观众在0.5秒内决定是否继续观看，成品特写是最强力的停留信号。先给结果再讲故事",
+      "tags": [
+        "技法",
+        "粤菜分镜",
+        "开头",
+        "成品"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:technique-jump-cut",
+      "type": "concept",
+      "name": "跳切省略法",
+      "summary": "砍掉所有中间过程，只保留动作起点和终点。切菜不展示过程只展示刀落和切好，腌制不展示等待只展示入锅和出锅。省略=加速=零无聊",
+      "tags": [
+        "技法",
+        "粤菜分镜",
+        "剪辑",
+        "省略"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:technique-slowmo-particle",
+      "type": "concept",
+      "name": "慢动作粒子法则",
+      "summary": "火焰/油花/蒸汽用120-240fps慢镜强调。常态速度无法捕捉的粒子运动在慢镜下成为视觉奇观。关键：只在爆发点使用慢镜，滥用则失效",
+      "tags": [
+        "技法",
+        "粤菜分镜",
+        "慢镜",
+        "粒子",
+        "视觉奇观"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:technique-staircase",
+      "type": "concept",
+      "name": "阶梯递进曲线",
+      "summary": "全片食欲刺激度逐镜爬升，不允许平台期。每一镜的视觉刺激度必须高于前一镜，形成不可逆的上升曲线。如果某镜无法超越前一镜，则删除或替换",
+      "tags": [
+        "技法",
+        "粤菜分镜",
+        "递进",
+        "曲线",
+        "unique"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:technique-silence-buildup",
+      "type": "concept",
+      "name": "静默高潮蓄力",
+      "summary": "落版前1-1.5秒完全静默（无音乐无环境音），然后一击引爆。静默是爆发的反面，没有静默就没有爆发。蓄力越深，释放越强",
+      "tags": [
+        "技法",
+        "粤菜分镜",
+        "静默",
+        "蓄力",
+        "高潮"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:technique-destructive-reveal",
+      "type": "concept",
+      "name": "破坏性动作揭示",
+      "summary": "筷子夹起/刀切/戳破等破坏动作展示内在质感。完整的食物是封闭的，破坏动作打开它，让观众看到内部——汁水、层次、质地。破坏即揭示",
+      "tags": [
+        "技法",
+        "粤菜分镜",
+        "破坏",
+        "揭示",
+        "质感"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:technique-texture-first",
+      "type": "concept",
+      "name": "质感优先原则",
+      "summary": "每一镜都追求食材表面的极致质感表现。光泽、纹理、弹性、酥脆——质感是食物视频的\"演技\"。没有质感的食物画面是死的，有质感的画面让观众产生触觉幻觉",
+      "tags": [
+        "技法",
+        "粤菜分镜",
+        "质感",
+        "视觉"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "concept:technique-audio-sync",
+      "type": "concept",
+      "name": "声画同步叙事",
+      "summary": "声音能量曲线与画面刺激度严格同步。视觉爆发时声音爆发，视觉静默时声音静默。声画不同步是最大的出戏源，同步则是最强的沉浸力",
+      "tags": [
+        "技法",
+        "粤菜分镜",
+        "声音",
+        "同步",
+        "叙事"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "entity:mrbeast",
+      "type": "entity",
+      "name": "MrBeast（Jimmy Donaldson）",
+      "summary": "4亿订阅YouTuber，内容创造操作系统发明者。从13岁开始做YouTube，用10年时间迭代出目前最有效的内容创造方法论。纸面净资产26亿美元但个人账户不到100万，因为全部再投资",
+      "tags": [
+        "实体",
+        "人物",
+        "YouTuber",
+        "方法论发明者"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "source:leaked-handbook",
+      "type": "source",
+      "name": "泄露36页内部培训手册",
+      "summary": "MrBeast方法论的一手来源，36页内部培训手册泄露，包含CTR/AVD指标、内容格式、团队标准等核心方法论。是理解MrBeast操作系统的最直接文档",
+      "tags": [
+        "来源",
+        "一手",
+        "手册",
+        "泄露"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "source:podcast-lex",
+      "type": "source",
+      "name": "Lex Fridman Podcast #400",
+      "summary": "Lex Fridman与MrBeast的深度对话，涵盖内容哲学、再投资策略、团队管理和长期愿景。MrBeast在此访谈中最为坦诚地分享了他的决策框架",
+      "tags": [
+        "来源",
+        "播客",
+        "深度对话"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "source:podcast-rogan",
+      "type": "source",
+      "name": "Joe Rogan Experience #1864",
+      "summary": "Joe Rogan与MrBeast的深度对话，侧重于内容创造的商业逻辑、极端执行和再投资飞轮。提供了大量实操层面的细节",
+      "tags": [
+        "来源",
+        "播客",
+        "深度对话"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "source:podcast-colin-samir",
+      "type": "source",
+      "name": "Colin & Samir深度对话",
+      "summary": "Colin & Samir与MrBeast的行业分析对话，从创作者经济角度解读MrBeast方法论。提供了第三方视角的方法论验证",
+      "tags": [
+        "来源",
+        "播客",
+        "行业分析"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "source:skill-file",
+      "type": "source",
+      "name": "MrBeast Skill文件",
+      "summary": "SKILL.md + SKILL_cantonese-cuisine-30s-v2.md，将MrBeast方法论蒸馏为可执行的技能文件，包含30秒粤菜视频适配和分镜技法。是方法论从理论到实践的桥梁",
+      "tags": [
+        "来源",
+        "技能文件",
+        "蒸馏",
+        "适配"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "entity:seedance",
+      "type": "entity",
+      "name": "Seedance2.0",
+      "summary": "AI视频生成引擎，粤菜30秒视频的执行工具。支持5秒片段生成、慢动作效果、跳切编辑。是方法论落地的技术基础设施",
+      "tags": [
+        "实体",
+        "工具",
+        "AI视频",
+        "生成引擎"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "concept:ctr-avd",
+      "target": "concept:zero-dull",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:zero-dull",
+      "target": "concept:stair-stepping",
+      "type": "inspires",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:stair-stepping",
+      "target": "concept:simple-extreme",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:simple-extreme",
+      "target": "concept:creativity-saves",
+      "type": "inspires",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:reinvest-flywheel",
+      "target": "concept:ctr-avd",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:creativity-saves",
+      "target": "concept:reinvest-flywheel",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:one-sentence-test",
+      "target": "concept:simple-extreme",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:self-click-test",
+      "target": "concept:ctr-avd",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:reinvest-principle",
+      "target": "concept:reinvest-flywheel",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:first-30s-rule",
+      "target": "concept:zero-dull",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:first-30s-rule",
+      "target": "concept:ctr-avd",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:3min-reengage",
+      "target": "concept:zero-dull",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:3min-reengage",
+      "target": "concept:stair-stepping",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:aplayer-standard",
+      "target": "concept:reinvest-flywheel",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "concept:title-thumb-complement",
+      "target": "concept:ctr-avd",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:delivery-over-content",
+      "target": "concept:simple-extreme",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "topic:title-formulas",
+      "target": "concept:ctr-avd",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "topic:title-formulas",
+      "target": "concept:title-thumb-complement",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "topic:thumbnail-design",
+      "target": "concept:ctr-avd",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "topic:thumbnail-design",
+      "target": "concept:self-click-test",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "topic:hook-structure",
+      "target": "concept:first-30s-rule",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "topic:hook-structure",
+      "target": "concept:stair-stepping",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "topic:retention-curve",
+      "target": "concept:3min-reengage",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "topic:retention-curve",
+      "target": "concept:zero-dull",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:30s-hook",
+      "target": "topic:hook-structure",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:30s-hook",
+      "target": "concept:zero-dull",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:30s-tension",
+      "target": "concept:stair-stepping",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:30s-explosion",
+      "target": "concept:simple-extreme",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:30s-explosion",
+      "target": "concept:stair-stepping",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:30s-convergence",
+      "target": "concept:stair-stepping",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:30s-finale",
+      "target": "concept:stair-stepping",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:30s-finale",
+      "target": "concept:zero-dull",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "concept:technique-product-smash",
+      "target": "concept:30s-hook",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:technique-product-smash",
+      "target": "concept:ctr-avd",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:technique-jump-cut",
+      "target": "concept:zero-dull",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:technique-jump-cut",
+      "target": "concept:30s-tension",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:technique-slowmo-particle",
+      "target": "concept:30s-explosion",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:technique-slowmo-particle",
+      "target": "concept:simple-extreme",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:technique-staircase",
+      "target": "concept:stair-stepping",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:technique-staircase",
+      "target": "concept:30s-tension",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:technique-silence-buildup",
+      "target": "concept:30s-explosion",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:technique-silence-buildup",
+      "target": "concept:30s-convergence",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:technique-destructive-reveal",
+      "target": "concept:30s-finale",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "concept:technique-destructive-reveal",
+      "target": "concept:simple-extreme",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:technique-texture-first",
+      "target": "concept:30s-tension",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:technique-texture-first",
+      "target": "concept:zero-dull",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "concept:technique-audio-sync",
+      "target": "concept:30s-explosion",
+      "type": "exemplifies",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "concept:technique-audio-sync",
+      "target": "concept:stair-stepping",
+      "type": "builds_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "source:leaked-handbook",
+      "target": "entity:mrbeast",
+      "type": "authored_by",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "source:podcast-lex",
+      "target": "entity:mrbeast",
+      "type": "authored_by",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "source:podcast-rogan",
+      "target": "entity:mrbeast",
+      "type": "authored_by",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "source:podcast-colin-samir",
+      "target": "entity:mrbeast",
+      "type": "authored_by",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "source:leaked-handbook",
+      "target": "concept:ctr-avd",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:leaked-handbook",
+      "target": "concept:zero-dull",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:leaked-handbook",
+      "target": "concept:stair-stepping",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:leaked-handbook",
+      "target": "concept:simple-extreme",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:leaked-handbook",
+      "target": "concept:reinvest-flywheel",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:30s-hook",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:30s-tension",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:30s-explosion",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:30s-convergence",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:30s-finale",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:technique-product-smash",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:technique-jump-cut",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:technique-slowmo-particle",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:technique-staircase",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:technique-silence-buildup",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:technique-destructive-reveal",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:technique-texture-first",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "source:skill-file",
+      "target": "concept:technique-audio-sync",
+      "type": "cites",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "entity:seedance",
+      "target": "concept:technique-slowmo-particle",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "entity:seedance",
+      "target": "concept:technique-jump-cut",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:mental-models",
+      "name": "核心心智模型层",
+      "description": "MrBeast方法论的6大心智模型，是整个知识体系的基石。每个心智模型都是一个不可简化的核心洞察",
+      "nodeIds": [
+        "concept:ctr-avd",
+        "concept:zero-dull",
+        "concept:stair-stepping",
+        "concept:simple-extreme",
+        "concept:reinvest-flywheel",
+        "concept:creativity-saves"
+      ]
+    },
+    {
+      "id": "layer:heuristics",
+      "name": "决策启发式层",
+      "description": "8条可操作的决策规则，从心智模型蒸馏而来，用于日常内容创造的快速判断",
+      "nodeIds": [
+        "concept:one-sentence-test",
+        "concept:self-click-test",
+        "concept:reinvest-principle",
+        "concept:first-30s-rule",
+        "concept:3min-reengage",
+        "concept:aplayer-standard",
+        "concept:title-thumb-complement",
+        "concept:delivery-over-content"
+      ]
+    },
+    {
+      "id": "layer:formulas",
+      "name": "内容创造公式层",
+      "description": "标题公式、缩略图设计、Hook结构、Retention曲线——从启发式进一步具体化的可复制公式",
+      "nodeIds": [
+        "topic:title-formulas",
+        "topic:thumbnail-design",
+        "topic:hook-structure",
+        "topic:retention-curve"
+      ]
+    },
+    {
+      "id": "layer:30s-adaptation",
+      "name": "30秒短视频适配层",
+      "description": "MrBeast方法论在30秒粤菜AI视频中的五幕结构映射，从YouTube长视频到短视频的范式转换",
+      "nodeIds": [
+        "concept:30s-hook",
+        "concept:30s-tension",
+        "concept:30s-explosion",
+        "concept:30s-convergence",
+        "concept:30s-finale"
+      ]
+    },
+    {
+      "id": "layer:techniques",
+      "name": "粤菜分镜技法层",
+      "description": "从MrBeast方法论蒸馏出的7个核心技法，每个都有明确的方法论来源，可直接应用于Seedance2.0视频生成",
+      "nodeIds": [
+        "concept:technique-cover-frame",
+        "concept:technique-jump-cut-v2",
+        "concept:technique-three-stage-escalation",
+        "concept:technique-slowmo-spectacle",
+        "concept:technique-destructive-reveal-v2",
+        "concept:technique-audio-visual-complement",
+        "concept:technique-silence-burst"
+      ]
+    },
+    {
+      "id": "layer:sources",
+      "name": "来源与实体层",
+      "description": "方法论的知识来源和关键实体，标注每条知识的出处，确保可溯源和诚实边界",
+      "nodeIds": [
+        "entity:mrbeast",
+        "source:leaked-handbook",
+        "source:podcast-lex",
+        "source:podcast-rogan",
+        "source:podcast-colin-samir",
+        "source:skill-file",
+        "entity:seedance",
+        "source:research-conversations",
+        "source:research-expression-dna",
+        "source:research-external-views",
+        "source:research-decisions",
+        "source:research-timeline",
+        "source:demo-conversation"
+      ]
+    },
+    {
+      "id": "layer:inner-tensions",
+      "name": "内在张力层",
+      "description": "MrBeast方法论中4对未解决的内在矛盾，展示其复杂性而非脸谱化。这些张力是真实的、持续的",
+      "nodeIds": [
+        "concept:inner-tension-charity",
+        "concept:inner-tension-overwork",
+        "concept:inner-tension-budget",
+        "concept:inner-tension-beastburger"
+      ]
+    },
+    {
+      "id": "layer:timeline",
+      "name": "人物时间线层",
+      "description": "MrBeast从13岁研究期到帝国期的关键里程碑，每个阶段塑造了方法论的不同面向",
+      "nodeIds": [
+        "topic:timeline-2012-2016",
+        "topic:timeline-2017-breakout",
+        "topic:timeline-2019-charity",
+        "topic:timeline-2021-brand",
+        "topic:timeline-2024-empire"
+      ]
+    },
+    {
+      "id": "layer:scripts",
+      "name": "工具脚本层",
+      "description": "4个可运行的内容分析脚本，将方法论转化为可执行的工具。共1115行代码",
+      "nodeIds": [
+        "entity:script-analyze-titles",
+        "entity:script-retention-checker",
+        "entity:script-thumbnail-audit",
+        "entity:script-fetch-subtitles"
+      ]
+    },
+    {
+      "id": "layer:meta",
+      "name": "元信息层",
+      "description": "方法论的适用边界和使用协议，确保知识被正确使用而非误用",
+      "nodeIds": [
+        "topic:honesty-boundaries",
+        "topic:agentic-protocol"
+      ]
+    },
+    {
+      "id": "layer:style-archives",
+      "name": "导演风格档案层",
+      "description": "将MrBeast视为导演，其方法论是一套完整的导演操作系统。风格档案定义了7个核心技法的权重组合",
+      "nodeIds": [
+        "style:mrbeast-director"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "CTR × AVD — 一切的基础",
+      "description": "YouTube只有两个数字重要。所有内容决策都应回归到CTR和AVD的提升上，这是MrBeast方法论的公理",
+      "nodeIds": [
+        "concept:ctr-avd",
+        "entity:mrbeast"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "零无聊时刻 — 删掉所有不有趣的",
+      "description": "不是加入有趣的东西，而是删掉所有不有趣的东西。无聊是内容的原罪，删除比添加更有效",
+      "nodeIds": [
+        "concept:zero-dull",
+        "concept:technique-jump-cut",
+        "concept:technique-texture-first"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "阶梯递进 — 永远在升级",
+      "description": "每一段比前一段更大更疯狂赌注更高。观众永远在期待\"接下来会怎样\"，阶梯递进是悬念的引擎",
+      "nodeIds": [
+        "concept:stair-stepping",
+        "concept:technique-staircase"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "简单概念×极端执行 — 病毒度公式",
+      "description": "概念越简单传播越广，执行越极端留存越深。病毒度 = 概念简单度 × 执行极端度",
+      "nodeIds": [
+        "concept:simple-extreme",
+        "concept:one-sentence-test",
+        "concept:delivery-over-content"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "前30秒法则 → 30秒五幕结构",
+      "description": "从MrBeast长视频的前30秒法则，到30秒粤菜短视频的五幕结构映射——钩子、张力、爆发、收束、落版",
+      "nodeIds": [
+        "concept:first-30s-rule",
+        "topic:hook-structure",
+        "concept:30s-hook",
+        "concept:30s-tension",
+        "concept:30s-explosion",
+        "concept:30s-convergence",
+        "concept:30s-finale"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "从方法论到技法 — 蒸馏过程",
+      "description": "7个核心技法是MrBeast方法论在30秒粤菜短视频中的蒸馏：封面帧即成品、跳切省略、三段递进曲线、慢镜粒子奇观、破坏性揭示、声画互补叙事、静默蓄力爆发",
+      "nodeIds": [
+        "concept:technique-cover-frame",
+        "concept:technique-jump-cut-v2",
+        "concept:technique-three-stage-escalation",
+        "concept:technique-slowmo-spectacle",
+        "concept:technique-destructive-reveal-v2",
+        "concept:technique-audio-visual-complement",
+        "concept:technique-silence-burst",
+        "style:mrbeast-director",
+        "entity:seedance"
+      ]
+    },
+    {
+      "order": 7,
+      "title": "来源与诚实边界",
+      "description": "每条知识都有出处。泄露手册是一手来源，播客是深度对话来源，Skill文件是蒸馏适配来源，调研文件是原始素材。标注来源是为了区分\"MrBeast说的\"和\"我们推演的\"",
+      "nodeIds": [
+        "source:leaked-handbook",
+        "source:podcast-lex",
+        "source:podcast-rogan",
+        "source:podcast-colin-samir",
+        "source:skill-file",
+        "source:research-conversations",
+        "source:research-expression-dna",
+        "source:research-external-views",
+        "source:research-decisions",
+        "source:research-timeline",
+        "source:demo-conversation"
+      ]
+    },
+    {
+      "order": 8,
+      "title": "内在张力 — 方法论的暗面",
+      "description": "4对未解决的矛盾：慈善真心vs内容策略、极致标准vs员工过劳、简单概念vs$400万预算、Beast Burger的教训。这些张力让方法论更真实而非脸谱化",
+      "nodeIds": [
+        "concept:inner-tension-charity",
+        "concept:inner-tension-overwork",
+        "concept:inner-tension-budget",
+        "concept:inner-tension-beastburger"
+      ]
+    },
+    {
+      "order": 9,
+      "title": "从研究期到帝国期 — 方法论的演化",
+      "description": "13岁4年纯研究建立算法直觉→2017年简单×极端爆发→2019年慈善DNA植入→2021年品牌验证与失败→2024年走向传统媒体帝国。方法论不是一蹴而就的，是10年迭代的产物",
+      "nodeIds": [
+        "topic:timeline-2012-2016",
+        "topic:timeline-2017-breakout",
+        "topic:timeline-2019-charity",
+        "topic:timeline-2021-brand",
+        "topic:timeline-2024-empire"
+      ]
+    }
+  ]
+}
