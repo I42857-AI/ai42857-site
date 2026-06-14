@@ -1,0 +1,98 @@
+{
+  "nodes": [
+    {
+      "id": "style:saibopengke",
+      "type": "concept",
+      "name": "赛博朋克风格",
+      "summary": "霓虹+科技+未来感+反差，食物是未来的燃料，每一帧都是数字世界的味觉宣言",
+      "tags": ["风格档案", "光影", "霓虹", "未来感"],
+      "complexity": "complex",
+      "metadata": {
+        "styleProfile": {
+          "director": "丹尼斯·维伦纽瓦 / 押井守 美学",
+          "representativeWorks": ["银翼杀手2049", "攻壳机动队", "阿基拉", "赛博朋克美食视频"],
+          "corePhilosophy": "霓虹+科技+未来感+反差，食物是未来的燃料，高科技与原始食欲的碰撞",
+          "lightingStyle": "霓虹LED灯带背光，食材轮廓发光，紫红+青蓝双色温笼罩，食物在霓虹中如全息投影",
+          "colorPalette": "紫红+青蓝+电光绿，高饱和霓虹，暗部深紫，高光电光色，拒绝自然色",
+          "soundDesign": "合成器音效+食物原声混合，低频嗡鸣+高频数字噪声，食物声音经过电子化处理",
+          "emotionCurve": "震撼→好奇→征服，从霓虹视觉冲击开始，在科技与食欲的碰撞中好奇，最终被未来味觉征服",
+          "techniqueWeights": [
+            {
+              "techniqueId": "technique:nihong-shuangsewen",
+              "weight": 0.95,
+              "params": {
+                "暖光源": "紫红霓虹LED",
+                "冷光源": "青蓝冷光LED",
+                "交界线位置": "食物轮廓线"
+              }
+            },
+            {
+              "techniqueId": "technique:guzhang-zhuanchang",
+              "weight": 0.85,
+              "params": {
+                "故障类型": "RGB分离+像素撕裂",
+                "故障时长": "0.3s",
+                "故障强度": "中高强度"
+              }
+            },
+            {
+              "techniqueId": "technique:zhengqifenwei",
+              "weight": 0.8,
+              "params": {
+                "烟雾类型": "液氮冷雾",
+                "浓度": "浓密",
+                "运动": "快速扩散如数据流"
+              }
+            },
+            {
+              "techniqueId": "technique:chouzhen-duanxu",
+              "weight": 0.75,
+              "params": {
+                "抽帧比例": "50%",
+                "保留帧分布": "动作极值帧",
+                "节奏": "机械式断续如数据包"
+              }
+            },
+            {
+              "techniqueId": "technique:weijutexie",
+              "weight": 0.7,
+              "params": {
+                "光圈": "f/1.8",
+                "对焦距离": "6cm",
+                "景深": "极浅+霓虹光斑虚化"
+              }
+            },
+            {
+              "techniqueId": "technique:shuju-biaozhu-donghua",
+              "weight": 0.65,
+              "params": {
+                "标注类型": "分子式/温度/PH值",
+                "动画风格": "全息投影式绿色数据",
+                "字体": "等宽终端字体"
+              }
+            },
+            {
+              "techniqueId": "technique:buguize-pianxin-goutu",
+              "weight": 0.55,
+              "params": {
+                "偏心方向": "右下偏移",
+                "偏移比例": "画面1/4处",
+                "负空间": "霓虹光带占据"
+              }
+            }
+          ],
+          "notRecommended": [
+            "technique:baisirouguangxiang",
+            "technique:jijian-goutu-liubai",
+            "technique:guding-ningshi",
+            "technique:huagui-yunsu-hengyi"
+          ],
+          "suitableDishes": ["分子料理", "创意融合菜", "酒吧小食", "鸡尾酒", "甜品"],
+          "unsuitableDishes": ["传统家常菜", "老火汤", "白切鸡", "清蒸鱼"],
+          "signatureMove": "霓虹双色温+故障转场+液氮冷雾，食物在霓虹轮廓光中如全息投影般登场",
+          "exampleScene": "暗紫背景中，一道分子料理球体在青蓝LED背光下轮廓发光，液氮冷雾从底部涌出如数据流，故障转场撕裂画面——RGB分离0.3秒——重组后微距特写球体表面，霓虹紫红光斑在虚化中闪烁，全息投影式数据浮现'C₆H₁₂O₆ | −196°C | pH6.8'，抽帧让筷子夹起的动作断续如数据包传输，球体在口中爆裂的瞬间，合成器低频嗡鸣达到峰值"
+        }
+      }
+    }
+  ]
+}
