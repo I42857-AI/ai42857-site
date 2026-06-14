@@ -1,0 +1,65 @@
+{
+  "nodes": [
+    {
+      "id": "skill:hook-system",
+      "type": "concept",
+      "name": "MrBeast钩子系统",
+      "summary": "前3秒钩子设计：视觉冲击力30%+语言钩子25%+情绪唤起15%+信息密度15%+节奏掌控15%，5维度评分体系",
+      "tags": [
+        "video",
+        "hook",
+        "mrbeast",
+        "unique"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "dimensions": 5,
+        "weights": {
+          "visual": 30,
+          "language": 25,
+          "emotion": 15,
+          "density": 15,
+          "rhythm": 15
+        }
+      }
+    },
+    {
+      "id": "skill:zero-boring",
+      "type": "concept",
+      "name": "零无聊时刻原则",
+      "summary": "MrBeast核心方法论：观众手指永远悬在\"下一个视频\"上，每一帧都必须有信息增量，不允许任何\"平\"的时刻",
+      "tags": [
+        "video",
+        "methodology",
+        "mrbeast",
+        "unique"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "skill:escalation-structure",
+      "type": "concept",
+      "name": "阶梯递进结构",
+      "summary": "情绪必须持续升级而非平行展开，每个镜头比上一个更刺激/更意外/更美，过山车节奏",
+      "tags": [
+        "video",
+        "structure",
+        "mrbeast",
+        "unique"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "skill:hook-system",
+      "target": "skill:zero-boring",
+      "type": "depends_on"
+    },
+    {
+      "source": "skill:escalation-structure",
+      "target": "skill:zero-boring",
+      "type": "exemplifies"
+    }
+  ]
+}
