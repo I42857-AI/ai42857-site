@@ -1,0 +1,239 @@
+{
+  "nodes": [
+    {
+      "id": "plugin:window-type",
+      "type": "service",
+      "name": "窗口插件 (Window Plugin)",
+      "summary": "弹出独立 UI 窗口的插件类型，允许用户通过 GUI 与插件交互。适合需要用户操作界面的工具，如 AI 图像处理、批量编辑、格式转换等。manifest.json 中 main.serviceMode 不设置或为 false",
+      "tags": ["plugin", "window", "gui", "interactive"],
+      "complexity": "moderate",
+      "filePath": "EAGLE/YingYong-Ti/resources/plugin_templates/window",
+      "metadata": {
+        "pluginTypeProfile": {
+          "typeId": "window",
+          "description": "弹出独立窗口，用户可直接交互",
+          "manifestFormat": {
+            "id": "唯一标识符",
+            "version": "1.0.0",
+            "platform": "all|win|mac",
+            "arch": "all|x64|arm64",
+            "name": "插件名称",
+            "logo": "/logo.png",
+            "keywords": [],
+            "devTools": false,
+            "main": {
+              "url": "index.html",
+              "width": 640,
+              "height": 480
+            }
+          },
+          "lifecycleHooks": ["eagle.onPluginCreate", "eagle.onPluginRun", "eagle.onPluginShow", "eagle.onPluginHide", "eagle.onPluginBeforeExit"],
+          "useCases": ["AI图像处理工具", "批量编辑", "格式转换器", "数据可视化面板", "外部API集成工具"]
+        }
+      }
+    },
+    {
+      "id": "plugin:service-type",
+      "type": "service",
+      "name": "背景服务插件 (Service Plugin)",
+      "summary": "无需用户手动执行，Eagle 启动后自动在后台运行的服务型插件。manifest.json 中 main.serviceMode 设为 true。适合自动同步、文件监控、定时任务等后台操作",
+      "tags": ["plugin", "service", "background", "auto-run"],
+      "complexity": "moderate",
+      "filePath": "EAGLE/YingYong-Ti/resources/plugin_templates/service",
+      "metadata": {
+        "pluginTypeProfile": {
+          "typeId": "service",
+          "description": "启动后自动后台运行，无需用户触发",
+          "manifestFormat": {
+            "id": "唯一标识符",
+            "version": "1.0.0",
+            "platform": "all",
+            "arch": "all",
+            "name": "插件名称",
+            "logo": "/logo.png",
+            "keywords": [],
+            "devTools": false,
+            "main": {
+              "serviceMode": true,
+              "url": "index.html",
+              "width": 640,
+              "height": 480
+            }
+          },
+          "lifecycleHooks": ["eagle.onPluginCreate", "eagle.onPluginRun", "eagle.onPluginShow", "eagle.onPluginHide"],
+          "useCases": ["自动同步到云存储", "文件变更监控", "定时备份", "自动标签分析", "AI自动分类"]
+        }
+      }
+    },
+    {
+      "id": "plugin:inspector-type",
+      "type": "service",
+      "name": "检查器扩展插件 (Inspector Plugin)",
+      "summary": "增强右侧检查器面板功能的插件，针对特定文件格式提供额外属性、预览、地图等自定义面板。通过 manifest.json 的 preview.{format}.inspector 配置",
+      "tags": ["plugin", "inspector", "panel", "extension"],
+      "complexity": "moderate",
+      "filePath": "EAGLE/YingYong-Ti/resources/plugin_templates/inspector",
+      "metadata": {
+        "pluginTypeProfile": {
+          "typeId": "inspector",
+          "description": "扩展右侧检查器面板，为特定格式增加自定义属性面板",
+          "manifestFormat": {
+            "id": "唯一标识符",
+            "version": "1.0.0",
+            "platform": "all",
+            "arch": "all",
+            "name": "插件名称",
+            "logo": "/logo.png",
+            "keywords": [],
+            "devTools": true,
+            "preview": {
+              "jpg,png": {
+                "inspector": {
+                  "path": "index.html",
+                  "height": 100,
+                  "multiSelect": false
+                }
+              }
+            }
+          },
+          "useCases": ["GPS地图显示", "AI标签建议面板", "EXIF详细信息", "颜色分析面板", "版权信息展示"]
+        }
+      }
+    },
+    {
+      "id": "plugin:format-type",
+      "type": "service",
+      "name": "格式扩展插件 (Preview/Format Plugin)",
+      "summary": "扩展 Eagle 尚未支持的文件格式的缩略图和预览功能。通过 manifest.json 的 preview.{format}.thumbnail 和 preview.{format}.viewer 配置。可让 Eagle 支持任意新格式的缩略图生成和文件预览",
+      "tags": ["plugin", "format", "preview", "thumbnail", "extension"],
+      "complexity": "complex",
+      "filePath": "EAGLE/YingYong-Ti/resources/plugin_templates/preview",
+      "metadata": {
+        "pluginTypeProfile": {
+          "typeId": "format",
+          "description": "扩展新文件格式的缩略图生成和预览查看功能",
+          "manifestFormat": {
+            "id": "唯一标识符",
+            "version": "1.0.0",
+            "platform": "all",
+            "arch": "all",
+            "name": "插件名称",
+            "logo": "/logo.png",
+            "keywords": ["icns"],
+            "devTools": false,
+            "preview": {
+              "icns": {
+                "thumbnail": {
+                  "path": "thumbnail/icns.js",
+                  "size": 400
+                },
+                "viewer": {
+                  "path": "viewer/icns.html"
+                }
+              }
+            }
+          },
+          "useCases": ["HEIF/HEIC格式支持", "RAW相机格式", "3D模型预览", "CAD文件预览", "专业设计格式"]
+        }
+      }
+    },
+    {
+      "id": "plugin:dev-workflow",
+      "type": "concept",
+      "name": "插件开发完整流程",
+      "summary": "Eagle 插件开发的标准流程：1) 创建插件（选择类型）→ 2) 编写 manifest.json 和 JS 代码 → 3) 在 Eagle 中导入本地项目 → 4) 调试（devTools: true）→ 5) 打包插件 → 6) 发布到插件中心。支持开发者选项中创建、导入、打包、发布等操作",
+      "tags": ["plugin", "development", "workflow", "dev"],
+      "complexity": "moderate",
+      "metadata": {
+        "devWorkflowProfile": {
+          "steps": [
+            { "step": 1, "action": "创建插件", "method": "插件面板 → 开发者选项 → 创建插件", "detail": "选择4种类型之一：窗口/背景服务/检查器扩展/格式扩展" },
+            { "step": 2, "action": "编写代码", "method": "在生成的模板目录中编辑 manifest.json 和 JS/HTML", "detail": "manifest.json 定义插件元数据，JS 使用 eagle.* API" },
+            { "step": 3, "action": "导入调试", "method": "插件面板 → 开发者选项 → 导入本地项目", "detail": "选择插件文件夹导入，设置 devTools: true 可开启调试" },
+            { "step": 4, "action": "调试运行", "method": "右键插件 → 调试 / 重新加载", "detail": "devTools 开启后可在 Chrome DevTools 中调试" },
+            { "step": 5, "action": "打包分发", "method": "右键插件 → 打包插件", "detail": "生成 .eagleplugin 文件用于分发" },
+            { "step": 6, "action": "发布上线", "method": "右键插件 → 发布插件", "detail": "发布到 Eagle 插件中心供其他用户安装" }
+          ],
+          "apiToken": "偏好设置 → 开发者 → API Token，用于外部程序与 Eagle 通信",
+          "shortcuts": "偏好设置 → 快捷键 → 插件，可为插件绑定全局快捷键"
+        }
+      }
+    },
+    {
+      "id": "plugin:lifecycle-api",
+      "type": "concept",
+      "name": "插件生命周期 API",
+      "summary": "Eagle 插件系统的核心生命周期钩子：eagle.onPluginCreate（插件创建时触发，接收 plugin 对象含 manifest/id/version/name/path）→ eagle.onPluginRun（用户点击运行时）→ eagle.onPluginShow（窗口显示时）→ eagle.onPluginHide（窗口隐藏时）→ eagle.onPluginBeforeExit（退出前清理）。窗口插件和服务插件均支持这些钩子",
+      "tags": ["plugin", "api", "lifecycle", "hooks"],
+      "complexity": "moderate",
+      "metadata": {
+        "lifecycleApiProfile": {
+          "hooks": [
+            { "name": "eagle.onPluginCreate", "trigger": "插件被创建/加载", "args": "plugin: { manifest: {id, version, name, logo}, path }", "note": "首个触发，用于初始化" },
+            { "name": "eagle.onPluginRun", "trigger": "用户点击运行插件", "args": "无", "note": "窗口插件：弹出窗口；服务插件：已自动运行" },
+            { "name": "eagle.onPluginShow", "trigger": "插件窗口显示", "args": "无", "note": "仅窗口插件有效" },
+            { "name": "eagle.onPluginHide", "trigger": "插件窗口隐藏", "args": "无", "note": "仅窗口插件有效" },
+            { "name": "eagle.onPluginBeforeExit", "trigger": "插件即将退出", "args": "event", "note": "可在此做清理操作" }
+          ],
+          "additionalApis": [
+            { "name": "eagle.item", "desc": "访问和操作 Eagle 资源库中的项目（文件/文件夹/标签等）" },
+            { "name": "eagle.library", "desc": "资源库级别的操作" },
+            { "name": "eagle.window", "desc": "窗口控制 API" },
+            { "name": "eagle.event", "desc": "事件监听系统" },
+            { "name": "eagle.log", "desc": "日志记录 API" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "plugin:manifest-spec",
+      "type": "concept",
+      "name": "manifest.json 完整规范",
+      "summary": "Eagle 插件的核心配置文件 manifest.json 规范。顶层字段：id（唯一标识符）、version（语义化版本）、platform（all/win/mac）、arch（all/x64/arm64）、name（插件名称）、logo（图标路径）、keywords（搜索关键词）、devTools（是否开启调试）。main 字段定义插件入口：window 类型用 url/width/height，service 类型额外加 serviceMode: true。preview 字段定义格式扩展：支持 thumbnail（缩略图生成）和 viewer（预览查看）两种子类型",
+      "tags": ["plugin", "manifest", "spec", "config"],
+      "complexity": "moderate",
+      "metadata": {
+        "manifestSpecProfile": {
+          "commonFields": {
+            "id": "唯一标识符（字符串），用于区分不同插件",
+            "version": "语义化版本号，如 1.0.0",
+            "platform": "目标平台：all / win / mac",
+            "arch": "目标架构：all / x64 / arm64",
+            "name": "插件显示名称",
+            "logo": "插件图标路径，相对于插件根目录",
+            "keywords": "字符串数组，用于插件中心搜索",
+            "devTools": "是否开启 Chrome DevTools 调试"
+          },
+          "typeSpecificFields": {
+            "window": { "main": { "url": "入口HTML", "width": 640, "height": 480 } },
+            "service": { "main": { "serviceMode": true, "url": "入口HTML", "width": 640, "height": 480 } },
+            "inspector": { "preview": { "格式列表": { "inspector": { "path": "HTML", "height": 100, "multiSelect": false } } } },
+            "format": { "preview": { "格式": { "thumbnail": { "path": "JS", "size": 400 }, "viewer": { "path": "HTML" } } } }
+          }
+        }
+      }
+    },
+    {
+      "id": "plugin:internal-modules",
+      "type": "concept",
+      "name": "内置自定义模块 (my_modules)",
+      "summary": "Eagle 内部 50+ 自定义 Node.js 模块，位于 resources/my_modules/。涵盖图像处理（pngjs/jpgjs/exif/quantize/image-size/utif/raw-parser）、文件操作（zip-folder/file-type/junk/sanitize-filename）、字体处理（opentype）、系统集成（native-mouse/win-clipboard/applescript/sudo-prompt）、中文处理（chinese_convert/pinyinlite/tiny-pinyin/nodejieba）、以及其他工具模块。这些模块是 Eagle 核心功能的底层支撑，也是插件可调用的能力基础",
+      "tags": ["plugin", "modules", "internal", "nodejs"],
+      "complexity": "complex",
+      "metadata": {
+        "internalModulesProfile": {
+          "categories": [
+            { "category": "图像处理", "modules": ["pngjs - PNG编解码", "jpgjs - JPEG编解码", "exif - EXIF元数据读取", "quantize - 颜色量化", "image-size - 尺寸检测", "utif - TIFF处理", "raw-parser - RAW格式解析", "readimage - 通用图像读取", "image-palette - 调色板提取", "image-cropper - 图像裁剪", "merge-images - 图片拼接", "heic2canvas - HEIC格式转换", "model-thumbnail - 3D模型缩略图"] },
+            { "category": "文件操作", "modules": ["zip-folder - 文件夹压缩", "file-type - 文件类型检测", "junk - 垃圾文件识别", "sanitize-filename - 文件名清理", "extract-file-from-zip - ZIP提取", "extract-icon - 图标提取", "is-directory - 目录判断", "is-hidden-file - 隐藏文件检测", "bplist-parse - plist解析"] },
+            { "category": "字体处理", "modules": ["opentype - OpenType字体解析"] },
+            { "category": "系统集成", "modules": ["native-mouse - 原生鼠标钩子", "win-clipboard - Windows剪贴板", "applescript - macOS AppleScript", "sudo-prompt - 权限提升", "set-icon - 文件图标设置", "get-associated-application - 关联应用", "get-drive-type - 磁盘类型检测", "is-network-drive - 网络驱动器检测", "check-disk-space - 磁盘空间检查", "electron-settings - 持久化设置", "electron-window-state - 窗口状态管理"] },
+            { "category": "中文处理", "modules": ["chinese_convert - 简繁转换", "pinyinlite - 拼音搜索", "tiny-pinyin - 轻量拼音", "nodejieba - 中文分词"] },
+            { "category": "网络与数据", "modules": ["json-rest-light - REST API", "curl-request - HTTP请求", "electron-download - 下载管理"] },
+            { "category": "其他工具", "modules": ["pako - 压缩/解压", "ms - 时间格式化", "tmp - 临时文件", "ua-parser - UserAgent解析", "url - URL处理", "cartesian-product - 笛卡尔积", "audiobuffer-slice - 音频切片", "unicode-normalize - Unicode规范化", "vtt2srt - 字幕格式转换", "n-readlines - 逐行读取"] }
+          ],
+          "note": "这些模块是 Eagle 核心功能的底层依赖，插件开发时可通过 require 直接调用这些内置模块"
+        }
+      }
+    }
+  ]
+}
