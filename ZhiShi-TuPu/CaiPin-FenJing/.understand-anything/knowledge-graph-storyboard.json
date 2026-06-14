@@ -1,0 +1,141 @@
+{
+  "nodes": [
+    {
+      "id": "storyboard:cuipi-ruge-t1-hero",
+      "type": "flow",
+      "name": "脆皮乳鸽·食欲炸弹",
+      "summary": "英雄型。苹果发布会风格。纯食物L1 100%，零人物。视觉钩子：第1帧=成品。4镜15秒。情绪：平→升→爆→平",
+      "tags": [
+        "食欲炸弹",
+        "英雄型",
+        "苹果发布会",
+        "L1纯食物",
+        "15秒"
+      ],
+      "complexity": "moderate",
+      "metadata": {
+        "storyboard": {
+          "dishId": "dish:cuipi-ruge",
+          "storyboardType": "appetite-bomb",
+          "storyboardTypeName": "T1 食欲炸弹",
+          "roleCategory": "hero",
+          "totalDuration": "15s",
+          "shotCount": 4,
+          "styleId": "style:pingguo-fabuhui",
+          "styleName": "苹果发布会",
+          "emotionCurve": "平→升→爆→平",
+          "hookType": "视觉钩子",
+          "characterDensity": "0%",
+          "characterNote": "无需人物。纯食物视觉。若AI视频制作需要人物参考，通过女娲技能生成最小化手部模型",
+          "shots": [
+            {
+              "shotNumber": 1,
+              "duration": "4s",
+              "description": "极近特写：成品脆皮乳鸽，琥珀金脆皮泛着油光，蒸汽从皮缝间轻柔升起。第1帧就是成品最诱人状态，0.5秒决策窗口让观众决定停留",
+              "character1": "无",
+              "characterDesc1": "无人物，纯食物",
+              "characterImage1": "无",
+              "referenceShot": "极近特写",
+              "characterAction": "无",
+              "emotion": "平：瞬间停留冲动",
+              "sceneTag": "纯黑背景",
+              "lighting": "暖金色硬光，高对比度，强调脆皮纹理和油光反射",
+              "soundEffect": "极轻蒸汽声+酱汁微滴声（ASMR级收音）",
+              "dialogue": "无",
+              "storyboardPrompt": "封面帧即成品+极近特写，第1帧=缩略图，0.5秒决策窗口，成品必须是最诱人状态，零铺垫",
+              "videoMotionPrompt": "极近特写，45度俯拍，浅景深f/1.4，蒸汽缓缓上升，微距油光反射，纯黑背景，4秒"
+            },
+            {
+              "shotNumber": 2,
+              "duration": "4s",
+              "description": "微距镜头：琥珀金脆皮表面缓缓横移，皮面如玻璃镜面般反射出变形的光源，细密裂纹如冰面龟裂，油光在裂纹沟壑中流淌形成金色溪流",
+              "character1": "无",
+              "characterDesc1": "无人物",
+              "characterImage1": "无",
+              "referenceShot": "微距横移",
+              "characterAction": "无",
+              "emotion": "升：质感沉浸",
+              "sceneTag": "纯黑背景",
+              "lighting": "侧逆光，皮面形成带状高光反射，裂纹沟壑中油光折射出细碎光点",
+              "soundEffect": "极安静环境音+微弱油光流动声（ASMR级）",
+              "dialogue": "无",
+              "storyboardPrompt": "微距横移法+镜面反射美学，贴面横移创造沉浸式质感体验，裂纹与油光是脆皮最极致的微观美学",
+              "videoMotionPrompt": "微距贴面横移琥珀金脆皮表面，玻璃镜面反射变形光源，细密裂纹如冰面龟裂，油光在裂纹沟壑流淌金色溪流，0.8倍慢速，侧逆光带状高光，4秒"
+            },
+            {
+              "shotNumber": 3,
+              "duration": "4s",
+              "description": "破坏性揭示：手指撕开脆皮，脆皮沿裂纹炸裂成碎片飞溅，汁水从粉白肌理中喷涌而出，汁水水雾在逆光中化为金色光尘弥漫",
+              "character1": "仅手部",
+              "characterDesc1": "一只手入画撕开，无面部无身份，手是工具不是角色",
+              "characterImage1": "无",
+              "referenceShot": "微距破坏性特写",
+              "characterAction": "撕开脆皮",
+              "emotion": "爆：极致渴望爆发",
+              "sceneTag": "纯黑背景",
+              "lighting": "逆光，脆皮碎片折射出棱镜彩虹光，汁水水雾在逆光中形成金色光尘弥漫",
+              "soundEffect": "脆皮咔嚓碎裂声（放大3倍）+汁水涌出滋滋声+碎片飞溅声",
+              "dialogue": "无",
+              "storyboardPrompt": "碎裂爆裂法+逆光光尘美学，撕开瞬间是脆皮乳鸽最爆裂的视觉时刻，逆光将汁水雾化为光尘是极致浪漫化处理",
+              "videoMotionPrompt": "微距特写撕开瞬间脆皮沿裂纹炸裂碎片飞溅，琥珀碎片侧逆光折射棱镜彩虹光，汁水喷涌细密水雾逆光金色光尘弥漫，0.5倍慢动作，4秒"
+            },
+            {
+              "shotNumber": 4,
+              "duration": "3s",
+              "description": "全景慢推：整只乳鸽立于深色老木砧板中央，琥珀金脆皮在暖光下如玻璃般反光，淮盐碟与喼汁碟分列两侧，背景虚化明档厨房炭火余烬微红，镜头缓慢前推2秒后定格2秒，画面渐暗",
+              "character1": "无",
+              "characterDesc1": "无人物",
+              "characterImage1": "无",
+              "referenceShot": "全景定格",
+              "characterAction": "无",
+              "emotion": "平：满足余韵",
+              "sceneTag": "深色砧板",
+              "lighting": "伦勃朗光，主光从左上方45度打在乳鸽上形成三角光斑，背景炭火余烬提供微弱暖红补光",
+              "soundEffect": "炭火余烬微弱噼啪声渐弱至静默",
+              "dialogue": "无",
+              "storyboardPrompt": "定帧留白法+慢推诗意化，从动态蒙太奇骤然收至静帧，以静制动，让视觉余韵在观众脑中延续",
+              "videoMotionPrompt": "镜头缓慢前推全景，整只乳鸽立于深色木砧板，琥珀金脆皮玻璃般反光，淮盐喼汁两碟分列，背景虚化明档厨房炭火余烬，伦勃朗光三角光斑，2秒前推后定格渐暗，3秒"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "storyboard:cuipi-ruge-t1-hero",
+      "target": "style:pingguo-fabuhui",
+      "type": "styled_by",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:cuipi-ruge-t1-hero",
+      "target": "technique:weijutexie",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.95
+    },
+    {
+      "source": "storyboard:cuipi-ruge-t1-hero",
+      "target": "technique:shenghuatongbu",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.85
+    },
+    {
+      "source": "storyboard:cuipi-ruge-t1-hero",
+      "target": "technique:mandongzuoshiyihua",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "storyboard:cuipi-ruge-t1-hero",
+      "target": "technique:ziranguangzhigan",
+      "type": "uses_technique",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}
