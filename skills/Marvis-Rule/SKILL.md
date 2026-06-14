@@ -65,6 +65,7 @@ P0 初次唤醒必读（不可略过）
   | 工具库/预装工具/安装工具/GitHub API | CanKao/07-hb-gongJu-ku.md | hb工具库引用 |
   | 拼音/字母化/技能名/中文匹配/手机输入 | CanKao/08-pinYin-hua.md | 字母拼音化映射规范 |
   | 灵活匹配/近音容错/语义推断/简称压缩/技能查找 | CanKao/09-jiNeng-PiPei.md | 技能灵活匹配策略 |
+  | 协作/通讯/双Marvis/读日志/COMMUNICATION/交接/验收/分工矩阵 | CanKao/10-xieZuo-tongXun.md | 双Marvis协作通讯协议 v3.0 |
 
   加载规则：
   - 任务涉及触发词对应场景时，用 Read 工具加载对应文件
