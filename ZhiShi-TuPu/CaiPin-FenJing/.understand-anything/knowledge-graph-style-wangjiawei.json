@@ -1,0 +1,98 @@
+{
+  "nodes": [
+    {
+      "id": "style:wangjiawei",
+      "type": "concept",
+      "name": "王家卫风格",
+      "summary": "暧昧光影+时间扭曲+情绪留白，食物是记忆的容器，每一帧都是未完成的情书",
+      "tags": ["风格档案", "光影", "暧昧", "情绪"],
+      "complexity": "complex",
+      "metadata": {
+        "styleProfile": {
+          "director": "王家卫",
+          "representativeWorks": ["花样年华", "重庆森林", "2046", "堕落天使"],
+          "corePhilosophy": "暧昧光影+时间扭曲+情绪留白，食物不是食物是记忆，画面不是画面是情绪",
+          "lightingStyle": "霓虹暖黄+冷蓝双色温，暧昧不清的光影交界，路灯/招牌/雨夜反光是天然光源",
+          "colorPalette": "暖金+冷蓝+深红，低饱和高对比，色彩在暧昧中游移不定",
+          "soundDesign": "爵士钢琴+环境嘈杂，收音机/雨声/市井声，声音与画面若即若离，Nat King Cole式呢喃",
+          "emotionCurve": "思念→暧昧→释然，从记忆的碎片开始，在暧昧中沉溺，最终在食物中找到释然",
+          "techniqueWeights": [
+            {
+              "techniqueId": "technique:nihong-shuangsewen",
+              "weight": 0.95,
+              "params": {
+                "暖光源": "3200K霓虹黄/路灯橙",
+                "冷光源": "7500K雨夜蓝",
+                "交界线位置": "画面1/3处斜切"
+              }
+            },
+            {
+              "techniqueId": "technique:shouchi-huxigan",
+              "weight": 0.85,
+              "params": {
+                "晃动幅度": "±3°",
+                "晃动频率": "0.4Hz呼吸节奏",
+                "稳定性": "60%稳+40%晃"
+              }
+            },
+            {
+              "techniqueId": "technique:buguize-pianxin-goutu",
+              "weight": 0.8,
+              "params": {
+                "偏心方向": "左下偏移",
+                "偏移比例": "画面1/3处",
+                "负空间": "右侧大面积暗部"
+              }
+            },
+            {
+              "techniqueId": "technique:chouzhen-duanxu",
+              "weight": 0.75,
+              "params": {
+                "抽帧比例": "40%",
+                "保留帧分布": "情绪峰值帧",
+                "节奏": "不规则断续如记忆碎片"
+              }
+            },
+            {
+              "techniqueId": "technique:mandongzuoshiyihua",
+              "weight": 0.7,
+              "params": {
+                "帧率": "120fps",
+                "回放速度": "0.3x",
+                "应用场景": "烟雾升腾/雨滴坠落"
+              }
+            },
+            {
+              "techniqueId": "technique:zhengqifenwei",
+              "weight": 0.65,
+              "params": {
+                "烟雾类型": "烟雾弥漫",
+                "光源配合": "逆光勾勒烟雾",
+                "浓度": "中等偏浓"
+              }
+            },
+            {
+              "techniqueId": "technique:weijutexie",
+              "weight": 0.55,
+              "params": {
+                "光圈": "f/1.4",
+                "对焦距离": "8cm",
+                "景深": "极浅仅一点清晰"
+              }
+            }
+          ],
+          "notRecommended": [
+            "technique:baisirouguangxiang",
+            "technique:shuju-biaozhu-donghua",
+            "technique:huagui-yunsu-hengyi",
+            "technique:jijian-goutu-liubai"
+          ],
+          "suitableDishes": ["宵夜菜品", "煲仔饭", "糖水", "深夜食堂感", "肠粉", "云吞面"],
+          "unsuitableDishes": ["高端宴席", "分子料理", "刺身"],
+          "signatureMove": "霓虹双色温+手持呼吸感+抽帧断续，食物在暧昧光影中若隐若现如记忆碎片",
+          "exampleScene": "雨夜街头，霓虹灯牌的暖黄和冷蓝同时打在一碗煲仔饭上，手持镜头微微晃动如醉者的目光，抽帧让揭开锅盖的动作断断续续，蒸汽在逆光中升腾弥漫，爵士钢琴声若有若无，画面偏心构图——煲仔饭在左下角，右侧是大面积雨夜暗部，一滴酱油沿着腊肠缓缓滑落，慢动作0.3x，仿佛时间也醉了"
+        }
+      }
+    }
+  ]
+}
