@@ -1,0 +1,509 @@
+{
+    "nodes":  [
+                  {
+                      "id":  "concept:inner-tension-charity",
+                      "type":  "concept",
+                      "name":  "内在张力：慈善真心 vs 内容策略",
+                      "summary":  "慈善是真心的，但也是内容策略的一部分。这两件事可以同时为真。批评者说这是「poverty porn」——如果我不拍，那些人也不会被帮助。学术论文批评为「white saviorism」。这个张力是真实的、未解决的",
+                      "tags":  [
+                                   "内在张力",
+                                   "伦理",
+                                   "慈善",
+                                   "争议"
+                               ],
+                      "complexity":  "complex",
+                      "filePath":  "tension/"
+                  },
+                  {
+                      "id":  "concept:inner-tension-overwork",
+                      "type":  "concept",
+                      "name":  "内在张力：极致标准 vs 员工过劳",
+                      "summary":  "标准极高意味着团队压力极大。前员工说每周工作75小时。MrBeast知道这是个问题，但还没找到「标准不降+人不累」的解法。极致追求质量与团队可持续性之间的矛盾",
+                      "tags":  [
+                                   "内在张力",
+                                   "团队",
+                                   "过劳",
+                                   "管理"
+                               ],
+                      "complexity":  "complex",
+                      "filePath":  "tension/"
+                  },
+                  {
+                      "id":  "concept:inner-tension-budget",
+                      "type":  "concept",
+                      "name":  "内在张力：简单概念 vs 单视频$400万预算",
+                      "summary":  "概念是简单的，但执行越来越复杂和昂贵。这个飞轮有没有天花板？再投资飞轮在持续膨胀，但预算不可能无限增长。从「数到10万」到单视频$400万的演化路径",
+                      "tags":  [
+                                   "内在张力",
+                                   "预算",
+                                   "飞轮",
+                                   "天花板"
+                               ],
+                      "complexity":  "complex",
+                      "filePath":  "tension/"
+                  },
+                  {
+                      "id":  "concept:inner-tension-beastburger",
+                      "type":  "concept",
+                      "name":  "内在张力：Beast Burger的教训",
+                      "summary":  "以为品牌号召力可以弥补产品质量，错了。幽灵厨房模式无法控制质量。最后互诉$1亿。核心教训：不能控制质量的事，不要用自己的名字。品牌延伸的边界在哪里？",
+                      "tags":  [
+                                   "内在张力",
+                                   "商业失败",
+                                   "品牌",
+                                   "质量控制"
+                               ],
+                      "complexity":  "complex",
+                      "filePath":  "tension/"
+                  },
+                  {
+                      "id":  "source:research-conversations",
+                      "type":  "source",
+                      "name":  "调研文件：长对话与即兴思考",
+                      "summary":  "02-conversations.md，214行。记录MrBeast在播客中的核心观点和表达方式，包含「痴迷驱动」「再投入=本能」「创意工业化」等关键标签",
+                      "tags":  [
+                                   "调研文件",
+                                   "对话",
+                                   "表达方式"
+                               ],
+                      "complexity":  "moderate",
+                      "filePath":  "sources/research/"
+                  },
+                  {
+                      "id":  "source:research-expression-dna",
+                      "type":  "source",
+                      "name":  "调研文件：表达风格DNA",
+                      "summary":  "03-expression-dna.md，424行。深入分析标题公式、缩略图三要素、前30秒Hook结构、视频节奏控制策略等具体方法论",
+                      "tags":  [
+                                   "调研文件",
+                                   "表达DNA",
+                                   "标题公式",
+                                   "缩略图"
+                               ],
+                      "complexity":  "moderate",
+                      "filePath":  "sources/research/"
+                  },
+                  {
+                      "id":  "source:research-external-views",
+                      "type":  "source",
+                      "name":  "调研文件：他者视角",
+                      "summary":  "04-external-views.md，267行。学术批评、前员工证词、行业分析。包含Beast Burger失败、员工待遇争议、慈善伦理争议等",
+                      "tags":  [
+                                   "调研文件",
+                                   "批评",
+                                   "争议",
+                                   "外部视角"
+                               ],
+                      "complexity":  "moderate",
+                      "filePath":  "sources/research/"
+                  },
+                  {
+                      "id":  "source:research-decisions",
+                      "type":  "source",
+                      "name":  "调研文件：重大决策分析",
+                      "summary":  "05-decisions.md，359行。退学决定、撒钱视频起源、国际扩张策略、Feastables品牌创立、Beast Games等关键决策路径",
+                      "tags":  [
+                                   "调研文件",
+                                   "决策",
+                                   "商业"
+                               ],
+                      "complexity":  "moderate",
+                      "filePath":  "sources/research/"
+                  },
+                  {
+                      "id":  "source:research-timeline",
+                      "type":  "source",
+                      "name":  "调研文件：人生时间线",
+                      "summary":  "06-timeline.md，136行。从童年到2026年的完整成长历程与重要里程碑，包含商业版图扩张",
+                      "tags":  [
+                                   "调研文件",
+                                   "时间线",
+                                   "里程碑"
+                               ],
+                      "complexity":  "moderate",
+                      "filePath":  "sources/research/"
+                  },
+                  {
+                      "id":  "source:demo-conversation",
+                      "type":  "source",
+                      "name":  "实战对话记录",
+                      "summary":  "demo-conversation-2026-04-07.md。6轮实战对话，展示MrBeast方法论在标题优化、缩略图设计、留存率提升、视频节奏控制等场景的应用",
+                      "tags":  [
+                                   "实战",
+                                   "对话记录",
+                                   "应用场景"
+                               ],
+                      "complexity":  "moderate",
+                      "filePath":  "sources/"
+                  },
+                  {
+                      "id":  "entity:script-analyze-titles",
+                      "type":  "entity",
+                      "name":  "脚本：标题模式分析器",
+                      "summary":  "analyze_titles.py，273行。分析标题模式（长度/数字/公式分类），可运行的内容分析工具。输入标题文本，输出公式匹配和优化建议",
+                      "tags":  [
+                                   "工具脚本",
+                                   "标题",
+                                   "Python"
+                               ],
+                      "complexity":  "moderate",
+                      "filePath":  "scripts/"
+                  },
+                  {
+                      "id":  "entity:script-retention-checker",
+                      "type":  "entity",
+                      "name":  "脚本：留存曲线检查器",
+                      "summary":  "retention_curve_checker.py，388行。基于MrBeast方法论检查脚本retention，分析节奏是否符合阶梯递进和零无聊时刻原则",
+                      "tags":  [
+                                   "工具脚本",
+                                   "留存率",
+                                   "Python"
+                               ],
+                      "complexity":  "moderate",
+                      "filePath":  "scripts/"
+                  },
+                  {
+                      "id":  "entity:script-thumbnail-audit",
+                      "type":  "entity",
+                      "name":  "脚本：缩略图审计器",
+                      "summary":  "thumbnail_audit.py，353行。缩略图+标题互补性检查，验证是否符合三要素法则和互补原则",
+                      "tags":  [
+                                   "工具脚本",
+                                   "缩略图",
+                                   "Python"
+                               ],
+                      "complexity":  "moderate",
+                      "filePath":  "scripts/"
+                  },
+                  {
+                      "id":  "entity:script-fetch-subtitles",
+                      "type":  "entity",
+                      "name":  "脚本：YouTube字幕下载器",
+                      "summary":  "fetch_youtube_subtitles.sh，101行。下载YouTube视频字幕，用于竞品分析和内容拆解",
+                      "tags":  [
+                                   "工具脚本",
+                                   "字幕",
+                                   "Bash"
+                               ],
+                      "complexity":  "simple",
+                      "filePath":  "scripts/"
+                  },
+                  {
+                      "id":  "topic:timeline-2012-2016",
+                      "type":  "topic",
+                      "name":  "时间线：研究期（2012-2016）",
+                      "summary":  "13岁开始YouTube，4年纯研究几乎不发视频只看别人的。建立了算法直觉。这段「只看不拍」的经历塑造了其方法论的基础——先理解系统再操作系统",
+                      "tags":  [
+                                   "时间线",
+                                   "研究期",
+                                   "算法直觉"
+                               ],
+                      "complexity":  "simple",
+                      "filePath":  "timeline/"
+                  },
+                  {
+                      "id":  "topic:timeline-2017-breakout",
+                      "type":  "topic",
+                      "name":  "时间线：爆发期（2017）",
+                      "summary":  "「数到100,000」病毒爆发，发现「极端+简单」公式。第一个品牌赞助$10K，发现飞轮：品牌费→更好视频→更多品牌费。退学全职YouTube，破釜沉舟",
+                      "tags":  [
+                                   "时间线",
+                                   "爆发",
+                                   "简单×极端"
+                               ],
+                      "complexity":  "simple",
+                      "filePath":  "timeline/"
+                  },
+                  {
+                      "id":  "topic:timeline-2019-charity",
+                      "type":  "topic",
+                      "name":  "时间线：慈善DNA植入（2019）",
+                      "summary":  "#TeamTrees（2000万棵树），慈善成为内容DNA。从此慈善视频成为频道的核心品类之一，但也带来了「poverty porn」的伦理争议",
+                      "tags":  [
+                                   "时间线",
+                                   "慈善",
+                                   "TeamTrees"
+                               ],
+                      "complexity":  "simple",
+                      "filePath":  "timeline/"
+                  },
+                  {
+                      "id":  "topic:timeline-2021-brand",
+                      "type":  "topic",
+                      "name":  "时间线：品牌验证期（2021-2023）",
+                      "summary":  "创办Feastables验证内容→品牌→商业帝国路径。2022年超越PewDiePie，方法论碾压个人魅力。2023年Beast Burger失败，教训：不能控制质量=不能用名字",
+                      "tags":  [
+                                   "时间线",
+                                   "品牌",
+                                   "商业"
+                               ],
+                      "complexity":  "simple",
+                      "filePath":  "timeline/"
+                  },
+                  {
+                      "id":  "topic:timeline-2024-empire",
+                      "type":  "topic",
+                      "name":  "时间线：帝国期（2024-2026）",
+                      "summary":  "Beast Games签约Amazon，从YouTube走向传统媒体。频道突破4亿订阅，融资52亿美元估值。宣布「ultra grind mode」进一步提高视频质量。争议持续：员工待遇、内幕交易",
+                      "tags":  [
+                                   "时间线",
+                                   "帝国",
+                                   "传统媒体"
+                               ],
+                      "complexity":  "simple",
+                      "filePath":  "timeline/"
+                  },
+                  {
+                      "id":  "topic:honesty-boundaries",
+                      "type":  "topic",
+                      "name":  "诚实边界",
+                      "summary":  "6条重要局限：1.YouTube≠所有平台 2.预算差距（单视频$400万 vs $0）3.英语市场≠中文市场 4.慈善争议未解决 5.员工待遇是真实问题 6.调研截止2026年4月。核心原则通用但具体执行需调整",
+                      "tags":  [
+                                   "诚实边界",
+                                   "局限",
+                                   "适用范围"
+                               ],
+                      "complexity":  "moderate",
+                      "filePath":  "meta/"
+                  },
+                  {
+                      "id":  "topic:agentic-protocol",
+                      "type":  "topic",
+                      "name":  "回答工作流（Agentic Protocol）",
+                      "summary":  "三步工作流：Step1问题分类（事实型→先研究再回答，框架型→直接用心智模型，混合型→先获取案例再分析）。Step2 MrBeast式研究（看数据/看竞品/看趋势/看成本回报，必须用工具获取真实信息）。Step3 基于事实用心智模型回答",
+                      "tags":  [
+                                   "工作流",
+                                   "研究",
+                                   "数据驱动"
+                               ],
+                      "complexity":  "complex",
+                      "filePath":  "meta/"
+                  }
+              ],
+    "edges":  [
+                  {
+                      "source":  "concept:inner-tension-charity",
+                      "target":  "concept:reinvest-flywheel",
+                      "type":  "contradicts",
+                      "direction":  "bidirectional",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "concept:inner-tension-overwork",
+                      "target":  "concept:zero-dull",
+                      "type":  "contradicts",
+                      "direction":  "bidirectional",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "concept:inner-tension-budget",
+                      "target":  "concept:simple-extreme",
+                      "type":  "contradicts",
+                      "direction":  "bidirectional",
+                      "weight":  0.7
+                  },
+                  {
+                      "source":  "concept:inner-tension-beastburger",
+                      "target":  "concept:reinvest-flywheel",
+                      "type":  "contradicts",
+                      "direction":  "bidirectional",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "concept:inner-tension-charity",
+                      "target":  "source:research-external-views",
+                      "type":  "cites",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "concept:inner-tension-overwork",
+                      "target":  "source:research-external-views",
+                      "type":  "cites",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "concept:inner-tension-beastburger",
+                      "target":  "source:research-decisions",
+                      "type":  "cites",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "concept:inner-tension-budget",
+                      "target":  "source:research-decisions",
+                      "type":  "cites",
+                      "direction":  "directed",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "source:research-conversations",
+                      "target":  "source:podcast-lex",
+                      "type":  "cites",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "source:research-conversations",
+                      "target":  "source:podcast-rogan",
+                      "type":  "cites",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "source:research-conversations",
+                      "target":  "source:podcast-colin-samir",
+                      "type":  "cites",
+                      "direction":  "directed",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "source:research-expression-dna",
+                      "target":  "source:leaked-handbook",
+                      "type":  "cites",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "source:research-external-views",
+                      "target":  "source:podcast-colin-samir",
+                      "type":  "cites",
+                      "direction":  "directed",
+                      "weight":  0.7
+                  },
+                  {
+                      "source":  "source:research-decisions",
+                      "target":  "source:leaked-handbook",
+                      "type":  "cites",
+                      "direction":  "directed",
+                      "weight":  0.7
+                  },
+                  {
+                      "source":  "source:research-timeline",
+                      "target":  "source:research-decisions",
+                      "type":  "references",
+                      "direction":  "directed",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "source:demo-conversation",
+                      "target":  "concept:ctr-avd",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "source:demo-conversation",
+                      "target":  "concept:simple-extreme",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "entity:script-analyze-titles",
+                      "target":  "topic:title-formulas",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "entity:script-retention-checker",
+                      "target":  "concept:zero-dull",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "entity:script-retention-checker",
+                      "target":  "concept:stair-stepping",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "entity:script-thumbnail-audit",
+                      "target":  "topic:thumbnail-design",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "entity:script-fetch-subtitles",
+                      "target":  "source:research-conversations",
+                      "type":  "references",
+                      "direction":  "directed",
+                      "weight":  0.6
+                  },
+                  {
+                      "source":  "topic:timeline-2012-2016",
+                      "target":  "concept:ctr-avd",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "topic:timeline-2017-breakout",
+                      "target":  "concept:simple-extreme",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "topic:timeline-2017-breakout",
+                      "target":  "concept:reinvest-flywheel",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "topic:timeline-2019-charity",
+                      "target":  "concept:inner-tension-charity",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "topic:timeline-2021-brand",
+                      "target":  "concept:inner-tension-beastburger",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.9
+                  },
+                  {
+                      "source":  "topic:timeline-2021-brand",
+                      "target":  "concept:reinvest-flywheel",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "topic:timeline-2024-empire",
+                      "target":  "concept:inner-tension-budget",
+                      "type":  "exemplifies",
+                      "direction":  "directed",
+                      "weight":  0.8
+                  },
+                  {
+                      "source":  "topic:honesty-boundaries",
+                      "target":  "concept:ctr-avd",
+                      "type":  "references",
+                      "direction":  "directed",
+                      "weight":  0.7
+                  },
+                  {
+                      "source":  "topic:agentic-protocol",
+                      "target":  "concept:ctr-avd",
+                      "type":  "references",
+                      "direction":  "directed",
+                      "weight":  0.6
+                  },
+                  {
+                      "source":  "topic:agentic-protocol",
+                      "target":  "concept:zero-dull",
+                      "type":  "references",
+                      "direction":  "directed",
+                      "weight":  0.6
+                  }
+              ]
+}
