@@ -1,0 +1,62 @@
+{
+  "nodes": [
+    {
+      "id": "function:content.js:injectTextToDoubao",
+      "type": "function",
+      "name": "injectTextToDoubao",
+      "filePath": "content.js",
+      "summary": "向豆包等 AI 网站的输入框注入文本，支持 textarea/input/contenteditable 多种目标，实现一键填充"
+    },
+    {
+      "id": "function:content.js:showQmdSelector",
+      "type": "function",
+      "name": "showQmdSelector",
+      "filePath": "content.js",
+      "summary": "显示 QuickMD 文档选择弹窗，加载文档列表并支持分类筛选和确认注入，在任意页面快速选择文档内容"
+    },
+    {
+      "id": "function:content.js:showSearchBar",
+      "type": "function",
+      "name": "showSearchBar",
+      "filePath": "content.js",
+      "summary": "多引擎搜索栏，提供在当前页面快速搜索的能力，支持多个搜索引擎切换"
+    }
+  ],
+  "edges": [
+    {
+      "source": "domain:mini-inject",
+      "target": "function:content.js:injectTextToDoubao",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:mini-inject",
+      "target": "function:content.js:showQmdSelector",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "domain:mini-inject",
+      "target": "function:content.js:showSearchBar",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "function:content.js:showQmdSelector",
+      "target": "file:side-panel/side-panel.js",
+      "type": "depends_on",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "function:content.js:injectTextToDoubao",
+      "target": "function:content.js:showQmdSelector",
+      "type": "calls",
+      "weight": 0.7,
+      "direction": "forward"
+    }
+  ]
+}
