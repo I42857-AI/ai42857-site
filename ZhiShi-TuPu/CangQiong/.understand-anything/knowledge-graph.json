@@ -1,0 +1,1204 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "苍穹 (CangQiong)",
+    "languages": [
+      "powershell",
+      "json",
+      "vbscript"
+    ],
+    "frameworks": [
+      "win32-api",
+      "system-windows-forms",
+      "vite",
+      "node.js"
+    ],
+    "description": "苍穹——笼罩所有，包罗万物。统一管理所有应用脚本和 Agent 的系统托盘平台。四层架构：数据层（实体随项目走）→ 汇聚层（Symlink 总控查阅）→ 检索层（自动发现项目）→ 交互层（托盘菜单操作）。管理 7 个一体化启动器、21 个功能型脚本、7 个知识图谱 Dashboard，提供一键备份与 Symlink 健康检查",
+    "analyzedAt": "2026-06-04",
+    "gitCommitHash": ""
+  },
+  "nodes": [
+    {
+      "id": "module:cangqiong",
+      "type": "module",
+      "name": "苍穹系统",
+      "summary": "统一系统托盘管理平台，笼罩所有应用脚本和 Agent。四层架构：数据层（实体随项目走）→ 汇聚层（Symlink 总控查阅）→ 检索层（自动发现项目）→ 交互层（托盘菜单操作）。核心文件 CangQiong.ps1（917行），通过 CangQiong-CaiDan.json 加载中文菜单，自动发现 PC\\RiZhi\\{AppName}\\CangQiong-XiangMu.json 注册的应用",
+      "tags": [
+        "core",
+        "system-tray",
+        "management",
+        "architecture"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "module:tray",
+      "type": "module",
+      "name": "托盘交互层",
+      "summary": "CangQiong.ps1 主程序（917行），基于 System.Windows.Forms.NotifyIcon 构建系统托盘。四大功能分区：知识图谱（vite dev server）、启动脚本（YiTi.bat）、Agent管理（进程监控/停止）、备份与健康（robocopy增量同步+健康检查）。含 Win32 API 窗口前置（CQWinForeGround）、单实例检测、盘符检测（Z→D倒序遍历）、PC域环境变量注入（BAN-003）",
+      "tags": [
+        "tray",
+        "ui",
+        "notifyicon",
+        "win32"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "module:data",
+      "type": "module",
+      "name": "数据层",
+      "summary": "实体随项目走：脚本、日志、知识图谱都在 XiangMu-KongJian\\{AppName}\\ 项目目录下。删除项目 → 所有关联文件自然消失，零维护。旧模式 JiaoBen-{AppName}\\ 管理目录下岗，不再使用",
+      "tags": [
+        "data",
+        "project",
+        "storage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "module:aggregation",
+      "type": "module",
+      "name": "汇聚层",
+      "summary": "通过 Symlink 实现总控查阅，不持有实体数据。PC\\RiZhi\\ 日志总控（Symlink 指向项目目录下的实体）、PC\\ZhiShi-TuPu\\ 知识图谱总控。一站式查阅，断链无需维护（项目已删除则自然断链）",
+      "tags": [
+        "symlink",
+        "aggregation",
+        "control-center"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "module:discovery",
+      "type": "module",
+      "name": "检索层",
+      "summary": "自动发现机制：扫描 PC\\RiZhi\\{AppName}\\CangQiong-XiangMu.json 注册的应用，构建项目菜单。断链自动标记为已卸载，保持韧性。CaiDan.json 作为回退数据源（无 XiangMu.json 时使用）",
+      "tags": [
+        "discovery",
+        "auto-detect",
+        "json"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "module:yiti",
+      "type": "module",
+      "name": "一体化启动器",
+      "summary": "7个应用的一体化启动器（YiTi模式），每个3文件：.ps1 + .bat + .vbs。7段结构：盘符检测→Dot-Source公共模块→环境检测8项→虫洞化→账号管理→启动应用→隐藏控制台+托盘化。应用列表：QClaw、TRAE、Eagle、Codex、2345Pic、Billfish、Marvis",
+      "tags": [
+        "yiti",
+        "launcher",
+        "7-segment",
+        "wormhole"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "module:functional",
+      "type": "module",
+      "name": "功能型脚本",
+      "summary": "21个功能型脚本，6大分类：shared-module（2：ChongDong-GongGong、TuoPan-ChangZhu）、maintenance（6：JianKang-JianCe、ChongJian-Symlink、JianCe-Roaming、ShengJi-TraeCn-Symlink、ChongJian-KuaiJie、QingKong-TuBiaoHuanCun）、deployment（4：JiChu-SheShi-YiTi、PC-Yu-ChongDong、PanFu-GuDingHua、ZhuCe-TiQuan-RenWu）、app-utility（3：BaoCun-ZhangHao、Marvis-JianLian、RabbitPro-FuZhi）、app-patch（1：11-QClaw-Symlink-Patch）、launcher（3：Agents-QiDong、SETUNA2-QiDong、BianXie-QiDong）",
+      "tags": [
+        "functional",
+        "scripts",
+        "maintenance",
+        "deployment"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "module:backup",
+      "type": "module",
+      "name": "备份与健康",
+      "summary": "苍穹托盘的备份与健康分区。一键备份：robocopy /MIR 增量同步4个关键目录（PC\\RiZhi、skills、JiaoBen-GuiFan\\scripts、CangQiong），排除 node_modules/.git/缓存/BAK 文件。首次使用弹出文件夹选择器，配置保存到 CangQiong-BeiFen.json。Symlink健康检查：调用 JianKang-JianCe.ps1 检测断链、Junction混用、自动修复",
+      "tags": [
+        "backup",
+        "robocopy",
+        "health-check",
+        "symlink"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "module:knowledge-graph",
+      "type": "module",
+      "name": "知识图谱管理",
+      "summary": "苍穹托盘的知识图谱分区。自动发现 PC\\ZhiShi-TuPu\\ 下所有含 .understand-anything\\knowledge-graph.json 的项目，启动 vite dev server 展示交互式知识图谱。端口管理：从5173开始递增，避免冲突。通过 VBS 隐藏启动 node vite，浏览器自动打开并前置",
+      "tags": [
+        "knowledge-graph",
+        "vite",
+        "dashboard",
+        "visualization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "module:agent-management",
+      "type": "module",
+      "name": "Agent管理",
+      "summary": "苍穹托盘的Agent管理分区。监控已注册应用的进程状态（进程名+PID+内存占用），支持一键停止（Stop-Process -Force）。运行中应用绿色显示，空闲显示无运行应用。通过 Get-AppProcessInfo 检测进程、Stop-AppProcess 停止进程",
+      "tags": [
+        "agent",
+        "process",
+        "monitor",
+        "management"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "utility:chongdong-gonggong",
+      "type": "service",
+      "name": "虫洞公共模块",
+      "summary": "ChongDong-GongGong.ps1（18KB），所有 YiTi 脚本通过 dot-source 引用的共享模块。提供 Find-AppExe（三层搜索：PATH+安装路径+注册表）、New-SafeSymLink（安全创建SymbolicLink，禁止Junction）、盘符检测、PC域路径推导等核心函数。BAN-003/HAB-003：必须在调用前 dot-source",
+      "tags": [
+        "shared",
+        "dot-source",
+        "symlink",
+        "find-exe"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "utility:tuopan-changzhu",
+      "type": "service",
+      "name": "托盘常驻模块",
+      "summary": "TuoPan-ChangZhu.ps1，YiTi 脚本的托盘常驻功能模块。WinTrayApi 类，三层策略：Config(Layer1) → Param(Layer2) → Api(Layer3)。Api层：ShowWindow(SW_MINIMIZE=6) → ShowWindow(SW_HIDE=0)，等待窗口创建 Start-Sleep -Milliseconds 1500",
+      "tags": [
+        "tray",
+        "win32",
+        "resident",
+        "hide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "service:qclaw-yiti",
+      "type": "service",
+      "name": "QClaw 一体化启动器",
+      "summary": "QClaw AI 助手一体化启动器（3文件：QClaw-YiTi.ps1/bat/vbs）。位于 XiangMu-KongJian\\QClaw\\，进程名 QClaw。Symlink：.qclaw + .openclaw（启动必需）+ Roaming-QClaw（体验必需，缺则无登录凭证）。含 Symlink-Patch（11-QClaw-Symlink-Patch.js，升级后需重新适配）。多账号支持：credentials\\{账号标识}\\Roaming-QClaw",
+      "tags": [
+        "qclaw",
+        "yiti",
+        "ai-assistant",
+        "multi-account"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "service:trae-yiti",
+      "type": "service",
+      "name": "TRAE 一体化启动器",
+      "summary": "TRAE IDE 一体化启动器（3文件：TRAE-YiTi.ps1/bat/vbs）。位于 XiangMu-KongJian\\TRAE\\，进程名 TRAE SOLO CN。Symlink：.trae-cn（启动必需）+ skills + SKILL.md（体验必需）。单账号模式：credentials\\$TraeExeName。3.0兼容虫洞保留：C:\\Users\\{用户名}\\.trae-cn",
+      "tags": [
+        "trae",
+        "yiti",
+        "ide",
+        "single-account"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "service:eagle-yiti",
+      "type": "service",
+      "name": "Eagle 一体化启动器",
+      "summary": "Eagle 图片管理器一体化启动器（3文件：Eagle-YiTi.ps1/bat/vbs）。位于 XiangMu-KongJian\\EAGLE\\，进程名 Eagle。基于 Electron（Chromium+Node.js）架构，Symlink：Roaming-Eagle + Local-Eagle",
+      "tags": [
+        "eagle",
+        "yiti",
+        "image-manager",
+        "electron"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "service:codex-yiti",
+      "type": "service",
+      "name": "Codex 一体化启动器",
+      "summary": "Codex++ 代码工具一体化启动器（3文件：Codex-YiTi.ps1/bat/vbs）。位于 XiangMu-KongJian\\CODEX\\，进程名 Codex",
+      "tags": [
+        "codex",
+        "yiti",
+        "code-tool"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "service:2345pic-yiti",
+      "type": "service",
+      "name": "2345Pic 一体化启动器",
+      "summary": "2345 看图王一体化启动器（3文件：2345Pic-YiTi.ps1/bat/vbs）。位于 XiangMu-KongJian\\RuanJian-AnZhaung\\2345Pic\\，进程名 2345Pic",
+      "tags": [
+        "2345pic",
+        "yiti",
+        "image-viewer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "service:billfish-yiti",
+      "type": "service",
+      "name": "Billfish 一体化启动器",
+      "summary": "Billfish 素材管理器一体化启动器（3文件：Billfish-YiTi.ps1/bat/vbs）。位于 XiangMu-KongJian\\RuanJian-AnZhaung\\Billfish\\，进程名 Billfish。基于 Qt5 C++ 原生架构，Symlink：Roaming-Billfish + Local-Billfish",
+      "tags": [
+        "billfish",
+        "yiti",
+        "asset-manager",
+        "qt5"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "service:marvis-yiti",
+      "type": "service",
+      "name": "Marvis 一体化启动器",
+      "summary": "Marvis 语音助手一体化启动器（3文件：Marvis-YiTi.ps1/bat/vbs）。位于 XiangMu-KongJian\\RuanJian-AnZhaung\\MarvisData\\，进程名 MarvisLauncher。注意：MarvisSvr 服务依赖旧盘符，需 Marvis-JianLian 修复注册表",
+      "tags": [
+        "marvis",
+        "yiti",
+        "voice-assistant",
+        "service-dependency"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "utility:jiankang-jiance",
+      "type": "service",
+      "name": "健康检查脚本",
+      "summary": "JianKang-JianCe.ps1（9KB），Symlink 健康检查工具。检测断链（Get-Item 检查 Target 是否存在）、Junction 混用检测、自动修复（断链时用实体路径重建 Symlink）。位于 JiaoBen-GuiFan\\scripts\\YiLaiWeiHu\\",
+      "tags": [
+        "health-check",
+        "symlink",
+        "repair",
+        "junction-detection"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "utility:jichu-sheshi-yiti",
+      "type": "service",
+      "name": "基础设施一键部署",
+      "summary": "JiChu-SheShi-YiTi.ps1/bat，一键完成4项基础设施配置：Z盘化（PanFu-GuDingHua.bat 固定盘符+冲突检测）、Symlink权限（SeCreateSymbolicLinkPrivilege）、长路径支持（LongPathsEnabled=1）、PC域虫洞（C:\\Users\\PC → Z:\\PC\\）。管理员运行一次，永久生效",
+      "tags": [
+        "infrastructure",
+        "one-click",
+        "deployment",
+        "z-drive"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "utility:pc-yu-chongdong",
+      "type": "service",
+      "name": "PC域虫洞",
+      "summary": "PC-Yu-ChongDong.ps1/bat，4.0 核心虫洞：C:\\Users\\PC → Z:\\PC\\。独立用户域，等效于Z盘化（盘符固定+用户名固定）。所有应用通过 PC 域自动获得正确的环境变量和路径。C盘只留一个 Symlink，其余全部自动生效",
+      "tags": [
+        "pc-domain",
+        "wormhole",
+        "symlink",
+        "user-profile"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "utility:panfu-gudinghua",
+      "type": "service",
+      "name": "盘符固定化",
+      "summary": "PanFu-GuDingHua.bat，将移动盘盘符固定为 Z:。内置冲突检测：Z: 被网络映射盘占用时自动断开网络映射再固定。Z盘化是4.0架构前提，确保盘符永远不变，沙箱/权限/记录全部连续",
+      "tags": [
+        "z-drive",
+        "drive-letter",
+        "conflict-detection",
+        "fixation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:caidan",
+      "type": "config",
+      "name": "菜单配置",
+      "summary": "CangQiong-CaiDan.json，苍穹托盘菜单配置文件。含托盘文本（iconText/balloonTitle/balloonText）、4个功能分区定义（knowledge-graph/startup-scripts/agent-management/backup-health）、7个启动脚本条目（label/scriptDir/scriptBat/processName/category）。所有中文字符串集中管理，CangQiong.ps1 仅含 ASCII 字符",
+      "tags": [
+        "config",
+        "menu",
+        "chinese-strings",
+        "i18n"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:beifen",
+      "type": "config",
+      "name": "备份配置",
+      "summary": "CangQiong-BeiFen.json，苍穹一键备份的配置文件。首次备份时自动创建，保存目标路径（targetPath）、上次备份时间（lastBackup）、4个源路径定义（PC\\RiZhi/skills/JiaoBen-GuiFan\\scripts/CangQiong）。防止备份到源盘",
+      "tags": [
+        "config",
+        "backup",
+        "target-path"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:xiangmu",
+      "type": "config",
+      "name": "项目注册文件",
+      "summary": "CangQiong-XiangMu.json，每个应用一个，位于 PC\\RiZhi\\{AppName}\\。字段：name（应用名，必须与目录名一致）、label（中文标签）、type（app/graph/tool）、scripts（yiti/yitiPs1/yitiVbs）、logs（jiaoben）、dashboard、processName。苍穹启动时扫描此文件自动构建菜单",
+      "tags": [
+        "config",
+        "registration",
+        "auto-discovery"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:zhucebiao",
+      "type": "config",
+      "name": "脚本注册表",
+      "summary": "JiaoBen-ZhuCeBiao.json，全局脚本注册表。三大分类：yiti（7个一体化启动器，每个3文件）、functional（21个功能型脚本，6大子分类）、bak（3个已归档脚本，含归档原因）。新建用户级脚本必须登记，Agent临时脚本不登记",
+      "tags": [
+        "registry",
+        "scripts",
+        "traceability"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "resource:pc-rizhi",
+      "type": "resource",
+      "name": "总控日志目录",
+      "summary": "PC\\RiZhi\\，全局日志汇聚点。含每日工作日志（RiZhi_{YYYY-MM-DD}.md）、提炼日志（RiZhi_TiLian_{YYYYMMDD}.md）、工具登记表（GongJu-DengJi-Biao.md）、设计文档（SheJi-*.md）。各应用子目录（QClaw/TRAE/Eagle等）含 CangQiong-XiangMu.json + JiaoBen-RiZhi.md Symlink",
+      "tags": [
+        "logs",
+        "control-center",
+        "aggregation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "resource:pc-zhishi-tupu",
+      "type": "resource",
+      "name": "知识图谱总控目录",
+      "summary": "PC\\ZhiShi-TuPu\\，知识图谱汇聚点。含各项目子目录（Billfish/CaiPin-FenJing/CangQiong/EAGLE/JiaoBen-ZhiShiTuPu/MrBeast-FangFaLun/NvWa-Skill/PromptXtar/Roaming-ZhuCeBiao/SETUNA2/Understand-Anything/Zhaimomo-XiangQing等），每个子目录含 .understand-anything\\knowledge-graph.json",
+      "tags": [
+        "knowledge-graph",
+        "aggregation",
+        "dashboard"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "resource:xiangmu-kongjian",
+      "type": "resource",
+      "name": "项目空间",
+      "summary": "XiangMu-KongJian\\，所有应用项目的根目录。含 QClaw/TRAE/EAGLE/CODEX/CangQiong/JiaoBen-GuiFan 等项目目录，以及 RuanJian-AnZhaung\\ 子目录（2345Pic/Billfish/MarvisData）。脚本实体、日志实体、知识图谱实体都在各自项目目录下",
+      "tags": [
+        "project-root",
+        "storage",
+        "data-source"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "resource:rizhi-quanju",
+      "type": "resource",
+      "name": "全局工作日志",
+      "summary": "每日一个的全局工作日志文件，命名格式 RiZhi_{YYYY-MM-DD}.md，位于 PC\\\\RiZhi\\\\ 目录下。记录当日所有实质性工作的内容，是Agent与用户、Agent之间沟通协作的基础。",
+      "tags": [
+        "日志",
+        "全局",
+        "每日",
+        "P0"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "resource:rizhi-tilian",
+      "type": "resource",
+      "name": "提炼日志",
+      "summary": "超过2天的全局日志提炼后生成，命名格式 RiZhi_TiLian_{YYYYMMDD}.md。提炼内容包括关键决策、未解决问题、设计约束、验证结果。提炼日志保留不BAK化，作为长期参考。提炼时同步扫描3次+重复错误生成HAB标签。",
+      "tags": [
+        "日志",
+        "提炼",
+        "长期参考",
+        "HAB检测"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "resource:jiaoben-rizhi",
+      "type": "resource",
+      "name": "脚本日志",
+      "summary": "随项目走的脚本日志，固定文件名 JiaoBen-RiZhi.md，位于各项目根目录 {AppName}\\\\JiaoBen-RiZhi.md。记录版本号+日期+变更+设计决策(D编号)+血泪教训(L编号)。与全局日志互补：JiaoBen-RiZhi 记录「为什么这么做」，RiZhi 全局日志记录「做了什么」。脚本创建之初即绑定。",
+      "tags": [
+        "日志",
+        "脚本",
+        "项目级",
+        "设计决策",
+        "血泪教训"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "flow:rizhi-shengmingzhouqi",
+      "type": "flow",
+      "name": "日志生命周期",
+      "summary": "日志从创建到归档的完整流程：当天日志（活跃）→ 超过2天（提炼+BAK）→ 提炼内容写入新日志 → 旧日志 .bak 化。提炼时同步检测3次+重复错误，生成HAB标签加入规则标签系统。",
+      "tags": [
+        "流程",
+        "生命周期",
+        "提炼",
+        "BAK化",
+        "HAB检测"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:gongju-dengji-biao",
+      "type": "document",
+      "name": "工具登记表",
+      "summary": "位于 PC\\\\RiZhi\\\\GongJu-DengJi-Biao.md，记录所有工具的登记信息。与脚本注册表（JiaoBen-ZhuCeBiao.json）互补，工具登记表侧重工具级信息，脚本注册表侧重脚本级信息。",
+      "tags": [
+        "文档",
+        "工具",
+        "登记"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:sheji-wendang",
+      "type": "document",
+      "name": "设计文档",
+      "summary": "位于 PC\\\\RiZhi\\\\ 目录下，命名格式 SheJi-*.md。记录架构设计、方案选型、约束条件等设计决策。是项目宪法级文档，有疑问以设计文档为准。",
+      "tags": [
+        "文档",
+        "设计",
+        "架构",
+        "宪法级"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "resource:skills-mulu",
+      "type": "resource",
+      "name": "技能目录",
+      "summary": "TRAE技能体系的核心目录，位于 XiangMu-KongJian\\\\.agents\\\\skills\\\\。所有SKILL.md文件存放于此，TRAE启动时自动加载。3.0虫洞 C:\\\\Users\\\\{用户名}\\\\.trae-cn\\\\skills → Symlink指向此目录。",
+      "tags": [
+        "技能",
+        "目录",
+        "TRAE",
+        "自动加载"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:skill-md",
+      "type": "document",
+      "name": "SKILL.md规则注入",
+      "summary": "通过Symlink注入系统提示词的核心机制。C:\\\\Users\\\\PC\\\\.trae-cn\\\\user_rules\\\\SKILL.md → Symlink指向 skills\\\\TRAE-Rule\\\\SKILL.md。确保所有Agent遵循统一规则（TRAE-Rule 4.0），是Symlink注入机制的关键实现。",
+      "tags": [
+        "技能",
+        "规则注入",
+        "Symlink",
+        "Agent统一"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "concept:jiaoben-guifan",
+      "type": "concept",
+      "name": "脚本制作规范",
+      "summary": "JiaoBen-GuiFan技能定义的12步制作流程，涵盖从需求到交付的全链路规范。包括命名规则（拼音字母化）、架构约束（7段结构）、资源管理（三位一体5文件）、编码安全（BAN/HAB标签系统）。是所有脚本制作的唯一权威参考。",
+      "tags": [
+        "规范",
+        "脚本",
+        "12步流程",
+        "BAN/HAB",
+        "权威参考"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "flow:jineng-faxian",
+      "type": "flow",
+      "name": "技能发现流程",
+      "summary": "TRAE启动时自动扫描skills目录，加载所有SKILL.md文件到Agent上下文。流程：TRAE启动 → 读取 .trae-cn\\\\skills Symlink → 遍历 skills\\\\*\\\\SKILL.md → 注入Agent系统提示词 → Agent获得技能能力。断链时技能为空但不影响启动。",
+      "tags": [
+        "流程",
+        "技能",
+        "自动发现",
+        "TRAE启动"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "module:cangqiong",
+      "target": "module:tray",
+      "type": "contains",
+      "direction": "forward",
+      "description": "苍穹系统包含托盘交互层"
+    },
+    {
+      "source": "module:cangqiong",
+      "target": "module:data",
+      "type": "contains",
+      "direction": "forward",
+      "description": "苍穹系统包含数据层"
+    },
+    {
+      "source": "module:cangqiong",
+      "target": "module:aggregation",
+      "type": "contains",
+      "direction": "forward",
+      "description": "苍穹系统包含汇聚层"
+    },
+    {
+      "source": "module:cangqiong",
+      "target": "module:discovery",
+      "type": "contains",
+      "direction": "forward",
+      "description": "苍穹系统包含检索层"
+    },
+    {
+      "source": "module:tray",
+      "target": "module:data",
+      "type": "depends_on",
+      "direction": "forward",
+      "description": "托盘依赖数据层获取脚本和日志实体"
+    },
+    {
+      "source": "module:tray",
+      "target": "module:aggregation",
+      "type": "depends_on",
+      "direction": "forward",
+      "description": "托盘依赖汇聚层定位总控路径"
+    },
+    {
+      "source": "module:tray",
+      "target": "module:discovery",
+      "type": "depends_on",
+      "direction": "forward",
+      "description": "托盘依赖检索层自动发现应用"
+    },
+    {
+      "source": "module:tray",
+      "target": "module:knowledge-graph",
+      "type": "contains",
+      "direction": "forward",
+      "description": "托盘菜单包含知识图谱分区"
+    },
+    {
+      "source": "module:tray",
+      "target": "module:yiti",
+      "type": "contains",
+      "direction": "forward",
+      "description": "托盘菜单包含启动脚本分区"
+    },
+    {
+      "source": "module:tray",
+      "target": "module:agent-management",
+      "type": "contains",
+      "direction": "forward",
+      "description": "托盘菜单包含Agent管理分区"
+    },
+    {
+      "source": "module:tray",
+      "target": "module:backup",
+      "type": "contains",
+      "direction": "forward",
+      "description": "托盘菜单包含备份与健康分区"
+    },
+    {
+      "source": "module:tray",
+      "target": "config:caidan",
+      "type": "uses",
+      "direction": "forward",
+      "description": "托盘从 CangQiong-CaiDan.json 加载中文菜单配置"
+    },
+    {
+      "source": "module:tray",
+      "target": "config:xiangmu",
+      "type": "uses",
+      "direction": "forward",
+      "description": "托盘扫描 CangQiong-XiangMu.json 自动发现应用"
+    },
+    {
+      "source": "module:tray",
+      "target": "config:beifen",
+      "type": "uses",
+      "direction": "forward",
+      "description": "托盘读取 CangQiong-BeiFen.json 获取备份目标路径"
+    },
+    {
+      "source": "module:tray",
+      "target": "utility:jiankang-jiance",
+      "type": "calls",
+      "direction": "forward",
+      "description": "托盘调用 JianKang-JianCe.ps1 执行健康检查"
+    },
+    {
+      "source": "module:discovery",
+      "target": "config:xiangmu",
+      "type": "references",
+      "direction": "forward",
+      "description": "检索层扫描 CangQiong-XiangMu.json 发现应用"
+    },
+    {
+      "source": "module:discovery",
+      "target": "config:caidan",
+      "type": "references",
+      "direction": "forward",
+      "description": "检索层在无 XiangMu.json 时回退到 CaiDan.json"
+    },
+    {
+      "source": "module:aggregation",
+      "target": "resource:pc-rizhi",
+      "type": "contains",
+      "direction": "forward",
+      "description": "汇聚层包含总控日志目录"
+    },
+    {
+      "source": "module:aggregation",
+      "target": "resource:pc-zhishi-tupu",
+      "type": "contains",
+      "direction": "forward",
+      "description": "汇聚层包含知识图谱总控目录"
+    },
+    {
+      "source": "module:data",
+      "target": "resource:xiangmu-kongjian",
+      "type": "contains",
+      "direction": "forward",
+      "description": "数据层包含项目空间（实体存储）"
+    },
+    {
+      "source": "module:yiti",
+      "target": "service:qclaw-yiti",
+      "type": "contains",
+      "direction": "forward",
+      "description": "一体化启动器包含 QClaw"
+    },
+    {
+      "source": "module:yiti",
+      "target": "service:trae-yiti",
+      "type": "contains",
+      "direction": "forward",
+      "description": "一体化启动器包含 TRAE"
+    },
+    {
+      "source": "module:yiti",
+      "target": "service:eagle-yiti",
+      "type": "contains",
+      "direction": "forward",
+      "description": "一体化启动器包含 Eagle"
+    },
+    {
+      "source": "module:yiti",
+      "target": "service:codex-yiti",
+      "type": "contains",
+      "direction": "forward",
+      "description": "一体化启动器包含 Codex"
+    },
+    {
+      "source": "module:yiti",
+      "target": "service:2345pic-yiti",
+      "type": "contains",
+      "direction": "forward",
+      "description": "一体化启动器包含 2345Pic"
+    },
+    {
+      "source": "module:yiti",
+      "target": "service:billfish-yiti",
+      "type": "contains",
+      "direction": "forward",
+      "description": "一体化启动器包含 Billfish"
+    },
+    {
+      "source": "module:yiti",
+      "target": "service:marvis-yiti",
+      "type": "contains",
+      "direction": "forward",
+      "description": "一体化启动器包含 Marvis"
+    },
+    {
+      "source": "service:qclaw-yiti",
+      "target": "utility:chongdong-gonggong",
+      "type": "depends_on",
+      "direction": "forward",
+      "description": "QClaw-YiTi dot-source 引用虫洞公共模块"
+    },
+    {
+      "source": "service:trae-yiti",
+      "target": "utility:chongdong-gonggong",
+      "type": "depends_on",
+      "direction": "forward",
+      "description": "TRAE-YiTi dot-source 引用虫洞公共模块"
+    },
+    {
+      "source": "service:eagle-yiti",
+      "target": "utility:chongdong-gonggong",
+      "type": "depends_on",
+      "direction": "forward",
+      "description": "Eagle-YiTi dot-source 引用虫洞公共模块"
+    },
+    {
+      "source": "service:codex-yiti",
+      "target": "utility:chongdong-gonggong",
+      "type": "depends_on",
+      "direction": "forward",
+      "description": "Codex-YiTi dot-source 引用虫洞公共模块"
+    },
+    {
+      "source": "service:2345pic-yiti",
+      "target": "utility:chongdong-gonggong",
+      "type": "depends_on",
+      "direction": "forward",
+      "description": "2345Pic-YiTi dot-source 引用虫洞公共模块"
+    },
+    {
+      "source": "service:billfish-yiti",
+      "target": "utility:chongdong-gonggong",
+      "type": "depends_on",
+      "direction": "forward",
+      "description": "Billfish-YiTi dot-source 引用虫洞公共模块"
+    },
+    {
+      "source": "service:marvis-yiti",
+      "target": "utility:chongdong-gonggong",
+      "type": "depends_on",
+      "direction": "forward",
+      "description": "Marvis-YiTi dot-source 引用虫洞公共模块"
+    },
+    {
+      "source": "service:qclaw-yiti",
+      "target": "utility:tuopan-changzhu",
+      "type": "uses",
+      "direction": "forward",
+      "description": "QClaw-YiTi 使用托盘常驻模块"
+    },
+    {
+      "source": "service:trae-yiti",
+      "target": "utility:tuopan-changzhu",
+      "type": "uses",
+      "direction": "forward",
+      "description": "TRAE-YiTi 使用托盘常驻模块"
+    },
+    {
+      "source": "service:eagle-yiti",
+      "target": "utility:tuopan-changzhu",
+      "type": "uses",
+      "direction": "forward",
+      "description": "Eagle-YiTi 使用托盘常驻模块"
+    },
+    {
+      "source": "service:billfish-yiti",
+      "target": "utility:tuopan-changzhu",
+      "type": "uses",
+      "direction": "forward",
+      "description": "Billfish-YiTi 使用托盘常驻模块"
+    },
+    {
+      "source": "module:backup",
+      "target": "utility:jiankang-jiance",
+      "type": "calls",
+      "direction": "forward",
+      "description": "备份与健康分区调用健康检查脚本"
+    },
+    {
+      "source": "module:backup",
+      "target": "config:beifen",
+      "type": "uses",
+      "direction": "forward",
+      "description": "备份功能读取备份配置获取目标路径"
+    },
+    {
+      "source": "utility:jichu-sheshi-yiti",
+      "target": "utility:panfu-gudinghua",
+      "type": "contains",
+      "direction": "forward",
+      "description": "基础设施一键部署包含盘符固定化步骤"
+    },
+    {
+      "source": "utility:jichu-sheshi-yiti",
+      "target": "utility:pc-yu-chongdong",
+      "type": "contains",
+      "direction": "forward",
+      "description": "基础设施一键部署包含PC域虫洞步骤"
+    },
+    {
+      "source": "module:functional",
+      "target": "utility:chongdong-gonggong",
+      "type": "contains",
+      "direction": "forward",
+      "description": "功能型脚本包含虫洞公共模块"
+    },
+    {
+      "source": "module:functional",
+      "target": "utility:tuopan-changzhu",
+      "type": "contains",
+      "direction": "forward",
+      "description": "功能型脚本包含托盘常驻模块"
+    },
+    {
+      "source": "module:functional",
+      "target": "utility:jiankang-jiance",
+      "type": "contains",
+      "direction": "forward",
+      "description": "功能型脚本包含健康检查脚本"
+    },
+    {
+      "source": "module:functional",
+      "target": "utility:jichu-sheshi-yiti",
+      "type": "contains",
+      "direction": "forward",
+      "description": "功能型脚本包含基础设施一键部署"
+    },
+    {
+      "source": "module:functional",
+      "target": "utility:pc-yu-chongdong",
+      "type": "contains",
+      "direction": "forward",
+      "description": "功能型脚本包含PC域虫洞"
+    },
+    {
+      "source": "module:functional",
+      "target": "utility:panfu-gudinghua",
+      "type": "contains",
+      "direction": "forward",
+      "description": "功能型脚本包含盘符固定化"
+    },
+    {
+      "source": "module:knowledge-graph",
+      "target": "resource:pc-zhishi-tupu",
+      "type": "uses",
+      "direction": "forward",
+      "description": "知识图谱管理从总控目录发现项目"
+    },
+    {
+      "source": "module:agent-management",
+      "target": "config:xiangmu",
+      "type": "uses",
+      "direction": "forward",
+      "description": "Agent管理从项目注册文件获取进程名"
+    },
+    {
+      "source": "config:zhucebiao",
+      "target": "module:yiti",
+      "type": "documents",
+      "direction": "forward",
+      "description": "脚本注册表登记所有一体化启动器"
+    },
+    {
+      "source": "config:zhucebiao",
+      "target": "module:functional",
+      "type": "documents",
+      "direction": "forward",
+      "description": "脚本注册表登记所有功能型脚本"
+    },
+    {
+      "source": "resource:pc-rizhi",
+      "target": "resource:xiangmu-kongjian",
+      "type": "references",
+      "direction": "forward",
+      "description": "总控日志目录通过 Symlink 指向项目空间下的实体"
+    },
+    {
+      "source": "resource:pc-zhishi-tupu",
+      "target": "resource:xiangmu-kongjian",
+      "type": "references",
+      "direction": "forward",
+      "description": "知识图谱总控目录通过 Symlink 指向项目空间下的实体"
+    },
+    {
+      "source": "resource:pc-rizhi",
+      "target": "resource:rizhi-quanju",
+      "type": "contains",
+      "direction": "forward",
+      "description": "PC日志总控目录包含全局工作日志文件"
+    },
+    {
+      "source": "resource:pc-rizhi",
+      "target": "resource:rizhi-tilian",
+      "type": "contains",
+      "direction": "forward",
+      "description": "PC日志总控目录包含提炼日志文件"
+    },
+    {
+      "source": "resource:pc-rizhi",
+      "target": "document:gongju-dengji-biao",
+      "type": "contains",
+      "direction": "forward",
+      "description": "PC日志总控目录包含工具登记表"
+    },
+    {
+      "source": "resource:pc-rizhi",
+      "target": "document:sheji-wendang",
+      "type": "contains",
+      "direction": "forward",
+      "description": "PC日志总控目录包含设计文档"
+    },
+    {
+      "source": "resource:pc-rizhi",
+      "target": "resource:jiaoben-rizhi",
+      "type": "contains",
+      "direction": "forward",
+      "description": "PC日志总控通过Symlink汇聚各项目的脚本日志"
+    },
+    {
+      "source": "flow:rizhi-shengmingzhouqi",
+      "target": "resource:rizhi-quanju",
+      "type": "transforms",
+      "direction": "forward",
+      "description": "日志生命周期流程将超过2天的全局日志提炼后BAK化"
+    },
+    {
+      "source": "flow:rizhi-shengmingzhouqi",
+      "target": "resource:rizhi-tilian",
+      "type": "triggers",
+      "direction": "forward",
+      "description": "日志生命周期提炼流程生成提炼日志"
+    },
+    {
+      "source": "resource:xiangmu-kongjian",
+      "target": "resource:jiaoben-rizhi",
+      "type": "contains",
+      "direction": "forward",
+      "description": "项目空间中各项目目录包含脚本日志实体文件"
+    },
+    {
+      "source": "resource:skills-mulu",
+      "target": "document:skill-md",
+      "type": "contains",
+      "direction": "forward",
+      "description": "技能目录包含SKILL.md规则注入文件"
+    },
+    {
+      "source": "resource:skills-mulu",
+      "target": "concept:jiaoben-guifan",
+      "type": "contains",
+      "direction": "forward",
+      "description": "技能目录包含脚本制作规范技能定义"
+    },
+    {
+      "source": "flow:jineng-faxian",
+      "target": "resource:skills-mulu",
+      "type": "reads_from",
+      "direction": "forward",
+      "description": "技能发现流程从技能目录读取SKILL.md文件"
+    },
+    {
+      "source": "flow:jineng-faxian",
+      "target": "document:skill-md",
+      "type": "reads_from",
+      "direction": "forward",
+      "description": "技能发现流程读取SKILL.md注入Agent上下文"
+    },
+    {
+      "source": "concept:jiaoben-guifan",
+      "target": "resource:jiaoben-rizhi",
+      "type": "configures",
+      "direction": "forward",
+      "description": "脚本制作规范定义了脚本日志的格式和绑定规则"
+    },
+    {
+      "source": "concept:jiaoben-guifan",
+      "target": "config:zhucebiao",
+      "type": "configures",
+      "direction": "forward",
+      "description": "脚本制作规范定义了脚本注册表的登记规则"
+    },
+    {
+      "source": "document:sheji-wendang",
+      "target": "concept:jiaoben-guifan",
+      "type": "documents",
+      "direction": "forward",
+      "description": "设计文档记录脚本制作规范的架构决策和约束条件"
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:architecture",
+      "name": "四层架构",
+      "description": "苍穹系统的四层架构：数据层→汇聚层→检索层→交互层",
+      "languageLesson": "数据层（实体随项目走）→ 汇聚层（Symlink总控查阅）→ 检索层（自动发现项目）→ 交互层（托盘菜单操作）",
+      "nodeIds": [
+        "module:cangqiong",
+        "module:data",
+        "module:aggregation",
+        "module:discovery",
+        "module:tray"
+      ]
+    },
+    {
+      "id": "layer:yiti",
+      "name": "一体化启动器",
+      "description": "7个应用的一体化启动器，每个包含虫洞化+启动+托盘常驻",
+      "languageLesson": "7段结构：盘符检测→Dot-Source→环境检测8项→虫洞化→账号管理→启动应用→隐藏+托盘",
+      "nodeIds": [
+        "module:yiti",
+        "service:qclaw-yiti",
+        "service:trae-yiti",
+        "service:eagle-yiti",
+        "service:codex-yiti",
+        "service:2345pic-yiti",
+        "service:billfish-yiti",
+        "service:marvis-yiti"
+      ]
+    },
+    {
+      "id": "layer:infrastructure",
+      "name": "基础设施层",
+      "description": "Z盘化、PC域虫洞、Symlink权限、长路径支持等基础设施",
+      "languageLesson": "一键部署：Z盘固定化→SeCreateSymbolicLinkPrivilege→LongPathsEnabled=1→C:\\Users\\PC→Z:\\PC\\",
+      "nodeIds": [
+        "utility:jichu-sheshi-yiti",
+        "utility:panfu-gudinghua",
+        "utility:pc-yu-chongdong"
+      ]
+    },
+    {
+      "id": "layer:config",
+      "name": "配置与注册层",
+      "description": "菜单配置、备份配置、项目注册、脚本注册表",
+      "languageLesson": "数据驱动：CangQiong-XiangMu.json驱动自动发现，JiaoBen-ZhuCeBiao.json驱动脚本注册",
+      "nodeIds": [
+        "config:caidan",
+        "config:beifen",
+        "config:xiangmu",
+        "config:zhucebiao"
+      ]
+    },
+    {
+      "id": "layer:maintenance",
+      "name": "维护工具层",
+      "description": "健康检查、备份、Symlink重建等维护工具",
+      "languageLesson": "备份：robocopy /MIR /SL增量同步4个关键目录；健康：检测断链+自动修复",
+      "nodeIds": [
+        "utility:jiankang-jiance",
+        "module:backup",
+        "module:knowledge-graph",
+        "module:agent-management"
+      ]
+    },
+    {
+      "id": "layer:shared",
+      "name": "共享模块层",
+      "description": "所有YiTi脚本dot-source的公共模块和托盘常驻模块",
+      "languageLesson": "ChongDong-GongGong.ps1：Find-AppExe/New-SafeSymLink等；TuoPan-ChangZhu.ps1：WinTrayApi三层策略",
+      "nodeIds": [
+        "utility:chongdong-gonggong",
+        "utility:tuopan-changzhu"
+      ]
+    },
+    {
+      "id": "layer:aggregation",
+      "name": "汇聚虫洞层",
+      "description": "总控目录通过Symlink汇聚各项目的日志和图谱",
+      "languageLesson": "Symlink指向项目目录实体，断链无需维护（项目删除则自然断链）",
+      "nodeIds": [
+        "resource:pc-rizhi",
+        "resource:pc-zhishi-tupu",
+        "resource:xiangmu-kongjian"
+      ]
+    },
+    {
+      "id": "layer:rizhi-tixi",
+      "name": "日志体系层",
+      "description": "苍穹日志系统的完整架构，涵盖全局日志、提炼日志、脚本日志三种类型及其生命周期管理。日志是Agent与用户、Agent之间协作沟通的基础，实质性工作必须写入日志。",
+      "languageLesson": "日志体系核心：当天活跃→超过2天提炼+BAK→提炼内容写入新日志→旧日志.bak化。JiaoBen-RiZhi记「为什么」，RiZhi全局日志记「做了什么」。提炼时检测3次+重复错误生成HAB标签。",
+      "nodeIds": [
+        "resource:rizhi-quanju",
+        "resource:rizhi-tilian",
+        "resource:jiaoben-rizhi",
+        "flow:rizhi-shengmingzhouqi",
+        "document:gongju-dengji-biao",
+        "document:sheji-wendang",
+        "resource:pc-rizhi"
+      ]
+    },
+    {
+      "id": "layer:jineng-tixi",
+      "name": "技能体系层",
+      "description": "TRAE技能体系的完整架构，涵盖技能目录、规则注入、技能发现和脚本制作规范。通过Symlink注入机制确保所有Agent遵循统一规则，是苍穹Agent管理的核心支撑。",
+      "languageLesson": "技能体系核心：Symlink注入→SKILL.md→Agent统一规则。技能目录位于.agents\\\\skills\\\\，TRAE启动时自动加载。JiaoBen-GuiFan（脚本规范）是12步制作流程的权威参考，定义BAN/HAB标签系统防止不可逆损坏。",
+      "nodeIds": [
+        "resource:skills-mulu",
+        "document:skill-md",
+        "concept:jiaoben-guifan",
+        "flow:jineng-faxian",
+        "config:zhucebiao"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "四层架构 — 从数据到交互的完整链路",
+      "description": "苍穹的四层架构：数据层（实体随项目走，XiangMu-KongJian\\{AppName}\\）→ 汇聚层（Symlink 总控查阅，PC\\RiZhi\\ + PC\\ZhiShi-TuPu\\）→ 检索层（自动发现 CangQiong-XiangMu.json）→ 交互层（托盘菜单操作）。每一层职责清晰，断链无需维护",
+      "nodeIds": [
+        "module:data",
+        "module:aggregation",
+        "module:discovery",
+        "module:tray"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "托盘交互层 — 四大功能分区",
+      "description": "CangQiong.ps1（917行）基于 NotifyIcon 构建系统托盘。四大分区：知识图谱（vite dev server 启动 Dashboard）、启动脚本（调用 YiTi.bat 启动应用）、Agent管理（进程监控/停止）、备份与健康（robocopy /MIR 增量同步+Symlink健康检查）",
+      "nodeIds": [
+        "module:tray",
+        "module:knowledge-graph",
+        "module:yiti",
+        "module:agent-management",
+        "module:backup"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "一体化启动器 — 7应用×3文件×7段结构",
+      "description": "7个应用各3文件（.ps1+.bat+.vbs），7段结构：盘符检测→Dot-Source公共模块→环境检测8项→虫洞化→账号管理→启动应用→隐藏+托盘。全部 dot-source ChongDong-GongGong.ps1 公共模块，使用 TuoPan-ChangZhu.ps1 托盘常驻",
+      "nodeIds": [
+        "module:yiti",
+        "service:qclaw-yiti",
+        "service:trae-yiti",
+        "service:eagle-yiti",
+        "utility:chongdong-gonggong",
+        "utility:tuopan-changzhu"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "基础设施与部署 — 一键配置+健康检查",
+      "description": "JiChu-SheShi-YiTi 一键完成4项基础设施配置：Z盘化（PanFu-GuDingHua.bat 固定盘符+冲突检测）、Symlink权限（SeCreateSymbolicLinkPrivilege）、长路径支持（LongPathsEnabled=1）、PC域虫洞（C:\\Users\\PC → Z:\\PC\\）。JianKang-JianCe 检测断链和 Junction 混用",
+      "nodeIds": [
+        "utility:jichu-sheshi-yiti",
+        "utility:pc-yu-chongdong",
+        "utility:panfu-gudinghua",
+        "utility:jiankang-jiance"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "配置与注册体系 — JSON驱动的自动发现",
+      "description": "CangQiong-CaiDan.json 集中管理中文菜单字符串、CangQiong-XiangMu.json 每应用一个实现自动发现、CangQiong-BeiFen.json 保存备份目标路径、JiaoBen-ZhuCeBiao.json 全局脚本注册表（yiti/functional/bak三大分类）",
+      "nodeIds": [
+        "config:caidan",
+        "config:xiangmu",
+        "config:beifen",
+        "config:zhucebiao"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "汇聚与数据 — Symlink 虫洞化架构",
+      "description": "PC\\RiZhi\\ 日志总控 + PC\\ZhiShi-TuPu\\ 知识图谱总控，通过 Symlink 指向 XiangMu-KongJian\\ 下的实体。删除项目 → 实体消失 → Symlink 断链 → 苍穹自动标记已卸载 → 零维护。4.0 核心虫洞：C:\\Users\\PC → Z:\\PC\\",
+      "nodeIds": [
+        "resource:pc-rizhi",
+        "resource:pc-zhishi-tupu",
+        "resource:xiangmu-kongjian",
+        "utility:pc-yu-chongdong"
+      ]
+    }
+  ]
+}
