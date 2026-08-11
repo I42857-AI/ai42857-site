@@ -1,0 +1,15 @@
+{
+    "dashboard":  null,
+    "name":  "ai42857-site",
+    "logs":  {
+
+             },
+    "scripts":  {
+                    "dakai_mulu":  {
+                                       "file":  "..",
+                                       "label":  "DaKai MuLu"
+                                   }
+                },
+    "type":  "app",
+    "label":  "ai42857-site"
+}

@@ -1,0 +1,65 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/inter/900.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Fuel Studio CSS 变量 */
+  --fuel-black: #000;
+  --fuel-near-black: #111;
+  --fuel-white: #fff;
+  --fuel-mint: #d1e1e8;
+  --fuel-white-85: #ffffffd9;
+  --fuel-white-50: #ffffff80;
+  --fuel-white-16: #ffffff29;
+  --fuel-white-10: #ffffff1a;
+  --fuel-black-50: #00000080;
+  --fuel-black-16: #00000029;
+  --fuel-black-10: #0000001a;
+  --fuel-light-gray: #f7f7f7;
+
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* 自定义滚动条（黑白配色） */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* 选中文本 */
+::selection {
+  background-color: rgba(209, 225, 232, 0.3);
+  color: #fff;
+}
+
+@layer components {
+  .section-container {
+    @apply mx-auto max-w-site w-full px-6 md:px-12 lg:px-20;
+  }
+}
