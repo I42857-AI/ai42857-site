@@ -11,12 +11,13 @@ const NAV_ITEMS = [
 ];
 
 const HEADING_LINES = [
-  { text: "选择方案，提交工作需求，", delay: 0.4 },
-  { text: "您的创意项目 将在", delay: 0.6 },
-  { text: "24 小时内启动。", delay: 0.8 },
+  { text: "洪观林", delay: 0.4 },
+  { text: "AI 视觉设计师", delay: 0.6 },
+  { text: "用 AI 重新定义视觉设计", delay: 0.8 },
 ];
+const HEADING_HIGHLIGHT = 1; // 高亮"AI 视觉设计师"行
 
-const SERVICE_TAGS = ["策略", "视频", "品牌"];
+const SERVICE_TAGS = ["AI 视觉", "电商视觉", "产品精修", "品牌 IP", "AI 工作流"];
 
 const PARTICLE_COLUMNS = [
   { right: 889, delay: 0.8 },
@@ -219,7 +220,7 @@ export default function FuelHero() {
             transition={{ delay: 1.1, duration: 0.5, ease: EASE_SECTION, type: "tween" }}
           >
             <h2 className="text-white/70 text-sm font-mono tracking-wider uppercase">
-              高端创意工作室
+              美工主管 → AI 视觉设计师
             </h2>
           </motion.div>
 
@@ -231,13 +232,14 @@ export default function FuelHero() {
             transition={{ delay: 1.3, duration: 0.5, ease: EASE_SECTION, type: "tween" }}
           >
             <p className="text-white/50 text-sm font-mono max-w-md leading-relaxed">
-              设计前沿的卓越机构，打造大胆视觉、结构化布局和高影响力数字 3D 瑞士风格作品，灵感源自现代美学。
+              8年+ 设计经验，从电商视觉到品牌 IP，再整合 AI 工作流提升 3-5 倍产出效率。
+              以审美为底、以 AI 为杠杆，打造商业级视觉。
             </p>
           </motion.div>
 
           {/* Heading Lines */}
           <div className="mb-10">
-            {HEADING_LINES.map((line) => (
+            {HEADING_LINES.map((line, i) => (
               <motion.div
                 key={line.text}
                 initial={{ opacity: 0.001 }}
@@ -257,6 +259,7 @@ export default function FuelHero() {
                     fontSize: "clamp(40px, 8vw, 56px)",
                     lineHeight: "1",
                     letterSpacing: "-1.7px",
+                    color: i === HEADING_HIGHLIGHT ? "#d1e1e8" : undefined,
                   }}
                 >
                   {line.text}

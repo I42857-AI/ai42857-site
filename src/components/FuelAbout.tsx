@@ -3,22 +3,22 @@ import { useRef } from "react";
 
 const phases = [
   {
-    title: "(前期)",
-    description: "以精准和有意识的设计点燃创意。RICH² 将原始创造力转化为结构化的视觉系统，塑造品牌并提升数字体验。"
+    title: "(电商视觉)",
+    description: "承担手表多品牌（Fido dido/MLB/Casima）与餐饮品牌的电商视觉体系，覆盖天猫/淘宝/京东/1688/抖音，把控材质与光影质感。"
   },
   {
-    title: "(+后期)",
-    description: "秉承大胆美学与功能极简主义，RICH² 将现代形态与有意义的细节相融合，打造推动品牌前进的精致体验。"
+    title: "(品牌 IP)",
+    description: "为品牌设计 IP 形象、吉祥物与 VI 体系，贯通从形象设计到衍生品品控的全流程，让品牌形象落地一致。"
   },
   {
-    title: "(=成果)",
-    description: "通过清晰和有意识的设计引导视觉识别。RICH² 塑造连贯的叙事，将品牌提升到美学之上，创造具有锐度的永恒表达。"
+    title: "(AI 工作流)",
+    description: "整合 TRAE + RunningHub AI 工作流，从提示词到成品全自动化，提升 3-5 倍产出效率，打造垂直领域稀缺能力。"
   }
 ];
 
 const stats = [
-  { value: "15", label: "新客户" },
-  { value: "100%", label: "成功率" },
+  { value: "8+", label: "年设计经验" },
+  { value: "3-8", label: "人团队管理" },
 ];
 
 export default function FuelAbout() {
@@ -88,8 +88,8 @@ export default function FuelAbout() {
               (关于我)
             </p>
             <h2 className="font-display text-4xl md:text-5xl font-semibold text-white mb-8 leading-tight">
-              超越简单的真实，<br />
-              <span className="text-fuel-mint">创建精致的系统</span>来塑造数字存在。
+              审美为底，<br />
+              <span className="text-fuel-mint">AI 为杠杆</span>，塑造商业视觉。
             </h2>
 
             {/* 阶段描述 */}
@@ -134,7 +134,7 @@ export default function FuelAbout() {
                 href="#contact"
                 className="inline-flex items-center gap-2 px-8 py-3.5 bg-fuel-mint text-black text-sm font-mono tracking-wider hover:bg-fuel-mint/80 transition-all duration-300"
               >
-                立即探索
+                立即联系
               </a>
             </motion.div>
           </motion.div>

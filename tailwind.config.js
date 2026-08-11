@@ -49,25 +49,7 @@ export default {
         sans: ["Inter", "sans-serif"],
         mono: ["Inter", "monospace"],
       },
-      animation: {
-        "fade-in": "fadeIn 0.8s ease-out forwards",
-        "slide-up": "slideUp 0.8s ease-out forwards",
-        "glow-pulse": "glowPulse 3s ease-in-out infinite",
-      },
-      keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        slideUp: {
-          "0%": { opacity: "0", transform: "translateY(30px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        glowPulse: {
-          "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "0.8" },
-        },
-      },
+      
     },
   },
   plugins: [],

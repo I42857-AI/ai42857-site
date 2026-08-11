@@ -1,22 +1,37 @@
 import { motion } from "motion/react";
-import { Camera, Layout, Eye } from "lucide-react";
+import { Camera, Layout, Eye, Sparkles, PenTool, Layers } from "lucide-react";
 import BlurText from "@/components/BlurText";
 
 const expertise = [
   {
     icon: Camera,
-    title: "品牌影像",
-    description: "精心打造具有情绪、精准度和情感深度的影像。RICH² 捕捉经过策划和有目的的时刻，将简单的视觉转化为强大的品牌故事。",
+    title: "电商视觉",
+    description: "手表多品牌（Fido dido/MLB/Casima）与餐饮品牌的电商全链路视觉，覆盖天猫/淘宝/京东/1688/抖音，把控材质与光影质感。",
   },
   {
     icon: Layout,
-    title: "概念框架",
-    description: "以洞察力、方向和清晰度构建创意。RICH² 构建深思熟虑的框架，定义定位，强化身份，推动品牌走向长期影响力。",
+    title: "产品精修",
+    description: "石英表精修（表盘/指针/金属表带/玻璃表镜）、灯饰精修（吸顶灯/风扇灯/餐厅吊灯光影），以专业细致呈现商业级质感。",
   },
   {
     icon: Eye,
-    title: "创意监督",
-    description: "通过清晰和有意识的设计引导视觉识别。RICH² 塑造连贯的叙事，将品牌提升到美学之上，创造具有锐度的永恒表达。",
+    title: "品牌 IP",
+    description: "品牌 IP 形象、吉祥物、VI 体系设计与衍生品品控，贯通从形象创意到落地一致的全流程，强化品牌识别。",
+  },
+  {
+    icon: Sparkles,
+    title: "AI 工作流",
+    description: "整合 TRAE + RunningHub + Seedance，从提示词到成品全自动化，生图/精修/视频产出效率提升 3-5 倍。",
+  },
+  {
+    icon: PenTool,
+    title: "品牌视觉",
+    description: "公众号页面、品牌 VI、海报与社交媒体视觉，区分品牌调性，打造统一且有识别度的视觉输出。",
+  },
+  {
+    icon: Layers,
+    title: "团队管理",
+    description: "管理 3-8 人美工团队，建立设计规范体系与标准化工作流程，新人带教体系，通过模板化提升产能 30%+。",
   },
 ];
 
@@ -37,7 +52,7 @@ export default function FuelExpertise() {
             Core Expertise
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-white">
-            核心专长
+            核心能力
           </h2>
         </motion.div>
 

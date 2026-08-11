@@ -12,14 +12,11 @@
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.6",
-    "clsx": "^2.1.1",
     "lucide-react": "^0.511.0",
     "motion": "^12.40.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.3.0",
-    "tailwind-merge": "^3.0.2",
-    "zustand": "^5.0.3"
+    "react-router-dom": "^7.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
@@ -40,5 +37,6 @@
     "vite": "^6.3.5",
     "vite-plugin-trae-solo-badge": "^1.0.0",
     "vite-tsconfig-paths": "^5.1.4"
-  }
+  },
+  "packageManager": "pnpm@11.21.0+sha512.521705bce689924eac72f5a3587122f362689ef6571e55ba80076fd637c11132ecffada26fad4ea79c485bfddbfd3d5a2a5b05805a77e893de71ec8a6cca3bb1"
 }

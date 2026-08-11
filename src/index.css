@@ -7,20 +7,6 @@
 @tailwind utilities;
 
 :root {
-  /* Fuel Studio CSS 变量 */
-  --fuel-black: #000;
-  --fuel-near-black: #111;
-  --fuel-white: #fff;
-  --fuel-mint: #d1e1e8;
-  --fuel-white-85: #ffffffd9;
-  --fuel-white-50: #ffffff80;
-  --fuel-white-16: #ffffff29;
-  --fuel-white-10: #ffffff1a;
-  --fuel-black-50: #00000080;
-  --fuel-black-16: #00000029;
-  --fuel-black-10: #0000001a;
-  --fuel-light-gray: #f7f7f7;
-
   font-family: "Inter", sans-serif;
   line-height: 1.6;
   font-weight: 400;

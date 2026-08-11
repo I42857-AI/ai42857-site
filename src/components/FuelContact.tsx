@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { Mail, ArrowUpRight } from "lucide-react";
+import { Phone, Mail, ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 
 export default function FuelContact() {
@@ -70,6 +70,15 @@ export default function FuelContact() {
               <ArrowUpRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
             </span>
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+          </a>
+          <a
+            href="tel:19200141125"
+            className="group relative flex items-center gap-3 px-10 py-4 bg-fuel-mint/10 text-white border border-fuel-mint/30 font-mono text-sm tracking-wider overflow-hidden hover:bg-fuel-mint hover:text-black transition-all duration-300"
+          >
+            <span className="relative z-10 flex items-center gap-3">
+              <Phone size={18} />
+              19200141125
+            </span>
           </a>
           <a
             href="https://www.youtube.com/"
