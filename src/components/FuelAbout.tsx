@@ -1,29 +1,25 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { Mail, MapPin, Github, ExternalLink } from "lucide-react";
 import { useRef } from "react";
 
-const stats = [
-  { value: "50+", label: "完成项目" },
-  { value: "30+", label: "AI 技能体系" },
-  { value: "8+", label: "年设计经验" },
-  { value: "2", label: "AI Agent 协作" },
+const phases = [
+  {
+    title: "(前期)",
+    description: "以精准和有意识的设计点燃创意。RICH² 将原始创造力转化为结构化的视觉系统，塑造品牌并提升数字体验。"
+  },
+  {
+    title: "(+后期)",
+    description: "秉承大胆美学与功能极简主义，RICH² 将现代形态与有意义的细节相融合，打造推动品牌前进的精致体验。"
+  },
+  {
+    title: "(=成果)",
+    description: "通过清晰和有意识的设计引导视觉识别。RICH² 塑造连贯的叙事，将品牌提升到美学之上，创造具有锐度的永恒表达。"
+  }
 ];
 
-// 数字滚动动画
-function CountUp({ value, suffix = "" }: { value: string; suffix?: string }) {
-  const num = parseInt(value);
-  if (isNaN(num)) return <>{value}</>;
-
-  return (
-    <motion.span
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-    >
-      {value}
-    </motion.span>
-  );
-}
+const stats = [
+  { value: "15", label: "新客户" },
+  { value: "100%", label: "成功率" },
+];
 
 export default function FuelAbout() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -45,7 +41,7 @@ export default function FuelAbout() {
 
       <div className="section-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
-          {/* 左侧：头像+基本信息 */}
+          {/* 左侧：头像 */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -53,22 +49,19 @@ export default function FuelAbout() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-5"
           >
-            {/* 头像区域 */}
             <div className="relative mb-10 group">
               <div className="w-64 h-72 bg-dark-700 relative overflow-hidden">
                 <img
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20portrait%20photo%20of%20a%20creative%20Chinese%20designer%2C%20dark%20background%2C%20dramatic%20lighting%2C%20minimal%20style&image_size=portrait_4_3"
-                  alt="Fuel Studio"
+                  src="https://framerusercontent.com/images/mrONGfTFus0kct22YjoSh0JjU.png"
+                  alt="RICH² Studio"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                {/* 扫描线 */}
                 <div className="absolute inset-0 opacity-10"
                   style={{
                     backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(209,225,232,0.1) 2px, rgba(209,225,232,0.1) 4px)",
                   }}
                 />
               </div>
-              {/* 装饰边框 */}
               <motion.div
                 initial={{ opacity: 0, x: 10, y: 10 }}
                 whileInView={{ opacity: 1, x: 12, y: 12 }}
@@ -76,43 +69,14 @@ export default function FuelAbout() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="absolute -bottom-2 -right-2 w-64 h-72 border border-fuel-mint/20"
               />
-              {/* 状态指示灯 */}
               <div className="absolute -top-2 -left-2 flex items-center gap-2 bg-black/80 backdrop-blur-sm px-3 py-1.5 border border-white/10">
                 <div className="w-2 h-2 rounded-full bg-fuel-mint animate-pulse" />
                 <span className="font-mono text-[10px] tracking-wider text-white/60 uppercase">Available</span>
               </div>
             </div>
-
-            {/* 联系方式 */}
-            <div className="space-y-4">
-              {[
-                { icon: Mail, text: "hello@fuelstudio.com", href: "mailto:hello@fuelstudio.com" },
-                { icon: MapPin, text: "中国 · 远程", href: undefined },
-                { icon: Github, text: "Fuel-Studio", href: "https://github.com/Fuel-Studio", external: true },
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
-                  className="flex items-center gap-3 text-white/60 group/item"
-                >
-                  <item.icon size={16} className="text-fuel-mint/70 group-hover/item:text-fuel-mint transition-colors" />
-                  {item.href ? (
-                    <a href={item.href} target={item.external ? "_blank" : undefined} rel={item.external ? "noopener" : undefined} className="font-mono text-sm hover:text-fuel-mint transition-colors flex items-center gap-1">
-                      {item.text}
-                      {item.external && <ExternalLink size={12} className="opacity-50" />}
-                    </a>
-                  ) : (
-                    <span className="font-mono text-sm">{item.text}</span>
-                  )}
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
-          {/* 右侧：介绍+数据 */}
+          {/* 右侧：介绍 */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -121,26 +85,25 @@ export default function FuelAbout() {
             className="lg:col-span-7"
           >
             <p className="font-mono text-xs tracking-[0.3em] text-fuel-mint/70 uppercase mb-4">
-              About Us
+              (关于我)
             </p>
             <h2 className="font-display text-4xl md:text-5xl font-semibold text-white mb-8 leading-tight">
-              在视觉与智能的<br />
-              <span className="text-fuel-mint">交汇处</span>创造
+              超越简单的真实，<br />
+              <span className="text-fuel-mint">创建精致的系统</span>来塑造数字存在。
             </h2>
-            <div className="space-y-5 text-white/60 leading-relaxed">
-              <p>
-                Fuel Studio 是一家专注于创意设计与 AI 技术融合的工作室。我们探索设计的边界——从传统品牌视觉到 AI Agent 协作体系，从静态画面到动态交互体验。
-              </p>
-              <p>
-                我们相信好的设计不是装饰，而是沟通。每一个项目都是一次对话——与用户对话，与技术对话，与未来对话。我们构建了完整的 AI Agent 协作体系，让多个智能体协同工作，将设计思维注入每一个环节。
-              </p>
-              <p>
-                目前专注于 AI 驱动的视觉设计、品牌系统构建和多 Agent 协作工作流。如果你正在寻找一个既懂设计又懂 AI 的合作伙伴，我们聊聊。
-              </p>
+
+            {/* 阶段描述 */}
+            <div className="space-y-8 mb-12">
+              {phases.map((phase) => (
+                <div key={phase.title} className="border-l border-fuel-mint/20 pl-4">
+                  <h3 className="font-mono text-sm text-fuel-mint/80 mb-2">{phase.title}</h3>
+                  <p className="text-white/60 leading-relaxed text-sm">{phase.description}</p>
+                </div>
+              ))}
             </div>
 
             {/* 数据统计 */}
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 gap-6">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -151,7 +114,7 @@ export default function FuelAbout() {
                   className="border-l border-fuel-mint/30 pl-4 group/stat hover:border-fuel-mint/60 transition-colors"
                 >
                   <div className="font-display text-3xl md:text-4xl font-semibold text-white">
-                    <CountUp value={stat.value} />
+                    {stat.value}
                   </div>
                   <div className="font-mono text-xs text-white/40 mt-1 tracking-wider group-hover/stat:text-fuel-mint/70 transition-colors">
                     {stat.label}
@@ -159,6 +122,21 @@ export default function FuelAbout() {
                 </motion.div>
               ))}
             </div>
+
+            <motion.div
+              className="mt-10"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-fuel-mint text-black text-sm font-mono tracking-wider hover:bg-fuel-mint/80 transition-all duration-300"
+              >
+                立即探索
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </div>

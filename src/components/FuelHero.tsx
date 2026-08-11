@@ -4,24 +4,19 @@ import { motion, useScroll, useTransform } from "motion/react";
 // ── 常量 ──
 
 const NAV_ITEMS = [
-  { id: "01", label: "Work" },
-  { id: "02", label: "Expertise" },
-  { id: "03", label: "Projects" },
-  { id: "04", label: "Contact" },
-];
-
-const PROJECTS = [
-  { id: "01", title: "Velocity Becomes" },
-  { id: "02", title: "Way To Clearance" },
-  { id: "03", title: "All Grapples" },
-  { id: "04", title: "Flowers Love" },
+  { id: "01", label: "首页", href: "./" },
+  { id: "02", label: "作品集", href: "#work" },
+  { id: "03", label: "关于我们", href: "#about" },
+  { id: "04", label: "联系我们", href: "#contact" },
 ];
 
 const HEADING_LINES = [
-  { text: "We Build", delay: 0.4 },
-  { text: "Experiences", delay: 0.6 },
-  { text: "That Matter", delay: 0.8 },
+  { text: "选择方案，提交工作需求，", delay: 0.4 },
+  { text: "您的创意项目 将在", delay: 0.6 },
+  { text: "24 小时内启动。", delay: 0.8 },
 ];
+
+const SERVICE_TAGS = ["策略", "视频", "品牌"];
 
 const PARTICLE_COLUMNS = [
   { right: 889, delay: 0.8 },
@@ -100,7 +95,7 @@ function FuelNavbar() {
     >
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <span className="text-white text-lg font-bold tracking-tight">FUEL</span>
+        <img src="/header-logo.png" alt="RICH²" className="h-8" />
       </div>
 
       {/* Navigation Items */}
@@ -108,12 +103,11 @@ function FuelNavbar() {
         {NAV_ITEMS.map((item) => (
           <a
             key={item.id}
-            href={`#${item.label.toLowerCase()}`}
+            href={item.href}
             className="group relative text-white/70 hover:text-white text-sm tracking-wider font-mono transition-colors duration-300"
           >
             <span className="opacity-40 mr-2">{item.id}</span>
             {item.label}
-            {/* 底部指示线 */}
             <span className="absolute -bottom-1 left-0 h-px bg-white/40 transition-all duration-300 group-hover:w-[104%]"
               style={{ width: "1px" }}
             />
@@ -126,41 +120,9 @@ function FuelNavbar() {
         href="#contact"
         className="px-6 py-2.5 border border-white/20 text-white/80 text-sm font-mono tracking-wider hover:bg-white hover:text-black transition-all duration-300"
       >
-        Get in Touch
+        立即探索
       </a>
     </motion.nav>
-  );
-}
-
-// ── 子组件：项目行 ──
-
-function ProjectRow() {
-  return (
-    <motion.div
-      initial={{ opacity: 0.001 }}
-      animate={{ opacity: 1 }}
-      transition={{
-        type: "spring",
-        damping: 60,
-        stiffness: 300,
-        mass: 1,
-        delay: 0.5,
-      }}
-      className="flex gap-10"
-    >
-      {PROJECTS.map((project) => (
-        <a
-          key={project.id}
-          href="#"
-          className="group"
-        >
-          <span className="text-white/30 text-xs font-mono tracking-wider block mb-1">{project.id}</span>
-          <span className="text-white/80 text-sm font-mono tracking-wide group-hover:text-white transition-colors">
-            {project.title}
-          </span>
-        </a>
-      ))}
-    </motion.div>
   );
 }
 
@@ -197,7 +159,7 @@ export default function FuelHero() {
         >
           <img
             src="/people.png"
-            alt=""
+            alt="Women in Orange BG"
             className="w-full h-full object-cover"
             draggable={false}
           />
@@ -257,7 +219,7 @@ export default function FuelHero() {
             transition={{ delay: 1.1, duration: 0.5, ease: EASE_SECTION, type: "tween" }}
           >
             <h2 className="text-white/70 text-sm font-mono tracking-wider uppercase">
-              Creative Studio
+              高端创意工作室
             </h2>
           </motion.div>
 
@@ -269,7 +231,7 @@ export default function FuelHero() {
             transition={{ delay: 1.3, duration: 0.5, ease: EASE_SECTION, type: "tween" }}
           >
             <p className="text-white/50 text-sm font-mono max-w-md leading-relaxed">
-              We craft digital experiences that blend creativity with technology
+              设计前沿的卓越机构，打造大胆视觉、结构化布局和高影响力数字 3D 瑞士风格作品，灵感源自现代美学。
             </p>
           </motion.div>
 
@@ -303,9 +265,9 @@ export default function FuelHero() {
             ))}
           </div>
 
-          {/* CTA Buttons */}
+          {/* Service Tags */}
           <motion.div
-            className="flex gap-4 mb-16"
+            className="flex gap-3 mb-16"
             initial={{ opacity: 0.001 }}
             animate={{ opacity: 1 }}
             transition={{
@@ -316,23 +278,18 @@ export default function FuelHero() {
               delay: 0.6,
             }}
           >
-            <a
-              href="#contact"
-              className="px-8 py-3.5 bg-white text-black text-sm font-mono tracking-wider hover:bg-white/90 transition-all duration-300"
-            >
-              Get in Touch
-            </a>
-            <a
-              href="#work"
-              className="px-8 py-3.5 border border-white/20 text-white/80 text-sm font-mono tracking-wider hover:bg-white hover:text-black transition-all duration-300"
-            >
-              View Work
-            </a>
+            {SERVICE_TAGS.map((tag) => (
+              <span
+                key={tag}
+                className="px-4 py-2 border border-white/20 text-white/60 text-xs font-mono tracking-wider"
+              >
+                {tag}
+              </span>
+            ))}
           </motion.div>
 
-          {/* 底部行：主图 + 项目行 */}
+          {/* 底部行：Logo 横幅 */}
           <div className="flex items-end justify-between w-full gap-8">
-            {/* Main Image */}
             <motion.div
               className="w-[75%]"
               initial={{ opacity: 0.001 }}
@@ -347,16 +304,23 @@ export default function FuelHero() {
             >
               <div style={{ aspectRatio: "6.38095" }} className="overflow-hidden">
                 <img
-                  src="/people.png"
-                  alt=""
-                  className="w-full h-full object-cover"
+                  src="/logo-banner.png"
+                  alt="RICH²"
+                  className="w-full h-full object-contain"
                   draggable={false}
                 />
               </div>
             </motion.div>
 
-            {/* Project Row */}
-            <ProjectRow />
+            {/* Year */}
+            <motion.span
+              className="text-white/20 text-sm font-mono tracking-wider"
+              initial={{ opacity: 0.001 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+            >
+              19'
+            </motion.span>
           </div>
         </div>
 

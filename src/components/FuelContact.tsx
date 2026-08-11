@@ -24,7 +24,6 @@ export default function FuelContact() {
         <div className="absolute top-1/4 right-1/4 w-[300px] h-[300px] bg-white/3 rounded-full blur-[80px]" />
       </div>
 
-      {/* 网格装饰 */}
       <div className="absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage: "linear-gradient(rgba(209,225,232,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(209,225,232,0.3) 1px, transparent 1px)",
@@ -46,11 +45,11 @@ export default function FuelContact() {
             Get In Touch
           </p>
           <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold text-white mb-8 leading-tight">
-            让我们一起<br />
-            <span className="text-fuel-mint">创造些什么</span>
+            我们更快、更好、<br />
+            <span className="text-fuel-mint">更优惠</span>
           </h2>
           <p className="text-lg text-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
-            无论是一个品牌项目、一个 AI 工作流，还是一次关于设计与智能的对话——我都在这里。
+            选择方案，提交工作需求，您的创意项目将在 24 小时内启动。
           </p>
         </motion.div>
 
@@ -62,7 +61,7 @@ export default function FuelContact() {
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
           <a
-            href="mailto:hello@fuelstudio.com"
+            href="mailto:sayhi@rich2studio.com"
             className="group relative flex items-center gap-3 px-10 py-4 bg-fuel-mint text-black font-mono text-sm tracking-wider overflow-hidden hover:bg-fuel-mint/80 transition-all duration-300"
           >
             <span className="relative z-10 flex items-center gap-3">
@@ -73,17 +72,16 @@ export default function FuelContact() {
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </a>
           <a
-            href="https://github.com/Fuel-Studio"
+            href="https://www.youtube.com/"
             target="_blank"
             rel="noopener"
             className="group flex items-center gap-3 px-10 py-4 border border-white/20 text-white/80 font-mono text-sm tracking-wider hover:border-fuel-mint/50 hover:text-fuel-mint transition-all duration-300"
           >
-            GitHub
+            YouTube
             <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
         </motion.div>
 
-        {/* 装饰分隔线 */}
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -92,7 +90,6 @@ export default function FuelContact() {
           className="mt-24 h-px bg-gradient-to-r from-transparent via-fuel-mint/20 to-transparent origin-center"
         />
 
-        {/* 底部信息 */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -101,12 +98,12 @@ export default function FuelContact() {
           className="mt-8"
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-white/30 tracking-wider">
-            <span>&copy; 2026 Fuel Studio. All rights reserved.</span>
+            <span>&copy; 2026 RICH². All rights reserved.</span>
             <span className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-fuel-mint/50" />
-              Designed with TRAE + MiMo
+              sayhi@rich2studio.com
             </span>
-            <span>fuelstudio.com</span>
+            <span>rich2studio.com</span>
           </div>
         </motion.div>
       </motion.div>

@@ -1,37 +1,22 @@
 import { motion } from "motion/react";
-import { Palette, Cpu, Layers, Zap, Eye, Workflow } from "lucide-react";
+import { Camera, Layout, Eye } from "lucide-react";
 import BlurText from "@/components/BlurText";
 
 const expertise = [
   {
-    icon: Palette,
-    title: "视觉设计",
-    description: "从品牌识别到界面设计，用克制的视觉语言传递精准的信息。深色系、高级感、有呼吸感。",
+    icon: Camera,
+    title: "品牌影像",
+    description: "精心打造具有情绪、精准度和情感深度的影像。RICH² 捕捉经过策划和有目的的时刻，将简单的视觉转化为强大的品牌故事。",
   },
   {
-    icon: Cpu,
-    title: "AI 设计",
-    description: "构建 AI Agent 协作体系，让多个智能体协同工作。深度回访、编码安全、虫洞链接——设计不只是视觉，更是系统。",
-  },
-  {
-    icon: Layers,
-    title: "品牌系统",
-    description: "不是 Logo + 配色，而是一套完整的视觉语言体系。从命名规范到文件架构，每个细节都有逻辑。",
-  },
-  {
-    icon: Zap,
-    title: "动效设计",
-    description: "用 Remotion 以代码写视频，用 Motion 做交互动效。不是模板转场，是精心编排的视觉叙事。",
+    icon: Layout,
+    title: "概念框架",
+    description: "以洞察力、方向和清晰度构建创意。RICH² 构建深思熟虑的框架，定义定位，强化身份，推动品牌走向长期影响力。",
   },
   {
     icon: Eye,
-    title: "用户体验",
-    description: "设计不是自我表达，是替用户解决问题。10 秒建立印象，3 分钟深入理解，全程无摩擦。",
-  },
-  {
-    icon: Workflow,
-    title: "工作流设计",
-    description: "从需求到交付的全链路设计。苍穹生态、虫洞体系、日志联动——让工具适应人，不是人适应工具。",
+    title: "创意监督",
+    description: "通过清晰和有意识的设计引导视觉识别。RICH² 塑造连贯的叙事，将品牌提升到美学之上，创造具有锐度的永恒表达。",
   },
 ];
 
@@ -56,7 +41,7 @@ export default function FuelExpertise() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {expertise.map((item, i) => (
             <motion.div
               key={item.title}
@@ -66,7 +51,6 @@ export default function FuelExpertise() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="group p-8 bg-dark-800/50 border border-white/10 hover:border-fuel-mint/20 transition-all duration-500 relative overflow-hidden"
             >
-              {/* 悬停光晕 */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-fuel-mint/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative z-10">

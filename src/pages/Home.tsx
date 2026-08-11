@@ -1,5 +1,6 @@
 import FuelHero from "@/components/FuelHero";
 import FuelAbout from "@/components/FuelAbout";
+import FuelStats from "@/components/FuelStats";
 import FuelExpertise from "@/components/FuelExpertise";
 import FuelProjects from "@/components/FuelProjects";
 import FuelContact from "@/components/FuelContact";
@@ -9,6 +10,7 @@ export default function Home() {
     <div className="bg-black min-h-screen text-white">
       <FuelHero />
       <FuelAbout />
+      <FuelStats />
       <FuelExpertise />
       <FuelProjects />
       <FuelContact />

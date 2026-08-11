@@ -6,35 +6,39 @@ import BlurText from "@/components/BlurText";
 const projects = [
   {
     id: 1,
-    title: "AGENT-Rule 协作体系",
-    category: "AI 设计",
-    tags: ["Agent", "规则引擎", "深度回访"],
-    description: "为 AI Agent 设计的通用协作规则体系，包含深度回访、编码安全、虫洞链接、BAK 机制和日志联动五大核心模块。",
-    image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Dark%20futuristic%20UI%20dashboard%20with%20copper%20accent%20lines%2C%20abstract%20network%20nodes%2C%20minimal%20tech%20interface%2C%20high-end%20design&image_size=landscape_16_9",
+    title: "Vellfire Calibration",
+    category: "艺术指导",
+    number: "(01)",
+    tags: ["艺术指导", "摄影"],
+    description: "精准的视觉校准，将工业美学与人文温度融合，打造极具冲击力的品牌视觉叙事。",
+    image: "https://framerusercontent.com/images/JQZOV1weNouMXqzxyX8EWnm7zEw.png",
   },
   {
     id: 2,
-    title: "RunningHUB 粤菜分镜系统",
-    category: "AI 视频",
-    tags: ["Seedance 2.0", "分镜", "美食"],
-    description: "基于 MrBeast 视频方法论演化的 AI 短视频分镜系统，专为 30 秒菜品推广设计，纯视觉叙事无字幕。",
-    image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Elegant%20Cantonese%20roast%20goose%20dish%20on%20dark%20slate%20plate%2C%20dramatic%20studio%20lighting%2C%20cinematic%20food%20photography%2C%20warm%20copper%20tones&image_size=landscape_16_9",
+    title: "Dunwill Lanson",
+    category: "摄影",
+    number: "(02)",
+    tags: ["摄影", "艺术指导"],
+    description: "通过镜头语言捕捉品牌灵魂，将光影与情感交织，构建独特的视觉身份体系。",
+    image: "https://framerusercontent.com/images/rmeBLxZhEpvUaEnrIirzHJQynwc.png",
   },
   {
     id: 3,
-    title: "MiMo Code 多智能体生态",
-    category: "AI 工具",
-    tags: ["MiMo", "多智能体", "技能汉化"],
-    description: "为小米 MiMo Code 建立完整的苍穹生态，包含虫洞注入、技能汉化、注册表和日志体系。",
-    image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Multiple%20AI%20agents%20collaborating%20in%20dark%20digital%20space%2C%20connected%20by%20glowing%20copper%20lines%2C%20abstract%20network%20visualization%2C%20minimal&image_size=landscape_16_9",
+    title: "Noara Willis",
+    category: "策略",
+    number: "(03)",
+    tags: ["策略", "品牌"],
+    description: "深度策略驱动的品牌重塑项目，从定位到执行，全方位提升品牌影响力与市场认知。",
+    image: "https://framerusercontent.com/images/Jt7zqgTjQMYT15YvEkLGKiF9Cw.png",
   },
   {
     id: 4,
-    title: "Remotion 宣传视频",
-    category: "动效设计",
-    tags: ["React", "视频", "动效"],
-    description: "用 Remotion 框架以代码方式制作 AGENT-Rule 宣传视频，包含模糊文字、分裂字符、数字滚动等高级动效。",
-    image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Abstract%20motion%20graphics%20with%20split%20text%20animation%2C%20dark%20background%2C%20copper%20and%20sand%20color%20palette%2C%20modern%20kinetic%20typography&image_size=landscape_16_9",
+    title: "Nike Studios",
+    category: "艺术指导",
+    number: "(04)",
+    tags: ["艺术指导", "运动"],
+    description: "为全球运动品牌打造沉浸式视觉体验，将运动精神与前沿设计语言完美融合。",
+    image: "https://framerusercontent.com/images/yIiUMXJoon44xe3SOzMh1ekTV6w.png",
   },
 ];
 
@@ -74,7 +78,7 @@ function TiltCard({ children, className }: { children: React.ReactNode; classNam
 
 export default function FuelProjects() {
   return (
-    <section id="projects" className="py-32 bg-dark-900 relative">
+    <section id="work" className="py-32 bg-dark-900 relative">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-fuel-mint/20 to-transparent" />
 
       <div className="section-container">
@@ -112,10 +116,8 @@ export default function FuelProjects() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-dark-800 via-dark-800/30 to-transparent" />
 
-                  {/* 悬停遮罩 */}
                   <div className="absolute inset-0 bg-fuel-mint/0 group-hover:bg-fuel-mint/5 transition-colors duration-500" />
 
-                  {/* 悬停箭头 */}
                   <div className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-black/60 backdrop-blur-sm border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:rotate-45">
                     <ArrowUpRight size={18} className="text-fuel-mint -rotate-45" />
                   </div>
@@ -129,7 +131,7 @@ export default function FuelProjects() {
                     </span>
                     <span className="w-8 h-px bg-fuel-mint/30" />
                     <span className="font-mono text-xs tracking-wider text-white/30 uppercase">
-                      {String(i + 1).padStart(2, "0")}
+                      {project.number}
                     </span>
                   </div>
                   <BlurText
